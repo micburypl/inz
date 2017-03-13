@@ -11,7 +11,7 @@ public class Start extends Application {
     };
 
     public void start(Stage stage) throws Exception {
-    System.out.print("Hello world!!\n ass ass");
+    System.out.print("Hello world!!\n Avatar test");
 
         stage.setTitle("My JavaFX Application");
         //stage.setScene(scene);
