@@ -12,7 +12,7 @@ public class Start extends Application {
 
     public void start(Stage stage) throws Exception {
 
-    System.out.print("Hello world!!\n commit best best best best test");
+    System.out.print("Hello world!!");
 
     System.out.print("Hello world ok");
 
