@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ebece742-c52f-4980-9bad-6dbf180fe81a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Start.java" afterPath="$PROJECT_DIR$/src/main/java/Start.java" />
-    </list>
+    <list default="true" id="ebece742-c52f-4980-9bad-6dbf180fe81a" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -37,7 +35,6 @@
           <provider selected="true" editor-type-id="text-editor">
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
             <state relative-caret-position="187">
               <caret line="13" column="44" lean-forward="false" selection-start-line="13" selection-start-column="44" selection-end-line="13" selection-end-column="44" />
 =======
@@ -47,10 +44,6 @@
 =======
             <state relative-caret-position="306">
               <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
->>>>>>> Stashed changes
-=======
-            <state relative-caret-position="255">
-              <caret line="17" column="21" lean-forward="true" selection-start-line="17" selection-start-column="21" selection-end-line="17" selection-end-column="21" />
 >>>>>>> Stashed changes
               <folding>
                 <element signature="imports" expanded="true" />
@@ -96,12 +89,7 @@
   </component>
   <component name="ProjectFrameBounds">
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
     <option name="x" value="-7" />
-=======
-    <option name="x" value="313" />
-    <option name="y" value="118" />
->>>>>>> Stashed changes
     <option name="width" value="855" />
     <option name="height" value="735" />
 =======
@@ -127,15 +115,9 @@
     </navigator>
     <panes>
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
       <pane id="Scratches" />
       <pane id="Scope" />
 =======
-      <pane id="PackagesPane" />
->>>>>>> Stashed changes
-=======
-      <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="PackagesPane" />
 >>>>>>> Stashed changes
       <pane id="ProjectPane">
@@ -175,13 +157,10 @@
         </subPane>
       </pane>
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
       <pane id="PackagesPane" />
 =======
       <pane id="Scratches" />
       <pane id="Scope" />
->>>>>>> Stashed changes
-=======
 >>>>>>> Stashed changes
     </panes>
   </component>
@@ -434,13 +413,9 @@
   </component>
   <component name="ToolWindowManager">
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
     <frame x="-7" y="0" width="855" height="735" extended-state="0" />
 =======
     <frame x="-14" y="119" width="1400" height="1000" extended-state="0" />
->>>>>>> Stashed changes
-=======
-    <frame x="313" y="118" width="855" height="735" extended-state="0" />
 >>>>>>> Stashed changes
     <editor active="true" />
     <layout>
@@ -459,13 +434,9 @@
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.06078665" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
 =======
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.06358381" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
->>>>>>> Stashed changes
-=======
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.08820024" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
 >>>>>>> Stashed changes
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -496,7 +467,6 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/pom.xml">
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="11" column="10" lean-forward="false" selection-start-line="11" selection-start-column="10" selection-end-line="11" selection-end-column="10" />
@@ -518,26 +488,18 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="986">
           <caret line="67" column="25" lean-forward="false" selection-start-line="67" selection-start-column="25" selection-end-line="67" selection-end-column="25" />
-=======
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="10" lean-forward="false" selection-start-line="11" selection-start-column="10" selection-end-line="11" selection-end-column="10" />
->>>>>>> Stashed changes
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Start.java">
+    <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="187">
+          <caret line="11" column="10" lean-forward="false" selection-start-line="11" selection-start-column="10" selection-end-line="11" selection-end-column="10" />
+          <folding />
         </state>
       </provider>
     </entry>
-<<<<<<< Updated upstream
     <entry file="file://$PROJECT_DIR$/src/main/java/Start.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -615,13 +577,6 @@
         <state relative-caret-position="187">
           <caret line="11" column="10" lean-forward="false" selection-start-line="11" selection-start-column="10" selection-end-line="11" selection-end-column="10" />
 >>>>>>> Stashed changes
-=======
-    <entry file="file://$PROJECT_DIR$/src/main/testFile" />
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="10" lean-forward="false" selection-start-line="11" selection-start-column="10" selection-end-line="11" selection-end-column="10" />
->>>>>>> Stashed changes
           <folding />
         </state>
       </provider>
@@ -629,7 +584,6 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/TestClass.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/Start.java">
       <provider selected="true" editor-type-id="text-editor">
-<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
         <state relative-caret-position="187">
@@ -641,10 +595,6 @@
 =======
         <state relative-caret-position="306">
           <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
->>>>>>> Stashed changes
-=======
-        <state relative-caret-position="255">
-          <caret line="17" column="21" lean-forward="true" selection-start-line="17" selection-start-column="21" selection-end-line="17" selection-end-column="21" />
 >>>>>>> Stashed changes
           <folding>
             <element signature="imports" expanded="true" />
