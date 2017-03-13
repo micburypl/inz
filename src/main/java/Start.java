@@ -11,7 +11,7 @@ public class Start extends Application {
     };
 
     public void start(Stage stage) throws Exception {
-    System.out.print("Hello world!!\n commit dupa dupa test");
+    System.out.print("Hello world!!\n commit bes test");
 
         stage.setTitle("My JavaFX Application");
         //stage.setScene(scene);
