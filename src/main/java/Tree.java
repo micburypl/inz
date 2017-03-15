@@ -1,3 +1,4 @@
+import java.util.LinkedList;
 import java.util.Queue;
 
 /**
@@ -25,20 +26,26 @@ public class Tree {
         lastSymbol = false;
         eMessage = false;
         line = "";
+        inputQueue = new LinkedList<TreePart>();
 
     }
 
-    public void printQueue(Queue<TreePart> inputQueue) {
+    public void printQueue(Queue<TreePart> iQ) {
+
+        Queue<TreePart> inputQueue = new LinkedList<TreePart>(iQ);
+
         System.out.println();
         System.out.print("Start print queue");
         System.out.println();
         System.out.print("Queue:");
         System.out.println();
-        while (inputQueue.isEmpty()){
+        while (!inputQueue.isEmpty()){
+            System.out.print(inputQueue.peek());
             TreePart t = inputQueue.peek();
             System.out.print(t.typeTreePart);
             if(!t.typeTreePart){
                 System.out.print(" " + t.operatorText + " priority " + t.priority);
+                System.out.println();
             }else{
                 System.out.print(" " + t.symbolsText);
                 System.out.println();
@@ -61,20 +68,21 @@ public class Tree {
         System.out.println();
         System.out.print("current text:");
         System.out.println();
-        if(!tempPart.typeTreePart){
-            System.out.print(tempPart.operatorText);
+        System.out.println(inputQueue);
+        if (rootOfTree.typeTreePart) {
+            System.out.printf(rootOfTree.symbolsText);
             System.out.println();
-        }else{
-            System.out.printf(tempPart.symbolsText);
+        } else {
+            System.out.print(rootOfTree.operatorText);
             System.out.println();
         }
         System.out.println();
 
         inputQueue.poll();
 
-        printTree(rootOfTree, 0);
+//        printTree(rootOfTree, 0);
 
-        while(inputQueue.isEmpty()){
+        while(!inputQueue.isEmpty()){
             tempPart = inputQueue.peek();
             System.out.print("current text: ");
             System.out.println();
@@ -148,7 +156,7 @@ public class Tree {
             }else{
                 //symbol
 
-                if(!currentPlace.typeChild && currentPlace.leftChild == null){
+                if((currentPlace.typeChild == null || !currentPlace.typeChild) && currentPlace.leftChild == null){
                     currentPlace.leftChild = tempPart;
                     tempPart.parentPointer = currentPlace;
                 }else
@@ -167,9 +175,6 @@ public class Tree {
             }
             printTree(rootOfTree, 0);
             inputQueue.poll();
-
-//        cout<<"finish create tree"<<endl<<endl;
-//        outputFile<<"finish create tree"<<endl<<endl;
         }
 
         return rootOfTree;
@@ -205,18 +210,24 @@ public class Tree {
         //cout<< "operand " << word << endl;
         TreePart newTreePart = new TreePart();
         newTreePart.priority = prior + levelOfPriority;
+
+
         if(word.equals("!")){
             newTreePart.typeChild = true;
         }else{
             newTreePart.typeChild = false;
         }
+
+
         newTreePart.typeTreePart = false;
         newTreePart.operatorText = word;
         inputQueue.add(newTreePart);
         lastSymbol = false;
     }
 
-    void createSymbol(String word){
+
+
+    void createSymbol(String word, Queue<TreePart> inputQueue){
         //cout<< "symbol " << word << endl;
         TreePart newTreePart = new TreePart();
         newTreePart.symbolsText = word;
@@ -226,10 +237,10 @@ public class Tree {
     }
 
     Queue<TreePart> createQueue(String line){
-        Queue<TreePart> empty = null;
+        this.line = line;
+        Queue<TreePart> empty = new LinkedList<TreePart>();
         //inputQueue.swap(empty);
-        empty.addAll(inputQueue);
-        inputQueue = null;
+        //empty.addAll(inputQueue);
         word = "";
         levelOfPriority = 0;
         errorFlag = false;
@@ -256,7 +267,7 @@ public class Tree {
                         errorFlag = true;
                         break;
                     }
-                    createSymbol(word);
+                    createSymbol(word, inputQueue);
                     word = "";
                     createOperand(1, "+");
                     break;
@@ -265,7 +276,7 @@ public class Tree {
                         errorFlag = true;
                         break;
                     }
-                    createSymbol(word);
+                    createSymbol(word, inputQueue);
                     word = "";
                     createOperand(1, "-");
                     break;
@@ -274,7 +285,7 @@ public class Tree {
                         errorFlag = true;
                         break;
                     }
-                    createSymbol(word);
+                    createSymbol(word, inputQueue);
                     word = "";
                     createOperand(2, "*");
                     break;
@@ -283,7 +294,7 @@ public class Tree {
                         errorFlag = true;
                         break;
                     }
-                    createSymbol(word);
+                    createSymbol(word, inputQueue);
                     word = "";
                     createOperand(2, "/");
                     break;
@@ -292,7 +303,7 @@ public class Tree {
                         errorFlag = true;
                         break;
                     }
-                    createSymbol(word);
+                    createSymbol(word, inputQueue);
                     word = "";
                     createOperand(2, "%");
                     break;
@@ -301,7 +312,7 @@ public class Tree {
                         errorFlag = true;
                         break;
                     }
-                    createSymbol(word);
+                    createSymbol(word, inputQueue);
                     word = "";
                     createOperand(3, "^");
                     break;
@@ -310,7 +321,7 @@ public class Tree {
                         errorFlag = true;
                         break;
                     }
-                    //word = "";
+                    word = "";
                     createOperand(6, "!");
                     break;
                 case '(':
@@ -324,8 +335,10 @@ public class Tree {
                     break;
                 case ')':
 
-                    if(i!=line.length()){
+                    if(i!=line.length()-1){
+                        System.out.println(line.charAt(i));
                         if((line.charAt(i+1) >= 'a' && line.charAt(i+1) <='z')||(line.charAt(i+1) >= 'A' && line.charAt(i+1) <='Z')||(line.charAt(i+1) >= '0' && line.charAt(i+1) <='9')){
+
                             errorFlag = true;
                             break;
                         }
@@ -348,7 +361,7 @@ public class Tree {
                         errorFlag = true;
                         break;
                     }
-                    createSymbol(word);
+                    createSymbol(word, inputQueue);
                     word = "";
                     createOperand(4, "&&");
                     break;
@@ -367,7 +380,7 @@ public class Tree {
                         errorFlag = true;
                         break;
                     }
-                    createSymbol(word);
+                    createSymbol(word, inputQueue);
                     word = "";
                     createOperand(5, "||");
                     break;
@@ -399,7 +412,7 @@ public class Tree {
         }
 
         if(word.length() > 0){
-            createSymbol(word);
+            createSymbol(word, inputQueue);
             word = "";
         }
         if(!lastSymbol && !eMessage){
@@ -414,8 +427,10 @@ public class Tree {
 
         }
         if(errorFlag){
-            return null;
+            return new LinkedList<TreePart>();
         }
+        System.out.print(inputQueue);
         return inputQueue;
+
     }
 }
