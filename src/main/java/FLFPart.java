@@ -19,6 +19,7 @@ public class FLFPart {
         List<Integer> lastList;
         List<Integer> followList;
         Integer nodeNumber;
+        Boolean nullable;
 
         public FLFPart() {
             leftChild = null;

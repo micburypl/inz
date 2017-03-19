@@ -51,7 +51,7 @@ public class Start extends Application {
 //        inputLineLinst.add("(A+B)^C*D");
 //        inputLineLinst.add("a^!b");
 //        inputLineLinst.add("abcd && !1234 ^ (ddd34 + eeee11) || fgh12 * ii23");
-        inputLineLinst.add("(a|b)*");
+        inputLineLinst.add("(aaa|bb&bb)*");
 
     for(String line: inputLineLinst) {
         myTree = new FLF();
