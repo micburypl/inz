@@ -18,6 +18,7 @@ public class FLFPart {
         List<Integer> firstList;
         List<Integer> lastList;
         List<Integer> followList;
+        Integer nodeNumber;
 
         public FLFPart() {
             leftChild = null;

@@ -1,12 +1,10 @@
-import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Queue;
 
 /**
  * Created on 19.03.2017.
  */
-public class FLF {
+class FLFCopy {
 
     String word;
     Boolean nextCharFlag;
@@ -16,12 +14,11 @@ public class FLF {
     Boolean lastSymbol;
     Boolean eMessage;
     String line;
-    Integer symbolNumber;
     FLFPart rootOfTree;
 
-    List<FLFPart> inputList;
+    Queue<FLFPart> inputQueue;
 
-    public FLF() {
+    public FLFCopy() {
         word = "";
         nextCharFlag = false;
         errorFlag = false;
@@ -29,23 +26,21 @@ public class FLF {
         lastSymbol = false;
         eMessage = false;
         line = "";
-        symbolNumber = 1;
-        inputList = new ArrayList<FLFPart>();
+        inputQueue = new LinkedList<FLFPart>();
     }
 
-    public void printList(List<FLFPart> iQ) {
+    public void printQueue(Queue<FLFPart> iQ) {
 
-        List<FLFPart> inputList = new ArrayList<FLFPart>(iQ);
+        Queue<FLFPart> inputQueue = new LinkedList<FLFPart>(iQ);
 
         System.out.println();
         System.out.print("Start print queue");
         System.out.println();
         System.out.print("Queue:");
         System.out.println();
-
-        for (Integer i = 0; i < inputList.size(); i++) {
-            System.out.print(inputList.get(i));
-            FLFPart t = inputList.get(i);
+        while (!inputQueue.isEmpty()){
+            System.out.print(inputQueue.peek());
+            FLFPart t = inputQueue.peek();
             System.out.print(t.typeTreePart);
             if(!t.typeTreePart){
                 System.out.print(" " + t.operatorText + " priority " + t.priority);
@@ -54,8 +49,8 @@ public class FLF {
                 System.out.print(" " + t.symbolsText);
                 System.out.println();
             }
+            inputQueue.poll();
         }
-
         System.out.print("End print queue");
         System.out.println();
         System.out.println();
@@ -66,8 +61,7 @@ public class FLF {
             System.out.print("->");
         }
         if(rootOfTree.typeTreePart){
-            System.out.print(rootOfTree.symbolsText + "     " + rootOfTree.nodeNumber);
-
+            System.out.print(rootOfTree.symbolsText);
             System.out.println();
             return;
         }
@@ -89,43 +83,33 @@ public class FLF {
     }
 
     void createOperand(Integer prior, String word){
-        lastSymbol = false;
         FLFPart newTreePart = new FLFPart();
         newTreePart.priority = prior + levelOfPriority;
-        newTreePart.typeTreePart = false;
-        newTreePart.operatorText = word;
-        newTreePart.typeChild = false;
+
         if(word.equals("*")){
             newTreePart.typeChild = true;
-            for(Integer i = inputList.size()-1; i >= 0; i--) {
-                if(inputList.get(i).typeTreePart) {
-                    continue;
-                }
-                if(inputList.get(i).priority > newTreePart.priority) {
-                    continue;
-                }
-                inputList.add(i+1, newTreePart);
-                return;
-            }
-            inputList.add(0, newTreePart);
-            return;
+        }else{
+            newTreePart.typeChild = false;
         }
-        inputList.add(newTreePart);
+
+        newTreePart.typeTreePart = false;
+        newTreePart.operatorText = word;
+        inputQueue.add(newTreePart);
+        lastSymbol = false;
     }
 
-    void createSymbol(String word, List<FLFPart> inputList){
-        lastSymbol = true;
+    void createSymbol(String word, Queue<FLFPart> inputQueue){
         FLFPart newTreePart = new FLFPart();
         newTreePart.symbolsText = word;
         newTreePart.typeTreePart = true;
-        newTreePart.nodeNumber = symbolNumber++;
-        inputList.add(newTreePart);
+        inputQueue.add(newTreePart);
+        lastSymbol = true;
     }
 
 
-    List<FLFPart> createList(String line){
+    Queue<FLFPart> createQueue(String line){
         this.line = line;
-        List<FLFPart> empty = new ArrayList<FLFPart>();
+        Queue<FLFPart> empty = new LinkedList<FLFPart>();
         word = "";
         levelOfPriority = 0;
         errorFlag = false;
@@ -152,8 +136,8 @@ public class FLF {
 //                        errorFlag = true;
 //                        break;
 //                    }
-//                    createSymbol(word, inputList);
-//                    word = "";
+//                    createSymbol(word, inputQueue);
+                    word = "";
                     createOperand(4, "*");
                     break;
                 case '|':
@@ -161,7 +145,7 @@ public class FLF {
                         errorFlag = true;
                         break;
                     }
-                    createSymbol(word, inputList);
+                    createSymbol(word, inputQueue);
                     word = "";
                     createOperand(2, "|");
                     break;
@@ -170,7 +154,7 @@ public class FLF {
                         errorFlag = true;
                         break;
                     }
-                    createSymbol(word, inputList);
+                    createSymbol(word, inputQueue);
                     word = "";
                     createOperand(3, "&");
                     break;
@@ -188,6 +172,7 @@ public class FLF {
                     if(i!=line.length()-1){
                         System.out.println(line.charAt(i));
                         if((line.charAt(i+1) >= 'a' && line.charAt(i+1) <='z')||(line.charAt(i+1) >= 'A' && line.charAt(i+1) <='Z')||(line.charAt(i+1) >= '0' && line.charAt(i+1) <='9')){
+
                             errorFlag = true;
                             break;
                         }
@@ -205,6 +190,7 @@ public class FLF {
                 System.out.print("input line: ");
                 System.out.println();
 
+
                 System.out.print("error input line: " + line);
                 System.out.println();
 
@@ -221,10 +207,10 @@ public class FLF {
         }
 
         if(word.length() > 0){
-            createSymbol(word, inputList);
+            createSymbol(word, inputQueue);
             word = "";
         }
-        if(!lastSymbol && !eMessage && line.charAt(sizeOfString - 1) != '*'){
+        if(!lastSymbol && !eMessage){
             errorFlag = true;
             System.out.print("---------------------------");
             System.out.println();
@@ -238,25 +224,25 @@ public class FLF {
         if(errorFlag){
             return new LinkedList<FLFPart>();
         }
-        System.out.print(inputList);
-        return inputList;
+        System.out.print(inputQueue);
+        return inputQueue;
 
     }
 
 
 
 
-    FLFPart createTree(List<FLFPart> inputList){
+    FLFPart createTree(Queue<FLFPart> inputQueue){
         FLFPart rootOfTree = new FLFPart();
         FLFPart currentPlace = new FLFPart();
         FLFPart tempPart = new FLFPart();
-        rootOfTree = inputList.get(0);
+        rootOfTree = inputQueue.peek();
         currentPlace = rootOfTree;
 
         System.out.println();
         System.out.print("current text:");
         System.out.println();
-        System.out.println(inputList);
+        System.out.println(inputQueue);
         if (rootOfTree.typeTreePart) {
             System.out.printf(rootOfTree.symbolsText);
             System.out.println();
@@ -266,9 +252,10 @@ public class FLF {
         }
         System.out.println();
 
-        for (Integer i = 1; i < inputList.size(); i++) {
+        inputQueue.poll();
 
-            tempPart = inputList.get(i);
+        while(!inputQueue.isEmpty()){
+            tempPart = inputQueue.peek();
             System.out.print("current text: ");
             System.out.println();
             if(!tempPart.typeTreePart){
@@ -358,29 +345,10 @@ public class FLF {
                 }
 
             }
-
+            //printTree(rootOfTree, 0);
+            inputQueue.poll();
         }
-        return CreateSyntaxTree(rootOfTree);
+
+        return rootOfTree;
     }
-
-    FLFPart CreateSyntaxTree (FLFPart rootOfTree){
-        FLFPart syntaxRoot = new FLFPart();
-        syntaxRoot.typeTreePart = false;
-        syntaxRoot.operatorText = "|";
-        syntaxRoot.typeChild = false;
-        syntaxRoot.leftChild = rootOfTree;
-        rootOfTree.parentPointer = rootOfTree;
-
-
-        FLFPart endWord = new FLFPart();
-        endWord.symbolsText = "#";
-        endWord.typeTreePart = true;
-        endWord.parentPointer = syntaxRoot;
-        syntaxRoot.rightChild = endWord;
-        endWord.nodeNumber = symbolNumber++;
-
-
-        return syntaxRoot;
-    }
-
 }
