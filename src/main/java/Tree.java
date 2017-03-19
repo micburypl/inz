@@ -207,17 +207,14 @@ public class Tree {
     }
 
     void createOperand(Integer prior, String word){
-        //cout<< "operand " << word << endl;
         TreePart newTreePart = new TreePart();
         newTreePart.priority = prior + levelOfPriority;
-
 
         if(word.equals("!")){
             newTreePart.typeChild = true;
         }else{
             newTreePart.typeChild = false;
         }
-
 
         newTreePart.typeTreePart = false;
         newTreePart.operatorText = word;
