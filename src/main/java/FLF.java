@@ -1,27 +1,27 @@
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
 /**
  * Created on 19.03.2017.
  */
-public class FLF {
+class FLF {
 
-    String word;
-    Boolean nextCharFlag;
-    Boolean errorFlag;
-    Integer sizeOfString;
-    Integer levelOfPriority;
-    Boolean lastSymbol;
-    Boolean eMessage;
-    String line;
-    Integer symbolNumber;
+    private String word;
+    private Boolean nextCharFlag;
+    private Boolean errorFlag;
+    private Integer sizeOfString;
+    private Integer levelOfPriority;
+    private Boolean lastSymbol;
+    private Boolean eMessage;
+    private String line;
+    private Integer symbolNumber;
     FLFPart rootOfTree;
 
-    List<FLFPart> inputList;
+    String epsSign = "eps";
+    List<FLFPart> inputList = new ArrayList<FLFPart>();
+    Map<Integer,HashSet<Integer>> followMap = new HashMap<Integer, HashSet<Integer>>();
+    Map<String, HashSet<Integer>> transitionData = new HashMap<String, HashSet<Integer>>();
 
-    public FLF() {
+    FLF() {
         word = "";
         nextCharFlag = false;
         errorFlag = false;
@@ -30,10 +30,9 @@ public class FLF {
         eMessage = false;
         line = "";
         symbolNumber = 1;
-        inputList = new ArrayList<FLFPart>();
     }
 
-    public void printList(List<FLFPart> iQ) {
+    void printList(List<FLFPart> iQ) {
 
         List<FLFPart> inputList = new ArrayList<FLFPart>(iQ);
 
@@ -43,15 +42,14 @@ public class FLF {
         System.out.print("Queue:");
         System.out.println();
 
-        for (Integer i = 0; i < inputList.size(); i++) {
-            System.out.print(inputList.get(i));
-            FLFPart t = inputList.get(i);
-            System.out.print(t.typeTreePart);
-            if(!t.typeTreePart){
-                System.out.print(" " + t.operatorText + " priority " + t.priority);
+        for (FLFPart anInputList : inputList) {
+            System.out.print(anInputList);
+            System.out.print(anInputList.typeTreePart);
+            if (!anInputList.typeTreePart) {
+                System.out.print(" " + anInputList.operatorText + " priority " + anInputList.priority);
                 System.out.println();
-            }else{
-                System.out.print(" " + t.symbolsText);
+            } else {
+                System.out.print(" " + anInputList.symbolsText);
                 System.out.println();
             }
         }
@@ -66,12 +64,12 @@ public class FLF {
             System.out.print("->");
         }
         if(rootOfTree.typeTreePart){
-            System.out.print(rootOfTree.symbolsText + "     " + rootOfTree.nodeNumber);
+            System.out.print(rootOfTree.symbolsText + "\t" + rootOfTree.nodeNumber + "\t" + rootOfTree.nullable + "\t" + rootOfTree.firstList + "\t" + rootOfTree.lastList);
 
             System.out.println();
             return;
         }
-        System.out.print(rootOfTree.operatorText);
+        System.out.print(rootOfTree.operatorText+ "\t\t" + rootOfTree.nullable  + "\t" + rootOfTree.firstList + "\t" + rootOfTree.lastList);
         System.out.println();
         if(rootOfTree.typeChild){
             if(rootOfTree.singleChild != null){
@@ -88,7 +86,7 @@ public class FLF {
         }
     }
 
-    void createOperand(Integer prior, String word){
+    private void createOperand(Integer prior, String word){
         lastSymbol = false;
         FLFPart newTreePart = new FLFPart();
         newTreePart.priority = prior + levelOfPriority;
@@ -113,19 +111,20 @@ public class FLF {
         inputList.add(newTreePart);
     }
 
-    void createSymbol(String word, List<FLFPart> inputList){
+    private void createSymbol(String word, List<FLFPart> inputList){
         lastSymbol = true;
         FLFPart newTreePart = new FLFPart();
         newTreePart.symbolsText = word;
         newTreePart.typeTreePart = true;
         newTreePart.nodeNumber = symbolNumber++;
+        followMap.put(newTreePart.nodeNumber, new HashSet<Integer>());
+        addToTransitionData(word, newTreePart.nodeNumber);
         inputList.add(newTreePart);
     }
 
 
     List<FLFPart> createList(String line){
         this.line = line;
-        List<FLFPart> empty = new ArrayList<FLFPart>();
         word = "";
         levelOfPriority = 0;
         errorFlag = false;
@@ -247,9 +246,9 @@ public class FLF {
 
 
     FLFPart createTree(List<FLFPart> inputList){
-        FLFPart rootOfTree = new FLFPart();
-        FLFPart currentPlace = new FLFPart();
-        FLFPart tempPart = new FLFPart();
+        FLFPart rootOfTree;
+        FLFPart currentPlace;
+        FLFPart tempPart;
         rootOfTree = inputList.get(0);
         currentPlace = rootOfTree;
 
@@ -308,18 +307,18 @@ public class FLF {
                             currentPlace = rootOfTree;
                             break;
                         }
-                        if((tempPart.priority < currentPlace.priority) && (currentPlace != rootOfTree)){
+                        if((tempPart.priority <= currentPlace.priority) && (currentPlace != rootOfTree)){
                             currentPlace = currentPlace.parentPointer;
                             continue;
                         }
-                        if((tempPart.priority < currentPlace.priority)&& (currentPlace == rootOfTree)){
+                        if((tempPart.priority <= currentPlace.priority)&& (currentPlace == rootOfTree)){
                             tempPart.leftChild = rootOfTree;
                             rootOfTree.parentPointer = tempPart;
                             rootOfTree = tempPart;
                             currentPlace = tempPart;
                             break;
                         }
-                        if(tempPart.priority >= currentPlace.priority){
+                        if(tempPart.priority > currentPlace.priority){
                             if(!currentPlace.typeChild){
                                 tempPart.leftChild = currentPlace.rightChild;
                                 tempPart.parentPointer = currentPlace;
@@ -363,10 +362,10 @@ public class FLF {
         return CreateSyntaxTree(rootOfTree);
     }
 
-    FLFPart CreateSyntaxTree (FLFPart rootOfTree){
+    private FLFPart CreateSyntaxTree(FLFPart rootOfTree){
         FLFPart syntaxRoot = new FLFPart();
         syntaxRoot.typeTreePart = false;
-        syntaxRoot.operatorText = "|";
+        syntaxRoot.operatorText = "&";
         syntaxRoot.typeChild = false;
         syntaxRoot.leftChild = rootOfTree;
         rootOfTree.parentPointer = rootOfTree;
@@ -378,11 +377,152 @@ public class FLF {
         endWord.parentPointer = syntaxRoot;
         syntaxRoot.rightChild = endWord;
         endWord.nodeNumber = symbolNumber++;
+        followMap.put(endWord.nodeNumber, new HashSet<Integer>());
+
 
 
         return syntaxRoot;
     }
 
+    Boolean isNullable(FLFPart treeElement) {
+        //nullable is calculated
+        if(treeElement.nullable != null) {
+            return treeElement.nullable;
+        }
+        Boolean calcBoolean;
+        if(treeElement.typeTreePart) {
+            //if element is leaf
+            if(treeElement.symbolsText.toLowerCase().equals(epsSign)) {
+                //if symbol is epsilon
+                treeElement.nullable = true;
+            } else {
+                //rest words
+                treeElement.nullable = false;
+            }
+        } else {
+            //if element is node
+            if(treeElement.operatorText.equals("*")) {
+                //star operator
+                calcBoolean = isNullable(treeElement.singleChild);
+                treeElement.nullable = true;
+            } else if(treeElement.operatorText.equals("|")) {
+                //or operator
+                calcBoolean = isNullable(treeElement.leftChild);
+                calcBoolean = isNullable(treeElement.rightChild);
+                if(isNullable(treeElement.leftChild) || isNullable(treeElement.rightChild)) {
+                    treeElement.nullable = true;
+                } else {
+                    treeElement.nullable = false;
+                }
+            } else {
+                //and operator
+                calcBoolean = isNullable(treeElement.leftChild);
+                calcBoolean = isNullable(treeElement.rightChild);
+                if(isNullable(treeElement.leftChild) && isNullable(treeElement.rightChild)) {
+                    treeElement.nullable = true;
+                } else {
+                    treeElement.nullable = false;
+                }
+            }
+        }
+        return treeElement.nullable;
+    }
+    void calcFirstLast(FLFPart treeElement) {
+        if(treeElement.typeTreePart) {
+            //if element is leaf
+            // first = number
+            treeElement.firstList.add(treeElement.nodeNumber);
+            // last = number
+            treeElement.lastList.add(treeElement.nodeNumber);
+        } else {
+            //if element is node
+            if(treeElement.operatorText == "*") {
+                //star operator
+                //calc to child
+                calcFirstLast(treeElement.singleChild);
+                //first  = child first
+                treeElement.firstList.addAll(treeElement.singleChild.firstList);
+                //last = child follow
+                treeElement.lastList.addAll(treeElement.singleChild.lastList);
+            } else if(treeElement.operatorText == "|") {
+                //or operator
+                //calc left and right child
+                calcFirstLast(treeElement.leftChild);
+                calcFirstLast(treeElement.rightChild);
+                //first = sum first of childs
+                treeElement.firstList.addAll(treeElement.leftChild.firstList);
+                treeElement.firstList.addAll(treeElement.rightChild.firstList);
+                // last = sum last of childs
+                treeElement.lastList.addAll(treeElement.leftChild.lastList);
+                treeElement.lastList.addAll(treeElement.rightChild.lastList);
+            } else {
+                //and operator
+                //calc left and right child
+                calcFirstLast(treeElement.leftChild);
+                calcFirstLast(treeElement.rightChild);
+                //first = if left nullable -> both else left
+                treeElement.firstList.addAll(treeElement.leftChild.firstList);
+                if (treeElement.leftChild.nullable) {
+                    treeElement.firstList.addAll(treeElement.rightChild.firstList);
+                }
+                // last = if right nullable -> both else right
+                treeElement.lastList.addAll(treeElement.rightChild.lastList);
+                if (treeElement.rightChild.nullable) {
+                    treeElement.lastList.addAll(treeElement.leftChild.lastList);
+                }
+            }
+        }
+    }
 
+    void calcFollow(FLFPart treeElement) {
+        if(treeElement.typeTreePart) {
+            //if element is leaf
+            //do not do anything
+        } else {
+            //if element is node
+            if(treeElement.operatorText.equals("*")) {
+                //run for child
+                calcFollow(treeElement.singleChild);
+                //star operator
+                //for cross list of last
+                for(Integer lastNumber: treeElement.lastList) {
+                    //add first list to set
+                    followMap.get(lastNumber).addAll(treeElement.firstList);
+                }
+            } else if(treeElement.operatorText.equals("&")) {
+                //and operator
+                //run for childs
+                calcFollow(treeElement.leftChild);
+                calcFollow(treeElement.rightChild);
+                //forInteger across last left
+                for(Integer lastNumber: treeElement.leftChild.lastList) {
+                    //add to first right list to set
+                    followMap.get(lastNumber).addAll(treeElement.rightChild.firstList);
+                }
+            } else {
+                //or operator
+                //run for childs
+                calcFollow(treeElement.leftChild);
+                calcFollow(treeElement.rightChild);
+                //do not do anything
+            }
+        }
+    }
+
+    void printFollow() {
+        for(Integer i = 1; i <= followMap.size(); i++) {
+            System.out.println(i + ": " + followMap.get(i));
+        }
+    }
+
+    void addToTransitionData(String word, Integer number) {
+        //check if word exist
+        if(!transitionData.containsKey(word)) {
+            //if do not exist add new value to set
+            transitionData.put(word, new HashSet<Integer>());
+        }
+        //add number to correct word
+        transitionData.get(word).add(number);
+    }
 
 }

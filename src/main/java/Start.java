@@ -51,7 +51,8 @@ public class Start extends Application {
 //        inputLineLinst.add("(A+B)^C*D");
 //        inputLineLinst.add("a^!b");
 //        inputLineLinst.add("abcd && !1234 ^ (ddd34 + eeee11) || fgh12 * ii23");
-        inputLineLinst.add("(aaa|bb&bb)*");
+//        inputLineLinst.add("(eps|bb&bb)*");
+        inputLineLinst.add("(a|b)*&a&b&b");
 
     for(String line: inputLineLinst) {
         myTree = new FLF();
@@ -64,8 +65,12 @@ public class Start extends Application {
             myTree.printList(myTree.inputList);
             myTree.rootOfTree =  myTree.createTree(myTree.inputList);
             System.out.println(myTree.rootOfTree);
-
+            myTree.isNullable(myTree.rootOfTree);
+            myTree.calcFirstLast(myTree.rootOfTree);
+            myTree.calcFollow(myTree.rootOfTree);
             myTree.printTree( myTree.rootOfTree, 0);
+            myTree.printFollow();
+            System.out.println(myTree.transitionData);
         }
 
 

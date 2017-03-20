@@ -17,7 +17,6 @@ public class FLFPart {
         String symbolsText;
         List<Integer> firstList;
         List<Integer> lastList;
-        List<Integer> followList;
         Integer nodeNumber;
         Boolean nullable;
 
@@ -28,6 +27,5 @@ public class FLFPart {
             parentPointer = null;
             firstList = new ArrayList<Integer>();
             lastList = new ArrayList<Integer>();
-            followList = new ArrayList<Integer>();
         }
 }
