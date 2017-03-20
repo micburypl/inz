@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -15,8 +16,8 @@ public class FLFPart {
         Integer priority;
         String operatorText;
         String symbolsText;
-        List<Integer> firstList;
-        List<Integer> lastList;
+        HashSet<Integer>  firstList;
+        HashSet<Integer>  lastList;
         Integer nodeNumber;
         Boolean nullable;
 
@@ -25,7 +26,7 @@ public class FLFPart {
             rightChild = null;
             singleChild = null;
             parentPointer = null;
-            firstList = new ArrayList<Integer>();
-            lastList = new ArrayList<Integer>();
+            firstList = new HashSet<Integer>();
+            lastList = new HashSet<Integer>();
         }
 }

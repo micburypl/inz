@@ -15,11 +15,16 @@ class FLF {
     private String line;
     private Integer symbolNumber;
     FLFPart rootOfTree;
+    private char currentSymbol = 'A';
 
     String epsSign = "eps";
     List<FLFPart> inputList = new ArrayList<FLFPart>();
     Map<Integer,HashSet<Integer>> followMap = new HashMap<Integer, HashSet<Integer>>();
+    //list of word
     Map<String, HashSet<Integer>> transitionData = new HashMap<String, HashSet<Integer>>();
+    Map<String, HashSet<Integer>> transitionProduction = new HashMap<String, HashSet<Integer>>();
+    List<TransitionTableElement> transitionTable = new ArrayList<TransitionTableElement>();
+
 
     FLF() {
         word = "";
@@ -384,12 +389,11 @@ class FLF {
         return syntaxRoot;
     }
 
-    Boolean isNullable(FLFPart treeElement) {
+    void calcNullable(FLFPart treeElement) {
         //nullable is calculated
         if(treeElement.nullable != null) {
-            return treeElement.nullable;
+            return;
         }
-        Boolean calcBoolean;
         if(treeElement.typeTreePart) {
             //if element is leaf
             if(treeElement.symbolsText.toLowerCase().equals(epsSign)) {
@@ -403,29 +407,20 @@ class FLF {
             //if element is node
             if(treeElement.operatorText.equals("*")) {
                 //star operator
-                calcBoolean = isNullable(treeElement.singleChild);
+                calcNullable(treeElement.singleChild);
                 treeElement.nullable = true;
             } else if(treeElement.operatorText.equals("|")) {
                 //or operator
-                calcBoolean = isNullable(treeElement.leftChild);
-                calcBoolean = isNullable(treeElement.rightChild);
-                if(isNullable(treeElement.leftChild) || isNullable(treeElement.rightChild)) {
-                    treeElement.nullable = true;
-                } else {
-                    treeElement.nullable = false;
-                }
+                calcNullable(treeElement.leftChild);
+                calcNullable(treeElement.rightChild);
+                treeElement.nullable = treeElement.leftChild.nullable || treeElement.rightChild.nullable;
             } else {
                 //and operator
-                calcBoolean = isNullable(treeElement.leftChild);
-                calcBoolean = isNullable(treeElement.rightChild);
-                if(isNullable(treeElement.leftChild) && isNullable(treeElement.rightChild)) {
-                    treeElement.nullable = true;
-                } else {
-                    treeElement.nullable = false;
-                }
+                calcNullable(treeElement.leftChild);
+                calcNullable(treeElement.rightChild);
+                treeElement.nullable = treeElement.leftChild.nullable && treeElement.rightChild.nullable;
             }
         }
-        return treeElement.nullable;
     }
     void calcFirstLast(FLFPart treeElement) {
         if(treeElement.typeTreePart) {
@@ -524,5 +519,75 @@ class FLF {
         //add number to correct word
         transitionData.get(word).add(number);
     }
+    void generateTransitionTable() {
+        Map<String, HashSet<Integer>> transitionProductionToRecalculate = new HashMap<String, HashSet<Integer>>();
 
+        transitionProduction.put(String.valueOf(currentSymbol), rootOfTree.firstList);
+        transitionProductionToRecalculate.put(String.valueOf(currentSymbol), rootOfTree.firstList);
+
+        calculateTransitionTable(transitionProductionToRecalculate);
+
+//        Boolean toAdd;
+//        //for across state
+//        for(String i: transitionProduction.keySet()) {
+//            //for across words
+//            for(String j: transitionData.keySet()){
+//                toAdd = true;
+//                //for across retail part
+//                HashSet<Integer> retainTable = transitionProduction.get(i);
+//                retainTable.retainAll(transitionData.get(j));
+//                HashSet<Integer> transitionList = new HashSet<Integer>();
+//                //generate list from follow
+//                for(Integer lookingFollowSet: retainTable) {
+//                    transitionList.addAll(followMap.get(lookingFollowSet));
+//                }
+//                //check if exist on list
+//                for(Integer k = 0; k < transitionProduction.size(); k++) {
+//                    if(transitionList.equals(transitionProduction.get(k))) {
+//                        toAdd = false;
+//                    }
+//                }
+//                if(toAdd) {
+//                    transitionProduction.put(String.valueOf(++currentSymbol),transitionList);
+//                }
+//               // transationTable.add(new TransitionTableElement(transitionProduction.keySet().))
+//            }
+//        }
+    }
+    void calculateTransitionTable(Map<String, HashSet<Integer>> transitionProductionToCalculate) {
+        Map<String, HashSet<Integer>> transitionProductionToRecalculate = new HashMap<String, HashSet<Integer>>();
+        Boolean toAdd;
+        //for across state
+        for(String i: transitionProductionToCalculate.keySet()) {
+            //for across words
+            for(String j: transitionData.keySet()){
+                toAdd = true;
+                HashSet<Integer> transitionList = new HashSet<Integer>();
+                //generate list from follow
+                for(Integer tPTC: transitionProductionToCalculate.get(i)){
+                    if(transitionData.get(j).contains(tPTC)) {
+                        transitionList.addAll(followMap.get(tPTC));
+                    }
+                }
+
+                //check if exist on list
+                for(String k: transitionProduction.keySet()) {
+                    if(transitionList.containsAll(transitionProduction.get(k)) && transitionProduction.get(k).containsAll(transitionList)) {
+                        toAdd = false;
+                    }
+                }
+                if(toAdd) {
+                    transitionProduction.put(String.valueOf(++currentSymbol),transitionList);
+                    System.out.println(transitionProduction);
+                    transitionProductionToRecalculate.put(String.valueOf(currentSymbol),transitionList);
+                }
+                transitionTable.add(new TransitionTableElement(i, j, transitionList ,String.valueOf(currentSymbol)));
+
+            }
+        }
+
+        if(transitionProductionToRecalculate.size() > 0) {
+            calculateTransitionTable(transitionProductionToRecalculate);
+        }
+    }
 }

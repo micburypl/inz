@@ -65,12 +65,14 @@ public class Start extends Application {
             myTree.printList(myTree.inputList);
             myTree.rootOfTree =  myTree.createTree(myTree.inputList);
             System.out.println(myTree.rootOfTree);
-            myTree.isNullable(myTree.rootOfTree);
+            myTree.calcNullable(myTree.rootOfTree);
             myTree.calcFirstLast(myTree.rootOfTree);
             myTree.calcFollow(myTree.rootOfTree);
             myTree.printTree( myTree.rootOfTree, 0);
             myTree.printFollow();
             System.out.println(myTree.transitionData);
+            myTree.generateTransitionTable();
+            System.out.println(myTree.transitionProduction);
         }
 
 
