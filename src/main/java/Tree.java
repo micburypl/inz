@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -192,6 +193,67 @@ public class Tree {
         System.out.print(rootOfTree.operatorText);
         System.out.println();
         if(rootOfTree.typeChild){
+=======
+import java.util.Queue;
+
+/**
+ * Created by DELL6430u on 2017-03-14.
+ */
+public class Tree {
+
+
+    Boolean typeChild;
+    Boolean typeTreePart;
+    Tree rightChild;
+    Tree leftChild;
+    Tree singleChild;
+    Tree parentPointer;
+    Integer priority;
+    String operatorText;
+    String symbolsText;
+
+    Tree rootOfTree = new Tree();
+
+    public Tree(){
+        leftChild = null;
+        rightChild = null;
+        singleChild = null;
+        parentPointer = null;
+    };
+
+    Tree createTree(Queue<Tree> inputQueue) {
+        return null;
+    }
+
+
+    void createSymbol(String word) {
+        System.out.print("symbol " + word +"/n");
+        Tree newTreePart = new Tree();
+        newTreePart->symbolsText = word;
+        newTreePart->typeTreePart = true;
+        inputQueue.push(newTreePart);
+        lastSymbol = true;
+        word.empty();
+    }
+
+    void createOperand(Integer prior, Integer word) {
+
+    }
+
+    void printTree(Tree rootOfTree, int level) {
+        for(int i = 0; i < level; i++){
+            System.out.print("->");
+            //outputFile<<"->";
+        }
+        if(rootOfTree.typeTreePart == true){
+            System.out.print(rootOfTree.symbolsText + "/n");
+            //outputFile<<rootOfTree->symbolsText<<endl;
+            return;
+        }
+        System.out.print(rootOfTree.operatorText + "/n");
+        //outputFile<<rootOfTree->operatorText<<endl;
+        if(rootOfTree.typeChild == true){
+>>>>>>> Stashed changes
             if(rootOfTree.singleChild != null){
                 printTree(rootOfTree.singleChild, level+1);
             }
@@ -204,6 +266,7 @@ public class Tree {
                 printTree(rootOfTree.rightChild, level+1);
             }
         }
+<<<<<<< Updated upstream
     }
 
     void createOperand(Integer prior, String word){
@@ -430,4 +493,15 @@ public class Tree {
         return inputQueue;
 
     }
+=======
+        return;
+    }
+
+    Queue<Tree> createQueue(String line) {
+
+        return null;
+    }
+
+
+>>>>>>> Stashed changes
 }
