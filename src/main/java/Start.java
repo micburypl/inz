@@ -73,10 +73,10 @@ public class Start extends Application {
             System.out.println(myTree.transitionData);
             myTree.generateTransitionTable();
             System.out.println(myTree.transitionProduction);
+            myTree.printTransitionTable();
+            myTree.printFinalState();
+
         }
-
-
-
     }
 
     stage.setTitle("My JavaFX Application");

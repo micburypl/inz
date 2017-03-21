@@ -16,7 +16,7 @@ class FLF {
     private Integer symbolNumber;
     FLFPart rootOfTree;
     private char currentSymbol = 'A';
-
+    Integer finalState;
     String epsSign = "eps";
     List<FLFPart> inputList = new ArrayList<FLFPart>();
     Map<Integer,HashSet<Integer>> followMap = new HashMap<Integer, HashSet<Integer>>();
@@ -526,41 +526,16 @@ class FLF {
         transitionProductionToRecalculate.put(String.valueOf(currentSymbol), rootOfTree.firstList);
 
         calculateTransitionTable(transitionProductionToRecalculate);
-
-//        Boolean toAdd;
-//        //for across state
-//        for(String i: transitionProduction.keySet()) {
-//            //for across words
-//            for(String j: transitionData.keySet()){
-//                toAdd = true;
-//                //for across retail part
-//                HashSet<Integer> retainTable = transitionProduction.get(i);
-//                retainTable.retainAll(transitionData.get(j));
-//                HashSet<Integer> transitionList = new HashSet<Integer>();
-//                //generate list from follow
-//                for(Integer lookingFollowSet: retainTable) {
-//                    transitionList.addAll(followMap.get(lookingFollowSet));
-//                }
-//                //check if exist on list
-//                for(Integer k = 0; k < transitionProduction.size(); k++) {
-//                    if(transitionList.equals(transitionProduction.get(k))) {
-//                        toAdd = false;
-//                    }
-//                }
-//                if(toAdd) {
-//                    transitionProduction.put(String.valueOf(++currentSymbol),transitionList);
-//                }
-//               // transationTable.add(new TransitionTableElement(transitionProduction.keySet().))
-//            }
-//        }
     }
     void calculateTransitionTable(Map<String, HashSet<Integer>> transitionProductionToCalculate) {
         Map<String, HashSet<Integer>> transitionProductionToRecalculate = new HashMap<String, HashSet<Integer>>();
         Boolean toAdd;
+        String endState;
         //for across state
         for(String i: transitionProductionToCalculate.keySet()) {
             //for across words
             for(String j: transitionData.keySet()){
+                endState = j;
                 toAdd = true;
                 HashSet<Integer> transitionList = new HashSet<Integer>();
                 //generate list from follow
@@ -574,14 +549,16 @@ class FLF {
                 for(String k: transitionProduction.keySet()) {
                     if(transitionList.containsAll(transitionProduction.get(k)) && transitionProduction.get(k).containsAll(transitionList)) {
                         toAdd = false;
+                        endState = k;
                     }
                 }
                 if(toAdd) {
                     transitionProduction.put(String.valueOf(++currentSymbol),transitionList);
+                    endState = String.valueOf(currentSymbol);
                     System.out.println(transitionProduction);
                     transitionProductionToRecalculate.put(String.valueOf(currentSymbol),transitionList);
                 }
-                transitionTable.add(new TransitionTableElement(i, j, transitionList ,String.valueOf(currentSymbol)));
+                transitionTable.add(new TransitionTableElement(i, j, transitionList ,endState));
 
             }
         }
@@ -590,4 +567,20 @@ class FLF {
             calculateTransitionTable(transitionProductionToRecalculate);
         }
     }
+
+    void printTransitionTable() {
+        for(TransitionTableElement t: transitionTable) {
+            System.out.println(t.beginState + "\t" + t.word + "\t" + t.endState + "\t" + t.numberSet);
+        }
+    }
+    void printFinalState() {
+        finalState = rootOfTree.rightChild.nodeNumber;
+        System.out.println("Final State/States:");
+        for(String production: transitionProduction.keySet()) {
+            if(transitionProduction.get(production).contains(finalState)){
+                System.out.println(production);
+            }
+        }
+    }
+
 }
