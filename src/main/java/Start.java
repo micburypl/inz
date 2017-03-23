@@ -2,7 +2,9 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created on 2017-03-13.
@@ -52,8 +54,11 @@ public class Start extends Application {
 //        inputLineLinst.add("a^!b");
 //        inputLineLinst.add("abcd && !1234 ^ (ddd34 + eeee11) || fgh12 * ii23");
 //        inputLineLinst.add("(eps|bb&bb)*");
-        inputLineLinst.add("(a|b)*&a&b&b");
-
+//        inputLineLinst.add("(a|b)*&a&b&b"); // example
+        inputLineLinst.add("A -> a b | a b | ab | b a | b a");
+        inputLineLinst.add("A -> a | b | c | ab | a b | B ");
+        inputLineLinst.add("B -> c | d");
+/*
     for(String line: inputLineLinst) {
         myTree = new FLF();
         myTree.inputList = myTree.createList(line);
@@ -78,7 +83,10 @@ public class Start extends Application {
 
         }
     }
+*/
 
+    First testFirst = new First(inputLineLinst);
+    testFirst.generateParsedSet();
     stage.setTitle("My JavaFX Application");
     //stage.setScene(scene);
     stage.show();
