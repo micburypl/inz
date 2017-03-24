@@ -121,7 +121,7 @@ public class First {
 
         //TODO for po liście par do momentu przejścia bez dodawania elementów
 
-        //dupa dupa
+        //dupa dupa 3
     }
 
 
