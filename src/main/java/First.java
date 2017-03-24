@@ -6,22 +6,21 @@ import java.util.*;
  * Created on 22.03.2017.
  */
 public class First {
-    List<String> inputData;
-    Map<String, ArrayList<ArrayList<String>>> parsedSet;
-    Map<String, Set<String>> outputData;
-    Set<FirstElement> firstElementList;
-    Set<Pair<String, String>> nonterminalsRelationSet;
+    private List<String> inputData;
+    private Map<String, ArrayList<ArrayList<String>>> parsedSet;
+    private Map<String, Set<String>> outputData;
+    private Map<String, FirstElement> firstElementMap;
+    private Set<Pair<String, String>> nonterminalsRelationSet;
 
-    ArrayList<String> listToInsert;
+    private ArrayList<String> listToInsert;
 
     First(List<String> inputList){
         inputData = new ArrayList<String>();
         inputData = inputList;
         parsedSet = new HashMap<String, ArrayList<ArrayList<String>>>();
         outputData = new HashMap<String, Set<String>>();
-        firstElementList = new HashSet<FirstElement>();
+        firstElementMap = new HashMap<String, FirstElement>();
         nonterminalsRelationSet = new HashSet<Pair<String, String>>();
-
     }
 
     void generateParsedSet() {
@@ -78,8 +77,8 @@ public class First {
             }
 
             //verify if is new element on first List
-            if(addToFirstList(parsedString[0], firstElementList)) {
-                firstElementList.add(new FirstElement(parsedString[0]));
+            if(!firstElementMap.containsKey(parsedString[0])) {
+                firstElementMap.put(parsedString[0],new FirstElement(parsedString[0]));
             }
 
             //for across production divide to sets and insert
@@ -88,8 +87,8 @@ public class First {
 
                 if(!parsedString[i].equals("|")) {
                     //verify if is new element on first List
-                    if(addToFirstList(parsedString[i], firstElementList)) {
-                        firstElementList.add(new FirstElement(parsedString[i]));
+                    if(!firstElementMap.containsKey(parsedString[i])) {
+                        firstElementMap.put(parsedString[i],new FirstElement(parsedString[i]));
                     }
 
                     //add to array
@@ -100,23 +99,33 @@ public class First {
                 //verify if not exist
                 if(setComparison(listToInsert, parsedSet.get(parsedString[0]))) {
                     parsedSet.get(parsedString[0]).add(listToInsert);
+                    //check first symbol
+                    addElementToFirstSetSet(parsedString, listToInsert, firstElementMap);
+
                 }
-                    listToInsert = new ArrayList<String>();
+                listToInsert = new ArrayList<String>();
             }
             //last word
             if(!listToInsert.isEmpty() && setComparison(listToInsert, parsedSet.get(parsedString[0]))) {
                 parsedSet.get(parsedString[0]).add(listToInsert);
             }
-
+            addElementToFirstSetSet(parsedString, listToInsert, firstElementMap);
         }
         System.out.println(parsedSet);
+        System.out.println("Before non-terminal addition");
+        printfirstList(firstElementMap);
 
-        printfirstList(firstElementList);
+        //TODO sprawdznie eps-transition
+
+        //TODO przejście po firstElementMap dodanie par string string do uzupełnienia (ogarnięcie eps)
+
+        //TODO for po liście par do momentu przejścia bez dodawania elementów
+
     }
 
 
     //compare sets of strings
-    Boolean setComparison(ArrayList<String> listToCheck, ArrayList<ArrayList<String>> setToCheck) {
+    private Boolean setComparison(ArrayList<String> listToCheck, ArrayList<ArrayList<String>> setToCheck) {
 
         if(setToCheck != null && !setToCheck.isEmpty()){
             for(ArrayList al: setToCheck) {
@@ -129,23 +138,12 @@ public class First {
 
     }
 
-    Boolean addToFirstList(String potentialElement, Set<FirstElement> FirstList) {
-        if(FirstList != null && !FirstList.isEmpty()) {
-            for(FirstElement fe: FirstList) {
-                if (fe.value.equals(potentialElement)) {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
-
-    void printfirstList(Set<FirstElement> FirstList) {
+    void printfirstList(Map<String, FirstElement> FirstList) {
 
         if(FirstList != null && !FirstList.isEmpty()) {
             System.out.println("First SET");
             System.out.println("-------------");
-            for(FirstElement fe: FirstList) {
+            for(FirstElement fe: FirstList.values()) {
                 System.out.println(fe.value + "\t" + fe.isTerminal + "\t" + fe.firstSet);
             }
             System.out.println("-------------");
@@ -154,4 +152,24 @@ public class First {
         System.out.println("First SET is empty");
     }
 
+    private Boolean isNonTerminal(String testString) {
+        return !(testString.charAt(0) < 'A' || testString.charAt(0) > 'Z');
+    }
+
+    void addElementToFirstSetSet(String[] parsedString, ArrayList<String> listToInsert, Map<String, FirstElement> firstElementMap) {
+        if(isNonTerminal(listToInsert.get(0))) {
+            //first symbol is non-terminal
+
+            //
+            //TODO dodanie par string, list to insert
+
+        } else {
+            //first symbol is terminal
+            if(!firstElementMap.get(parsedString[0]).firstSet.contains(listToInsert.get(0))) {
+                firstElementMap.get(parsedString[0]).firstSet.add(listToInsert.get(0));
+            }
+            //firstElementList
+
+        }
+    }
 }

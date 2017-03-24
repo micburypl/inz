@@ -11,17 +11,17 @@ import java.util.Set;
  */
 public class Start extends Application {
 
-    public static void main(String[] argc){
+    public static void main(String[] argc) {
         launch(argc);
     }
 
     public void start(Stage stage) throws Exception {
 
-    System.out.print("Hello world!!");
+        System.out.print("Hello world!!");
 
-    System.out.print("Hello world ok");
-    FLF myTree;
-    List<String> inputLineLinst = new ArrayList<String>();
+        System.out.print("Hello world ok");
+        FLF myTree;
+        List<String> inputLineLinst = new ArrayList<String>();
 //        inputLineLinst.add("t e s t 1 - t e s t 2 * t e s t 3" );
 //        inputLineLinst.add("test1 * test2 - test3");
 //        inputLineLinst.add("TE ST*T EST/TES T");
@@ -85,13 +85,12 @@ public class Start extends Application {
     }
 */
 
-    First testFirst = new First(inputLineLinst);
-    testFirst.generateParsedSet();
-    stage.setTitle("My JavaFX Application");
-    //stage.setScene(scene);
-    stage.show();
+        First testFirst = new First(inputLineLinst);
+        testFirst.generateParsedSet();
+        stage.setTitle("My JavaFX Application");
+        //stage.setScene(scene);
+        stage.show();
     }
-
 
 
 }
