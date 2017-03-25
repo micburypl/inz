@@ -5,22 +5,22 @@ import java.util.*;
 /**
  * Created on 22.03.2017.
  */
-public class First {
+class First {
     private List<String> inputData;
     private Map<String, ArrayList<ArrayList<String>>> parsedSet;
-    private Map<String, Set<String>> outputData;
+    //private Map<String, Set<String>> outputData;
     private Map<String, FirstElement> firstElementMap;
-    private Set<Pair<String, String>> nonterminalsRelationSet;
-
+    private Map<String, ArrayList<ArrayList<String>>> nonterminalsRelationMap;
     private ArrayList<String> listToInsert;
 
     First(List<String> inputList){
         inputData = new ArrayList<String>();
         inputData = inputList;
-        parsedSet = new HashMap<String, ArrayList<ArrayList<String>>>();
-        outputData = new HashMap<String, Set<String>>();
-        firstElementMap = new HashMap<String, FirstElement>();
-        nonterminalsRelationSet = new HashSet<Pair<String, String>>();
+        parsedSet = new HashMap<
+                >();
+       // outputData = new HashMap<>();
+        firstElementMap = new HashMap<>();
+        nonterminalsRelationMap = new HashMap<>();
     }
 
     void generateParsedSet() {
@@ -73,7 +73,7 @@ public class First {
 
             //check if terminal exist on paredSet set and add
             if(!parsedSet.containsKey(parsedString[0])) {
-                parsedSet.put(parsedString[0], new ArrayList<ArrayList<String>>());
+                parsedSet.put(parsedString[0], new ArrayList<>());
             }
 
             //verify if is new element on first List
@@ -82,7 +82,7 @@ public class First {
             }
 
             //for across production divide to sets and insert
-            listToInsert = new ArrayList<String>();
+            listToInsert = new ArrayList<>();
             for(Integer i = 2; i < parsedString.length; i++) {
 
                 if(!parsedString[i].equals("|")) {
@@ -103,7 +103,7 @@ public class First {
                     addElementToFirstSetSet(parsedString, listToInsert, firstElementMap);
 
                 }
-                listToInsert = new ArrayList<String>();
+                listToInsert = new ArrayList<>();
             }
             //last word
             if(!listToInsert.isEmpty() && setComparison(listToInsert, parsedSet.get(parsedString[0]))) {
@@ -115,13 +115,22 @@ public class First {
         System.out.println("Before non-terminal addition");
         printfirstList(firstElementMap);
 
-        //TODO sprawdznie eps-transition
+        // sprawdznie eps-transition
+        for(FirstElement fe : firstElementMap.values()) {
+            if(!fe.isTerminal && fe.firstSet.contains(CommonUtility.epsValue)) {
+                fe.isEpsilonTransition = true;
+            }
+        }
+        System.out.println("With eps-transition");
+        printfirstList(firstElementMap);
+        System.out.println(nonterminalsRelationMap);
 
         //TODO przejście po firstElementMap dodanie par string string do uzupełnienia (ogarnięcie eps)
 
+
+
         //TODO for po liście par do momentu przejścia bez dodawania elementów
 
-        //dupa dupa 3
     }
 
 
@@ -145,7 +154,7 @@ public class First {
             System.out.println("First SET");
             System.out.println("-------------");
             for(FirstElement fe: FirstList.values()) {
-                System.out.println(fe.value + "\t" + fe.isTerminal + "\t" + fe.firstSet);
+                System.out.println(fe.value + "\t" + fe.isTerminal + "\t" + fe.isEpsilonTransition +  "\t" + fe.firstSet);
             }
             System.out.println("-------------");
             return;
@@ -162,8 +171,45 @@ public class First {
             //first symbol is non-terminal
 
             //
-            //TODO dodanie par string, list to insert
+            //TODO dodanie par string, list to insert // update dodanie list do map nonternimalRelationMap
+            //
 
+            //verify if element exist on map
+            if(!nonterminalsRelationMap.keySet().contains(parsedString[0])) {
+                nonterminalsRelationMap.put(parsedString[0], new ArrayList<ArrayList<String>>());
+            }
+
+            Boolean toAdd = true;
+            Boolean theSame = false;
+            //verify if list exist on list
+            if(nonterminalsRelationMap.get(parsedString[0]).isEmpty()) {
+                nonterminalsRelationMap.get(parsedString[0]).add(listToInsert);
+            } else { // nonterminalsRelationMap.get(0) != null &&
+                for(List<String> lString: nonterminalsRelationMap.get(parsedString[0])) {
+                    // size of lists
+//                    if(lString.size() != listToInsert.size()) {
+//                        //toAdd = true;
+//                        continue;
+//                    }
+//                    // check equals of both list
+//                    theSame = true;
+//                    for(Integer i = 0; i< lString.size(); i++) {
+//                        if(!lString.get(i).equals(listToInsert.get(i)) ) {
+//                            theSame = false;
+//                        }
+//                    }
+                    if(lString.equals(listToInsert)) {
+                        theSame = true;
+                    }
+                    if(theSame) {
+                        toAdd = false;
+                    }
+                }
+                if(toAdd) {
+                    nonterminalsRelationMap.get(parsedString[0]).add(listToInsert);
+                    return;
+                }
+            }
         } else {
             //first symbol is terminal
             if(!firstElementMap.get(parsedString[0]).firstSet.contains(listToInsert.get(0))) {

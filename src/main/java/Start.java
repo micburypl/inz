@@ -55,8 +55,9 @@ public class Start extends Application {
 //        inputLineLinst.add("abcd && !1234 ^ (ddd34 + eeee11) || fgh12 * ii23");
 //        inputLineLinst.add("(eps|bb&bb)*");
 //        inputLineLinst.add("(a|b)*&a&b&b"); // example
-        inputLineLinst.add("A -> a b | a b | ab | b a | b a");
-        inputLineLinst.add("A -> a | b | c | ab | a b | B ");
+        inputLineLinst.add("A -> B | B a | a b | a b | ab | b a | b a | eps");
+        inputLineLinst.add("A -> a | b | c | ab | a b | B | B | B a");
+        inputLineLinst.add("A -> B a");
         inputLineLinst.add("B -> c | d");
 /*
     for(String line: inputLineLinst) {
