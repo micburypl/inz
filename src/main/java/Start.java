@@ -17,9 +17,9 @@ public class Start extends Application {
 
     public void start(Stage stage) throws Exception {
 
-        System.out.print("Hello world!!");
+        //System.out.print("Hello world!!");
 
-        System.out.print("Hello world ok");
+        //System.out.print("Hello world ok");
         FLF myTree;
         List<String> inputLineLinst = new ArrayList<String>();
 //        inputLineLinst.add("t e s t 1 - t e s t 2 * t e s t 3" );
@@ -55,10 +55,17 @@ public class Start extends Application {
 //        inputLineLinst.add("abcd && !1234 ^ (ddd34 + eeee11) || fgh12 * ii23");
 //        inputLineLinst.add("(eps|bb&bb)*");
 //        inputLineLinst.add("(a|b)*&a&b&b"); // example
-        inputLineLinst.add("A -> B | B a | a b | a b | ab | b a | b a | eps");
-        inputLineLinst.add("A -> a | b | c | ab | a b | B | B | B a");
-        inputLineLinst.add("A -> B a");
-        inputLineLinst.add("B -> c | d");
+        //inputLineLinst.add("A -> B | B a | a b | a b | ab | b a | C | b a ");
+        //inputLineLinst.add("A -> a | b | c | ab | a b | B | B | B a");
+        //inputLineLinst.add("A -> B a");
+        //inputLineLinst.add("A -> a B b");
+        //inputLineLinst.add("B -> eps | b");
+        inputLineLinst.add("Goal -> A");
+        inputLineLinst.add("A -> ( A ) | Two");
+        inputLineLinst.add("Two -> a");
+        inputLineLinst.add("Two -> b");
+
+        System.out.println(inputLineLinst);
 /*
     for(String line: inputLineLinst) {
         myTree = new FLF();

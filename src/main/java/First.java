@@ -8,18 +8,21 @@ import java.util.*;
 class First {
     private List<String> inputData;
     private Map<String, ArrayList<ArrayList<String>>> parsedSet;
-    //private Map<String, Set<String>> outputData;
+    private Map<String, Set<String>> nonterminalsTransitionMap;
     private Map<String, FirstElement> firstElementMap;
+    private Map<String, FollowElement> followElementMap;
     private Map<String, ArrayList<ArrayList<String>>> nonterminalsRelationMap;
     private ArrayList<String> listToInsert;
+    private Boolean toRecalculate;
+    private String firstProduction;
 
     First(List<String> inputList){
         inputData = new ArrayList<String>();
         inputData = inputList;
-        parsedSet = new HashMap<
-                >();
-       // outputData = new HashMap<>();
+        parsedSet = new HashMap<>();
+        nonterminalsTransitionMap = new HashMap<>();
         firstElementMap = new HashMap<>();
+        followElementMap = new HashMap<>();
         nonterminalsRelationMap = new HashMap<>();
     }
 
@@ -74,6 +77,9 @@ class First {
             //check if terminal exist on paredSet set and add
             if(!parsedSet.containsKey(parsedString[0])) {
                 parsedSet.put(parsedString[0], new ArrayList<>());
+                if(parsedSet.size() == 1) {
+                    firstProduction = parsedString[0];
+                }
             }
 
             //verify if is new element on first List
@@ -86,8 +92,8 @@ class First {
             for(Integer i = 2; i < parsedString.length; i++) {
 
                 if(!parsedString[i].equals("|")) {
-                    //verify if is new element on first List
-                    if(!firstElementMap.containsKey(parsedString[i])) {
+                    //verify if is new element on first List AND it is not epsValue
+                    if(!firstElementMap.containsKey(parsedString[i]) && !parsedString[i].equals(CommonUtility.epsValue)) { //
                         firstElementMap.put(parsedString[i],new FirstElement(parsedString[i]));
                     }
 
@@ -100,20 +106,23 @@ class First {
                 if(setComparison(listToInsert, parsedSet.get(parsedString[0]))) {
                     parsedSet.get(parsedString[0]).add(listToInsert);
                     //check first symbol
-                    addElementToFirstSetSet(parsedString, listToInsert, firstElementMap);
+                    addElementToFirstSetSet(parsedString[0], listToInsert, firstElementMap);
 
                 }
                 listToInsert = new ArrayList<>();
             }
             //last word
-            if(!listToInsert.isEmpty() && setComparison(listToInsert, parsedSet.get(parsedString[0]))) {
+            if((!listToInsert.isEmpty() && setComparison(listToInsert, parsedSet.get(parsedString[0])))) {// && (listToInsert.size() == 1 && listToInsert.get(0) != CommonUtility.epsValue)
+
                 parsedSet.get(parsedString[0]).add(listToInsert);
             }
-            addElementToFirstSetSet(parsedString, listToInsert, firstElementMap);
+            addElementToFirstSetSet(parsedString[0], listToInsert, firstElementMap);
         }
         System.out.println(parsedSet);
         System.out.println("Before non-terminal addition");
-        printfirstList(firstElementMap);
+        printFirstList(firstElementMap);
+        System.out.println(nonterminalsTransitionMap);
+        System.out.println(nonterminalsRelationMap);
 
         // sprawdznie eps-transition
         for(FirstElement fe : firstElementMap.values()) {
@@ -122,15 +131,87 @@ class First {
             }
         }
         System.out.println("With eps-transition");
-        printfirstList(firstElementMap);
+        printFirstList(firstElementMap);
+
         System.out.println(nonterminalsRelationMap);
+        System.out.println(nonterminalsTransitionMap);
 
-        //TODO przejście po firstElementMap dodanie par string string do uzupełnienia (ogarnięcie eps)
+        // przejście po firstElementMap add Map< String, set<String>> do uzupełnienia (ogarnięcie eps)
+        Boolean toEnd;
+        do {
+            toRecalculate = false;
+            for(String symbol: nonterminalsRelationMap.keySet()) {
+                //for across Lists
+                toEnd = true;
+                for(ArrayList<String>lString: nonterminalsRelationMap.get(symbol)) {
+                    //for across elements
+                    for(String ls: lString) {
+                        //check if element has eps-transition
+                        if(!firstElementMap.get(ls).isEpsilonTransition) {
+                            //if not add element to nonterminalsTransitionMap and go to next list
+                            addToNonterminalsTransitionMap(nonterminalsTransitionMap, symbol, ls);
+                            toEnd = false;
+                            break;
+                        } else {
+                            //if yes add element to nonterminalsTransitionMap and go to next element
+                            addToNonterminalsTransitionMap(nonterminalsTransitionMap, symbol, ls);
+                        }
+                        //check if
+                    }
+                    if(toEnd) {
+                        // add eps to element List
+                        if(!firstElementMap.get(symbol).firstSet.contains(CommonUtility.epsValue)) {
+                            firstElementMap.get(symbol).firstSet.add(CommonUtility.epsValue);
+                            //check if element is eps transition
+                            if(!firstElementMap.get(symbol).isEpsilonTransition) {
+                                firstElementMap.get(symbol).isEpsilonTransition = true;
+                                toRecalculate = true;
+                            }
+                        }
+                    }
+                }
+            }
+
+//            System.out.println(parsedSet);
+//            System.out.println("After next part");
+//            printfirstList(firstElementMap);
+
+        } while (toRecalculate);
 
 
+        System.out.println("Before adding transition ");
+        printFirstList(firstElementMap);
+        System.out.println(nonterminalsRelationMap);
+        System.out.println(nonterminalsTransitionMap);
+        //for po liście par do momentu przejścia bez dodawania elementów
 
-        //TODO for po liście par do momentu przejścia bez dodawania elementów
+        Set<String> elementToAddList;
 
+        do {
+            toRecalculate = false;
+            //for po nonterninalsTransitionMap
+            for(String symbol: nonterminalsTransitionMap.keySet()) {
+                //for po elementach
+                for(String element: nonterminalsTransitionMap.get(symbol)) {
+                    elementToAddList = firstElementMap.get(element).firstSet;
+                    for(String s:elementToAddList) {
+                        if(!firstElementMap.get(symbol).firstSet.contains(s) && !s.equals(CommonUtility.epsValue)) {
+                            firstElementMap.get(symbol).firstSet.add(s);
+                            toRecalculate = true;
+                        }
+                    }
+                }
+            }
+        } while(toRecalculate);
+
+        System.out.println("Final");
+        printFirstList(firstElementMap);
+        System.out.println(nonterminalsRelationMap);
+        System.out.println(nonterminalsTransitionMap);
+        System.out.println(parsedSet);
+
+
+        generateFollowSet(firstElementMap, parsedSet);
     }
 
 
@@ -147,8 +228,7 @@ class First {
         return true;
 
     }
-
-    void printfirstList(Map<String, FirstElement> FirstList) {
+    private void printFirstList(Map<String, FirstElement> FirstList) {
 
         if(FirstList != null && !FirstList.isEmpty()) {
             System.out.println("First SET");
@@ -166,38 +246,26 @@ class First {
         return !(testString.charAt(0) < 'A' || testString.charAt(0) > 'Z');
     }
 
-    void addElementToFirstSetSet(String[] parsedString, ArrayList<String> listToInsert, Map<String, FirstElement> firstElementMap) {
+    private void addElementToFirstSetSet(String parsedString, ArrayList<String> listToInsert, Map<String, FirstElement> firstElementMap) {
         if(isNonTerminal(listToInsert.get(0))) {
             //first symbol is non-terminal
 
             //
-            //TODO dodanie par string, list to insert // update dodanie list do map nonternimalRelationMap
+            // dodanie list do map nonternimalRelationMap
             //
 
             //verify if element exist on map
-            if(!nonterminalsRelationMap.keySet().contains(parsedString[0])) {
-                nonterminalsRelationMap.put(parsedString[0], new ArrayList<ArrayList<String>>());
+            if(!nonterminalsRelationMap.keySet().contains(parsedString)) {
+                nonterminalsRelationMap.put(parsedString, new ArrayList<>());
             }
 
             Boolean toAdd = true;
             Boolean theSame = false;
             //verify if list exist on list
-            if(nonterminalsRelationMap.get(parsedString[0]).isEmpty()) {
-                nonterminalsRelationMap.get(parsedString[0]).add(listToInsert);
+            if(nonterminalsRelationMap.get(parsedString).isEmpty()) {
+                nonterminalsRelationMap.get(parsedString).add(listToInsert);
             } else { // nonterminalsRelationMap.get(0) != null &&
-                for(List<String> lString: nonterminalsRelationMap.get(parsedString[0])) {
-                    // size of lists
-//                    if(lString.size() != listToInsert.size()) {
-//                        //toAdd = true;
-//                        continue;
-//                    }
-//                    // check equals of both list
-//                    theSame = true;
-//                    for(Integer i = 0; i< lString.size(); i++) {
-//                        if(!lString.get(i).equals(listToInsert.get(i)) ) {
-//                            theSame = false;
-//                        }
-//                    }
+                for(List<String> lString: nonterminalsRelationMap.get(parsedString)) {
                     if(lString.equals(listToInsert)) {
                         theSame = true;
                     }
@@ -206,17 +274,109 @@ class First {
                     }
                 }
                 if(toAdd) {
-                    nonterminalsRelationMap.get(parsedString[0]).add(listToInsert);
-                    return;
+                    nonterminalsRelationMap.get(parsedString).add(listToInsert);
                 }
             }
         } else {
             //first symbol is terminal
-            if(!firstElementMap.get(parsedString[0]).firstSet.contains(listToInsert.get(0))) {
-                firstElementMap.get(parsedString[0]).firstSet.add(listToInsert.get(0));
+            if(!firstElementMap.get(parsedString).firstSet.contains(listToInsert.get(0))) {
+                firstElementMap.get(parsedString).firstSet.add(listToInsert.get(0));
             }
             //firstElementList
-
         }
+    }
+    private void addToNonterminalsTransitionMap(Map<String, Set<String>> nonterminalsTransitionMap, String symbol, String Transition) {
+        if(!nonterminalsTransitionMap.containsKey(symbol)) {
+            nonterminalsTransitionMap.put(symbol, new HashSet<>());
+        }
+        if(!nonterminalsTransitionMap.get(symbol).contains(Transition)) {
+            nonterminalsTransitionMap.get(symbol).add(Transition);
+        }
+    }
+    private void generateFollowSet(Map<String, FirstElement> firstElementMap, Map<String, ArrayList<ArrayList<String>>> parsedSet) {
+        String lastWord;
+        String nextElement;
+        String currentElement;
+        //First put $ to first production
+
+
+        followElementMap.put(firstProduction, new FollowElement(firstProduction));
+        followElementMap.get(firstProduction).followSet.add(CommonUtility.dolarValue);
+
+        do {
+            toRecalculate = false;
+            for(String element: parsedSet.keySet()) {
+
+                for(ArrayList<String> lString: parsedSet.get(element)) {
+
+                    //all elements without last
+                    for(Integer i = 0; i < lString.size()-1; i++) {
+                        currentElement = lString.toArray()[i].toString();
+                        //for terminals go to next element
+                        if(firstElementMap.get(currentElement).isTerminal) {
+                            continue;
+                        }
+                        nextElement = lString.toArray()[i+1].toString();
+                        //add all elements from first set of next element
+
+                        if(!followElementMap.containsKey(currentElement)) {
+                            followElementMap.put(currentElement, new FollowElement(currentElement));
+                        }
+
+                        for(String elementToAdd: firstElementMap.get(nextElement).firstSet) {
+                            if(!followElementMap.get(currentElement).followSet.contains(elementToAdd)) {
+                                followElementMap.get(currentElement).followSet.add(elementToAdd);
+                                toRecalculate = true;
+                            }
+                        }
+
+                        //if next element iseps transition add all element from Follow(A) to follow(B)
+                        if(firstElementMap.get(nextElement).isEpsilonTransition) {
+                            if(followElementMap.containsKey(nextElement)) {
+                                followElementMap.put(nextElement, new FollowElement(nextElement));
+                            }
+                            //if followElementMap is empty add all
+                            if(followElementMap.containsKey(element) && !followElementMap.get(element).followSet.isEmpty()){
+                                for(String elementToAdd: followElementMap.get(element).followSet) {
+                                    if(!followElementMap.get(nextElement).followSet.contains(elementToAdd)) {
+                                        followElementMap.get(nextElement).followSet.add(elementToAdd);
+                                        toRecalculate = true;
+                                    }
+                                }
+                            }
+                        }
+
+                    }
+                    //last element
+                    // A -> aB then Follow(A) in Follow(B)
+                    lastWord = (String) lString.toArray()[lString.size()-1];
+                    if(!lastWord.equals(CommonUtility.epsValue) && !firstElementMap.get(lastWord).isTerminal) {
+
+                        if(!followElementMap.containsKey(lastWord)) {
+                            followElementMap.put(lastWord, new FollowElement(lastWord));
+                        }
+                        //if followElementMap is empty add all
+                        if(followElementMap.containsKey(element) && !followElementMap.get(element).followSet.isEmpty()){
+                            for(String elementToAdd: followElementMap.get(element).followSet) {
+                                if(!followElementMap.get(lastWord).followSet.contains(elementToAdd)) {
+                                    followElementMap.get(lastWord).followSet.add(elementToAdd);
+                                    toRecalculate = true;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }while (toRecalculate);
+        printFollowList(followElementMap);
+    }
+
+    private void printFollowList(Map<String, FollowElement> followElementMap) {
+        System.out.println("FOLLOW SET");
+        System.out.println("----------");
+        for(String element: followElementMap.keySet()) {
+            System.out.println(element + "\t" + followElementMap.get(element).followSet);
+        }
+        System.out.println("----------");
     }
 }
