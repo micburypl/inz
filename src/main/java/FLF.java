@@ -431,7 +431,7 @@ class FLF {
             treeElement.lastList.add(treeElement.nodeNumber);
         } else {
             //if element is node
-            if(treeElement.operatorText == "*") {
+            if(Objects.equals(treeElement.operatorText, "*")) {
                 //star operator
                 //calc to child
                 calcFirstLast(treeElement.singleChild);
@@ -439,7 +439,7 @@ class FLF {
                 treeElement.firstList.addAll(treeElement.singleChild.firstList);
                 //last = child follow
                 treeElement.lastList.addAll(treeElement.singleChild.lastList);
-            } else if(treeElement.operatorText == "|") {
+            } else if(Objects.equals(treeElement.operatorText, "|")) {
                 //or operator
                 //calc left and right child
                 calcFirstLast(treeElement.leftChild);
@@ -582,5 +582,4 @@ class FLF {
             }
         }
     }
-
 }

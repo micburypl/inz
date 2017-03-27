@@ -1,6 +1,11 @@
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.jgraph.JGraph;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -54,19 +59,21 @@ public class Start extends Application {
 //        inputLineLinst.add("a^!b");
 //        inputLineLinst.add("abcd && !1234 ^ (ddd34 + eeee11) || fgh12 * ii23");
 //        inputLineLinst.add("(eps|bb&bb)*");
-//        inputLineLinst.add("(a|b)*&a&b&b"); // example
+        inputLineLinst.add("(a|b)*&a&b&b"); // example
         //inputLineLinst.add("A -> B | B a | a b | a b | ab | b a | C | b a ");
         //inputLineLinst.add("A -> a | b | c | ab | a b | B | B | B a");
         //inputLineLinst.add("A -> B a");
         //inputLineLinst.add("A -> a B b");
         //inputLineLinst.add("B -> eps | b");
-        inputLineLinst.add("Goal -> A");
-        inputLineLinst.add("A -> ( A ) | Two");
-        inputLineLinst.add("Two -> a");
-        inputLineLinst.add("Two -> b");
+//        inputLineLinst.add("Goal -> A");
+//        inputLineLinst.add("A -> ( A ) | Two");
+//        inputLineLinst.add("Two -> a");
+//        inputLineLinst.add("Two -> b");
 
         System.out.println(inputLineLinst);
-/*
+
+
+
     for(String line: inputLineLinst) {
         myTree = new FLF();
         myTree.inputList = myTree.createList(line);
@@ -91,13 +98,18 @@ public class Start extends Application {
 
         }
     }
-*/
+
+
 
         First testFirst = new First(inputLineLinst);
         testFirst.generateParsedSet();
+        Scene testScene;
+        testScene = new Scene((Parent)new FXMLLoader(getClass().getResource("fxml/test/test.fxml")).load(), 300, 300);
         stage.setTitle("My JavaFX Application");
-        //stage.setScene(scene);
+        stage.setScene(testScene);
         stage.show();
+
+
     }
 
 

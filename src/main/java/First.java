@@ -1,3 +1,5 @@
+import com.mxgraph.model.mxCell;
+import com.mxgraph.view.mxGraph;
 import javafx.util.Pair;
 
 import java.util.*;
@@ -15,15 +17,18 @@ class First {
     private ArrayList<String> listToInsert;
     private Boolean toRecalculate;
     private String firstProduction;
+    private Map<String, ArrayList<PredictiveMapElement>> predictiveMap;
+    private Map<String, Map<String, ArrayList<String>>> predictiveMaptest;
 
     First(List<String> inputList){
-        inputData = new ArrayList<String>();
+        inputData = new ArrayList<>();
         inputData = inputList;
         parsedSet = new HashMap<>();
         nonterminalsTransitionMap = new HashMap<>();
         firstElementMap = new HashMap<>();
         followElementMap = new HashMap<>();
         nonterminalsRelationMap = new HashMap<>();
+        predictiveMap = new HashMap<>();
     }
 
     void generateParsedSet() {
@@ -379,4 +384,37 @@ class First {
         }
         System.out.println("----------");
     }
+
+    void generatePredictiveMap(Map<String, ArrayList<ArrayList<String>>> parsedSet, Map<String, FirstElement> firstElementMap, Map<String, FirstElement> followElementMap) {
+
+        for(String symbol: parsedSet.keySet()) {
+
+        }
+
+    }
+
+    void addElementToPredictiveMap(String symbol, String prediction, ArrayList<String> production, Map<String, ArrayList<ArrayList<String>>> predictiveMap2) {
+        //check if element exist on map
+        if(!predictiveMap.containsKey(symbol)) {
+           predictiveMap.put(symbol, new ArrayList<>());
+            for(String predictionElement: firstElementMap.keySet()) {
+                if(firstElementMap.get(predictionElement).isTerminal){
+                    predictiveMap.get(symbol).add(new PredictiveMapElement());
+                }
+
+            }
+        }
+        String test;
+        predictiveMaptest = new HashMap<>();
+        predictiveMaptest.put("test", new HashMap<>());
+        predictiveMaptest.get("test").put("test2", new ArrayList<>());
+        predictiveMaptest.get("test").get("test2").add("test3");
+        //check if production exist on symbol array
+//        if(!predictiveMap.get(symbol).contains(prediction)) {
+//            predictiveMap.get(symbol).put(prediction, new)
+//        }
+    }
+
+
+
 }
