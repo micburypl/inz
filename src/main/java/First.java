@@ -143,6 +143,7 @@ class First {
 
         // przejście po firstElementMap add Map< String, set<String>> do uzupełnienia (ogarnięcie eps)
         Boolean toEnd;
+
         do {
             toRecalculate = false;
             for(String symbol: nonterminalsRelationMap.keySet()) {
@@ -211,6 +212,7 @@ class First {
 
         System.out.println("Final");
         printFirstList(firstElementMap);
+        System.out.println("nonterminalsRelationMap");
         System.out.println(nonterminalsRelationMap);
         System.out.println(nonterminalsTransitionMap);
         System.out.println(parsedSet);
@@ -306,7 +308,7 @@ class First {
 
 
         followElementMap.put(firstProduction, new FollowElement(firstProduction));
-        followElementMap.get(firstProduction).followSet.add(CommonUtility.dolarValue);
+        followElementMap.get(firstProduction).followSet.add("eps");
 
         do {
             toRecalculate = false;
@@ -337,14 +339,14 @@ class First {
 
                         //if next element iseps transition add all element from Follow(A) to follow(B)
                         if(firstElementMap.get(nextElement).isEpsilonTransition) {
-                            if(followElementMap.containsKey(nextElement)) {
+                            if(!followElementMap.containsKey(nextElement)) {
                                 followElementMap.put(nextElement, new FollowElement(nextElement));
                             }
                             //if followElementMap is empty add all
                             if(followElementMap.containsKey(element) && !followElementMap.get(element).followSet.isEmpty()){
                                 for(String elementToAdd: followElementMap.get(element).followSet) {
-                                    if(!followElementMap.get(nextElement).followSet.contains(elementToAdd)) {
-                                        followElementMap.get(nextElement).followSet.add(elementToAdd);
+                                    if(!followElementMap.get(currentElement).followSet.contains(elementToAdd)) {
+                                        followElementMap.get(currentElement).followSet.add(elementToAdd);
                                         toRecalculate = true;
                                     }
                                 }

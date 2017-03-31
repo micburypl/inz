@@ -59,45 +59,58 @@ public class Start extends Application {
 //        inputLineLinst.add("a^!b");
 //        inputLineLinst.add("abcd && !1234 ^ (ddd34 + eeee11) || fgh12 * ii23");
 //        inputLineLinst.add("(eps|bb&bb)*");
-        inputLineLinst.add("(a|b)*&a&b&b"); // example
+
         //inputLineLinst.add("A -> B | B a | a b | a b | ab | b a | C | b a ");
         //inputLineLinst.add("A -> a | b | c | ab | a b | B | B | B a");
-        //inputLineLinst.add("A -> B a");
-        //inputLineLinst.add("A -> a B b");
-        //inputLineLinst.add("B -> eps | b");
+//        inputLineLinst.add("A -> B a");
+//        inputLineLinst.add("A -> a B b");
+//        inputLineLinst.add("B -> eps | b");
+
+
+//        System.out.println(inputLineLinst);
+
+
+//        inputLineLinst.add("(a|b)*&a&b&b"); // example
+
+
+//    for(String line: inputLineLinst) {
+//        myTree = new FLF();
+//        myTree.inputList = myTree.createList(line);
+//
+//
+//        System.out.println(myTree.inputList);
+//
+//        if(myTree.inputList != null && myTree.inputList.size() > 0) {
+//            myTree.printList(myTree.inputList);
+//            myTree.rootOfTree =  myTree.createTree(myTree.inputList);
+//            System.out.println(myTree.rootOfTree);
+//            myTree.calcNullable(myTree.rootOfTree);
+//            myTree.calcFirstLast(myTree.rootOfTree);
+//            myTree.calcFollow(myTree.rootOfTree);
+//            myTree.printTree( myTree.rootOfTree, 0);
+//            myTree.printFollow();
+//            System.out.println(myTree.transitionData);
+//            myTree.generateTransitionTable();
+//            System.out.println(myTree.transitionProduction);
+//            myTree.printTransitionTable();
+//            myTree.printFinalState();
+//
+//        }
+//    }
 //        inputLineLinst.add("Goal -> A");
 //        inputLineLinst.add("A -> ( A ) | Two");
 //        inputLineLinst.add("Two -> a");
 //        inputLineLinst.add("Two -> b");
 
-        System.out.println(inputLineLinst);
 
+//        inputLineLinst.add("A -> B | a");
+//        inputLineLinst.add("B -> A | b");
 
-
-    for(String line: inputLineLinst) {
-        myTree = new FLF();
-        myTree.inputList = myTree.createList(line);
-
-
-        System.out.println(myTree.inputList);
-
-        if(myTree.inputList != null && myTree.inputList.size() > 0) {
-            myTree.printList(myTree.inputList);
-            myTree.rootOfTree =  myTree.createTree(myTree.inputList);
-            System.out.println(myTree.rootOfTree);
-            myTree.calcNullable(myTree.rootOfTree);
-            myTree.calcFirstLast(myTree.rootOfTree);
-            myTree.calcFollow(myTree.rootOfTree);
-            myTree.printTree( myTree.rootOfTree, 0);
-            myTree.printFollow();
-            System.out.println(myTree.transitionData);
-            myTree.generateTransitionTable();
-            System.out.println(myTree.transitionProduction);
-            myTree.printTransitionTable();
-            myTree.printFinalState();
-
-        }
-    }
+        inputLineLinst.add("S -> A S'");
+        inputLineLinst.add("A -> B A' ");
+        inputLineLinst.add("B -> ( S ) | a");
+        inputLineLinst.add("A' -> * B A' | eps");
+        inputLineLinst.add("S' -> + A S' | eps");
 
 
 
@@ -111,6 +124,7 @@ public class Start extends Application {
 
 
     }
+
 
 
 }
