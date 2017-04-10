@@ -1,3 +1,5 @@
+package other;
+
 public class oldThink {
 //    List<String> inputData;
 //    Map<String, ArrayList<ArrayList<String>>> parsedSet;

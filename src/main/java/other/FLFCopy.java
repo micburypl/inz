@@ -1,3 +1,5 @@
+package other;
+
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -34,7 +36,7 @@ class FLFCopy {
         Queue<FLFPart> inputQueue = new LinkedList<FLFPart>(iQ);
 
         System.out.println();
-        System.out.print("Start print queue");
+        System.out.print("start.Start print queue");
         System.out.println();
         System.out.print("Queue:");
         System.out.println();

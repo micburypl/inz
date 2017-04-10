@@ -1,9 +1,11 @@
+package other;
+
 import java.util.*;
 
 /**
  * Created on 19.03.2017.
  */
-class FLF {
+public class FLF {
 
     private String word;
     private Boolean nextCharFlag;
@@ -14,19 +16,18 @@ class FLF {
     private Boolean eMessage;
     private String line;
     private Integer symbolNumber;
-    FLFPart rootOfTree;
+    public FLFPart rootOfTree;
     private char currentSymbol = 'A';
     Integer finalState;
-    String epsSign = "eps";
-    List<FLFPart> inputList = new ArrayList<FLFPart>();
+    public List<FLFPart> inputList = new ArrayList<FLFPart>();
     Map<Integer,HashSet<Integer>> followMap = new HashMap<Integer, HashSet<Integer>>();
     //list of word
-    Map<String, HashSet<Integer>> transitionData = new HashMap<String, HashSet<Integer>>();
-    Map<String, HashSet<Integer>> transitionProduction = new HashMap<String, HashSet<Integer>>();
+    public Map<String, HashSet<Integer>> transitionData = new HashMap<String, HashSet<Integer>>();
+    public Map<String, HashSet<Integer>> transitionProduction = new HashMap<String, HashSet<Integer>>();
     List<TransitionTableElement> transitionTable = new ArrayList<TransitionTableElement>();
 
 
-    FLF() {
+    public FLF() {
         word = "";
         nextCharFlag = false;
         errorFlag = false;
@@ -37,12 +38,12 @@ class FLF {
         symbolNumber = 1;
     }
 
-    void printList(List<FLFPart> iQ) {
+    public void printList(List<FLFPart> iQ) {
 
         List<FLFPart> inputList = new ArrayList<FLFPart>(iQ);
 
         System.out.println();
-        System.out.print("Start print queue");
+        System.out.print("start.Start print queue");
         System.out.println();
         System.out.print("Queue:");
         System.out.println();
@@ -64,7 +65,7 @@ class FLF {
         System.out.println();
     }
 
-    void printTree(FLFPart rootOfTree, int level){
+    public void printTree(FLFPart rootOfTree, int level){
         for(int i = 0; i < level; i++){
             System.out.print("->");
         }
@@ -128,7 +129,7 @@ class FLF {
     }
 
 
-    List<FLFPart> createList(String line){
+    public List<FLFPart> createList(String line){
         this.line = line;
         word = "";
         levelOfPriority = 0;
@@ -250,7 +251,7 @@ class FLF {
 
 
 
-    FLFPart createTree(List<FLFPart> inputList){
+    public FLFPart createTree(List<FLFPart> inputList){
         FLFPart rootOfTree;
         FLFPart currentPlace;
         FLFPart tempPart;
@@ -389,14 +390,14 @@ class FLF {
         return syntaxRoot;
     }
 
-    void calcNullable(FLFPart treeElement) {
+    public void calcNullable(FLFPart treeElement) {
         //nullable is calculated
         if(treeElement.nullable != null) {
             return;
         }
         if(treeElement.typeTreePart) {
             //if element is leaf
-            if(treeElement.symbolsText.toLowerCase().equals(epsSign)) {
+            if(treeElement.symbolsText.toLowerCase().equals(CommonUtility.epsValue)) {
                 //if symbol is epsilon
                 treeElement.nullable = true;
             } else {
@@ -422,7 +423,7 @@ class FLF {
             }
         }
     }
-    void calcFirstLast(FLFPart treeElement) {
+    public void calcFirstLast(FLFPart treeElement) {
         if(treeElement.typeTreePart) {
             //if element is leaf
             // first = number
@@ -469,7 +470,7 @@ class FLF {
         }
     }
 
-    void calcFollow(FLFPart treeElement) {
+    public void calcFollow(FLFPart treeElement) {
         if(treeElement.typeTreePart) {
             //if element is leaf
             //do not do anything
@@ -504,7 +505,7 @@ class FLF {
         }
     }
 
-    void printFollow() {
+    public void printFollow() {
         for(Integer i = 1; i <= followMap.size(); i++) {
             System.out.println(i + ": " + followMap.get(i));
         }
@@ -519,7 +520,7 @@ class FLF {
         //add number to correct word
         transitionData.get(word).add(number);
     }
-    void generateTransitionTable() {
+    public void generateTransitionTable() {
         Map<String, HashSet<Integer>> transitionProductionToRecalculate = new HashMap<String, HashSet<Integer>>();
 
         transitionProduction.put(String.valueOf(currentSymbol), rootOfTree.firstList);
@@ -568,12 +569,12 @@ class FLF {
         }
     }
 
-    void printTransitionTable() {
+    public void printTransitionTable() {
         for(TransitionTableElement t: transitionTable) {
             System.out.println(t.beginState + "\t" + t.word + "\t" + t.endState + "\t" + t.numberSet);
         }
     }
-    void printFinalState() {
+    public void printFinalState() {
         finalState = rootOfTree.rightChild.nodeNumber;
         System.out.println("Final State/States:");
         for(String production: transitionProduction.keySet()) {

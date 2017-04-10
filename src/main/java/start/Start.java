@@ -1,9 +1,12 @@
+package start;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.jgraph.JGraph;
+import other.FLF;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -25,6 +28,7 @@ public class Start extends Application {
         //System.out.print("Hello world!!");
 
         //System.out.print("Hello world ok");
+
         FLF myTree;
         List<String> inputLineLinst = new ArrayList<String>();
 //        inputLineLinst.add("t e s t 1 - t e s t 2 * t e s t 3" );
@@ -70,33 +74,33 @@ public class Start extends Application {
 //        System.out.println(inputLineLinst);
 
 
-//        inputLineLinst.add("(a|b)*&a&b&b"); // example
+        inputLineLinst.add("(a|b)*&a&b&b"); // example
 
 
-//    for(String line: inputLineLinst) {
-//        myTree = new FLF();
-//        myTree.inputList = myTree.createList(line);
-//
-//
-//        System.out.println(myTree.inputList);
-//
-//        if(myTree.inputList != null && myTree.inputList.size() > 0) {
-//            myTree.printList(myTree.inputList);
-//            myTree.rootOfTree =  myTree.createTree(myTree.inputList);
-//            System.out.println(myTree.rootOfTree);
-//            myTree.calcNullable(myTree.rootOfTree);
-//            myTree.calcFirstLast(myTree.rootOfTree);
-//            myTree.calcFollow(myTree.rootOfTree);
-//            myTree.printTree( myTree.rootOfTree, 0);
-//            myTree.printFollow();
-//            System.out.println(myTree.transitionData);
-//            myTree.generateTransitionTable();
-//            System.out.println(myTree.transitionProduction);
-//            myTree.printTransitionTable();
-//            myTree.printFinalState();
-//
-//        }
-//    }
+        for(String line: inputLineLinst) {
+        myTree = new FLF();
+        myTree.inputList = myTree.createList(line);
+
+
+        System.out.println(myTree.inputList);
+
+        if(myTree.inputList != null && myTree.inputList.size() > 0) {
+            myTree.printList(myTree.inputList);
+            myTree.rootOfTree =  myTree.createTree(myTree.inputList);
+            System.out.println(myTree.rootOfTree);
+            myTree.calcNullable(myTree.rootOfTree);
+            myTree.calcFirstLast(myTree.rootOfTree);
+            myTree.calcFollow(myTree.rootOfTree);
+            myTree.printTree( myTree.rootOfTree, 0);
+            myTree.printFollow();
+            System.out.println(myTree.transitionData);
+            myTree.generateTransitionTable();
+            System.out.println(myTree.transitionProduction);
+            myTree.printTransitionTable();
+            myTree.printFinalState();
+
+        }
+    }
 //        inputLineLinst.add("Goal -> A");
 //        inputLineLinst.add("A -> ( A ) | Two");
 //        inputLineLinst.add("Two -> a");
@@ -106,18 +110,18 @@ public class Start extends Application {
 //        inputLineLinst.add("A -> B | a");
 //        inputLineLinst.add("B -> A | b");
 
-        inputLineLinst.add("S -> A S'");
-        inputLineLinst.add("A -> B A' ");
-        inputLineLinst.add("B -> ( S ) | a");
-        inputLineLinst.add("A' -> * B A' | eps");
-        inputLineLinst.add("S' -> + A S' | eps");
+//        inputLineLinst.add("S -> A S'");
+//        inputLineLinst.add("A -> B A' ");
+//        inputLineLinst.add("B -> ( S ) | a");
+//        inputLineLinst.add("A' -> * B A' | eps");
+//        inputLineLinst.add("S' -> + A S' | eps");
 
 
 
-        First testFirst = new First(inputLineLinst);
-        testFirst.generateParsedSet();
+        //First testFirst = new First(inputLineLinst);
+        //testFirst.generateParsedSet();
         Scene testScene;
-        testScene = new Scene((Parent)new FXMLLoader(getClass().getResource("fxml/test/test.fxml")).load(), 300, 300);
+        testScene = new Scene((Parent)new FXMLLoader(getClass().getResource("/fxml/test/inputDataWindow/firstLastFollowSolver.fxml")).load(), 300, 300);
         stage.setTitle("My JavaFX Application");
         stage.setScene(testScene);
         stage.show();

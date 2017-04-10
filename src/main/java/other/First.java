@@ -1,6 +1,4 @@
-import com.mxgraph.model.mxCell;
-import com.mxgraph.view.mxGraph;
-import javafx.util.Pair;
+package other;
 
 import java.util.*;
 
@@ -387,10 +385,26 @@ class First {
         System.out.println("----------");
     }
 
-    void generatePredictiveMap(Map<String, ArrayList<ArrayList<String>>> parsedSet, Map<String, FirstElement> firstElementMap, Map<String, FirstElement> followElementMap) {
+    void generatePredictiveMap(Map<String, ArrayList<ArrayList<String>>> parsedSet, Map<String, FirstElement> firstElementMap, Map<String, FollowElement> followElementMap) {
+
+        List<String> nonterminalListFromFirstSet;
 
         for(String symbol: parsedSet.keySet()) {
+        //for across nonterminal
+            if(parsedSet.get(symbol) != null && parsedSet.get(symbol).isEmpty()) {
+                //if there is any production
+                for(ArrayList<String> symbolSets: parsedSet.get(symbol)) {
+                    nonterminalListFromFirstSet = new ArrayList<>();
+                    //get first from symbolSet
+                    if(CommonUtility.isTerminal(symbolSets.get(0))) {
+                        nonterminalListFromFirstSet.add(symbolSets.get(0));
+                    } else {
+                        nonterminalListFromFirstSet.addAll(firstElementMap.get(symbolSets.get(0)).firstSet);
+                    }
+                    //input production to element position from first
 
+                }
+            }
         }
 
     }

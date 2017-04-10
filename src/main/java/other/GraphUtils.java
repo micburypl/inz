@@ -1,4 +1,4 @@
-//package ece.diploma.utils;
+package other;//package ece.diploma.utils;
 
 import com.mxgraph.util.mxConstants;
 import com.mxgraph.util.mxUtils;

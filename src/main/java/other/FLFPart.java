@@ -1,6 +1,6 @@
-import java.util.ArrayList;
+package other;
+
 import java.util.HashSet;
-import java.util.List;
 
 /**
  * Created on 19.03.2017.
