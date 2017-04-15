@@ -1,24 +1,26 @@
 package other;
 
+import jdk.nashorn.internal.ir.Symbol;
+
 import java.util.*;
 
 /**
  * Created on 22.03.2017.
  */
-class First {
-    private List<String> inputData;
-    private Map<String, ArrayList<ArrayList<String>>> parsedSet;
-    private Map<String, Set<String>> nonterminalsTransitionMap;
-    private Map<String, FirstElement> firstElementMap;
-    private Map<String, FollowElement> followElementMap;
-    private Map<String, ArrayList<ArrayList<String>>> nonterminalsRelationMap;
-    private ArrayList<String> listToInsert;
-    private Boolean toRecalculate;
-    private String firstProduction;
-    private Map<String, ArrayList<PredictiveMapElement>> predictiveMap;
-    private Map<String, Map<String, ArrayList<String>>> predictiveMaptest;
+public class First {
+    public List<String> inputData;
+    public Map<String, ArrayList<ArrayList<String>>> parsedSet;
+    public Map<String, Set<String>> nonterminalsTransitionMap;
+    public Map<String, FirstElement> firstElementMap;
+    public Map<String, FollowElement> followElementMap;
+    public Map<String, ArrayList<ArrayList<String>>> nonterminalsRelationMap;
+    public ArrayList<String> listToInsert;
+    public Boolean toRecalculate;
+    public String firstProduction;
+   // public Map<String, ArrayList<PredictiveMapElement>> predictiveMap;
+    public Map<String, Map<String, ArrayList<ArrayList<String>>>> predictiveMap;
 
-    First(List<String> inputList){
+    public First(List<String> inputList){
         inputData = new ArrayList<>();
         inputData = inputList;
         parsedSet = new HashMap<>();
@@ -29,7 +31,7 @@ class First {
         predictiveMap = new HashMap<>();
     }
 
-    void generateParsedSet() {
+    public void generateParsedSet() {
         String[] parsedString;
         if(inputData.size() == 0) {
             System.out.println("Empty Input");
@@ -385,13 +387,13 @@ class First {
         System.out.println("----------");
     }
 
-    void generatePredictiveMap(Map<String, ArrayList<ArrayList<String>>> parsedSet, Map<String, FirstElement> firstElementMap, Map<String, FollowElement> followElementMap) {
+    public void generatePredictiveMap(Map<String, ArrayList<ArrayList<String>>> parsedSet, Map<String, FirstElement> firstElementMap, Map<String, FollowElement> followElementMap) {
 
         List<String> nonterminalListFromFirstSet;
 
         for(String symbol: parsedSet.keySet()) {
         //for across nonterminal
-            if(parsedSet.get(symbol) != null && parsedSet.get(symbol).isEmpty()) {
+            if(parsedSet.get(symbol) != null && !parsedSet.get(symbol).isEmpty()) {
                 //if there is any production
                 for(ArrayList<String> symbolSets: parsedSet.get(symbol)) {
                     nonterminalListFromFirstSet = new ArrayList<>();
@@ -401,35 +403,72 @@ class First {
                     } else {
                         nonterminalListFromFirstSet.addAll(firstElementMap.get(symbolSets.get(0)).firstSet);
                     }
+                    //--
                     //input production to element position from first
+                    //--
+                    if(nonterminalListFromFirstSet != null && !nonterminalListFromFirstSet.isEmpty()) {
+                        //check if symbol exist on predicitve Map
+                        if(!predictiveMap.containsKey(symbol)) {
+                            //if not add this
+                            predictiveMap.put(symbol, new HashMap<>());
+                        }
+                        //for all element on non-terminalListFromFirstSet add production
+                        for(String nonteminal: nonterminalListFromFirstSet) {
+                            //check if symbol contains nonterminal on map
 
+                            if(nonteminal.equals(CommonUtility.epsValue)) {
+                                //if it is eps transition
+                                //for across follow set
+                                if(followElementMap.containsKey(symbol) && !followElementMap.get(symbol).followSet.isEmpty()){
+                                    for(String followNonterminal: followElementMap.get(symbol).followSet) {
+                                        if(!predictiveMap.get(symbol).containsKey(followNonterminal)) {
+                                            predictiveMap.get(symbol).put(followNonterminal, new ArrayList<>());
+                                        }
+                                        predictiveMap.get(symbol).get(followNonterminal).add(symbolSets);
+
+
+                                    }
+                                }
+                            } else {
+                                //if not only add this element
+                                if(!predictiveMap.get(symbol).containsKey(nonteminal)) {
+                                    //if not add this
+                                    predictiveMap.get(symbol).put(nonteminal, new ArrayList<>());
+                                }
+                                predictiveMap.get(symbol).get(nonteminal).add(symbolSets);
+                            }
+
+                        }
+                    }
                 }
             }
         }
-
+        System.out.println(predictiveMap);
+        System.out.println(predictiveMap.get("S'").get("eps").get(0).get(0));
+        System.out.println(predictiveMap.get("S'").get("eps").get(0).get(0).equals(CommonUtility.epsValue));
     }
 
-    void addElementToPredictiveMap(String symbol, String prediction, ArrayList<String> production, Map<String, ArrayList<ArrayList<String>>> predictiveMap2) {
-        //check if element exist on map
-        if(!predictiveMap.containsKey(symbol)) {
-           predictiveMap.put(symbol, new ArrayList<>());
-            for(String predictionElement: firstElementMap.keySet()) {
-                if(firstElementMap.get(predictionElement).isTerminal){
-                    predictiveMap.get(symbol).add(new PredictiveMapElement());
-                }
-
-            }
-        }
-        String test;
-        predictiveMaptest = new HashMap<>();
-        predictiveMaptest.put("test", new HashMap<>());
-        predictiveMaptest.get("test").put("test2", new ArrayList<>());
-        predictiveMaptest.get("test").get("test2").add("test3");
+//    void addElementToPredictiveMap(String symbol, String prediction, ArrayList<String> production, Map<String, ArrayList<ArrayList<String>>> predictiveMap2) {
+//        //check if element exist on map
+//        if(!predictiveMap.containsKey(symbol)) {
+//           predictiveMap.put(symbol, new HashMap<>());
+//            for(String predictionElement: firstElementMap.keySet()) {
+//                if(firstElementMap.get(predictionElement).isTerminal){
+//                    predictiveMap.get(symbol).add(new PredictiveMapElement());
+//                }
+//
+//            }
+//        }
+//        String test;
+//        predictiveMaptest = new HashMap<>();
+//        predictiveMaptest.put("test", new HashMap<>());
+//        predictiveMaptest.get("test").put("test2", new ArrayList<>());
+//        predictiveMaptest.get("test").get("test2").add("test3");
         //check if production exist on symbol array
 //        if(!predictiveMap.get(symbol).contains(prediction)) {
 //            predictiveMap.get(symbol).put(prediction, new)
 //        }
-    }
+//    }
 
 
 

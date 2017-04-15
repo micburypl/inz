@@ -123,7 +123,7 @@ public class FLF {
         newTreePart.symbolsText = word;
         newTreePart.typeTreePart = true;
         newTreePart.nodeNumber = symbolNumber++;
-        followMap.put(newTreePart.nodeNumber, new HashSet<Integer>());
+        followMap.put(newTreePart.nodeNumber, new HashSet<>());
         addToTransitionData(word, newTreePart.nodeNumber);
         inputList.add(newTreePart);
     }
