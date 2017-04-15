@@ -443,9 +443,6 @@ public class First {
                 }
             }
         }
-        System.out.println(predictiveMap);
-        System.out.println(predictiveMap.get("S'").get("eps").get(0).get(0));
-        System.out.println(predictiveMap.get("S'").get("eps").get(0).get(0).equals(CommonUtility.epsValue));
     }
 
 //    void addElementToPredictiveMap(String symbol, String prediction, ArrayList<String> production, Map<String, ArrayList<ArrayList<String>>> predictiveMap2) {

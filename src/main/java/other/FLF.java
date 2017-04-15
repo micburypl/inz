@@ -22,6 +22,7 @@ public class FLF {
     public List<FLFPart> inputList = new ArrayList<FLFPart>();
     Map<Integer,HashSet<Integer>> followMap = new HashMap<Integer, HashSet<Integer>>();
     //list of word
+
     public Map<String, HashSet<Integer>> transitionData = new HashMap<String, HashSet<Integer>>();
     public Map<String, HashSet<Integer>> transitionProduction = new HashMap<String, HashSet<Integer>>();
     List<TransitionTableElement> transitionTable = new ArrayList<TransitionTableElement>();
