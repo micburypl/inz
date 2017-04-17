@@ -1,5 +1,6 @@
-package other;
+package graph;
 
+import algorithmFLF.TransitionTableElement;
 import com.mxgraph.model.mxCell;
 import com.mxgraph.swing.mxGraphComponent;
 import com.mxgraph.view.mxGraph;

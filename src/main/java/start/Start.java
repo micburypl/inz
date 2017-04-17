@@ -5,15 +5,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import org.jgraph.JGraph;
-import other.FLF;
-import other.First;
+import algorithmFLF.FLF;
+import firstFollow.FirstFollow;
+import parserLL.MovesTable;
 
-import javax.swing.*;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created on 2017-03-13.
@@ -79,7 +76,7 @@ public class Start extends Application {
 //
 //
 //        for(String line: inputLineLinst) {
-//        myTree = new FLF();
+//        myTree = new algorithmFLF();
 //        myTree.inputList = myTree.createList(line);
 //
 //
@@ -127,9 +124,13 @@ public class Start extends Application {
 
 
 
-        First testFirst = new First(inputLineLinst);
-        testFirst.generateParsedSet();
-        testFirst.generatePredictiveMap(testFirst.parsedSet, testFirst.firstElementMap, testFirst.followElementMap);
+        FirstFollow testFirstFollow = new FirstFollow(inputLineLinst);
+        testFirstFollow.generateSolutionSet();
+        testFirstFollow.predictiveMap.generatePredictiveMap(testFirstFollow.parsedSet, testFirstFollow.firstElementMap, testFirstFollow.followElementMap);
+        MovesTable testMoveTable = new MovesTable();
+        testMoveTable.generateMovesTable("S","a + a * a", testFirstFollow.predictiveMap.predictiveMap);
+        testMoveTable.printMovesTable();
+
         Scene testScene;
         testScene = new Scene((Parent)new FXMLLoader(getClass().getResource("/fxml/test/inputDataWindow/firstLastFollowSolver.fxml")).load(), 300, 300);
         stage.setTitle("My JavaFX Application");

@@ -1,4 +1,4 @@
-package other;
+package firstFollow;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -6,10 +6,10 @@ import java.util.Set;
 /**
  * Created on 23.03.2017.
  */
-class FirstElement {
+public class FirstElement {
     String value;
     Boolean isTerminal;
-    Set<String> firstSet;
+    public Set<String> firstSet;
     Boolean isEpsilonTransition;
 
     FirstElement(String v) {

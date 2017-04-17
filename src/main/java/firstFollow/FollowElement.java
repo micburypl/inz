@@ -1,12 +1,12 @@
-package other;
+package firstFollow;
 
 import java.util.HashSet;
 import java.util.Set;
 
 
-class FollowElement {
+public class FollowElement {
     String value;
-    Set<String> followSet;
+    public Set<String> followSet;
 
     FollowElement(String v) {
         value = v;
