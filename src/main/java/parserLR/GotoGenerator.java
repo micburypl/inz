@@ -26,7 +26,7 @@ public class GotoGenerator {
     //all parameters ( S, a, *, etc.)
     private Set<String> allParameters;
 
-    private Map<Integer, ArrayList<String>> listOfProduction;
+    public Map<Integer, ArrayList<String>> listOfProduction;
 
     GotoElement currentGotoElement;
 
@@ -102,6 +102,7 @@ public class GotoGenerator {
                     currentClosureElement = new ClosureElement(nextClosureElement.counterValue, CommonUtility.generateList(parsedSetKey, CommonUtility.arrow, tempArrayString), currProdNumber);
                 }
                 closureElementCombination.put(currentClosureElement.counterValue, currentClosureElement);
+                currProdNumber++;
             }
         }
 

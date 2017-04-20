@@ -78,7 +78,38 @@ public class ParserLR {
 
         }
 
-        System.out.println(actionTable);
+        //add reduce element to actionTable
+
+        for(Integer closureElementCounter: gotoGeneratorMap.gotoElementMap.keySet()) {
+            for(Integer closureElement: gotoGeneratorMap.gotoElementMap.get(closureElementCounter).closureElementList) {
+                if(gotoGeneratorMap.closureElementCombination.get(closureElement).isLastItem) {
+                    //for across follow element of this
+                    Integer currProdNumber = gotoGeneratorMap.closureElementCombination.get(closureElement).producitonNumber;
+                    if(currProdNumber.equals(0)){
+                        continue;
+                    }
+                    System.out.println(gotoGeneratorMap.listOfProduction.get(currProdNumber));
+                    for(String followElement: followElementMap.get(gotoGeneratorMap.listOfProduction.get(currProdNumber).get(0)).followSet) {
+                        //tutaj powinno być prawidlowo
+                        if(!actionTable.containsKey(closureElementCounter)) {
+                            actionTable.put(closureElementCounter, new HashMap<>());
+                        }
+                        actionTable.get(closureElementCounter).put(followElement, new ActionTableElement(currProdNumber, false) );
+                    }
+                }
+            }
+        }
+
+
+        for(Integer i: actionTable.keySet()) {
+            System.out.println(i);
+            for(String s: actionTable.get(i).keySet()) {
+                System.out.println(s + "\t" + actionTable.get(i).get(s).value + "\t" + actionTable.get(i).get(s).isShift);
+            }
+
+        }
+
+        //System.out.println(actionTable);
         System.out.println(gotoTable);
 
     }
