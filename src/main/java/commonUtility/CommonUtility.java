@@ -67,4 +67,12 @@ public class CommonUtility {
         returnList.add(four);
         return returnList;
     }
+
+    public static ArrayList<String> generateList(String one, String two, ArrayList<String> three) {
+        ArrayList<String> returnList = new ArrayList<>();
+        returnList.add(one);
+        returnList.add(two);
+        returnList.addAll(three);
+        return returnList;
+    }
 }

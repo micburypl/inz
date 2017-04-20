@@ -5,14 +5,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import algorithmFLF.FLF;
-import firstFollow.FirstFollow;
-import parserLL.MovesTable;
-import parserLR.GotoGenerator;
-import parserLR.ParserLR;
+import org.jgraph.JGraph;
+import other.FLF;
 
+import javax.swing.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created on 2017-03-13.
@@ -73,35 +73,34 @@ public class Start extends Application {
 
 //        System.out.println(inputLineLinst);
 
-//--------
-//        inputLineLinst.add("(a|b)*&a&b&b"); // example
-//
-//
-//        for(String line: inputLineLinst) {
-//        myTree = new algorithmFLF();
-//        myTree.inputList = myTree.createList(line);
-//
-//
-//        System.out.println(myTree.inputList);
-//
-//        if(myTree.inputList != null && myTree.inputList.size() > 0) {
-//            myTree.printList(myTree.inputList);
-//            myTree.rootOfTree =  myTree.createTree(myTree.inputList);
-//            System.out.println(myTree.rootOfTree);
-//            myTree.calcNullable(myTree.rootOfTree);
-//            myTree.calcFirstLast(myTree.rootOfTree);
-//            myTree.calcFollow(myTree.rootOfTree);
-//            myTree.printTree( myTree.rootOfTree, 0);
-//            myTree.printFollow();
-//            System.out.println(myTree.transitionData);
-//            myTree.generateTransitionTable();
-//            System.out.println(myTree.transitionProduction);
-//            myTree.printTransitionTable();
-//            myTree.printFinalState();
-//
-//        }
-//    }
-// ----------------
+
+        inputLineLinst.add("(a|b)*&a&b&b"); // example
+
+
+        for(String line: inputLineLinst) {
+        myTree = new FLF();
+        myTree.inputList = myTree.createList(line);
+
+
+        System.out.println(myTree.inputList);
+
+        if(myTree.inputList != null && myTree.inputList.size() > 0) {
+            myTree.printList(myTree.inputList);
+            myTree.rootOfTree =  myTree.createTree(myTree.inputList);
+            System.out.println(myTree.rootOfTree);
+            myTree.calcNullable(myTree.rootOfTree);
+            myTree.calcFirstLast(myTree.rootOfTree);
+            myTree.calcFollow(myTree.rootOfTree);
+            myTree.printTree( myTree.rootOfTree, 0);
+            myTree.printFollow();
+            System.out.println(myTree.transitionData);
+            myTree.generateTransitionTable();
+            System.out.println(myTree.transitionProduction);
+            myTree.printTransitionTable();
+            myTree.printFinalState();
+
+        }
+    }
 //        inputLineLinst.add("Goal -> A");
 //        inputLineLinst.add("A -> ( A ) | Two");
 //        inputLineLinst.add("Two -> a");
@@ -112,41 +111,15 @@ public class Start extends Application {
 //        inputLineLinst.add("B -> A | b");
 
 //        inputLineLinst.add("S -> A S'");
-//        inputLineLinst.add("S' -> + A S' | eps");
 //        inputLineLinst.add("A -> B A' ");
-//        inputLineLinst.add("A' -> * B A' | eps");
 //        inputLineLinst.add("B -> ( S ) | a");
-
-        inputLineLinst.add("S -> A");
-        inputLineLinst.add("S -> S + A");
-        inputLineLinst.add("A -> B ");
-        inputLineLinst.add("A -> A * B");
-        inputLineLinst.add("B -> a | ( S )");
-
-//        inputLineLinst.add("S -> i C t S S' | a");
-//        inputLineLinst.add("S' -> e S | eps");
-//        inputLineLinst.add("C -> b");
+//        inputLineLinst.add("A' -> * B A' | eps");
+//        inputLineLinst.add("S' -> + A S' | eps");
 
 
 
-
-//        FirstFollow testFirstFollow = new FirstFollow(inputLineLinst);
-//        testFirstFollow.generateSolutionSet();
-//        testFirstFollow.predictiveMap.generatePredictiveMap(testFirstFollow.parsedSet, testFirstFollow.firstElementMap, testFirstFollow.followElementMap);
-//        MovesTable testMoveTable = new MovesTable();
-//        testMoveTable.generateMovesTable("S","a + a * a", testFirstFollow.predictiveMap.predictiveMap);
-//        testMoveTable.printMovesTable();
-//
-
-
-
-
-        ParserLR testGotoGenerator = new ParserLR(inputLineLinst);
-
-        //testGotoGenerator.generateGoto("S", testFirstFollow.parsedSet);
-
-
-
+        //First testFirst = new First(inputLineLinst);
+        //testFirst.generateParsedSet();
         Scene testScene;
         testScene = new Scene((Parent)new FXMLLoader(getClass().getResource("/fxml/test/inputDataWindow/firstLastFollowSolver.fxml")).load(), 300, 300);
         stage.setTitle("My JavaFX Application");
