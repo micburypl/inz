@@ -1,5 +1,6 @@
 package parserLR;
 
+import commonUtility.CommonUtility;
 import firstFollow.FirstFollow;
 import firstFollow.FollowElement;
 
@@ -86,11 +87,16 @@ public class ParserLR {
                     //for across follow element of this
                     Integer currProdNumber = gotoGeneratorMap.closureElementCombination.get(closureElement).producitonNumber;
                     if(currProdNumber.equals(0)){
+                        //final place
+                        if(!actionTable.containsKey(closureElementCounter)) {
+                            actionTable.put(closureElementCounter, new HashMap<>());
+                        }
+                        actionTable.get(closureElementCounter).put(CommonUtility.epsValue, new ActionTableElement(currProdNumber, false) );
                         continue;
                     }
                     System.out.println(gotoGeneratorMap.listOfProduction.get(currProdNumber));
                     for(String followElement: followElementMap.get(gotoGeneratorMap.listOfProduction.get(currProdNumber).get(0)).followSet) {
-                        //tutaj powinno być prawidlowo
+                        //tutaj powinno być prawidlowo // hehe działa :D
                         if(!actionTable.containsKey(closureElementCounter)) {
                             actionTable.put(closureElementCounter, new HashMap<>());
                         }

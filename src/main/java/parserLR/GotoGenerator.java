@@ -56,6 +56,7 @@ public class GotoGenerator {
         currentClosureElement = new ClosureElement(closureElementLastCombination++, CommonUtility.generateList(CommonUtility.beginGoto, CommonUtility.arrow, CommonUtility.dot, startElement), 0);
         // S' -> S .
         nextClosureElement = new ClosureElement(closureElementLastCombination++, CommonUtility.generateList(CommonUtility.beginGoto, CommonUtility.arrow, startElement, CommonUtility.dot), 0);
+        //nextClosureElement.isEnd = true;
         //add closure element to first goto
         currentGotoElement.closureElementList.add(currentClosureElement.counterValue);
         // set in first element info about second
