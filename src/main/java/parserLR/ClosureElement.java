@@ -17,13 +17,6 @@ public class ClosureElement {
     public Integer producitonNumber;
     public Boolean isEnd;
 
-    ClosureElement() {
-        production = new ArrayList<>();
-        nextElement = -1;
-        isLastItem = true;
-        beforeNonterminal = false;
-        counterValue = 0;
-    }
 
     public ClosureElement(Integer counter, ArrayList<String> inputList, Integer currentProductionNumber) {
         //create list

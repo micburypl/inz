@@ -4,10 +4,7 @@ import commonUtility.CommonUtility;
 import firstFollow.FirstFollow;
 import firstFollow.FollowElement;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by DELL6430u on 2017-04-16.
@@ -30,12 +27,15 @@ public class ParserLR {
     public Map<Integer, Map<String, Integer>> gotoTable;
     public Map<Integer, Map<String, ActionTableElement>> actionTable;
     public GotoGenerator gotoGeneratorMap;
+    public ArrayList<MovesElementLR> movesList;
 
 
     public ParserLR(List<String> inputList) {
 
         gotoTable = new HashMap<>();
         actionTable = new HashMap<>();
+
+        movesList = new ArrayList<>();
 
         //get follow set
         firstFollowSolution = new FirstFollow(inputList);
@@ -117,6 +117,95 @@ public class ParserLR {
 
         //System.out.println(actionTable);
         System.out.println(gotoTable);
+
+
+
+    }
+
+    public void generateLRParser(String inputData) {
+        MovesElementLR currentMovesElementLR;
+        ArrayList<String> inputDataSet = CommonUtility.parsedInputBySpace(inputData);
+        inputDataSet.add(CommonUtility.epsValue);
+        Integer movesNumber = 1;
+        Stack<String> stack = new Stack<>();
+        stack.push("0");
+        Integer tempInt;
+        String tempString;
+        currentMovesElementLR = new MovesElementLR(movesNumber++, new ArrayList<>(stack) , new ArrayList<>(inputDataSet) );
+        movesList.add(currentMovesElementLR);
+        Boolean correctExit = false;
+
+        while(true) {
+            if(!actionTable.containsKey(Integer.parseInt(stack.peek()))) {
+                System.out.println("There is not this value on ACTION table (row): " + stack.peek());
+                break;
+            }
+
+            if(!actionTable.get(Integer.parseInt(stack.peek())).containsKey(inputDataSet.get(0))) {
+                System.out.println("There is not this value on ACTION table (column): " + stack.peek());
+                break;
+            }
+
+            if(actionTable.get(Integer.parseInt(stack.peek())).get(inputDataSet.get(0)).value.equals(0)) {
+                //correct end
+                correctExit = true;
+                break;
+
+            }
+            tempInt = actionTable.get(Integer.parseInt(stack.peek())).get(inputDataSet.get(0)).value;
+            if(actionTable.get(Integer.parseInt(stack.peek())).get(inputDataSet.get(0)).isShift) {
+                //is shift
+                //first element go to top stack, add to stack value from action table
+                stack.push(inputDataSet.get(0));
+                stack.push(String.valueOf(tempInt));
+                inputDataSet.remove(0);
+                currentMovesElementLR = new MovesElementLR(movesNumber++, new ArrayList<>(stack) , new ArrayList<>(inputDataSet) );
+                movesList.add(currentMovesElementLR);
+            } else {
+                //is reduce
+
+                for(Integer i = 0; i < gotoGeneratorMap.listOfProduction.get(tempInt).size()-2 ; i++) {
+                    stack.pop();
+                    stack.pop();
+                }
+
+                tempString = stack.peek();
+                stack.push(gotoGeneratorMap.listOfProduction.get(tempInt).get(0));
+
+                //verify if goto table have value
+
+                if(!gotoTable.containsKey(Integer.parseInt(tempString))) {
+                    System.out.println("There is not this value on GOTO table (row): " + tempString);
+                    break;
+                }
+                if(!gotoTable.get(Integer.parseInt(tempString)).containsKey(stack.peek())) {
+                    System.out.println("There is not this value on GOTO table (column): " + inputDataSet.get(0));
+                    break;
+                }
+                //if exist add to stack
+                stack.push(String.valueOf(gotoTable.get(Integer.parseInt(tempString)).get(stack.peek())));
+
+                currentMovesElementLR = new MovesElementLR(movesNumber++, new ArrayList<>(stack) , new ArrayList<>(inputDataSet) );
+                movesList.add(currentMovesElementLR);
+            }
+
+//            for(MovesElementLR mElem: movesList) {
+//                System.out.println(mElem.movesNumber);
+//                System.out.println(mElem.stack);
+//                System.out.println(mElem.input);
+//            }
+
+
+        }
+
+        if(correctExit) {
+            for(MovesElementLR mElem: movesList) {
+                System.out.println(mElem.movesNumber);
+                System.out.println(mElem.stack);
+                System.out.println(mElem.input);
+            }
+        }
+
 
     }
 

@@ -1,42 +1,23 @@
 package commonUtility;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
 public class CommonUtility {
     public final static String epsValue = "eps";
-    final static String dolarValue = "$";
+    public final static String dolarValue = "$";
     public final static String arrow = "->";
     public final static String beginGoto = "S'";
     public final static String dot = ".";
 
     public static Boolean isTerminal(String testString) {
-        if (testString.charAt(0) >= 'a' && testString.charAt(0) <= 'z') {
-            return true;
-        }
-        return false;
-    }
-
-    static Boolean isTerminal(char testChar) {
-        if (testChar >= 'a' && testChar <= 'z') {
-            return true;
-        }
-        return false;
+        return testString.charAt(0) >= 'a' && testString.charAt(0) <= 'z';
     }
 
     public static Boolean isNonTerminal(String testString) {
-        if (testString.charAt(0) >= 'A' && testString.charAt(0) <= 'Z') {
-            return true;
-        }
-        return false;
-    }
-
-    static Boolean isNonTerminal(char testChar) {
-        if (testChar >= 'A' && testChar <= 'Z') {
-            return true;
-        }
-        return false;
+        return testString.charAt(0) >= 'A' && testString.charAt(0) <= 'Z';
     }
 
     public static ArrayList<String> parsedInputBySpace(String inputData) {
@@ -51,11 +32,9 @@ public class CommonUtility {
         //parse string to list of element
         String[] newList = inputData.split(" ");
 
-        ArrayList<String> newListToReturn = new ArrayList<String>();
+        ArrayList<String> newListToReturn = new ArrayList<>();
 
-        for (String s : newList) {
-            newListToReturn.add(s);
-        }
+        newListToReturn.addAll(Arrays.asList(newList));
         return newListToReturn;
     }
 

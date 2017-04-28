@@ -143,6 +143,8 @@ public class Start extends Application {
 
         ParserLR testGotoGenerator = new ParserLR(inputLineLinst);
 
+        testGotoGenerator.generateLRParser("a * a + a");
+
         //testGotoGenerator.generateGoto("S", testFirstFollow.parsedSet);
 
 
