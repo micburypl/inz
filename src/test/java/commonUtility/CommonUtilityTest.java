@@ -29,7 +29,7 @@ public class CommonUtilityTest {
     public void testParsedInputBySpace() {
         String testString = "T e s t";
 
-        ArrayList testList = new ArrayList();
+        ArrayList<String> testList = new ArrayList<>();
         testList.add("T");
         testList.add("e");
         testList.add("s");
@@ -42,7 +42,7 @@ public class CommonUtilityTest {
     @org.junit.Test
     public void testGenerateList() {
 
-        ArrayList testList = new ArrayList();
+        ArrayList<String> testList = new ArrayList<>();
         testList.add("T");
         testList.add("e");
         testList.add("s");
@@ -57,7 +57,7 @@ public class CommonUtilityTest {
         Assert.assertTrue(CommonUtility.generateList(testString2, testString3, testString4, testString5).equals(testList));
 
         // II
-        ArrayList testList2 = new ArrayList();
+        ArrayList<String> testList2 = new ArrayList<>();
         testList2.add(testString4);
         testList2.add(testString5);
 
