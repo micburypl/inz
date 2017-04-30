@@ -26,7 +26,7 @@ public class FLFPart {
             rightChild = null;
             singleChild = null;
             parentPointer = null;
-            firstList = new HashSet<Integer>();
-            lastList = new HashSet<Integer>();
+            firstList = new HashSet<>();
+            lastList = new HashSet<>();
         }
 }

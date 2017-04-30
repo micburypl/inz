@@ -251,9 +251,6 @@ public class FLF {
 
     }
 
-
-
-
     public FLFPart createTree(List<FLFPart> inputList){
         FLFPart rootOfTree;
         FLFPart currentPlace;

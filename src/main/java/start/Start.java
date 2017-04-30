@@ -62,7 +62,7 @@ public class Start extends Application {
 //        inputLineLinst.add("(A+B)^C*D");
 //        inputLineLinst.add("a^!b");
 //        inputLineLinst.add("abcd && !1234 ^ (ddd34 + eeee11) || fgh12 * ii23");
-//        inputLineLinst.add("(eps|bb&bb)*");
+
 
         //inputLineLinst.add("A -> B | B a | a b | a b | ab | b a | C | b a ");
         //inputLineLinst.add("A -> a | b | c | ab | a b | B | B | B a");
@@ -111,22 +111,31 @@ public class Start extends Application {
 //        inputLineLinst.add("A -> B | a");
 //        inputLineLinst.add("B -> A | b");
 
+// First Follow
 //        inputLineLinst.add("S -> A S'");
 //        inputLineLinst.add("S' -> + A S' | eps");
 //        inputLineLinst.add("A -> B A' ");
 //        inputLineLinst.add("A' -> * B A' | eps");
 //        inputLineLinst.add("B -> ( S ) | a");
+// first follow end
 
-        inputLineLinst.add("S -> A");
-        inputLineLinst.add("S -> S + A");
-        inputLineLinst.add("A -> B ");
-        inputLineLinst.add("A -> A * B");
-        inputLineLinst.add("B -> a | ( S )");
+// LR
+//        inputLineLinst.add("S -> A");
+//        inputLineLinst.add("S -> S + A");
+//        inputLineLinst.add("A -> B ");
+//        inputLineLinst.add("A -> A * B");
+//        inputLineLinst.add("B -> a | ( S )");
+// LR end
 
+// Moves table
 //        inputLineLinst.add("S -> i C t S S' | a");
 //        inputLineLinst.add("S' -> e S | eps");
 //        inputLineLinst.add("C -> b");
+// Moves table END
 
+// FLF
+//        inputLineLint.add("(eps|bb&bb)*");
+// end FLF
 
 
 
@@ -161,25 +170,27 @@ public class Start extends Application {
 
 
 }
-//TODO FLFPartTest
-//TODO FLFTest
-//TODO TransitionTableElementTest
+// FLFPartTest
+// FLFTest
+// TransitionTableElementTest
 
 // CommonUtilityTest
+
 // FirstElementTest
-
-//TODO FirstFollowTest
+// FirstFollowTest
 // FollowElementTest
-//TODO MovesTableElementTest
 
-//TODO PredictiveTableTest
-//TODO ActionTableElementTest
-//TODO ClosureElementTest
-//TODO GotoElementTest
-//TODO GotoGeneratorTest
-//TODO GotoTransitionTest
-//TODO MovesElementLRTest
-//TODO ParserLRTest
+// MovesTableTest
+// MovesTableElementTest
+// PredictiveTableTest
+
+// ActionTableElementTest
+// ClosureElementTest
+// GotoElementTest
+// GotoGeneratorTest
+// GotoTransitionTest
+// MovesElementLRTest
+// ParserLRTest
 
 
 

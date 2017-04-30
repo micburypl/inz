@@ -10,15 +10,6 @@ import java.util.*;
  * Created by DELL6430u on 2017-04-16.
  */
 
-// parse input to list of produciton
-// create goto element
-// generate list with element
-// generate list with transition element
-// construct generate follow set (necessary to Action table)
-//TODO construct action table
-//TODO construct goto table
-//TODO construct moves table
-
 public class ParserLR {
     public FirstFollow firstFollowSolution;
     public Map<String, FollowElement> followElementMap;
@@ -28,6 +19,7 @@ public class ParserLR {
     public Map<Integer, Map<String, ActionTableElement>> actionTable;
     public GotoGenerator gotoGeneratorMap;
     public ArrayList<MovesElementLR> movesList;
+    public Boolean correctExit = false;
 
 
     public ParserLR(List<String> inputList) {
@@ -54,7 +46,7 @@ public class ParserLR {
         generateLRSolution();
     }
 
-    public void generateLRSolution() {
+    private void generateLRSolution() {
 
         //add elements from
 
@@ -80,7 +72,8 @@ public class ParserLR {
         }
 
         //add reduce element to actionTable
-
+        System.out.println("----------------------------");
+        System.out.println("gotoGeneratorMap");
         for(Integer closureElementCounter: gotoGeneratorMap.gotoElementMap.keySet()) {
             for(Integer closureElement: gotoGeneratorMap.gotoElementMap.get(closureElementCounter).closureElementList) {
                 if(gotoGeneratorMap.closureElementCombination.get(closureElement).isLastItem) {
@@ -96,7 +89,6 @@ public class ParserLR {
                     }
                     System.out.println(gotoGeneratorMap.listOfProduction.get(currProdNumber));
                     for(String followElement: followElementMap.get(gotoGeneratorMap.listOfProduction.get(currProdNumber).get(0)).followSet) {
-                        //tutaj powinno być prawidlowo // hehe działa :D
                         if(!actionTable.containsKey(closureElementCounter)) {
                             actionTable.put(closureElementCounter, new HashMap<>());
                         }
@@ -105,8 +97,11 @@ public class ParserLR {
                 }
             }
         }
+        System.out.println("gotoGeneratorMap END");
+        System.out.println("----------------------------");
 
-
+        System.out.println("----------------------------");
+        System.out.println("actionTable");
         for(Integer i: actionTable.keySet()) {
             System.out.println(i);
             for(String s: actionTable.get(i).keySet()) {
@@ -114,10 +109,14 @@ public class ParserLR {
             }
 
         }
+        System.out.println("actionTable END");
+        System.out.println("----------------------------");
 
-        //System.out.println(actionTable);
+        System.out.println("----------------------------");
+        System.out.println("gotoTable");
         System.out.println(gotoTable);
-
+        System.out.println("gotoTable END");
+        System.out.println("----------------------------");
 
 
     }
@@ -133,7 +132,7 @@ public class ParserLR {
         String tempString;
         currentMovesElementLR = new MovesElementLR(movesNumber++, new ArrayList<>(stack) , new ArrayList<>(inputDataSet) );
         movesList.add(currentMovesElementLR);
-        Boolean correctExit = false;
+
 
         while(true) {
             if(!actionTable.containsKey(Integer.parseInt(stack.peek()))) {

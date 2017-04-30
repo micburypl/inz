@@ -12,6 +12,7 @@ public class GotoElement {
     public Set<Integer> closureElementList;
 
     public GotoElement() {
+
         closureElementList = new HashSet<>();
     }
 }
