@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="parserLLWindow.parserLLSolverController">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+  </columnConstraints>
+  <rowConstraints>
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <Label text="Label" GridPane.columnIndex="1" GridPane.columnSpan="4" GridPane.rowIndex="9" />
+      <ListView fx:id="parserLLInputList" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+      <VBox fx:id="parserLLButtonVBox" GridPane.columnIndex="1" GridPane.rowIndex="10">
+          <children>
+             <Button fx:id="printFirstButton" mnemonicParsing="false" onAction="#printFirst" text="First" />
+             <Button fx:id="printFollowButton" mnemonicParsing="false" onAction="#printFollow" text="Follow" />
+             <Button fx:id="parsingTableButton" mnemonicParsing="false" onAction="#printParsingTable" text="Parsing Table" />
+
+          </children>
+      </VBox>
+      <Label text="Label" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+      <StackPane fx:id="LLOutputPane" GridPane.columnIndex="3" GridPane.rowIndex="5" GridPane.rowSpan="5">
+         <children>
+            <ListView fx:id="parserLLOutputList" prefHeight="200.0" prefWidth="200.0" />
+         </children></StackPane>
+      <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+      <Button mnemonicParsing="false" onAction="#generateLL" text="Generate LL" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+      <TextField id="firstLastFollowInput" fx:id="movesTableInput" GridPane.columnIndex="1" GridPane.rowIndex="13" />
+      <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+      <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="12" />
+      <Button mnemonicParsing="false" onAction="#printMovesTable" text="Moves Table" GridPane.columnIndex="1" GridPane.rowIndex="14" />
+   </children>
+</GridPane>

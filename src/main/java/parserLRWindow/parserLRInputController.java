@@ -1,4 +1,4 @@
-package firstLastFollowWindow;
+package parserLRWindow;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -8,9 +8,10 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
- * Created by DELL6430u on 2017-04-10.
+ * Created by DELL6430u on 2017-05-01.
  */
-public class FirstLastFollowInputController implements Initializable {
+public class parserLRInputController  implements Initializable {
+
     @FXML
     TextField productionLeftPart;
     @FXML
@@ -21,8 +22,10 @@ public class FirstLastFollowInputController implements Initializable {
     }
 
     public String getRightPart(){
-        return productionLeftPart.getText();
+        return productionRightPart.getText();
     }
+
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

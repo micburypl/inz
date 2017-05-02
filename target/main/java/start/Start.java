@@ -121,7 +121,7 @@ public class Start extends Application {
         //First testFirst = new First(inputLineLinst);
         //testFirst.generateParsedSet();
         Scene testScene;
-        testScene = new Scene((Parent)new FXMLLoader(getClass().getResource("/fxml/test/inputDataWindow/firstLastFollowSolver.fxml")).load(), 300, 300);
+        testScene = new Scene((Parent)new FXMLLoader(getClass().getResource("/fxml/test/firstLastFollowWindow/firstLastFollowSolver.fxml")).load(), 300, 300);
         stage.setTitle("My JavaFX Application");
         stage.setScene(testScene);
         stage.show();

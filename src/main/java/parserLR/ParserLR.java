@@ -198,6 +198,10 @@ public class ParserLR {
         }
 
         if(correctExit) {
+            while(stack.size() > 1) {
+                stack.pop();
+            }
+            movesList.add(new MovesElementLR(movesNumber++, new ArrayList<>(stack) , new ArrayList<>(inputDataSet)));
             for(MovesElementLR mElem: movesList) {
                 System.out.println(mElem.movesNumber);
                 System.out.println(mElem.stack);

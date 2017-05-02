@@ -1,10 +1,13 @@
-package inputDataWindow;
+package firstLastFollowWindow;
 
+import algorithmFLF.FLF;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
@@ -20,6 +23,8 @@ import java.util.ResourceBundle;
  */
 public class FirstLastFollowSolverController implements Initializable {
 
+    FLF myTree;
+
     @FXML
     ListView firstLastFollowInputList;
 
@@ -32,15 +37,18 @@ public class FirstLastFollowSolverController implements Initializable {
     @FXML
     Button firstLastFollowSolveButton;
 
+    @FXML
+    TextField firstLastFollowInput;
+
     List<FirstLastFollowInputController> list = new ArrayList<>();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        FXMLLoader x = new FXMLLoader(getClass().getResource("/fxml/test/inputDataWindow/firstLastFollowInput.fxml"));
+        FXMLLoader x = new FXMLLoader(getClass().getResource("/fxml/test/firstLastFollowWindow/firstLastFollowInput.fxml"));
         list.add(x.getController());
         Button b = new Button("+");
         b.setOnAction(handle -> {
-            FXMLLoader x1 = new FXMLLoader(getClass().getResource("/fxml/test/inputDataWindow/firstLastFollowInput.fxml"));
+            FXMLLoader x1 = new FXMLLoader(getClass().getResource("/fxml/test/firstLastFollowWindow/firstLastFollowInput.fxml"));
             list.add(x1.getController());
             try {
                 firstLastFollowInputList.getItems().add(firstLastFollowInputList.getItems().size() - 1, x1.load());
@@ -58,4 +66,42 @@ public class FirstLastFollowSolverController implements Initializable {
 
 
     }
+
+
+    public void generateFLF(ActionEvent actionEvent) {
+
+        myTree = new FLF();
+        System.out.println(firstLastFollowInput);
+        myTree.inputList = myTree.createList(firstLastFollowInput.getText());
+        myTree.printList(myTree.inputList);
+        myTree.rootOfTree =  myTree.createTree(myTree.inputList);
+        System.out.println(myTree.rootOfTree);
+        myTree.calcNullable(myTree.rootOfTree);
+        myTree.calcFirstLast(myTree.rootOfTree);
+        myTree.calcFollow(myTree.rootOfTree);
+
+    }
+
+    public void printTree(ActionEvent actionEvent) {
+    }
+
+    public void printNullable(ActionEvent actionEvent) {
+    }
+
+    public void printFirstLast(ActionEvent actionEvent) {
+    }
+
+    public void printFollow(ActionEvent actionEvent) {
+    }
+
+    public void printEclosureFunction(ActionEvent actionEvent) {
+    }
+
+    public void printTransitionTable(ActionEvent actionEvent) {
+    }
+
+    public void printGraph(ActionEvent actionEvent) {
+    }
+
+
 }

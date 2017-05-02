@@ -6,9 +6,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import algorithmFLF.FLF;
-import firstFollow.FirstFollow;
-import parserLL.MovesTable;
-import parserLR.GotoGenerator;
 import parserLR.ParserLR;
 
 import java.util.ArrayList;
@@ -159,7 +156,7 @@ public class Start extends Application {
 
 
         Scene testScene;
-        testScene = new Scene((Parent)new FXMLLoader(getClass().getResource("/fxml/test/inputDataWindow/firstLastFollowSolver.fxml")).load(), 300, 300);
+        testScene = new Scene((Parent)new FXMLLoader(getClass().getResource("/fxml/test/parserLRWindow/parserLRSolver.fxml")).load(), 300, 300);
         stage.setTitle("My JavaFX Application");
         stage.setScene(testScene);
         stage.show();
