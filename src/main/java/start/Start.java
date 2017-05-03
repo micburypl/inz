@@ -156,7 +156,12 @@ public class Start extends Application {
 
 
         Scene testScene;
-        testScene = new Scene((Parent)new FXMLLoader(getClass().getResource("/fxml/test/parserLRWindow/parserLRSolver.fxml")).load(), 300, 300);
+        //FLF
+        testScene = new Scene((Parent)new FXMLLoader(getClass().getResource("/fxml/test/firstLastFollowWindow/firstLastFollowSolver.fxml")).load(), 300, 300);
+        //LR
+        //testScene = new Scene((Parent)new FXMLLoader(getClass().getResource("/fxml/test/parserLRWindow/parserLRSolver.fxml")).load(), 300, 300);
+        //LL
+        //testScene = new Scene((Parent)new FXMLLoader(getClass().getResource("/fxml/test/parserLLWindow/parserLLSolver.fxml")).load(), 300, 300);
         stage.setTitle("My JavaFX Application");
         stage.setScene(testScene);
         stage.show();

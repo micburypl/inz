@@ -7,26 +7,27 @@ import java.util.HashSet;
  */
 public class FLFPart {
 
-        Boolean typeChild;
-        Boolean typeTreePart;
-        FLFPart rightChild;
-        FLFPart leftChild;
-        FLFPart singleChild;
-        FLFPart parentPointer;
-        Integer priority;
-        String operatorText;
-        String symbolsText;
-        HashSet<Integer>  firstList;
-        HashSet<Integer>  lastList;
-        Integer nodeNumber;
-        Boolean nullable;
+    public Boolean typeChild;
+    public Boolean typeTreePart;
+    public FLFPart rightChild;
+    public FLFPart leftChild;
+    public FLFPart singleChild;
+    public FLFPart parentPointer;
+    public Integer priority;
+    public String operatorText;
+    public String symbolsText;
+    public HashSet<Integer>  firstList;
+    public HashSet<Integer>  lastList;
+    public Integer nodeNumber;
+    public Boolean nullable;
+    public Integer controlNumber;
 
-        public FLFPart() {
-            leftChild = null;
-            rightChild = null;
-            singleChild = null;
-            parentPointer = null;
-            firstList = new HashSet<>();
-            lastList = new HashSet<>();
-        }
+    public FLFPart() {
+        leftChild = null;
+        rightChild = null;
+        singleChild = null;
+        parentPointer = null;
+        firstList = new HashSet<>();
+        lastList = new HashSet<>();
+    }
 }

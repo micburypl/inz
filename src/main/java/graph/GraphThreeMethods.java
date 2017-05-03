@@ -3,15 +3,10 @@ package graph;
 import algorithmFLF.FLFPart;
 import algorithmFLF.TransitionTableElement;
 import com.mxgraph.layout.hierarchical.mxHierarchicalLayout;
-import com.mxgraph.layout.mxGraphLayout;
-import com.mxgraph.layout.mxParallelEdgeLayout;
 import com.mxgraph.model.mxCell;
 import com.mxgraph.swing.mxGraphComponent;
-import com.mxgraph.util.mxConstants;
-import com.mxgraph.util.mxUtils;
 import com.mxgraph.view.mxGraph;
 import javafx.embed.swing.SwingNode;
-
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,10 +16,10 @@ import java.util.Map;
 /**
  * Created by DELL6430u on 2017-03-27.
  */
-public class GraphMethods {
+public class GraphThreeMethods {
     mxGraph mainGraph;
     //public mxRadialTreeLayout layout;
-    Map<String, mxCell> vertexMap;
+    Map<Integer, mxCell> vertexMap;
     List<mxCell> cellList;
     List<mxCell> vertexList;
     public mxGraphComponent graphComponent;
@@ -33,7 +28,7 @@ public class GraphMethods {
     Integer y;
     Boolean shift;
 
-    public GraphMethods(ArrayList<String> vertexLabelList, ArrayList<TransitionTableElement> transitionTableList){
+    public GraphThreeMethods(List<FLFPart> outputList){
         shift = true;
         x = 0;
         y = 0;
@@ -42,8 +37,18 @@ public class GraphMethods {
         vertexMap = new HashMap<>();
         vertexList = new ArrayList<>();
         cellList = new ArrayList<>();
-        addVertexList(vertexLabelList);
-        addCellList(transitionTableList);
+
+        //create cell
+        for(FLFPart element: outputList) {
+            addVertex(element);
+        }
+        for(FLFPart element: outputList) {
+            addCell(element);
+        }
+
+
+
+
 
 
 
@@ -67,18 +72,20 @@ public class GraphMethods {
 
     }
 
-    void mxRadialTreeLayout(mxGraph	graph){
 
-    }
 
-    void addVertexList(ArrayList<String> vertexLabelList) {
-        for(String vertexLabel: vertexLabelList) {
-            addVertex(vertexLabel);
+    void addVertex(FLFPart cellElement) {
+        String tempString;
+        if(!cellElement.typeTreePart) {
+            // operator
+            tempString = cellElement.operatorText;
+        } else {
+            // symbol
+            tempString = cellElement.symbolsText;
         }
-    }
+        tempString += " / " + cellElement.controlNumber;
+        mxCell cell = (mxCell)  mainGraph.insertVertex(mainGraph.getDefaultParent(), null, tempString, x, y, 50, 50, "style");
 
-    void addVertex(String label) {
-        mxCell cell = (mxCell)  mainGraph.insertVertex(mainGraph.getDefaultParent(), null, label, x, y, 50, 50, "style");
         if (shift) {
             x += 100;
             shift = false;
@@ -86,17 +93,24 @@ public class GraphMethods {
             y += 100;
             shift = true;
         }
-        vertexMap.put(label, cell);
+        vertexMap.put(cellElement.controlNumber, cell);
     }
 
-    void addCellList(ArrayList<TransitionTableElement> transitionTableList) {
-        for(TransitionTableElement tte: transitionTableList) {
-            addCell(tte.word, tte.beginState, tte.endState);
+    void addCell(FLFPart cellElement) {
+
+        if(!cellElement.typeTreePart) {
+            // operator
+            if(cellElement.typeChild) {
+                //star
+                mxCell cell = (mxCell) mainGraph.insertEdge(mainGraph.getDefaultParent(), null, "", vertexMap.get(cellElement.controlNumber), vertexMap.get(cellElement.singleChild.controlNumber),"Style");
+            } else {
+                //not star
+                mxCell cell1 = (mxCell) mainGraph.insertEdge(mainGraph.getDefaultParent(), null, "", vertexMap.get(cellElement.controlNumber), vertexMap.get(cellElement.leftChild.controlNumber),"Style");
+                mxCell cell2 = (mxCell) mainGraph.insertEdge(mainGraph.getDefaultParent(), null, "", vertexMap.get(cellElement.controlNumber), vertexMap.get(cellElement.rightChild.controlNumber),"Style");
+            }
+            // symbol
+            //do not do nithing
         }
-    }
-
-    void addCell(String label, String begin, String end) {
-        mxCell cell = (mxCell) mainGraph.insertEdge(mainGraph.getDefaultParent(), null, label, vertexMap.get(begin), vertexMap.get(end),"Style");
     }
 
 

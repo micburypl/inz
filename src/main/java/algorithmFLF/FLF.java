@@ -20,14 +20,20 @@ public class FLF {
     private Integer symbolNumber;
     public FLFPart rootOfTree;
     private char currentSymbol = 'A';
-    Integer finalState;
-    public List<FLFPart> inputList = new ArrayList<FLFPart>();
-    Map<Integer,HashSet<Integer>> followMap = new HashMap<Integer, HashSet<Integer>>();
+    public Integer finalState;
+    public List<FLFPart> inputList;
+
+    public List<FLFPart> outputList;
+
+
+    public Map<Integer,HashSet<Integer>> followMap;
     //list of word
 
-    public Map<String, HashSet<Integer>> transitionData = new HashMap<String, HashSet<Integer>>();
-    public Map<String, HashSet<Integer>> transitionProduction = new HashMap<String, HashSet<Integer>>();
-    List<TransitionTableElement> transitionTable = new ArrayList<TransitionTableElement>();
+    public Map<String, HashSet<Integer>> transitionData;
+    public Map<String, HashSet<Integer>> transitionProduction;
+    public List<TransitionTableElement> transitionTable;
+
+    private Integer tempControlNumber;
 
 
     public FLF() {
@@ -39,11 +45,21 @@ public class FLF {
         eMessage = false;
         line = "";
         symbolNumber = 1;
+        tempControlNumber = 1;
+
+
+        inputList = new ArrayList<>();
+        outputList = new ArrayList<>();
+        followMap = new HashMap<>();
+
+        transitionData = new HashMap<>();
+        transitionProduction = new HashMap<>();
+        transitionTable = new ArrayList<>();
     }
 
     public void printList(List<FLFPart> iQ) {
 
-        List<FLFPart> inputList = new ArrayList<FLFPart>(iQ);
+        List<FLFPart> inputList = new ArrayList<>(iQ);
 
         System.out.println();
         System.out.print("start.Start print queue");
@@ -129,6 +145,25 @@ public class FLF {
         followMap.put(newTreePart.nodeNumber, new HashSet<>());
         addToTransitionData(word, newTreePart.nodeNumber);
         inputList.add(newTreePart);
+    }
+
+    public void numerateTree(FLFPart rootOfTree) {
+        if(rootOfTree.typeTreePart) {
+            //symbol
+            rootOfTree.controlNumber = tempControlNumber++;
+            outputList.add(rootOfTree);
+        } else if(rootOfTree.typeChild) {
+            //* operator
+            numerateTree(rootOfTree.singleChild);
+            rootOfTree.controlNumber = tempControlNumber++;
+            outputList.add(rootOfTree);
+        } else {
+            //other operator
+            numerateTree(rootOfTree.leftChild);
+            numerateTree(rootOfTree.rightChild);
+            rootOfTree.controlNumber = tempControlNumber++;
+            outputList.add(rootOfTree);
+        }
     }
 
 

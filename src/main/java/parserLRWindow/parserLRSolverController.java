@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
@@ -20,6 +21,7 @@ import parserLR.ParserLR;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -36,8 +38,6 @@ public class parserLRSolverController implements Initializable {
     TextField movesTableInput;
 
     List<parserLRInputController> listInput = new ArrayList<>();
-
-    FirstFollow testFirstFollow;
 
     ParserLR testGotoGenerator;
 
@@ -151,60 +151,68 @@ public class parserLRSolverController implements Initializable {
 
     public void printActionTable(ActionEvent actionEvent) {
         parserLROutputPane.getChildren().clear();
-        ListView parserLROutputList = new ListView();
 
         GridPane gridPane = new GridPane();
 
 
+        Label tempLabel;
 
-//        Button button1 = new Button("Button 1");
-//        Button button2 = new Button("Button 2");
-//        Button button3 = new Button("Button 3");
-//        Button button4 = new Button("Button 4");
-//        Button button5 = new Button("Button 5");
-//        Button button6 = new Button("Button 6");
-//
-//        gridPane.add(button1, 0, 0, 1, 1);
-//        gridPane.add(button2, 1, 0, 1, 1);
-//        gridPane.add(button3, 2, 0, 1, 1);
-//        gridPane.add(button4, 0, 1, 1, 1);
-//        gridPane.add(button5, 1, 1, 1, 1);
-//        gridPane.add(button6, 2, 1, 1, 1);
+        HashMap columnSign = new HashMap<String, Integer>();
+        Integer maxColumn = 1;
 
+        //add "No" if position 0,0
+        gridPane.add(new Label("No"), 0,0);
 
+        Integer rowNumber = 1;
 
-
-
+        for(Integer row: testGotoGenerator.actionTable.keySet()) {
+            //add first element in row index
+            tempLabel = new Label(row.toString());
+            gridPane.add(tempLabel,0, rowNumber);
+            for(String column: testGotoGenerator.actionTable.get(row).keySet()) {
+                if(!columnSign.containsKey(column)){
+                    columnSign.put(column,maxColumn++);
+                    gridPane.add(new Label(column), (Integer) columnSign.get(column),0);
+                }
+                tempLabel = new Label(testGotoGenerator.actionTable.get(row).get(column).value.toString());
+                gridPane.add(tempLabel, (Integer) columnSign.get(column),rowNumber);
+            }
+            rowNumber++;
+        }
         parserLROutputPane.getChildren().add(gridPane);
-
 
     }
 
 
     public void printGotoTable(ActionEvent actionEvent) {
         parserLROutputPane.getChildren().clear();
-        ListView parserLROutputList = new ListView();
-
         GridPane gridPane = new GridPane();
+        Label tempLabel;
 
+        HashMap columnSign = new HashMap<String, Integer>();
+        Integer maxColumn = 1;
 
+        //add "No" if position 0,0
+        tempLabel = new Label("No");
+        gridPane.add(tempLabel, 0,0);
 
-//        Button button1 = new Button("Button 1");
-//        Button button2 = new Button("Button 2");
-//        Button button3 = new Button("Button 3");
-//        Button button4 = new Button("Button 4");
-//        Button button5 = new Button("Button 5");
-//        Button button6 = new Button("Button 6");
-//
-//        gridPane.add(button1, 0, 0, 1, 1);
-//        gridPane.add(button2, 1, 0, 1, 1);
-//        gridPane.add(button3, 2, 0, 1, 1);
-//        gridPane.add(button4, 0, 1, 1, 1);
-//        gridPane.add(button5, 1, 1, 1, 1);
-//        gridPane.add(button6, 2, 1, 1, 1);
+        Integer rowNumber = 1;
 
-
-
+        for(Integer row: testGotoGenerator.gotoTable.keySet()) {
+            //add first element in row index
+            tempLabel = new Label(row.toString());
+            gridPane.add(tempLabel,0, rowNumber);
+            for(String column: testGotoGenerator.gotoTable.get(row).keySet()) {
+                if(!columnSign.containsKey(column)){
+                    columnSign.put(column,maxColumn++);
+                    tempLabel = new Label(column);
+                    gridPane.add(tempLabel, (Integer) columnSign.get(column),0);
+                }
+                tempLabel = new Label(testGotoGenerator.gotoTable.get(row).get(column).toString());
+                gridPane.add(tempLabel, (Integer) columnSign.get(column),rowNumber);
+            }
+            rowNumber++;
+        }
 
 
         parserLROutputPane.getChildren().add(gridPane);

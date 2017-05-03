@@ -18,8 +18,8 @@ public class GraphUtils {
     static public final String REGULAR_STYLE = "Regular style";
     static public final String END_STATE_STYLE = "End state style";
 
-    static private Hashtable<String, Object> style = new Hashtable<String, Object>();
-    static private Hashtable<String, Object> endStyle = new Hashtable<String, Object>();
+    public static Hashtable<String, Object> style = new Hashtable<String, Object>();
+    public static Hashtable<String, Object> endStyle = new Hashtable<String, Object>();
 
     static public void setStyles(mxGraph graph){
 
