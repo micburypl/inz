@@ -34,6 +34,7 @@ public class GraphThreeMethods {
         y = 0;
 
         mainGraph = new mxGraph();
+        GraphUtils.setStyles(mainGraph);
         vertexMap = new HashMap<>();
         vertexList = new ArrayList<>();
         cellList = new ArrayList<>();
@@ -84,7 +85,7 @@ public class GraphThreeMethods {
             tempString = cellElement.symbolsText;
         }
         tempString += " / " + cellElement.controlNumber;
-        mxCell cell = (mxCell)  mainGraph.insertVertex(mainGraph.getDefaultParent(), null, tempString, x, y, 50, 50, "style");
+        mxCell cell = (mxCell)  mainGraph.insertVertex(mainGraph.getDefaultParent(), null, tempString, x, y, 50, 50, GraphUtils.REGULAR_STYLE);
 
         if (shift) {
             x += 100;

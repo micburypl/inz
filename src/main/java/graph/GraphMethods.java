@@ -39,6 +39,7 @@ public class GraphMethods {
         y = 0;
 
         mainGraph = new mxGraph();
+        GraphUtils.setStyles(mainGraph);
         vertexMap = new HashMap<>();
         vertexList = new ArrayList<>();
         cellList = new ArrayList<>();
@@ -78,7 +79,7 @@ public class GraphMethods {
     }
 
     void addVertex(String label) {
-        mxCell cell = (mxCell)  mainGraph.insertVertex(mainGraph.getDefaultParent(), null, label, x, y, 50, 50, "style");
+        mxCell cell = (mxCell)  mainGraph.insertVertex(mainGraph.getDefaultParent(), null, label, x, y, 50, 50, GraphUtils.REGULAR_STYLE);
         if (shift) {
             x += 100;
             shift = false;

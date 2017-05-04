@@ -159,7 +159,7 @@ public class parserLLSolverController implements Initializable {
         HashMap columnSign = new HashMap<String, Integer>();
         Integer maxColumn = 1;
         Integer rowNumber = 1;
-
+        gridPane.setGridLinesVisible(true);
         for(String keyNumber: testFirstFollow.predictiveMap.predictiveMap.keySet()) {
 
             gridPane.add(new Label(keyNumber), 0,rowNumber);

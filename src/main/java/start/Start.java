@@ -10,6 +10,7 @@ import parserLR.ParserLR;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 
 /**
  * Created on 2017-03-13.
@@ -157,7 +158,7 @@ public class Start extends Application {
 
         Scene testScene;
         //FLF
-        testScene = new Scene((Parent)new FXMLLoader(getClass().getResource("/fxml/test/firstLastFollowWindow/firstLastFollowSolver.fxml")).load(), 300, 300);
+        testScene = new Scene((Parent)new FXMLLoader(getClass().getResource("/fxml/test/parserLLWindow/parserLLSolver.fxml"), ResourceBundle.getBundle("bundle.bundle")).load(), 300, 300);
         //LR
         //testScene = new Scene((Parent)new FXMLLoader(getClass().getResource("/fxml/test/parserLRWindow/parserLRSolver.fxml")).load(), 300, 300);
         //LL

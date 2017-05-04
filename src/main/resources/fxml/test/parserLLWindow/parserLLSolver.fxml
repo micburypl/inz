@@ -49,7 +49,7 @@
       </VBox>
       <Label text="Label" GridPane.columnIndex="3" GridPane.rowIndex="3" />
       <StackPane fx:id="parserLLOutputPane" GridPane.columnIndex="3" GridPane.rowIndex="5" GridPane.rowSpan="5" />
-      <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+      <Label text="%xxx.x" GridPane.columnIndex="1" GridPane.rowIndex="3" />
       <Button mnemonicParsing="false" onAction="#generateLL" text="Generate LL" GridPane.columnIndex="1" GridPane.rowIndex="7" />
       <TextField id="firstLastFollowInput" fx:id="movesTableInput" GridPane.columnIndex="1" GridPane.rowIndex="13" />
       <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="6" />
