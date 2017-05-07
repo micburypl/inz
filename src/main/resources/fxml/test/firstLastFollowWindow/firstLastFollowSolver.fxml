@@ -8,47 +8,55 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="firstLastFollowWindow.FirstLastFollowSolverController">
+<GridPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="firstLastFollowWindow.FirstLastFollowSolverController">
   <columnConstraints>
-    <ColumnConstraints hgrow="SOMETIMES" />
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+    <ColumnConstraints hgrow="SOMETIMES" percentWidth="1.0" />
+      <ColumnConstraints hgrow="SOMETIMES" percentWidth="25.0" />
+      <ColumnConstraints hgrow="SOMETIMES" percentWidth="1.0" />
+      <ColumnConstraints hgrow="ALWAYS" percentWidth="30.0" />
+      <ColumnConstraints hgrow="SOMETIMES" percentWidth="1.0" />
+      <ColumnConstraints hgrow="SOMETIMES" percentWidth="68.0" />
+    <ColumnConstraints hgrow="SOMETIMES" percentWidth="1.0" />
   </columnConstraints>
   <rowConstraints>
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="20.0" minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="93.0" minHeight="10.0" prefHeight="27.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="105.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="107.0" minHeight="0.0" prefHeight="23.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="130.0" minHeight="10.0" prefHeight="34.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="270.0" minHeight="10.0" prefHeight="257.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="41.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="20.0" minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <Label text="Label" GridPane.columnIndex="1" GridPane.columnSpan="4" GridPane.rowIndex="9" />
+      <Label text="%firstLastFollow.PartialSolutions" GridPane.columnIndex="1" GridPane.columnSpan="4" GridPane.rowIndex="9" />
       <VBox fx:id="firstLastFollowButtonVBox" prefHeight="72.0" prefWidth="140.0" GridPane.columnIndex="1" GridPane.rowIndex="10">
          <children>
-            <Button fx:id="printTreeButton" mnemonicParsing="false" onAction="#printTree" text="Tree" />
-            <Button fx:id="printNullableButton" mnemonicParsing="false" onAction="#printNullable" text="Nullable" />
-            <Button fx:id="printFirstLastButton" mnemonicParsing="false" onAction="#printFirstLast" text="FirstAndLast" />
-            <Button fx:id="printFollow" mnemonicParsing="false" onAction="#printFollow" text="Follow" />
-            <Button fx:id="printTransitionTableButton" mnemonicParsing="false" onAction="#printTransitionTable" text="Transition Table" />
-            <Button fx:id="printFinalStateButton" mnemonicParsing="false" onAction="#printFinalState" text="Final State" />
-            <Button fx:id="printGraphButton" mnemonicParsing="false" onAction="#printGraph" text="Graph" />
+            <Button fx:id="printNullableButton" mnemonicParsing="false" onAction="#printNullable" styleClass="button-green" text="%firstLastFollow.NullableButton" />
+            <Button fx:id="printFirstLastButton" mnemonicParsing="false" onAction="#printFirstLast" styleClass="button-green" text="%firstLastFollow.FirstButton" />
+            <Button fx:id="printFollow" mnemonicParsing="false" onAction="#printFollow" styleClass="button-green" text="%firstLastFollow.FollowButton" />
+            <Button fx:id="printTransitionTableButton" mnemonicParsing="false" onAction="#printTransitionTable" styleClass="button-green" text="%firstLastFollow.TransitionTableButton" />
+            <Button fx:id="printGraphButton" mnemonicParsing="false" onAction="#printGraph" styleClass="button-green" text="%firstLastFollow.GraphButton" />
          </children></VBox>
-      <Label text="Label" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-      <StackPane fx:id="firstLastFollowOutputPane" GridPane.columnIndex="3" GridPane.rowIndex="5" GridPane.rowSpan="5" />
-      <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-      <Button mnemonicParsing="false" onAction="#generateFLF" text="Generate" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+      <Label text="%firstLastFollow.Solutions" GridPane.columnIndex="5" GridPane.rowIndex="3" />
+      <StackPane fx:id="firstLastFollowOutputPane" GridPane.columnIndex="5" GridPane.rowIndex="5" GridPane.rowSpan="6" />
+      <Label text="%firstLastFollow.InputData" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+      <Button mnemonicParsing="false" onAction="#generateFLF" styleClass="button-green" text="%firstLastFollow.GenerateButton" GridPane.columnIndex="1" GridPane.rowIndex="7" />
       <TextField id="firstLastFollowInput" fx:id="firstLastFollowInput" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-      <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+      <Label text="%firstLastFollow.GenerateFLF" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+      <Label text="%firstLastFollow.Header" GridPane.columnIndex="3" GridPane.rowIndex="1">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <StackPane fx:id="firstLastFollowGraphPane" GridPane.columnIndex="3" GridPane.rowIndex="5" GridPane.rowSpan="6" />
+      <Label text="%firstLastFollow.Graph" GridPane.columnIndex="3" GridPane.rowIndex="3" />
    </children>
 </GridPane>

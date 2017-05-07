@@ -1,4 +1,4 @@
-package other;
+package algorithmFLF;
 
 /**
  * Created on 14.03.2017.

@@ -10,9 +10,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.geometry.HPos;
+import javafx.geometry.Pos;
+import javafx.scene.control.*;
+import javafx.scene.layout.ColumnConstraints;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
@@ -39,8 +41,12 @@ public class FirstLastFollowSolverController implements Initializable {
     @FXML
     VBox firstLastFollowButtonVBox;
 
+
     @FXML
     Pane firstLastFollowOutputPane;
+
+    @FXML
+    Pane firstLastFollowGraphPane;
 
     @FXML
     Button firstLastFollowSolveButton;
@@ -55,6 +61,9 @@ public class FirstLastFollowSolverController implements Initializable {
         FXMLLoader x = new FXMLLoader(getClass().getResource("/fxml/test/firstLastFollowWindow/firstLastFollowInput.fxml"));
         list.add(x.getController());
         Button b = new Button("+");
+
+        firstLastFollowButtonVBox.setVisible(false);
+
         b.setOnAction(handle -> {
             FXMLLoader x1 = new FXMLLoader(getClass().getResource("/fxml/test/firstLastFollowWindow/firstLastFollowInput.fxml"));
             list.add(x1.getController());
@@ -64,17 +73,51 @@ public class FirstLastFollowSolverController implements Initializable {
                 e.printStackTrace();
             }
         });
+
+        //button.setOnAction
+
     }
 
 
     public void generateFLF(ActionEvent actionEvent) {
 
-        String inputData = "(a|b)*&a&b&b";
-        //inputData = firstLastFollowInput; /sprawdzac
+        String inputData;// = "(a|b)*&a&b&b";
+        inputData = firstLastFollowInput.getText();
+
+        if(inputData == null || inputData.isEmpty()) {
+
+            firstLastFollowButtonVBox.setVisible(false);
+            firstLastFollowGraphPane.getChildren().clear();
+            firstLastFollowOutputPane.getChildren().clear();
+            GridPane gridPane = new GridPane();
+
+            Label tempLabel = new Label("Empty input. Please give correct input");
+            gridPane.add(tempLabel, 0,0);
+            gridPane.setHalignment(tempLabel, HPos.CENTER);
+
+            firstLastFollowOutputPane.getChildren().add(gridPane);
+            return;
+        }
 
         myTree = new FLF();
         System.out.println(inputData);
         myTree.inputList = myTree.createList(inputData);
+
+        if(myTree.errorFlag) {
+            firstLastFollowButtonVBox.setVisible(false);
+            firstLastFollowGraphPane.getChildren().clear();
+            firstLastFollowOutputPane.getChildren().clear();
+            GridPane gridPane = new GridPane();
+
+            Label tempLabel = new Label("Wrong input. Please give correct input");
+            gridPane.add(tempLabel, 0,0);
+            gridPane.setHalignment(tempLabel, HPos.CENTER);
+
+            firstLastFollowOutputPane.getChildren().add(gridPane);
+
+            return;
+        }
+
         myTree.printList(myTree.inputList);
         myTree.rootOfTree =  myTree.createTree(myTree.inputList);
         System.out.println(myTree.rootOfTree);
@@ -87,215 +130,298 @@ public class FirstLastFollowSolverController implements Initializable {
 
         myTree.numerateTree(myTree.rootOfTree);
 
-
-    }
-
-    public void printTree(ActionEvent actionEvent) {
+        firstLastFollowButtonVBox.setVisible(true);
 
         firstLastFollowOutputPane.getChildren().clear();
+        firstLastFollowGraphPane.getChildren().clear();
+
 
         SwingNode swingComponentWrapper = new SwingNode();
 
         ArrayList<String> tempList = new ArrayList<>();
-
 
 
         GraphThreeMethods tempGraph = new GraphThreeMethods(myTree.outputList);
 
         swingComponentWrapper.setContent(tempGraph.graphComponent);
 
-        firstLastFollowOutputPane.getChildren().add(swingComponentWrapper);
+        firstLastFollowGraphPane.getChildren().add(swingComponentWrapper);
 
 
+    }
+
+    public void printTree(ActionEvent actionEvent) throws IOException {
+
+        firstLastFollowGraphPane.getChildren().clear();
+
+        SwingNode swingComponentWrapper = new SwingNode();
+
+        ArrayList<String> tempList = new ArrayList<>();
 
 
+        GraphThreeMethods tempGraph = new GraphThreeMethods(myTree.outputList);
+
+        swingComponentWrapper.setContent(tempGraph.graphComponent);
+
+        firstLastFollowGraphPane.getChildren().add(swingComponentWrapper);
+//        firstLastFollowGraphPane.setVisible(false);
+//        firstLastFollowGraphPane.setVisible(true);
     }
 
     public void printNullable(ActionEvent actionEvent) throws IOException {
 
+
         firstLastFollowOutputPane.getChildren().clear();
-        ListView firstLastFollowOutputList = new ListView();
-        String tempString;
+        GridPane gridPane = new GridPane();
+        String solutionString;
 
-        FXMLLoader x = new FXMLLoader(getClass().getResource("/fxml/test/firstLastFollowWindow/firstLastFollow2Output.fxml"));
-        firstLastFollowOutputList.getItems().add(x.load());
-        FirstLastFollow2OutputController xControler = x.getController();
-        xControler.setElementNo("Number");
-        xControler.setFirst("Nullable");
+        Label tempLabel = new Label("Number");
+        gridPane.add(tempLabel, 0,0);
+        gridPane.setHalignment(tempLabel, HPos.CENTER);
 
+        tempLabel = new Label("Nullable");
+        gridPane.add(tempLabel, 1,0);
+        gridPane.setHalignment(tempLabel, HPos.CENTER);
+
+        Integer rowNumber = 1;
+        gridPane.setGridLinesVisible(true);
         for(FLFPart element: myTree.outputList ){
-             x = new FXMLLoader(getClass().getResource("/fxml/test/firstLastFollowWindow/firstLastFollow2Output.fxml"));
-            firstLastFollowOutputList.getItems().add(x.load());
-             xControler = x.getController();
-            // number
-            xControler.setElementNo(element.controlNumber.toString());
-            //nullable
+
+
+            tempLabel = new Label(element.controlNumber.toString());
+            gridPane.add(tempLabel, 0,rowNumber);
+            gridPane.setHalignment(tempLabel, HPos.CENTER);
+
             if(element.nullable) {
-                xControler.setFirst("True");
+                solutionString = "True";
             } else {
-                xControler.setFirst("False");
+                solutionString = "False";
+
             }
+            tempLabel = new Label(solutionString);
+            gridPane.add(tempLabel, 1,rowNumber);
+            gridPane.setHalignment(tempLabel, HPos.CENTER);
+
+            rowNumber++;
+
         }
-        firstLastFollowOutputPane.getChildren().add(firstLastFollowOutputList);
+
+        Integer numberOfColumn = 2;
+        for(Integer i = 0; i < numberOfColumn; i++) {
+
+            ColumnConstraints column = new ColumnConstraints();
+            column.setPercentWidth(100/numberOfColumn);
+            gridPane.getColumnConstraints().add(column);
+        }
+        firstLastFollowOutputPane.getChildren().add(gridPane);
     }
 
     public void printFirstLast(ActionEvent actionEvent) throws IOException {
 
+
         firstLastFollowOutputPane.getChildren().clear();
-        ListView firstLastFollowOutputList = new ListView();
+        GridPane gridPane = new GridPane();
+
+        Label tempLabel = new Label("Element");
+        gridPane.add(tempLabel, 0,0);
+        gridPane.setHalignment(tempLabel, HPos.CENTER);
+
+        tempLabel = new Label("First(Element)");
+        gridPane.add(tempLabel, 1,0);
+        gridPane.setHalignment(tempLabel, HPos.CENTER);
+
+        tempLabel = new Label("Last(Element)");
+        gridPane.add(tempLabel, 2,0);
+        gridPane.setHalignment(tempLabel, HPos.CENTER);
+
+
         String tempString;
-
-        FXMLLoader x = new FXMLLoader(getClass().getResource("/fxml/test/firstLastFollowWindow/firstLastFollow3Output.fxml"));
-        firstLastFollowOutputList.getItems().add(x.load());
-        FirstLastFollow3OutputController xControler = x.getController();
-        xControler.setElementNo("Number");
-        xControler.setFirst("First");
-        xControler.setSecond("Second");
-
+        Integer rowNumber = 1;
+        gridPane.setGridLinesVisible(true);
         for(FLFPart element: myTree.outputList ){
-            x = new FXMLLoader(getClass().getResource("/fxml/test/firstLastFollowWindow/firstLastFollow3Output.fxml"));
-            firstLastFollowOutputList.getItems().add(x.load());
-            xControler = x.getController();
-            // number
-            xControler.setElementNo(element.controlNumber.toString());
-            //first
+
+            tempLabel = new Label(element.controlNumber.toString());
+            gridPane.add(tempLabel, 0,rowNumber);
+            gridPane.setHalignment(tempLabel, HPos.CENTER);
+
             tempString = "";
             for(Integer tempInt: element.firstList) {
                 tempString += tempInt;
                 tempString += ", ";
             }
-            xControler.setFirst(tempString.substring(0,tempString.length() - 2));
-            //last
+            if(tempString.length() > 2) {
+                tempString = tempString.substring(0, tempString.length()-2);
+            }
+
+            tempLabel = new Label(tempString);
+            gridPane.add(tempLabel, 1,rowNumber);
+            gridPane.setHalignment(tempLabel, HPos.CENTER);
+
             tempString = "";
             for(Integer tempInt: element.firstList) {
                 tempString += tempInt;
                 tempString += ", ";
             }
-            xControler.setSecond(tempString.substring(0,tempString.length() - 2));
+            if(tempString.length() > 2) {
+                tempString = tempString.substring(0, tempString.length()-2);
+            }
+
+            tempLabel = new Label(tempString);
+            gridPane.add(tempLabel, 2,rowNumber);
+            gridPane.setHalignment(tempLabel, HPos.CENTER);
+
+            rowNumber++;
         }
-        firstLastFollowOutputPane.getChildren().add(firstLastFollowOutputList);
+        firstLastFollowOutputPane.getChildren().add(gridPane);
+
+        Integer numberOfColumn = 3;
+        for(Integer i = 0; i < numberOfColumn; i++) {
+
+            ColumnConstraints column = new ColumnConstraints();
+            column.setPercentWidth(100/numberOfColumn);
+            gridPane.getColumnConstraints().add(column);
+        }
     }
 
     public void printFollow(ActionEvent actionEvent) throws IOException {
 
         firstLastFollowOutputPane.getChildren().clear();
-        ListView firstLastFollowOutputList = new ListView();
+        GridPane gridPane = new GridPane();
+        String solutionString;
+
+        Label tempLabel = new Label("Number");
+        gridPane.add(tempLabel, 0,0);
+        gridPane.setHalignment(tempLabel, HPos.CENTER);
+
+        tempLabel = new Label("Nullable");
+        gridPane.add(tempLabel, 1,0);
+        gridPane.setHalignment(tempLabel, HPos.CENTER);
+
+
         String tempString;
-
-        FXMLLoader x = new FXMLLoader(getClass().getResource("/fxml/test/firstLastFollowWindow/firstLastFollow2Output.fxml"));
-        firstLastFollowOutputList.getItems().add(x.load());
-        FirstLastFollow2OutputController xControler = x.getController();
-        xControler.setElementNo("Number");
-        xControler.setFirst("Follow");
-
+        Integer rowNumber = 1;
+        gridPane.setGridLinesVisible(true);
         for(Integer element: myTree.followMap.keySet() ){
-             x = new FXMLLoader(getClass().getResource("/fxml/test/firstLastFollowWindow/firstLastFollow2Output.fxml"));
-            firstLastFollowOutputList.getItems().add(x.load());
-             xControler = x.getController();
-            // number
-            xControler.setElementNo(element.toString());
-            //follow
+
+            tempLabel = new Label(element.toString());
+            gridPane.add(tempLabel, 0,rowNumber);
+            gridPane.setHalignment(tempLabel, HPos.CENTER);
+
             tempString = "";
             for(Integer tempInt: myTree.followMap.get(element)) {
                 tempString += tempInt;
                 tempString += ", ";
             }
-
             if(tempString.length() > 2) {
-                xControler.setFirst(tempString.substring(0,tempString.length() - 2));
+                tempString = tempString.substring(0,tempString.length() - 2);
             } else if (tempString.length() > 0){
-                xControler.setFirst(tempString);
+
             } else {
-                xControler.setFirst("empty");
+                tempString= "empty";
             }
 
+            tempLabel = new Label(tempString);
+            gridPane.add(tempLabel, 1,rowNumber);
+            gridPane.setHalignment(tempLabel, HPos.CENTER);
+
+            rowNumber++;
 
         }
-        firstLastFollowOutputPane.getChildren().add(firstLastFollowOutputList);
+
+        Integer numberOfColumn = 2;
+        for(Integer i = 0; i < numberOfColumn; i++) {
+
+            ColumnConstraints column = new ColumnConstraints();
+            column.setPercentWidth(100/numberOfColumn);
+            gridPane.getColumnConstraints().add(column);
+        }
+
+        firstLastFollowOutputPane.getChildren().add(gridPane);
 
     }
-
-
 
     public void printTransitionTable(ActionEvent actionEvent) throws IOException {
 
         firstLastFollowOutputPane.getChildren().clear();
-        ListView firstLastFollowOutputList = new ListView();
+        GridPane gridPane = new GridPane();
+
+        Label tempLabel = new Label("Begin State");
+        gridPane.add(tempLabel, 0,0);
+        gridPane.setHalignment(tempLabel, HPos.CENTER);
+
+        tempLabel = new Label("Transition");
+        gridPane.add(tempLabel, 1,0);
+        gridPane.setHalignment(tempLabel, HPos.CENTER);
+
+        tempLabel = new Label("End State");
+        gridPane.add(tempLabel, 2,0);
+        gridPane.setHalignment(tempLabel, HPos.CENTER);
+
+        tempLabel = new Label("Elements");
+        gridPane.add(tempLabel, 3,0);
+        gridPane.setHalignment(tempLabel, HPos.CENTER);
+
         String tempString;
-
-        FXMLLoader x = new FXMLLoader(getClass().getResource("/fxml/test/firstLastFollowWindow/firstLastFollow4Output.fxml"));
-        firstLastFollowOutputList.getItems().add(x.load());
-        FirstLastFollow4OutputController xControler = x.getController();
-        xControler.setElementNo("Begin state");
-        xControler.setFirst("Transition");
-        xControler.setSecond("End state");
-        xControler.setThird("Elements");
-
+        Integer rowNumber = 1;
+        gridPane.setGridLinesVisible(true);
         for(TransitionTableElement element: myTree.transitionTable){
-            x = new FXMLLoader(getClass().getResource("/fxml/test/firstLastFollowWindow/firstLastFollow4Output.fxml"));
-            firstLastFollowOutputList.getItems().add(x.load());
-            xControler = x.getController();
-            // Begin state
-            xControler.setElementNo(element.beginState);
-            //transition
-            xControler.setFirst(element.word);
-            // End state
-            xControler.setSecond(element.endState);
-            //Elements
+
+            tempLabel = new Label(element.beginState);
+            gridPane.add(tempLabel, 0,rowNumber);
+            gridPane.setHalignment(tempLabel, HPos.CENTER);
+
+            tempLabel = new Label(element.word);
+            gridPane.add(tempLabel, 1,rowNumber);
+            gridPane.setHalignment(tempLabel, HPos.CENTER);
+
+            tempLabel = new Label(element.endState);
+            gridPane.add(tempLabel, 2,rowNumber);
+            gridPane.setHalignment(tempLabel, HPos.CENTER);
+
+
             tempString = "";
             for(Integer tempInt: element.numberSet) {
                 tempString += tempInt;
                 tempString += ", ";
             }
             if(tempString.length() > 2) {
-                xControler.setThird(tempString.substring(0,tempString.length() - 2));
+                tempString = tempString.substring(0,tempString.length() - 2);
             } else if (tempString.length() > 0){
-                xControler.setThird(tempString);
+
             } else {
-                xControler.setThird("empty");
+                tempString= "empty";
             }
-        }
-        firstLastFollowOutputPane.getChildren().add(firstLastFollowOutputList);
 
-    }
-
-    public void printFinalState(ActionEvent actionEvent) throws IOException {
-
-        firstLastFollowOutputPane.getChildren().clear();
-        ListView firstLastFollowOutputList = new ListView();
-        String tempString ="";
-
-        FXMLLoader x = new FXMLLoader(getClass().getResource("/fxml/test/firstLastFollowWindow/firstLastFollow2Output.fxml"));
-        firstLastFollowOutputList.getItems().add(x.load());
-        FirstLastFollow2OutputController xControler = x.getController();
-
-        for(String element: myTree.transitionProduction.keySet()){
-            if(myTree.transitionProduction.get(element).contains(myTree.finalState)){
-                tempString += element + ", ";
-            }
+            tempLabel = new Label(tempString);
+            gridPane.add(tempLabel, 3,rowNumber);
+            gridPane.setHalignment(tempLabel, HPos.CENTER);
+            rowNumber++;
         }
 
-        xControler.setElementNo("Final state");
-        if(tempString.length() > 2) {
-            xControler.setFirst(tempString.substring(0,tempString.length() - 2));
-        } else if (tempString.length() > 0){
-            xControler.setFirst(tempString);
-        } else {
-            xControler.setFirst("empty");
+        Integer numberOfColumn = 4;
+        for(Integer i = 0; i < numberOfColumn; i++) {
+
+            ColumnConstraints column = new ColumnConstraints();
+            column.setPercentWidth(100/numberOfColumn);
+            gridPane.getColumnConstraints().add(column);
         }
 
-        firstLastFollowOutputPane.getChildren().add(firstLastFollowOutputList);
+        firstLastFollowOutputPane.getChildren().add(gridPane);
     }
 
     public void printGraph(ActionEvent actionEvent) {
         firstLastFollowOutputPane.getChildren().clear();
 
         SwingNode swingComponentWrapper = new SwingNode();
-
-        ArrayList<String> tempList = new ArrayList<>();
+        HashMap<String, Boolean> tempList = new HashMap<>();
 
         for(String tempString: myTree.transitionProduction.keySet()){
-            tempList.add(tempString);
+            if(myTree.transitionProduction.get(tempString).contains(myTree.finalState)){
+                tempList.put(tempString, true);
+            } else {
+                tempList.put(tempString, false);
+            }
+
         }
 
         GraphMethods tempGraph = new GraphMethods(tempList, (ArrayList<TransitionTableElement>) myTree.transitionTable);

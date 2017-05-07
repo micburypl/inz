@@ -9,10 +9,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.HPos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import parserLL.MovesTable;
@@ -106,13 +108,26 @@ public class parserLLSolverController implements Initializable {
     }
 
     public void printFirst(ActionEvent actionEvent) throws IOException {
+
         parserLLOutputPane.getChildren().clear();
-        ListView parserLLOutputList = new ListView();
+        GridPane gridPane = new GridPane();
+
+        Label tempLabel = new Label("Element");
+        gridPane.add(tempLabel, 0,0);
+        gridPane.setHalignment(tempLabel, HPos.CENTER);
+
+        tempLabel = new Label("First(Element)");
+        gridPane.add(tempLabel, 1,0);
+        gridPane.setHalignment(tempLabel, HPos.CENTER);
+
+        Integer rowNumber = 1;
+        gridPane.setGridLinesVisible(true);
         for(String keyFirst: testFirstFollow.firstElementMap.keySet() ){
-            FXMLLoader x = new FXMLLoader(getClass().getResource("/fxml/test/firstFollowWindow/firstFollowOutputFirst.fxml"));
-            parserLLOutputList.getItems().add(x.load());
-            FirstFollowOutputFirstController xControler = x.getController();
-            xControler.setSymbolPart(keyFirst);
+
+            tempLabel = new Label(keyFirst);
+            gridPane.add(tempLabel, 0,rowNumber);
+            gridPane.setHalignment(tempLabel, HPos.CENTER);
+
             String solutionString = "";
             for(String temp: testFirstFollow.firstElementMap.get(keyFirst).firstSet) {
                 solutionString += temp + ", ";
@@ -120,20 +135,47 @@ public class parserLLSolverController implements Initializable {
             if(solutionString.length() > 2) {
                 solutionString = solutionString.substring(0, solutionString.length()-2);
             }
-            xControler.setSolutionPart(solutionString);
+
+            tempLabel = new Label(solutionString);
+            gridPane.add(tempLabel, 1,rowNumber);
+            gridPane.setHalignment(tempLabel, HPos.CENTER);
+
+            rowNumber++;
+
         }
-        parserLLOutputPane.getChildren().add(parserLLOutputList);
+
+        Integer numberOfColumn = 2;
+        for(Integer i = 0; i < numberOfColumn; i++) {
+
+            ColumnConstraints column = new ColumnConstraints();
+            column.setPercentWidth(100/numberOfColumn);
+            gridPane.getColumnConstraints().add(column);
+        }
+
+        parserLLOutputPane.getChildren().add(gridPane);
     }
 
     public void printFollow(ActionEvent actionEvent) throws IOException {
-        parserLLOutputPane.getChildren().clear();
-        ListView parserLLOutputList = new ListView();
-        for(String keyFollow: testFirstFollow.followElementMap.keySet() ){
-            FXMLLoader x = new FXMLLoader(getClass().getResource("/fxml/test/firstFollowWindow/firstFollowOutputFollow.fxml"));
-            parserLLOutputList.getItems().add(x.load());
-            FirstFollowOutputFollowController xControler = x.getController();
 
-            xControler.setSymbolPart(keyFollow);
+        parserLLOutputPane.getChildren().clear();
+        GridPane gridPane = new GridPane();
+
+        Label tempLabel = new Label("Element");
+        gridPane.add(tempLabel, 0,0);
+        gridPane.setHalignment(tempLabel, HPos.CENTER);
+
+        tempLabel = new Label("Follow(Element)");
+        gridPane.add(tempLabel, 1,0);
+        gridPane.setHalignment(tempLabel, HPos.CENTER);
+
+        Integer rowNumber = 1;
+        gridPane.setGridLinesVisible(true);
+        for(String keyFollow: testFirstFollow.followElementMap.keySet() ){
+
+            tempLabel = new Label(keyFollow);
+            gridPane.add(tempLabel, 0,rowNumber);
+            gridPane.setHalignment(tempLabel, HPos.CENTER);
+
             String solutionString = "";
             for(String temp: testFirstFollow.followElementMap.get(keyFollow).followSet) {
                 solutionString += temp + ", ";
@@ -142,19 +184,35 @@ public class parserLLSolverController implements Initializable {
                 solutionString = solutionString.substring(0, solutionString.length()-2);
             }
 
-            xControler.setSolutionPart(solutionString);
+            tempLabel = new Label(solutionString);
+            gridPane.add(tempLabel, 1,rowNumber);
+            gridPane.setHalignment(tempLabel, HPos.CENTER);
+
+            rowNumber++;
+
         }
-        parserLLOutputPane.getChildren().add(parserLLOutputList);
+
+        Integer numberOfColumn = 2;
+        for(Integer i = 0; i < numberOfColumn; i++) {
+
+            ColumnConstraints column = new ColumnConstraints();
+            column.setPercentWidth(100/numberOfColumn);
+            gridPane.getColumnConstraints().add(column);
+        }
+
+        parserLLOutputPane.getChildren().add(gridPane);
     }
 
     public void printParsingTable(ActionEvent actionEvent) {
 
         parserLLOutputPane.getChildren().clear();
         GridPane gridPane = new GridPane();
-        gridPane.add(new Label("Prod"), 0,0);
-        Label tempLabel;
+
+        Label tempLabel = new Label("Prod");
+        gridPane.add(tempLabel, 0,0);
+        gridPane.setHalignment(tempLabel, HPos.CENTER);
+
         String tempString;
-        Boolean firstElement;
 
         HashMap columnSign = new HashMap<String, Integer>();
         Integer maxColumn = 1;
@@ -162,15 +220,19 @@ public class parserLLSolverController implements Initializable {
         gridPane.setGridLinesVisible(true);
         for(String keyNumber: testFirstFollow.predictiveMap.predictiveMap.keySet()) {
 
-            gridPane.add(new Label(keyNumber), 0,rowNumber);
+            tempLabel = new Label(keyNumber);
+            gridPane.add(tempLabel, 0,rowNumber);
+            gridPane.setHalignment(tempLabel, HPos.CENTER);
 
             for(String column: testFirstFollow.predictiveMap.predictiveMap.get(keyNumber).keySet()) {
                 if(!columnSign.containsKey(column)){
                     columnSign.put(column,maxColumn++);
-                    gridPane.add(new Label(column), (Integer) columnSign.get(column),0);
+
+                    tempLabel = new Label(column);
+                    gridPane.add(tempLabel, (Integer) columnSign.get(column),0);
+                    gridPane.setHalignment(tempLabel, HPos.CENTER);
+
                 }
-                //gridPane.add(new Label(column), (Integer) columnSign.get(column),rowNumber);
-                //jakis for po tym skladajacy wartosci
                 tempString = "";
                 for(ArrayList<String> elementList: testFirstFollow.predictiveMap.predictiveMap.get(keyNumber).get(column)) {
                     if(!tempString.equals("")) {
@@ -181,7 +243,10 @@ public class parserLLSolverController implements Initializable {
                         tempString += element + " ";
                     }
 
-                    gridPane.add(new Label(tempString), (Integer) columnSign.get(column),rowNumber);
+                    tempLabel = new Label(tempString);
+                    gridPane.add(tempLabel, (Integer) columnSign.get(column),rowNumber);
+                    gridPane.setHalignment(tempLabel, HPos.CENTER);
+
 
                 }
 
@@ -189,8 +254,13 @@ public class parserLLSolverController implements Initializable {
             rowNumber++;
         }
 
+        Integer numberOfColumn = maxColumn;
+        for(Integer i = 0; i < numberOfColumn; i++) {
 
-
+            ColumnConstraints column = new ColumnConstraints();
+            column.setPercentWidth(100/numberOfColumn);
+            gridPane.getColumnConstraints().add(column);
+        }
 
         parserLLOutputPane.getChildren().add(gridPane);
     }

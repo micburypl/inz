@@ -131,6 +131,7 @@ public class ParserLR {
         Integer tempInt;
         String tempString;
         currentMovesElementLR = new MovesElementLR(movesNumber++, new ArrayList<>(stack) , new ArrayList<>(inputDataSet) );
+        movesList = new ArrayList<>();
         movesList.add(currentMovesElementLR);
 
 

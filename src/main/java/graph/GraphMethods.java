@@ -1,18 +1,11 @@
 package graph;
 
-import algorithmFLF.FLFPart;
 import algorithmFLF.TransitionTableElement;
 import com.mxgraph.layout.hierarchical.mxHierarchicalLayout;
-import com.mxgraph.layout.mxGraphLayout;
-import com.mxgraph.layout.mxParallelEdgeLayout;
 import com.mxgraph.model.mxCell;
 import com.mxgraph.swing.mxGraphComponent;
-import com.mxgraph.util.mxConstants;
-import com.mxgraph.util.mxUtils;
 import com.mxgraph.view.mxGraph;
 import javafx.embed.swing.SwingNode;
-
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -33,7 +26,7 @@ public class GraphMethods {
     Integer y;
     Boolean shift;
 
-    public GraphMethods(ArrayList<String> vertexLabelList, ArrayList<TransitionTableElement> transitionTableList){
+    public GraphMethods(Map<String, Boolean> vertexLabelList, ArrayList<TransitionTableElement> transitionTableList){
         shift = true;
         x = 0;
         y = 0;
@@ -46,21 +39,6 @@ public class GraphMethods {
         addVertexList(vertexLabelList);
         addCellList(transitionTableList);
 
-
-
-//        style.put(mxConstants.STYLE_FILLCOLOR, mxUtils.getHexColorString(Color.WHITE));
-//        style.put(mxConstants.STYLE_STROKEWIDTH, 1.5);
-//        style.put(mxConstants.STYLE_STROKECOLOR, mxUtils.getHexColorString(new Color(0, 0, 170)));
-//        style.put(mxConstants.STYLE_SHAPE, mxConstants.SHAPE_ELLIPSE);
-//        style.put(mxConstants.STYLE_PERIMETER, mxConstants.PERIMETER_ELLIPSE);
-//
-//        endStyle.put(mxConstants.STYLE_FILLCOLOR, mxUtils.getHexColorString(Color.WHITE));
-//        endStyle.put(mxConstants.STYLE_STROKEWIDTH, 1.5);
-//        endStyle.put(mxConstants.STYLE_STROKECOLOR, mxUtils.getHexColorString(new Color(0, 0, 170)));
-//        endStyle.put(mxConstants.STYLE_SHAPE, mxConstants.SHAPE_DOUBLE_ELLIPSE);
-//        endStyle.put(mxConstants.STYLE_PERIMETER, mxConstants.PERIMETER_ELLIPSE);
-
-
         mxHierarchicalLayout layout = new mxHierarchicalLayout(mainGraph);
         layout.execute(mainGraph.getDefaultParent());
         graphComponent = new mxGraphComponent(mainGraph);
@@ -68,18 +46,25 @@ public class GraphMethods {
 
     }
 
-    void mxRadialTreeLayout(mxGraph	graph){
+    void addVertexList(Map<String, Boolean> vertexLabelList) {
+        for(String vertexLabel: vertexLabelList.keySet()) {
+            if (vertexLabelList.get(vertexLabel)) {
+                addVertex(vertexLabel, true);
+            } else {
+                addVertex(vertexLabel, false);
+            }
 
-    }
-
-    void addVertexList(ArrayList<String> vertexLabelList) {
-        for(String vertexLabel: vertexLabelList) {
-            addVertex(vertexLabel);
         }
     }
 
-    void addVertex(String label) {
-        mxCell cell = (mxCell)  mainGraph.insertVertex(mainGraph.getDefaultParent(), null, label, x, y, 50, 50, GraphUtils.REGULAR_STYLE);
+    void addVertex(String label, Boolean finalState) {
+        mxCell cell;
+        if(finalState){
+            cell = (mxCell)  mainGraph.insertVertex(mainGraph.getDefaultParent(), null, label, x, y, 50, 50, GraphUtils.END_STATE_STYLE);
+        } else {
+            cell = (mxCell)  mainGraph.insertVertex(mainGraph.getDefaultParent(), null, label, x, y, 50, 50, GraphUtils.REGULAR_STYLE);
+        }
+
         if (shift) {
             x += 100;
             shift = false;

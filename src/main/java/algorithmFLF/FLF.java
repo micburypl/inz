@@ -11,7 +11,7 @@ public class FLF {
 
     private String word;
     private Boolean nextCharFlag;
-    private Boolean errorFlag;
+    public Boolean errorFlag;
     private Integer sizeOfString;
     private Integer levelOfPriority;
     private Boolean lastSymbol;
@@ -24,6 +24,9 @@ public class FLF {
     public List<FLFPart> inputList;
 
     public List<FLFPart> outputList;
+
+    public String errorMessage;
+    public Boolean isCorrect;
 
 
     public Map<Integer,HashSet<Integer>> followMap;
@@ -168,6 +171,7 @@ public class FLF {
 
 
     public List<FLFPart> createList(String line){
+        isCorrect = true;
         this.line = line;
         word = "";
         levelOfPriority = 0;
@@ -191,12 +195,6 @@ public class FLF {
             }
             switch(line.charAt(i)){
                 case '*':
-//                    if(word.length() == 0){
-//                        errorFlag = true;
-//                        break;
-//                    }
-//                    createSymbol(word, inputList);
-//                    word = "";
                     createOperand(4, "*");
                     break;
                 case '|':
@@ -279,7 +277,7 @@ public class FLF {
 
         }
         if(errorFlag){
-            return new LinkedList<FLFPart>();
+            return new LinkedList<>();
         }
         System.out.print(inputList);
         return inputList;

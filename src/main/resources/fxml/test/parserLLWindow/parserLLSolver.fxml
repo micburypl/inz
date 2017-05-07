@@ -9,51 +9,57 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="parserLLWindow.parserLLSolverController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600.0" minWidth="800.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="parserLLWindow.parserLLSolverController">
   <columnConstraints>
-    <ColumnConstraints hgrow="SOMETIMES" />
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+    <ColumnConstraints hgrow="SOMETIMES" percentWidth="1.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="283.0" minWidth="10.0" percentWidth="25.0" prefWidth="260.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="75.0" minWidth="75.0" percentWidth="1.0" prefWidth="155.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="435.0" minWidth="317.0" percentWidth="72.0" prefWidth="337.0" />
+    <ColumnConstraints hgrow="SOMETIMES" percentWidth="1.0" />
   </columnConstraints>
   <rowConstraints>
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints percentHeight="1.0" vgrow="SOMETIMES" />
+      <RowConstraints vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="45.0" minHeight="0.0" percentHeight="1.0" prefHeight="43.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="66.0" minHeight="4.0" prefHeight="26.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="110.0" minHeight="10.0" prefHeight="110.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="58.0" minHeight="10.0" prefHeight="12.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="73.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="82.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="56.0" minHeight="9.0" prefHeight="10.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="60.0" minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="65.0" minHeight="0.0" prefHeight="16.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="91.0" minHeight="10.0" prefHeight="91.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="46.0" minHeight="10.0" prefHeight="46.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="32.0" minHeight="10.0" prefHeight="28.0" vgrow="SOMETIMES" />
+      <RowConstraints percentHeight="1.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <Label text="Label" GridPane.columnIndex="1" GridPane.columnSpan="4" GridPane.rowIndex="9" />
+      <Label text="%parserLL.partialSolutions" GridPane.columnIndex="1" GridPane.columnSpan="4" GridPane.rowIndex="9" />
       <ListView fx:id="parserLLInputList" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-      <VBox fx:id="parserLLButtonVBox" GridPane.columnIndex="1" GridPane.rowIndex="10">
+      <VBox fx:id="parserLLButtonVBox" GridPane.columnIndex="1" GridPane.rowIndex="11">
           <children>
-             <Button fx:id="printFirstButton" mnemonicParsing="false" onAction="#printFirst" text="First" />
-             <Button fx:id="printFollowButton" mnemonicParsing="false" onAction="#printFollow" text="Follow" />
-             <Button fx:id="parsingTableButton" mnemonicParsing="false" onAction="#printParsingTable" text="Parsing Table" />
+             <Button fx:id="printFirstButton" mnemonicParsing="false" onAction="#printFirst" styleClass="button-green" text="%parserLL.FirstButton" />
+             <Button fx:id="printFollowButton" mnemonicParsing="false" onAction="#printFollow" styleClass="button-green" text="%parserLL.FollowButton" />
+             <Button fx:id="parsingTableButton" mnemonicParsing="false" onAction="#printParsingTable" styleClass="button-green" text="%parserLL.ParserTableButton" />
 
           </children>
       </VBox>
-      <Label text="Label" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+      <Label text="%parserLL.Solution" GridPane.columnIndex="3" GridPane.rowIndex="3" />
       <StackPane fx:id="parserLLOutputPane" GridPane.columnIndex="3" GridPane.rowIndex="5" GridPane.rowSpan="5" />
-      <Label text="%xxx.x" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-      <Button mnemonicParsing="false" onAction="#generateLL" text="Generate LL" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+      <Label text="%parserLL.InputData" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+      <Button mnemonicParsing="false" onAction="#generateLL" styleClass="button-green" text="%parserLL.GenerateLLButton" GridPane.columnIndex="1" GridPane.rowIndex="7" />
       <TextField id="firstLastFollowInput" fx:id="movesTableInput" GridPane.columnIndex="1" GridPane.rowIndex="13" />
-      <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-      <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="12" />
-      <Button mnemonicParsing="false" onAction="#printMovesTable" text="Moves Table" GridPane.columnIndex="1" GridPane.rowIndex="14" />
+      <Label text="%parserLL.GenerateLL" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+      <Label text="%parserLL.inputString" GridPane.columnIndex="1" GridPane.rowIndex="12" />
+      <Button mnemonicParsing="false" onAction="#printMovesTable" text="%parserLL.MovesTableButton" GridPane.columnIndex="1" GridPane.rowIndex="14" />
+      <Label text="%parserLL.Header" GridPane.columnIndex="3" GridPane.rowIndex="1">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
    </children>
 </GridPane>

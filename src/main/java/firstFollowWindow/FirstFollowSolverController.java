@@ -6,10 +6,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.HPos;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.layout.ColumnConstraints;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 
 import java.io.IOException;
@@ -95,41 +98,100 @@ public class FirstFollowSolverController implements Initializable {
     }
 
     public void printFirst(ActionEvent actionEvent) throws IOException {
-        firstFollowOutputList.getItems().clear();
-        for(String keyFirst: testFirstFollow.firstElementMap.keySet() ){
-            FXMLLoader x = new FXMLLoader(getClass().getResource("/fxml/test/firstFollowWindow/firstFollowOutputFirst.fxml"));
-            firstFollowOutputList.getItems().add(x.load());
-            FirstFollowOutputFirstController xControler = x.getController();
-            xControler.setSymbolPart(keyFirst);
+        firstFollowOutputPane.getChildren().clear();
+        GridPane gridPane = new GridPane();
+
+        Label tempLabel = new Label("Element");
+        gridPane.add(tempLabel, 0,0);
+        gridPane.setHalignment(tempLabel, HPos.CENTER);
+
+        tempLabel = new Label("First(Element)");
+        gridPane.add(tempLabel, 1,0);
+        gridPane.setHalignment(tempLabel, HPos.CENTER);
+
+
+        Integer rowNumber = 1;
+        gridPane.setGridLinesVisible(true);
+        for(String keyFollow: testFirstFollow.firstElementMap.keySet() ){
+
+
+            tempLabel = new Label(keyFollow);
+            gridPane.add(tempLabel, 0,rowNumber);
+            gridPane.setHalignment(tempLabel, HPos.CENTER);
+
             String solutionString = "";
-            for(String temp: testFirstFollow.firstElementMap.get(keyFirst).firstSet) {
+            for(String temp: testFirstFollow.firstElementMap.get(keyFollow).firstSet) {
                 solutionString += temp + ", ";
             }
             if(solutionString.length() > 2) {
                 solutionString = solutionString.substring(0, solutionString.length()-2);
             }
-            xControler.setSolutionPart(solutionString);
+
+            tempLabel = new Label(solutionString);
+            gridPane.add(tempLabel, 1,rowNumber);
+            gridPane.setHalignment(tempLabel, HPos.CENTER);
+
+            rowNumber++;
+
         }
+        Integer numberOfColumn = 2;
+        for(Integer i = 0; i < numberOfColumn; i++) {
+
+            ColumnConstraints column = new ColumnConstraints();
+            column.setPercentWidth(100/numberOfColumn);
+            gridPane.getColumnConstraints().add(column);
+        }
+
+        firstFollowOutputPane.getChildren().add(gridPane);
     }
 
     public void printFollow(ActionEvent actionEvent) throws IOException {
-        firstFollowOutputList.getItems().clear();
-        for(String keyFollow: testFirstFollow.followElementMap.keySet() ){
-            FXMLLoader x = new FXMLLoader(getClass().getResource("/fxml/test/firstFollowWindow/firstFollowOutputFollow.fxml"));
-            firstFollowOutputList.getItems().add(x.load());
-            FirstFollowOutputFollowController xControler = x.getController();
 
-            xControler.setSymbolPart(keyFollow);
+        firstFollowOutputPane.getChildren().clear();
+        GridPane gridPane = new GridPane();
+
+        Label tempLabel = new Label("Element");
+        gridPane.add(tempLabel, 0,0);
+        gridPane.setHalignment(tempLabel, HPos.CENTER);
+
+        tempLabel = new Label("Follow(Element)");
+        gridPane.add(tempLabel, 1,0);
+        gridPane.setHalignment(tempLabel, HPos.CENTER);
+
+        Integer rowNumber = 1;
+        gridPane.setGridLinesVisible(true);
+        for(String keyFollow: testFirstFollow.followElementMap.keySet() ){
+
+
+            tempLabel = new Label(keyFollow);
+            gridPane.add(tempLabel, 0,rowNumber);
+            gridPane.setHalignment(tempLabel, HPos.CENTER);
+
             String solutionString = "";
+
             for(String temp: testFirstFollow.followElementMap.get(keyFollow).followSet) {
                 solutionString += temp + ", ";
             }
             if(solutionString.length() > 2) {
                 solutionString = solutionString.substring(0, solutionString.length()-2);
             }
+            tempLabel = new Label(solutionString);
+            gridPane.add(tempLabel, 1,rowNumber);
+            gridPane.setHalignment(tempLabel, HPos.CENTER);
 
-            xControler.setSolutionPart(solutionString);
+            rowNumber++;
+
         }
+
+        Integer numberOfColumn = 2;
+        for(Integer i = 0; i < numberOfColumn; i++) {
+
+            ColumnConstraints column = new ColumnConstraints();
+            column.setPercentWidth(100/numberOfColumn);
+            gridPane.getColumnConstraints().add(column);
+        }
+
+        firstFollowOutputPane.getChildren().add(gridPane);
     }
 
 

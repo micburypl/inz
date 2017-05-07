@@ -17,18 +17,20 @@ import java.util.ResourceBundle;
  */
 public class Start extends Application {
 
-    public static void main(String[] argc) {
+
+    public void main(String[] argc) {
         launch(argc);
     }
 
     public void start(Stage stage) throws Exception {
 
-        //System.out.print("Hello world!!");
+        //
+        // System.out.print("Hello world!!");
 
         //System.out.print("Hello world ok");
 
-        FLF myTree;
-        List<String> inputLineLinst = new ArrayList<String>();
+//        FLF myTree;
+//        List<String> inputLineLinst = new ArrayList<String>();
 //        inputLineLinst.add("t e s t 1 - t e s t 2 * t e s t 3" );
 //        inputLineLinst.add("test1 * test2 - test3");
 //        inputLineLinst.add("TE ST*T EST/TES T");
@@ -143,57 +145,45 @@ public class Start extends Application {
 //        MovesTable testMoveTable = new MovesTable();
 //        testMoveTable.generateMovesTable("S","a + a * a", testFirstFollow.predictiveMap.predictiveMap);
 //        testMoveTable.printMovesTable();
-//
 
 
 
 
-        ParserLR testGotoGenerator = new ParserLR(inputLineLinst);
 
-        testGotoGenerator.generateLRParser("a * a + a");
+//        ParserLR testGotoGenerator = new ParserLR(inputLineLinst);
+
+//        testGotoGenerator.generateLRParser("a * a + a");
 
         //testGotoGenerator.generateGoto("S", testFirstFollow.parsedSet);
 
 
+        //new Base().initialize();
 
+
+//        tempBase = new Base();
+//
         Scene testScene;
+        //Base window
+        testScene = new Scene((Parent)new FXMLLoader(getClass().getResource("/fxml/test/mainWindow/baseWindow.fxml"), ResourceBundle.getBundle("bundle.bundle")).load(), 1300, 700);
+        testScene.getStylesheets().add(getClass().getResource("/fromPaula/application.css").toExternalForm());
+
+
         //FLF
-        testScene = new Scene((Parent)new FXMLLoader(getClass().getResource("/fxml/test/parserLLWindow/parserLLSolver.fxml"), ResourceBundle.getBundle("bundle.bundle")).load(), 300, 300);
+        //testScene = new Scene((Parent)new FXMLLoader(getClass().getResource("/fxml/test/firstLastFollowWindow/firstLastFollowSolver.fxml"), ResourceBundle.getBundle("bundle.bundle")).load(), 800, 600);
+        //testScene.getStylesheets().add(getClass().getResource("/fromPaula/application.css").toExternalForm());
         //LR
-        //testScene = new Scene((Parent)new FXMLLoader(getClass().getResource("/fxml/test/parserLRWindow/parserLRSolver.fxml")).load(), 300, 300);
+        //testScene = new Scene((Parent)new FXMLLoader(getClass().getResource("/fxml/test/parserLRWindow/parserLRSolver.fxml"), ResourceBundle.getBundle("bundle.bundle")).load(), 800, 600);
         //LL
-        //testScene = new Scene((Parent)new FXMLLoader(getClass().getResource("/fxml/test/parserLLWindow/parserLLSolver.fxml")).load(), 300, 300);
+        //testScene = new Scene((Parent)new FXMLLoader(getClass().getResource("/fxml/test/parserLLWindow/parserLLSolver.fxml"), ResourceBundle.getBundle("bundle.bundle")).load(), 800, 600);
+        //firstFollow
+        //testScene = new Scene((Parent)new FXMLLoader(getClass().getResource("/fxml/test/firstFollowWindow/firstFollowSolver.fxml"), ResourceBundle.getBundle("bundle.bundle")).load(), 800, 600);
+
+
         stage.setTitle("My JavaFX Application");
         stage.setScene(testScene);
         stage.show();
-
-
     }
-
-
-
 }
-// FLFPartTest
-// FLFTest
-// TransitionTableElementTest
-
-// CommonUtilityTest
-
-// FirstElementTest
-// FirstFollowTest
-// FollowElementTest
-
-// MovesTableTest
-// MovesTableElementTest
-// PredictiveTableTest
-
-// ActionTableElementTest
-// ClosureElementTest
-// GotoElementTest
-// GotoGeneratorTest
-// GotoTransitionTest
-// MovesElementLRTest
-// ParserLRTest
 
 
 
