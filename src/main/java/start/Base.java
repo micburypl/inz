@@ -18,7 +18,7 @@ public final class Base extends Application {
         return (instance);
     }
 
-    public Base(){
+    private Base(){
     }
 
     @Override

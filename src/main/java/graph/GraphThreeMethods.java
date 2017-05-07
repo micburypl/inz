@@ -79,7 +79,7 @@ public class GraphThreeMethods {
         String tempString;
         if(!cellElement.typeTreePart) {
             // operator
-            tempString = cellElement.operatorText;
+            tempString = String.valueOf(cellElement.operatorText);
         } else {
             // symbol
             tempString = cellElement.symbolsText;

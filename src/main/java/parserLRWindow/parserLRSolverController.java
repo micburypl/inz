@@ -48,7 +48,7 @@ public class parserLRSolverController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        FXMLLoader x = new FXMLLoader(getClass().getResource("/fxml/test/parserLRWindow/parserLRInput.fxml"));
+        FXMLLoader x = new FXMLLoader(getClass().getResource("/fxml/test/firstFollowWindow/firstFollowInput.fxml"));
 
         try {
             //x.load();
@@ -60,7 +60,7 @@ public class parserLRSolverController implements Initializable {
         listInput.add(x.getController());
         Button b = new Button("+");
         b.setOnAction(handle -> {
-            FXMLLoader x1 = new FXMLLoader(getClass().getResource("/fxml/test/parserLRWindow/parserLRInput.fxml"));
+            FXMLLoader x1 = new FXMLLoader(getClass().getResource("/fxml/test/firstFollowWindow/firstFollowInput.fxml"));
             try {
                 parserLRInputList.getItems().add(parserLRInputList.getItems().size() - 1, x1.load());
             } catch (IOException e) {

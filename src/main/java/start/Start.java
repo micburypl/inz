@@ -1,15 +1,19 @@
 package start;
 
+import fromPaula.SideMenu;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import algorithmFLF.FLF;
 import parserLR.ParserLR;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 /**
@@ -17,20 +21,27 @@ import java.util.ResourceBundle;
  */
 public class Start extends Application {
 
+    public static Start instance;
 
-    public void main(String[] argc) {
+    Scene testScene;
+
+    public static Start getInstance() {
+        return (instance);
+    }
+
+    Stage tempStage;
+    String localLanguage;
+    String localfxml;
+
+    public static void main(String[] argc) {
         launch(argc);
     }
 
     public void start(Stage stage) throws Exception {
 
-        //
-        // System.out.print("Hello world!!");
 
-        //System.out.print("Hello world ok");
-
-//        FLF myTree;
-//        List<String> inputLineLinst = new ArrayList<String>();
+ //       FLF myTree;
+ //       List<String> inputLineLinst = new ArrayList<String>();
 //        inputLineLinst.add("t e s t 1 - t e s t 2 * t e s t 3" );
 //        inputLineLinst.add("test1 * test2 - test3");
 //        inputLineLinst.add("TE ST*T EST/TES T");
@@ -145,27 +156,29 @@ public class Start extends Application {
 //        MovesTable testMoveTable = new MovesTable();
 //        testMoveTable.generateMovesTable("S","a + a * a", testFirstFollow.predictiveMap.predictiveMap);
 //        testMoveTable.printMovesTable();
+//
 
 
 
 
-
-//        ParserLR testGotoGenerator = new ParserLR(inputLineLinst);
+ //       ParserLR testGotoGenerator = new ParserLR(inputLineLinst);
 
 //        testGotoGenerator.generateLRParser("a * a + a");
 
         //testGotoGenerator.generateGoto("S", testFirstFollow.parsedSet);
 
 
-        //new Base().initialize();
+       // tempBase = new Base();
 
-
-//        tempBase = new Base();
-//
-        Scene testScene;
+        localfxml = "/fxml/test/firstLastFollowWindow/firstLastFollowSolver.fxml";
+        localLanguage = "bundle.bundle";
+        instance = this;
+        Locale.setDefault(new Locale("en", "EN"));
+        tempStage = stage;
         //Base window
-        testScene = new Scene((Parent)new FXMLLoader(getClass().getResource("/fxml/test/mainWindow/baseWindow.fxml"), ResourceBundle.getBundle("bundle.bundle")).load(), 1300, 700);
+        testScene = new Scene((Parent)new FXMLLoader(getClass().getResource("/fxml/test/mainWindow/baseWindow.fxml"), ResourceBundle.getBundle(localLanguage)).load(), 1300, 700);
         testScene.getStylesheets().add(getClass().getResource("/fromPaula/application.css").toExternalForm());
+
 
 
         //FLF
@@ -182,8 +195,33 @@ public class Start extends Application {
         stage.setTitle("My JavaFX Application");
         stage.setScene(testScene);
         stage.show();
+
+
     }
+
+    public void displayMainWindowPane(String fxml) throws IOException {
+        localfxml = fxml;
+        FXMLLoader x1 = new FXMLLoader(getClass().getResource(fxml), ResourceBundle.getBundle(localLanguage));
+        try {
+            StackPane test = (StackPane)(getInstance().testScene.lookup("#solverSection"));
+            test.getChildren().clear();
+            test.getChildren().add(x1.load());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void displayMainWindowPane() throws IOException {
+        FXMLLoader x1 = new FXMLLoader(getClass().getResource(localfxml), ResourceBundle.getBundle(localLanguage));
+        try {
+            StackPane test = (StackPane)(getInstance().testScene.lookup("#solverSection"));
+            test.getChildren().clear();
+            test.getChildren().add(x1.load());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
 }
-
-
-

@@ -114,14 +114,14 @@ public class FLF {
         }
     }
 
-    private void createOperand(Integer prior, String word){
+    private void createOperand(Integer prior, char word){
         lastSymbol = false;
         FLFPart newTreePart = new FLFPart();
         newTreePart.priority = prior + levelOfPriority;
         newTreePart.typeTreePart = false;
         newTreePart.operatorText = word;
         newTreePart.typeChild = false;
-        if(word.equals("*")){
+        if(word == (CommonUtility.starSign)){
             newTreePart.typeChild = true;
             for(Integer i = inputList.size()-1; i >= 0; i--) {
                 if(inputList.get(i).typeTreePart) {
@@ -194,26 +194,26 @@ public class FLF {
                 continue;
             }
             switch(line.charAt(i)){
-                case '*':
-                    createOperand(4, "*");
+                case CommonUtility.starSign:
+                    createOperand(4, CommonUtility.starSign);
                     break;
-                case '|':
-                    if(word.length() == 0 && line.charAt(i-1) != '*'){
+                case CommonUtility.orSign:
+                    if(word.length() == 0 && line.charAt(i-1) != CommonUtility.starSign){
                         errorFlag = true;
                         break;
                     }
                     createSymbol(word, inputList);
                     word = "";
-                    createOperand(2, "|");
+                    createOperand(2, CommonUtility.orSign);
                     break;
-                case '&':
-                    if(word.length() == 0 && line.charAt(i-1) != '*'){
+                case CommonUtility.andSign:
+                    if(word.length() == 0 && line.charAt(i-1) != CommonUtility.starSign){
                         errorFlag = true;
                         break;
                     }
                     createSymbol(word, inputList);
                     word = "";
-                    createOperand(3, "&");
+                    createOperand(3, CommonUtility.andSign);
                     break;
                 case '(':
                     if(i>0){
@@ -404,7 +404,7 @@ public class FLF {
     private FLFPart CreateSyntaxTree(FLFPart rootOfTree){
         FLFPart syntaxRoot = new FLFPart();
         syntaxRoot.typeTreePart = false;
-        syntaxRoot.operatorText = "&";
+        syntaxRoot.operatorText = CommonUtility.andSign;
         syntaxRoot.typeChild = false;
         syntaxRoot.leftChild = rootOfTree;
         rootOfTree.parentPointer = rootOfTree;
@@ -439,11 +439,11 @@ public class FLF {
             }
         } else {
             //if element is node
-            if(treeElement.operatorText.equals("*")) {
+            if(treeElement.operatorText == (CommonUtility.starSign)) {
                 //star operator
                 calcNullable(treeElement.singleChild);
                 treeElement.nullable = true;
-            } else if(treeElement.operatorText.equals("|")) {
+            } else if(treeElement.operatorText == (CommonUtility.orSign)) {
                 //or operator
                 calcNullable(treeElement.leftChild);
                 calcNullable(treeElement.rightChild);
@@ -465,7 +465,7 @@ public class FLF {
             treeElement.lastList.add(treeElement.nodeNumber);
         } else {
             //if element is node
-            if(Objects.equals(treeElement.operatorText, "*")) {
+            if(treeElement.operatorText == CommonUtility.starSign) {
                 //star operator
                 //calc to child
                 calcFirstLast(treeElement.singleChild);
@@ -473,7 +473,7 @@ public class FLF {
                 treeElement.firstList.addAll(treeElement.singleChild.firstList);
                 //last = child follow
                 treeElement.lastList.addAll(treeElement.singleChild.lastList);
-            } else if(Objects.equals(treeElement.operatorText, "|")) {
+            } else if(treeElement.operatorText == CommonUtility.orSign) {
                 //or operator
                 //calc left and right child
                 calcFirstLast(treeElement.leftChild);
@@ -509,7 +509,7 @@ public class FLF {
             //do not do anything
         } else {
             //if element is node
-            if(treeElement.operatorText.equals("*")) {
+            if(treeElement.operatorText == (CommonUtility.starSign)) {
                 //run for child
                 calcFollow(treeElement.singleChild);
                 //star operator
@@ -518,7 +518,7 @@ public class FLF {
                     //add first list to set
                     followMap.get(lastNumber).addAll(treeElement.firstList);
                 }
-            } else if(treeElement.operatorText.equals("&")) {
+            } else if(treeElement.operatorText == (CommonUtility.andSign)) {
                 //and operator
                 //run for childs
                 calcFollow(treeElement.leftChild);
@@ -554,7 +554,7 @@ public class FLF {
         transitionData.get(word).add(number);
     }
     public void generateTransitionTable() {
-        Map<String, HashSet<Integer>> transitionProductionToRecalculate = new HashMap<String, HashSet<Integer>>();
+        Map<String, HashSet<Integer>> transitionProductionToRecalculate = new HashMap<>();
 
         transitionProduction.put(String.valueOf(currentSymbol), rootOfTree.firstList);
         transitionProductionToRecalculate.put(String.valueOf(currentSymbol), rootOfTree.firstList);
@@ -562,7 +562,7 @@ public class FLF {
         calculateTransitionTable(transitionProductionToRecalculate);
     }
     void calculateTransitionTable(Map<String, HashSet<Integer>> transitionProductionToCalculate) {
-        Map<String, HashSet<Integer>> transitionProductionToRecalculate = new HashMap<String, HashSet<Integer>>();
+        Map<String, HashSet<Integer>> transitionProductionToRecalculate = new HashMap<>();
         Boolean toAdd;
         String endState;
         //for across state
@@ -571,7 +571,7 @@ public class FLF {
             for(String j: transitionData.keySet()){
                 endState = j;
                 toAdd = true;
-                HashSet<Integer> transitionList = new HashSet<Integer>();
+                HashSet<Integer> transitionList = new HashSet<>();
                 //generate list from follow
                 for(Integer tPTC: transitionProductionToCalculate.get(i)){
                     if(transitionData.get(j).contains(tPTC)) {

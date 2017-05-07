@@ -12,6 +12,10 @@ public class CommonUtility {
     public final static String beginGoto = "S'";
     public final static String dot = ".";
 
+    public final static char andSign = '&';
+    public final static char orSign = '|';
+    public final static char starSign = '*';
+
     public static Boolean isTerminal(String testString) {
         return testString.charAt(0) >= 'a' && testString.charAt(0) <= 'z';
     }

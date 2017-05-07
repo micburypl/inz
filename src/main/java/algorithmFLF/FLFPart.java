@@ -14,7 +14,7 @@ public class FLFPart {
     public FLFPart singleChild;
     public FLFPart parentPointer;
     public Integer priority;
-    public String operatorText;
+    public char operatorText;
     public String symbolsText;
     public HashSet<Integer>  firstList;
     public HashSet<Integer>  lastList;

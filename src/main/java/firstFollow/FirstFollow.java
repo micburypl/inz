@@ -20,6 +20,9 @@ public class FirstFollow {
     public String firstProduction;
     public PredictiveTable predictiveMap;
 
+    public Boolean errorFlag;
+    public HashMap<Integer, String> errorMessages;
+
 
     public FirstFollow(List<String> inputList){
         inputData = new ArrayList<>();
@@ -30,12 +33,20 @@ public class FirstFollow {
         followElementMap = new HashMap<>();
         nonterminalsRelationMap = new HashMap<>();
         predictiveMap = new PredictiveTable();
+        errorMessages = new HashMap<>();
     }
 
     public void generateSolutionSet() {
+        Integer iterator = 1;
+        errorFlag = false;
         String[] parsedString;
+        String tempString;
+        Integer numberOfEmpty = 0;
         if(inputData.size() == 0) {
+
             System.out.println("Empty Input");
+            errorFlag = true;
+            errorMessages.put(0, "Empty Input");
             return;
         }
 
@@ -43,9 +54,32 @@ public class FirstFollow {
 
             //START VERIFICATION
 
+            //check if string does not contain only ->
+            tempString = inputLine;
+            while(true) {
+                if(tempString.contains(" ")) {
+                    tempString = tempString.replaceAll(" ", "");
+                } else {
+                    break;
+                }
+            }
+            if(tempString.equals("->")) {
+                iterator++;
+                numberOfEmpty++;
+
+                if(numberOfEmpty == inputData.size()) {
+                    errorFlag = true;
+                    errorMessages.put(0, " There is any input");
+                }
+
+                continue;
+            }
+
             //check if string contains "->"
             if(!inputLine.contains("->")) {
                 System.out.println("There is not production on this string:" + inputLine);
+                errorFlag = true;
+                errorMessages.put(iterator++, " There is not production on this string:" + inputLine);
                 continue;
             }
 
@@ -62,22 +96,28 @@ public class FirstFollow {
 
             //check in on left site there is only one symbol
             if(!parsedString[1].equals("->")) {
-                System.out.println("to many symbols on left site: " + inputLine);
+                System.out.println("To many symbols on left site: " + inputLine);
+                errorFlag = true;
+                errorMessages.put(iterator++, " To many symbols on left site: " + inputLine);
                 continue;
             }
 
             //check if set have at least one production
             if(parsedString.length < 3) {
                 System.out.println("There is not any production: " + inputLine);
+                errorFlag = true;
+                errorMessages.put(iterator++, " There is not any production: " + inputLine);
                 continue;
             }
 
             //verify if is left part is production
             if(parsedString[0].charAt(0) < 'A' || parsedString[0].charAt(0) > 'Z') {
                 System.out.println("Line start with terminal, not with non-terminal: " + inputLine);
+                errorFlag = true;
+                errorMessages.put(iterator++, " Line start with terminal, not with non-terminal: " + inputLine);
                 continue;
             }
-
+            iterator++;
             //END VERIFICATION
 
             //check if terminal exist on paredSet set and add
@@ -123,6 +163,10 @@ public class FirstFollow {
                 parsedSet.get(parsedString[0]).add(listToInsert);
             }
             addElementToFirstSetSet(parsedString[0], listToInsert, firstElementMap);
+        }
+
+        if(errorFlag) {
+            return;
         }
 
         System.out.println(parsedSet);

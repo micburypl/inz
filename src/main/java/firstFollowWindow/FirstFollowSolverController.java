@@ -14,6 +14,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 import java.net.URL;
@@ -34,6 +35,9 @@ public class FirstFollowSolverController implements Initializable {
 
     @FXML
     StackPane firstFollowOutputPane;
+
+    @FXML
+    VBox firstFollowButtonVBox;
 
 
     List<FirstFollowInputController> listInput = new ArrayList<>();
@@ -64,6 +68,8 @@ public class FirstFollowSolverController implements Initializable {
                 listInput.add(x1.getController());
             });
         firstFollowInputList.getItems().add(b);
+
+        firstFollowButtonVBox.setVisible(false);
     }
 
     public void generateFirstAndFollow(ActionEvent actionEvent) {
@@ -72,28 +78,59 @@ public class FirstFollowSolverController implements Initializable {
 
         //
 
-//        for(Integer i = 0; i < listInput.size(); i++) {
-//            //System.out.println(listInput.get(i).getLeftPart());
-//            System.out.println(listInput.get(i).productionLeftPart);
-//            tempString =  listInput.get(i).getLeftPart() + " -> " + listInput.get(i).getRightPart();
-//            System.out.println(tempString);
-//            inputLineList.add(tempString);
-//        }
+        for(Integer i = 0; i < listInput.size(); i++) {
+            //System.out.println(listInput.get(i).getLeftPart());
+            System.out.println(listInput.get(i).productionLeftPart);
+            tempString =  listInput.get(i).getLeftPart() + " -> " + listInput.get(i).getRightPart();
+            System.out.println(tempString);
+            inputLineList.add(tempString);
+        }
 
         //
 
-        inputLineList.add("S -> A S'");
-        inputLineList.add("S' -> + A S' | eps");
-        inputLineList.add("A -> B A' ");
-        inputLineList.add("A' -> * B A' | eps");
-        inputLineList.add("B -> ( S ) | a");
+//        inputLineList.add("S -> A S'");
+//        inputLineList.add("S' -> + A S' | eps");
+//        inputLineList.add("A -> B A' ");
+//        inputLineList.add("A' -> * B A' | eps");
+//        inputLineList.add("B -> ( S ) | a");
 
-        if(!inputLineList.isEmpty()) {
+
+        //if(!inputLineList.isEmpty()) {
             testFirstFollow = new FirstFollow(inputLineList);
             testFirstFollow.generateSolutionSet();
-        } else {
-            System.out.println("Empty list");
+//        } else {
+//            System.out.println("Empty list");
+//        }
+
+        if(testFirstFollow.errorFlag) {
+
+            //blocked buttons
+            firstFollowButtonVBox.setVisible(false);
+
+            firstFollowOutputPane.getChildren().clear();
+            GridPane gridPane = new GridPane();
+            gridPane.setGridLinesVisible(true);
+            Label tempLabel = new Label("Errors");
+            gridPane.add(tempLabel, 0,0);
+            gridPane.setHalignment(tempLabel, HPos.CENTER);
+            Integer tempInt = 1;
+            for(Integer errorLine: testFirstFollow.errorMessages.keySet() ) {
+                tempLabel = new Label("In row " + errorLine + ". " + testFirstFollow.errorMessages.get(errorLine));
+                gridPane.add(tempLabel, 0, tempInt++);
+                gridPane.setHalignment(tempLabel, HPos.CENTER);
+            }
+
+            firstFollowOutputPane.getChildren().add(gridPane);
+            return;
         }
+
+        //show buttons
+        firstFollowButtonVBox.setVisible(true);
+        firstFollowOutputPane.getChildren().clear();
+        GridPane gridPane = new GridPane();
+        firstFollowOutputPane.getChildren().add(gridPane);
+
+
 
     }
 

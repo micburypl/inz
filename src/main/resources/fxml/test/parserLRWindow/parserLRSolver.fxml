@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600.0" minWidth="800.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="parserLRWindow.parserLRSolverController">
+<GridPane minHeight="600.0" minWidth="800.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="parserLRWindow.parserLRSolverController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="20.0" minWidth="20.0" percentWidth="1.0" />
       <ColumnConstraints hgrow="SOMETIMES" percentWidth="25.0" />
@@ -23,22 +23,22 @@
       <RowConstraints percentHeight="1.0" vgrow="SOMETIMES" />
       <RowConstraints vgrow="SOMETIMES" />
     <RowConstraints maxHeight="70.0" minHeight="10.0" percentHeight="1.0" prefHeight="24.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="82.0" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="112.0" minHeight="10.0" prefHeight="107.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="15.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="130.0" minHeight="130.0" prefHeight="130.0" vgrow="SOMETIMES" />
+      <RowConstraints percentHeight="1.0" vgrow="SOMETIMES" />
+      <RowConstraints vgrow="SOMETIMES" />
+      <RowConstraints vgrow="SOMETIMES" />
+      <RowConstraints percentHeight="1.0" vgrow="SOMETIMES" />
+      <RowConstraints vgrow="SOMETIMES" />
+      <RowConstraints vgrow="SOMETIMES" />
+      <RowConstraints percentHeight="1.0" vgrow="SOMETIMES" />
+      <RowConstraints vgrow="SOMETIMES" />
+      <RowConstraints prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints percentHeight="1.0" vgrow="SOMETIMES" />
+      <RowConstraints vgrow="SOMETIMES" />
       <RowConstraints percentHeight="1.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <Label text="Label" GridPane.columnIndex="1" GridPane.columnSpan="4" GridPane.rowIndex="9" />
       <ListView fx:id="parserLRInputList" prefWidth="343.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
       <VBox fx:id="parserLRButtonVBox" GridPane.columnIndex="1" GridPane.rowIndex="10">
           <children>
@@ -50,14 +50,14 @@
           </children>
       </VBox>
       <Label text="%parserLR.Solution" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-      <StackPane fx:id="parserLROutputPane" GridPane.columnIndex="3" GridPane.rowIndex="6" GridPane.rowSpan="9" />
+      <StackPane fx:id="parserLROutputPane" alignment="TOP_CENTER" GridPane.columnIndex="3" GridPane.rowIndex="4" GridPane.rowSpan="12" />
       <Label text="%parserLR.InputData" GridPane.columnIndex="1" GridPane.rowIndex="3" />
       <Button mnemonicParsing="false" onAction="#generateLR" styleClass="button-green" text="%parserLR.GenerateButton" GridPane.columnIndex="1" GridPane.rowIndex="7" />
       <TextField id="movesInput" fx:id="movesTableInput" GridPane.columnIndex="1" GridPane.rowIndex="13" />
       <Label text="%parserLR.GenerateLR" GridPane.columnIndex="1" GridPane.rowIndex="6" />
       <Label text="%parserLR.InputString" GridPane.columnIndex="1" GridPane.rowIndex="12" />
-      <Button mnemonicParsing="false" onAction="#printMovesTable" text="%parserLR.MovesTableButton" GridPane.columnIndex="1" GridPane.rowIndex="14" />
-      <Label text="%parserLR.PartialSolutions" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+      <Button mnemonicParsing="false" onAction="#printMovesTable" styleClass="button-green" text="%parserLR.MovesTableButton" GridPane.columnIndex="1" GridPane.rowIndex="15" />
+      <Label text="%parserLR.PartialSolutions" GridPane.columnIndex="1" GridPane.rowIndex="9" />
       <Label text="%parserLR.Header" GridPane.columnIndex="3" GridPane.rowIndex="1">
          <font>
             <Font size="18.0" />

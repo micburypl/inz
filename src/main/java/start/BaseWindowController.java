@@ -17,6 +17,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 /**
@@ -25,11 +26,14 @@ import java.util.ResourceBundle;
 public class BaseWindowController implements Initializable {
 
     @FXML
-    StackPane solverSection;
+    public StackPane solverSection;
     @FXML
     StackPane mainSection;
     @FXML
     VBox menuSection;
+
+    String language;
+    String fxml;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -37,8 +41,8 @@ public class BaseWindowController implements Initializable {
         //Scene testScene = new Scene((Parent)new FXMLLoader(getClass().getResource("/fxml/test/firstLastFollowWindow/firstLastFollowSolver.fxml"), ResourceBundle.getBundle("bundle.bundle")).load(), 800, 600);
         //Base.displayMainWindowPane("/fxml/test/firstLastFollowWindow/firstLastFollowSolver.fxml");
 
-
-        FXMLLoader x1 = new FXMLLoader(getClass().getResource("/fxml/test/firstLastFollowWindow/firstLastFollowSolver.fxml"), ResourceBundle.getBundle("bundle.bundle"));
+        fxml = "/fxml/test/firstLastFollowWindow/firstLastFollowSolver.fxml";
+        FXMLLoader x1 = new FXMLLoader(getClass().getResource(fxml), ResourceBundle.getBundle("bundle.bundle"));
         try {
             solverSection.getChildren().add(x1.load());
         } catch (IOException e) {
@@ -58,12 +62,14 @@ public class BaseWindowController implements Initializable {
     }
 
     public void switchToEnglish(ActionEvent actionEvent) throws IOException {
-        //ResourceBundle.getBundle("bundle.bundle")).load();
+        Locale.setDefault(new Locale("en", "EN"));
+        Start.getInstance().displayMainWindowPane();
 
     }
 
-    public void switchToPolish(ActionEvent actionEvent) {
-        //ResourceBundle.getBundle("bundle_pl_PL.bundle")).load();
+    public void switchToPolish(ActionEvent actionEvent) throws IOException {
+        Locale.setDefault(new Locale("pl", "PL"));
+        Start.getInstance().displayMainWindowPane();
     }
 
 
