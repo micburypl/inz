@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="parserLLWindow.parserLLMovesErrorOutputController">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" prefWidth="100.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints prefHeight="30.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <Label fx:id="error" GridPane.columnIndex="0" />
+   </children>
+</GridPane>

@@ -9,6 +9,8 @@ public class MovesTableElement {
     public String stack;
     public String input;
     public String output;
+    public Boolean isWrong;
+    public String errorInformation;
 
 
     MovesTableElement(ArrayList<String> newStack, ArrayList<String> newInput, String newOutputLeft, ArrayList<String> newOutputRight) {
@@ -35,5 +37,13 @@ public class MovesTableElement {
                 output = output + s;
             }
         }
+        isWrong = false;
+    }
+
+    MovesTableElement(String errorMessage) {
+
+        isWrong = true;
+        errorInformation = errorMessage;
+
     }
 }

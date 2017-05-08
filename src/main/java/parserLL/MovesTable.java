@@ -23,6 +23,7 @@ public class MovesTable {
         stack.add(startElement);
         String symbol;
         String terminal;
+        String errorMessage;
 
         //elementToAdd = new MovesTableElement(stack, inputDataSet, new ArrayList<>());
 
@@ -45,12 +46,22 @@ public class MovesTable {
                     }
 
                     System.out.println("input is already empty, stack not");
+
+                    errorMessage = "input is already empty, stack not";
+                    currentElement = new MovesTableElement(errorMessage);
+                    movesList.add(currentElement);
+
                     return;
                 }
             }
             //check if stack is empty
             if(stack.isEmpty()) {
                 System.out.println("stack is already empty, input not");
+
+                errorMessage = "input is already empty, stack not";
+                currentElement = new MovesTableElement(errorMessage);
+                movesList.add(currentElement);
+
                 return;
             }
 
@@ -66,6 +77,11 @@ public class MovesTable {
             //check if symbol exist on predictiveMap
             if(!predictiveMap.containsKey(stack.get(stack.size()-1))) {
                 System.out.println("in Predictive map there is not element from top of stack");
+
+                errorMessage = "in Predictive map there is not element from top of stack";
+                currentElement = new MovesTableElement(errorMessage);
+                movesList.add(currentElement);
+
                 return;
             }
             //check if on map exist prediction
@@ -91,7 +107,12 @@ public class MovesTable {
                 }
             } else {
                 //if not error message
-                System.out.println("Trere is not Symbol: " + symbol + ", with production in terminal: " + terminal);
+                System.out.println("There is not Symbol: " + symbol + ", with production in terminal: " + terminal);
+
+                errorMessage = "There is not Symbol: " + symbol + ", with production in terminal: " + terminal;
+                currentElement = new MovesTableElement(errorMessage);
+                movesList.add(currentElement);
+
             }
         }
         currentElement = new MovesTableElement(stack, inputDataSet, "", new ArrayList<>());
@@ -101,12 +122,20 @@ public class MovesTable {
     public void printMovesTable() {
         Integer i = 1;
         for(MovesTableElement mte: movesList) {
-            System.out.println("-------");
-            System.out.println(i);
-            System.out.println("Stack:  " + mte.stack);
-            System.out.println("Input:  " + mte.input);
-            System.out.println("Output: " + mte.output);
-            i++;
+
+            if(!mte.isWrong) {
+                System.out.println("-------");
+                System.out.println(i);
+                System.out.println("Stack:  " + mte.stack);
+                System.out.println("Input:  " + mte.input);
+                System.out.println("Output: " + mte.output);
+                i++;
+            } else {
+                System.out.println(mte.errorInformation);
+            }
+
+
+
         }
     }
 }

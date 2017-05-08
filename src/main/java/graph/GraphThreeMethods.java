@@ -13,17 +13,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by DELL6430u on 2017-03-27.
- */
 public class GraphThreeMethods {
     mxGraph mainGraph;
-    //public mxRadialTreeLayout layout;
     Map<Integer, mxCell> vertexMap;
     List<mxCell> cellList;
     List<mxCell> vertexList;
     public mxGraphComponent graphComponent;
-    SwingNode node;
     Integer x;
     Integer y;
     Boolean shift;
@@ -46,24 +41,6 @@ public class GraphThreeMethods {
         for(FLFPart element: outputList) {
             addCell(element);
         }
-
-
-
-
-
-
-
-//        style.put(mxConstants.STYLE_FILLCOLOR, mxUtils.getHexColorString(Color.WHITE));
-//        style.put(mxConstants.STYLE_STROKEWIDTH, 1.5);
-//        style.put(mxConstants.STYLE_STROKECOLOR, mxUtils.getHexColorString(new Color(0, 0, 170)));
-//        style.put(mxConstants.STYLE_SHAPE, mxConstants.SHAPE_ELLIPSE);
-//        style.put(mxConstants.STYLE_PERIMETER, mxConstants.PERIMETER_ELLIPSE);
-//
-//        endStyle.put(mxConstants.STYLE_FILLCOLOR, mxUtils.getHexColorString(Color.WHITE));
-//        endStyle.put(mxConstants.STYLE_STROKEWIDTH, 1.5);
-//        endStyle.put(mxConstants.STYLE_STROKECOLOR, mxUtils.getHexColorString(new Color(0, 0, 170)));
-//        endStyle.put(mxConstants.STYLE_SHAPE, mxConstants.SHAPE_DOUBLE_ELLIPSE);
-//        endStyle.put(mxConstants.STYLE_PERIMETER, mxConstants.PERIMETER_ELLIPSE);
 
 
         mxHierarchicalLayout layout = new mxHierarchicalLayout(mainGraph);

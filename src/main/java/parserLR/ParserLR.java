@@ -32,6 +32,11 @@ public class ParserLR {
         //get follow set
         firstFollowSolution = new FirstFollow(inputList);
         firstFollowSolution.generateSolutionSet();
+
+        if(firstFollowSolution.errorFlag) {
+            return;
+        }
+
         followElementMap = new HashMap<>();
         followElementMap = firstFollowSolution.followElementMap;
 
@@ -130,6 +135,7 @@ public class ParserLR {
         stack.push("0");
         Integer tempInt;
         String tempString;
+        String errorMessage;
         currentMovesElementLR = new MovesElementLR(movesNumber++, new ArrayList<>(stack) , new ArrayList<>(inputDataSet) );
         movesList = new ArrayList<>();
         movesList.add(currentMovesElementLR);
@@ -138,11 +144,21 @@ public class ParserLR {
         while(true) {
             if(!actionTable.containsKey(Integer.parseInt(stack.peek()))) {
                 System.out.println("There is not this value on ACTION table (row): " + stack.peek());
+
+                errorMessage = "There is not this value on ACTION table (row): " + stack.peek();
+                currentMovesElementLR = new MovesElementLR(errorMessage);
+                movesList.add(currentMovesElementLR);
+
                 break;
             }
 
             if(!actionTable.get(Integer.parseInt(stack.peek())).containsKey(inputDataSet.get(0))) {
                 System.out.println("There is not this value on ACTION table (column): " + stack.peek());
+
+                errorMessage = "There is not this value on ACTION table (column): " + stack.peek();
+                currentMovesElementLR = new MovesElementLR(errorMessage);
+                movesList.add(currentMovesElementLR);
+
                 break;
             }
 
@@ -176,10 +192,20 @@ public class ParserLR {
 
                 if(!gotoTable.containsKey(Integer.parseInt(tempString))) {
                     System.out.println("There is not this value on GOTO table (row): " + tempString);
+
+                    errorMessage = "There is not this value on GOTO table (row): " + tempString;
+                    currentMovesElementLR = new MovesElementLR(errorMessage);
+                    movesList.add(currentMovesElementLR);
+
                     break;
                 }
                 if(!gotoTable.get(Integer.parseInt(tempString)).containsKey(stack.peek())) {
                     System.out.println("There is not this value on GOTO table (column): " + inputDataSet.get(0));
+
+                    errorMessage = "There is not this value on GOTO table (column): " + inputDataSet.get(0);
+                    currentMovesElementLR = new MovesElementLR(errorMessage);
+                    movesList.add(currentMovesElementLR);
+
                     break;
                 }
                 //if exist add to stack

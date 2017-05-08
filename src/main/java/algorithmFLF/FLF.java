@@ -195,7 +195,11 @@ public class FLF {
             }
             switch(line.charAt(i)){
                 case CommonUtility.starSign:
+
                     createOperand(4, CommonUtility.starSign);
+//                    if(line.charAt(i+1) != CommonUtility.starSign && line.charAt(i+1) != CommonUtility.andSign && line.charAt(i+1) != CommonUtility.orSign) {
+//                        errorFlag = true;
+//                    }
                     break;
                 case CommonUtility.orSign:
                     if(word.length() == 0 && line.charAt(i-1) != CommonUtility.starSign){
@@ -265,7 +269,7 @@ public class FLF {
             createSymbol(word, inputList);
             word = "";
         }
-        if(!lastSymbol && !eMessage && line.charAt(sizeOfString - 1) != '*'){
+        if(!lastSymbol && !eMessage && line.charAt(sizeOfString - 1) != CommonUtility.starSign){
             errorFlag = true;
             System.out.print("---------------------------");
             System.out.println();

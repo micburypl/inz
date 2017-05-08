@@ -95,12 +95,9 @@ public class FirstFollowSolverController implements Initializable {
 //        inputLineList.add("B -> ( S ) | a");
 
 
-        //if(!inputLineList.isEmpty()) {
-            testFirstFollow = new FirstFollow(inputLineList);
-            testFirstFollow.generateSolutionSet();
-//        } else {
-//            System.out.println("Empty list");
-//        }
+        testFirstFollow = new FirstFollow(inputLineList);
+        testFirstFollow.generateSolutionSet();
+
 
         if(testFirstFollow.errorFlag) {
 

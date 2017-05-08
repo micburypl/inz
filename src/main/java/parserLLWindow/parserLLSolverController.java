@@ -3,6 +3,7 @@ package parserLLWindow;
 import com.sun.org.apache.bcel.internal.generic.RETURN;
 import commonUtility.CommonUtility;
 import firstFollow.FirstFollow;
+import firstFollowWindow.FirstFollowInputController;
 import firstFollowWindow.FirstFollowOutputFirstController;
 import firstFollowWindow.FirstFollowOutputFollowController;
 import javafx.event.ActionEvent;
@@ -17,6 +18,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import parserLL.MovesTable;
 import parserLL.MovesTableElement;
 import parserLR.MovesElementLR;
@@ -39,8 +41,10 @@ public class parserLLSolverController implements Initializable {
     StackPane parserLLOutputPane;
     @FXML
     TextField movesTableInput;
+    @FXML
+    VBox parserLLButtonVBox;
 
-    List<parserLLInputController> listInput = new ArrayList<>();
+    List<FirstFollowInputController> listInput = new ArrayList<>();
 
     FirstFollow testFirstFollow;
 
@@ -68,6 +72,8 @@ public class parserLLSolverController implements Initializable {
             listInput.add(x1.getController());
         });
         parserLLInputList.getItems().add(b);
+
+        parserLLButtonVBox.setVisible(false);
     }
 
     public void generateLL(ActionEvent actionEvent) {
@@ -79,8 +85,6 @@ public class parserLLSolverController implements Initializable {
 //
 //        String tempString;
 //        for(Integer i = 0; i < listInput.size(); i++) {
-//            //System.out.println(listInput.get(i).getLeftPart());
-//            System.out.println(listInput.get(i).productionLeftPart);
 //            tempString =  listInput.get(i).getLeftPart() + " -> " + listInput.get(i).getRightPart();
 //            System.out.println(tempString);
 //            inputLineList.add(tempString);
@@ -97,13 +101,44 @@ public class parserLLSolverController implements Initializable {
         inputLineList.add("B -> ( S ) | a");
 
         //
-        if(!inputLineList.isEmpty()) {
-            testFirstFollow = new FirstFollow(inputLineList);
-            testFirstFollow.generateSolutionSet();
-            testFirstFollow.predictiveMap.generatePredictiveMap(testFirstFollow.parsedSet, testFirstFollow.firstElementMap, testFirstFollow.followElementMap);
-        } else {
-            System.out.println("Empty list");
+//        if(!inputLineList.isEmpty()) {
+        testFirstFollow = new FirstFollow(inputLineList);
+        testFirstFollow.generateSolutionSet();
+
+        if(testFirstFollow.errorFlag) {
+
+            //blocked buttons
+            parserLLButtonVBox.setVisible(false);
+
+            parserLLButtonVBox.getChildren().clear();
+            GridPane gridPane = new GridPane();
+            gridPane.setGridLinesVisible(true);
+            Label tempLabel = new Label("Errors");
+            gridPane.add(tempLabel, 0,0);
+            gridPane.setHalignment(tempLabel, HPos.CENTER);
+            Integer tempInt = 1;
+            for(Integer errorLine: testFirstFollow.errorMessages.keySet() ) {
+                tempLabel = new Label("In row " + errorLine + ". " + testFirstFollow.errorMessages.get(errorLine));
+                gridPane.add(tempLabel, 0, tempInt++);
+                gridPane.setHalignment(tempLabel, HPos.CENTER);
+            }
+
+            parserLLOutputPane.getChildren().add(gridPane);
+            return;
         }
+
+        //show buttons
+        parserLLButtonVBox.setVisible(true);
+        parserLLOutputPane.getChildren().clear();
+        GridPane gridPane = new GridPane();
+        parserLLOutputPane.getChildren().add(gridPane);
+
+
+
+        testFirstFollow.predictiveMap.generatePredictiveMap(testFirstFollow.parsedSet, testFirstFollow.firstElementMap, testFirstFollow.followElementMap);
+//        } else {
+//            System.out.println("Empty list");
+//        }
 
     }
 
@@ -267,17 +302,26 @@ public class parserLLSolverController implements Initializable {
 
     public void printMovesTable(ActionEvent actionEvent) throws IOException {
         MovesTable testMoveTable = new MovesTable();
+        FXMLLoader x;
+        parserLLOutputPane.getChildren().clear();
+        ListView parserLLOutputList = new ListView();
         if(movesTableInput.getText() != null && !movesTableInput.getText().trim().isEmpty()) {
 
-            testMoveTable.generateMovesTable("S","a + a * a", testFirstFollow.predictiveMap.predictiveMap);
+            //TODO Start symbol
+            //testMoveTable.generateMovesTable("S","a + a * a", testFirstFollow.predictiveMap.predictiveMap);
+            testMoveTable.generateMovesTable("S",movesTableInput.getText(), testFirstFollow.predictiveMap.predictiveMap);
 
         } else {
-            System.out.println("Input Empty");
+            x = new FXMLLoader(getClass().getResource("/fxml/test/parserLLWindow/parserLLMovesErrorOutput.fxml"));
+            parserLLOutputList.getItems().add(x.load());
+            parserLLMovesErrorOutputController xControler = x.getController();
+            //errorMessage
+            xControler.setError("Input is Empty");
+            System.out.println("Input is Empty");
+            parserLLOutputPane.getChildren().add(parserLLOutputList);
             return;
         }
 
-        parserLLOutputPane.getChildren().clear();
-        ListView parserLLOutputList = new ListView();
         FXMLLoader xStart = new FXMLLoader(getClass().getResource("/fxml/test/parserLLWindow/parserLLMovesOutput.fxml"));
         parserLLOutputList.getItems().add(xStart.load());
         parserLLMovesOutputController xControlerStart = xStart.getController();
@@ -286,22 +330,30 @@ public class parserLLSolverController implements Initializable {
         xControlerStart.setStack("Stack");
 
         for(MovesTableElement keyNumber: testMoveTable.movesList){
-            FXMLLoader x = new FXMLLoader(getClass().getResource("/fxml/test/parserLLWindow/parserLLMovesOutput.fxml"));
-            parserLLOutputList.getItems().add(x.load());
-            parserLLMovesOutputController xControler = x.getController();
 
-            //Input
-            xControler.setInput(keyNumber.input);
 
-            //Stack
-            xControler.setStack(keyNumber.stack);
+            if(!keyNumber.isWrong) {
+                x = new FXMLLoader(getClass().getResource("/fxml/test/parserLLWindow/parserLLMovesOutput.fxml"));
+                parserLLOutputList.getItems().add(x.load());
+                parserLLMovesOutputController xControler = x.getController();
+                //Input
+                xControler.setInput(keyNumber.input);
 
-            //Output
-            xControler.setOutput(keyNumber.output);
+                //Stack
+                xControler.setStack(keyNumber.stack);
 
+                //Output
+                xControler.setOutput(keyNumber.output);
+
+            } else {
+                x = new FXMLLoader(getClass().getResource("/fxml/test/parserLLWindow/parserLLMovesErrorOutput.fxml"));
+                parserLLOutputList.getItems().add(x.load());
+                parserLLMovesErrorOutputController xControler = x.getController();
+                //Input
+                xControler.setError(keyNumber.errorInformation);
+            }
         }
         parserLLOutputPane.getChildren().add(parserLLOutputList);
-
 
 
 
