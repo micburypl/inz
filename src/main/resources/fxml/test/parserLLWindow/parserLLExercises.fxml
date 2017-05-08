@@ -39,7 +39,7 @@
       <RowConstraints percentHeight="1.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <Label fx:id="parserLLPartialSolutionsLabel" text="%parserLL.partialSolutions" GridPane.columnIndex="1" GridPane.columnSpan="4" GridPane.rowIndex="9" />
+      <Label text="%parserLL.partialSolutions" GridPane.columnIndex="1" GridPane.columnSpan="4" GridPane.rowIndex="9" />
       <ListView fx:id="parserLLInputList" GridPane.columnIndex="1" GridPane.rowIndex="4" />
       <VBox fx:id="parserLLButtonVBox" GridPane.columnIndex="1" GridPane.rowIndex="10">
           <children>
@@ -55,8 +55,8 @@
       <Button mnemonicParsing="false" onAction="#generateLL" styleClass="button-green" text="%parserLL.GenerateLLButton" GridPane.columnIndex="1" GridPane.rowIndex="7" />
       <TextField id="firstLastFollowInput" fx:id="movesTableInput" GridPane.columnIndex="1" GridPane.rowIndex="13" />
       <Label text="%parserLL.GenerateLL" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-      <Label fx:id="parserLLInputStringLabel" text="%parserLL.inputString" GridPane.columnIndex="1" GridPane.rowIndex="12" />
-      <Button fx:id="parserLLMovesButton" mnemonicParsing="false" onAction="#printMovesTable" styleClass="button-green" text="%parserLL.MovesTableButton" GridPane.columnIndex="1" GridPane.rowIndex="15" />
+      <Label text="%parserLL.inputString" GridPane.columnIndex="1" GridPane.rowIndex="12" />
+      <Button mnemonicParsing="false" onAction="#printMovesTable" styleClass="button-green" text="%parserLL.MovesTableButton" GridPane.columnIndex="1" GridPane.rowIndex="15" />
       <Label text="%parserLL.Header" GridPane.columnIndex="3" GridPane.rowIndex="1">
          <font>
             <Font size="18.0" />

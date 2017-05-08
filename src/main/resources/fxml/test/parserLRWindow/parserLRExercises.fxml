@@ -55,9 +55,9 @@
       <Button mnemonicParsing="false" onAction="#generateLR" styleClass="button-green" text="%parserLR.GenerateButton" GridPane.columnIndex="1" GridPane.rowIndex="7" />
       <TextField id="movesInput" fx:id="movesTableInput" GridPane.columnIndex="1" GridPane.rowIndex="13" />
       <Label text="%parserLR.GenerateLR" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-      <Label fx:id="parserLRInputStringLabel" text="%parserLR.InputString" GridPane.columnIndex="1" GridPane.rowIndex="12" />
-      <Button fx:id="parserLRMovesButton" mnemonicParsing="false" onAction="#printMovesTable" styleClass="button-green" text="%parserLR.MovesTableButton" GridPane.columnIndex="1" GridPane.rowIndex="15" />
-      <Label fx:id="parserLRPartialSolutionsLabel" text="%parserLR.PartialSolutions" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+      <Label text="%parserLR.InputString" GridPane.columnIndex="1" GridPane.rowIndex="12" />
+      <Button mnemonicParsing="false" onAction="#printMovesTable" styleClass="button-green" text="%parserLR.MovesTableButton" GridPane.columnIndex="1" GridPane.rowIndex="15" />
+      <Label text="%parserLR.PartialSolutions" GridPane.columnIndex="1" GridPane.rowIndex="9" />
       <Label text="%parserLR.Header" GridPane.columnIndex="3" GridPane.rowIndex="1">
          <font>
             <Font size="18.0" />

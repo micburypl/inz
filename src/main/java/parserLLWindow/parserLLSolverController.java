@@ -43,6 +43,12 @@ public class parserLLSolverController implements Initializable {
     TextField movesTableInput;
     @FXML
     VBox parserLLButtonVBox;
+    @FXML
+    Button parserLLMovesButton;
+    @FXML
+    Label parserLLInputStringLabel;
+    @FXML
+    Label parserLLPartialSolutionsLabel;
 
     List<FirstFollowInputController> listInput = new ArrayList<>();
 
@@ -52,7 +58,7 @@ public class parserLLSolverController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         FXMLLoader x = new FXMLLoader(getClass().getResource("/fxml/test/firstFollowWindow/firstFollowInput.fxml"));
-
+        showElement(false);
         try {
             //x.load();
             parserLLInputList.getItems().add(x.load());
@@ -73,7 +79,7 @@ public class parserLLSolverController implements Initializable {
         });
         parserLLInputList.getItems().add(b);
 
-        parserLLButtonVBox.setVisible(false);
+
     }
 
     public void generateLL(ActionEvent actionEvent) {
@@ -83,22 +89,22 @@ public class parserLLSolverController implements Initializable {
 
         // Correct
 //
-//        String tempString;
-//        for(Integer i = 0; i < listInput.size(); i++) {
-//            tempString =  listInput.get(i).getLeftPart() + " -> " + listInput.get(i).getRightPart();
-//            System.out.println(tempString);
-//            inputLineList.add(tempString);
-//        }
+        String tempString;
+        for(Integer i = 0; i < listInput.size(); i++) {
+            tempString =  listInput.get(i).getLeftPart() + " -> " + listInput.get(i).getRightPart();
+            System.out.println(tempString);
+            inputLineList.add(tempString);
+        }
 
         //
 
         // Fortest
 
-        inputLineList.add("S -> A S'");
-        inputLineList.add("S' -> + A S' | eps");
-        inputLineList.add("A -> B A' ");
-        inputLineList.add("A' -> * B A' | eps");
-        inputLineList.add("B -> ( S ) | a");
+//        inputLineList.add("S -> A S'");
+//        inputLineList.add("S' -> + A S' | eps");
+//        inputLineList.add("A -> B A' ");
+//        inputLineList.add("A' -> * B A' | eps");
+//        inputLineList.add("B -> ( S ) | a");
 
         //
 //        if(!inputLineList.isEmpty()) {
@@ -108,9 +114,9 @@ public class parserLLSolverController implements Initializable {
         if(testFirstFollow.errorFlag) {
 
             //blocked buttons
-            parserLLButtonVBox.setVisible(false);
+            showElement(false);
 
-            parserLLButtonVBox.getChildren().clear();
+            parserLLOutputPane.getChildren().clear();
             GridPane gridPane = new GridPane();
             gridPane.setGridLinesVisible(true);
             Label tempLabel = new Label("Errors");
@@ -128,7 +134,10 @@ public class parserLLSolverController implements Initializable {
         }
 
         //show buttons
-        parserLLButtonVBox.setVisible(true);
+        showElement(true);
+//        parserLLButtonVBox.setVisible(true);
+//        parserLLMovesButton.setVisible(true);
+
         parserLLOutputPane.getChildren().clear();
         GridPane gridPane = new GridPane();
         parserLLOutputPane.getChildren().add(gridPane);
@@ -358,6 +367,15 @@ public class parserLLSolverController implements Initializable {
 
 
 
+
+    }
+
+    void showElement(Boolean show){
+        parserLLButtonVBox.setVisible(show);
+        parserLLMovesButton.setVisible(show);
+        parserLLInputStringLabel.setVisible(show);
+        parserLLPartialSolutionsLabel.setVisible(show);
+        movesTableInput.setVisible(show);
 
     }
 }

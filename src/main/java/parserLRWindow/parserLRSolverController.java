@@ -42,6 +42,12 @@ public class parserLRSolverController implements Initializable {
     TextField movesTableInput;
     @FXML
     VBox parserLRButtonVBox;
+    @FXML
+    Button parserLRMovesButton;
+    @FXML
+    Label parserLRInputStringLabel;
+    @FXML
+    Label parserLRPartialSolutionsLabel;
 
     List<FirstFollowInputController> listInput = new ArrayList<>();
 
@@ -74,7 +80,8 @@ public class parserLRSolverController implements Initializable {
         });
         parserLRInputList.getItems().add(b);
 
-        parserLRButtonVBox.setVisible(false);
+        //parserLRButtonVBox.setVisible(false);
+        showElement(false);
     }
 
     public void generateLR(ActionEvent actionEvent) {
@@ -84,31 +91,32 @@ public class parserLRSolverController implements Initializable {
 
         // Correct
 //
-//        String tempString;
-//        for(Integer i = 0; i < listInput.size(); i++) {
-//            //System.out.println(listInput.get(i).getLeftPart());
-//            //System.out.println(listInput.get(i).productionLeftPart);
-//            tempString =  listInput.get(i).getLeftPart() + " -> " + listInput.get(i).getRightPart();
-//            System.out.println(tempString);
-//            inputLineList.add(tempString);
-//        }
+        String tempString;
+        for(Integer i = 0; i < listInput.size(); i++) {
+            //System.out.println(listInput.get(i).getLeftPart());
+            //System.out.println(listInput.get(i).productionLeftPart);
+            tempString =  listInput.get(i).getLeftPart() + " -> " + listInput.get(i).getRightPart();
+            System.out.println(tempString);
+            inputLineList.add(tempString);
+        }
 
         //
 
         // Fortest
 
-        inputLineList.add("S -> A");
-        inputLineList.add("S -> S + A");
-        inputLineList.add("A -> B ");
-        inputLineList.add("A -> A * B");
-        inputLineList.add("B -> a | ( S )");
+//        inputLineList.add("S -> A");
+//        inputLineList.add("S -> S + A");
+//        inputLineList.add("A -> B ");
+//        inputLineList.add("A -> A * B");
+//        inputLineList.add("B -> a | ( S )");
 
         //
 //        if(!inputLineList.isEmpty()) {
             testGotoGenerator = new ParserLR(inputLineList);
         if(testGotoGenerator.firstFollowSolution.errorFlag) {
             //blocked buttons
-            parserLRButtonVBox.setVisible(false);
+            //parserLRButtonVBox.setVisible(false);
+            showElement(false);
 
             parserLRButtonVBox.getChildren().clear();
             GridPane gridPane = new GridPane();
@@ -128,7 +136,8 @@ public class parserLRSolverController implements Initializable {
         }
 
         //show buttons
-        parserLRButtonVBox.setVisible(true);
+        //parserLRButtonVBox.setVisible(true);
+        showElement(true);
         parserLROutputPane.getChildren().clear();
         GridPane gridPane = new GridPane();
         parserLROutputPane.getChildren().add(gridPane);
@@ -400,6 +409,15 @@ public class parserLRSolverController implements Initializable {
 
         }
         parserLROutputPane.getChildren().add(parserLROutputList);
+
+    }
+
+    void showElement(Boolean show){
+        parserLRButtonVBox.setVisible(show);
+        parserLRMovesButton.setVisible(show);
+        parserLRInputStringLabel.setVisible(show);
+        parserLRPartialSolutionsLabel.setVisible(show);
+        movesTableInput.setVisible(show);
 
     }
 }
