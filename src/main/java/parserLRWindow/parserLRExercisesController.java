@@ -1,10 +1,11 @@
 package parserLRWindow;
 
 import commonUtility.CommonUtility;
-import firstFollow.FirstFollow;
+import firstFollowTestData.FirstFollowTestMainSet;
+import firstFollowTestData.FirstFollowTestSet;
+import firstFollowTestData.FirstFollowTestSetElement;
 import firstFollowWindow.FirstFollowInputController;
-import firstFollowWindow.FirstFollowOutputFirstController;
-import firstFollowWindow.FirstFollowOutputFollowController;
+import firstFollowWindow.FirstFollowInputExercisesController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,7 +19,6 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import parserLLWindow.parserLLInputController;
 import parserLR.MovesElementLR;
 import parserLR.ParserLR;
 
@@ -32,7 +32,7 @@ import java.util.ResourceBundle;
 /**
  * Created by DELL6430u on 2017-05-01.
  */
-public class parserLRSolverController implements Initializable {
+public class parserLRExercisesController implements Initializable {
 
     @FXML
     ListView parserLRInputList;
@@ -48,29 +48,31 @@ public class parserLRSolverController implements Initializable {
     Label parserLRInputStringLabel;
     @FXML
     Label parserLRPartialSolutionsLabel;
+    @FXML
+    Button parserLRVerifyButton;
+    @FXML
+    Button parserLRRandomMoves;
 
-    List<FirstFollowInputController> listInput = new ArrayList<>();
+    List<FirstFollowInputExercisesController> listInput = new ArrayList<>();
 
     ParserLR testGotoGenerator;
 
-
+    FirstFollowTestSet tempSet;
+    FirstFollowTestMainSet tempElement;
+    Integer lastValue;
+    Integer lastValueMoves;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        FXMLLoader x = new FXMLLoader(getClass().getResource("/fxml/test/firstFollowWindow/firstFollowInput.fxml"));
+        FXMLLoader x = new FXMLLoader(getClass().getResource("/fxml/test/firstFollowWindow/firstFollowExercisesInput.fxml"));
 
-        try {
-            //x.load();
-            parserLRInputList.getItems().add(x.load());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//
 
         listInput.add(x.getController());
         Button b = new Button("+");
         b.setOnAction(handle -> {
-            FXMLLoader x1 = new FXMLLoader(getClass().getResource("/fxml/test/firstFollowWindow/firstFollowInput.fxml"));
+            FXMLLoader x1 = new FXMLLoader(getClass().getResource("/fxml/test/firstFollowWindow/firstFollowExercisesInput.fxml"));
             try {
                 parserLRInputList.getItems().add(parserLRInputList.getItems().size() - 1, x1.load());
             } catch (IOException e) {
@@ -78,10 +80,40 @@ public class parserLRSolverController implements Initializable {
             }
             listInput.add(x1.getController());
         });
-        parserLRInputList.getItems().add(b);
+        //parserLRInputList.getItems().add(b);
 
         //parserLRButtonVBox.setVisible(false);
         showElement(false);
+    }
+
+    public void randomInput(ActionEvent actionEvent) throws IOException {
+        tempSet = new FirstFollowTestSet(true);
+        lastValue = tempSet.testData(lastValue);
+        tempElement = tempSet.InputListTestList.get(lastValue);
+        parserLRInputList.getItems().clear();
+        listInput = new ArrayList<>();
+        for(FirstFollowTestSetElement temp : tempElement.InputListTest){
+            FXMLLoader x = new FXMLLoader(getClass().getResource("/fxml/test/firstFollowWindow/firstFollowExercisesInput.fxml"));
+
+
+            parserLRInputList.getItems().add(x.load());
+            FirstFollowInputExercisesController elementContorller = x.getController();
+
+            elementContorller.setLeftPart(temp.leftPart);
+            elementContorller.setRightPart(temp.rightPart);
+            listInput.add(x.getController());
+        }
+
+        showElement(false);
+        lastValueMoves = -1;
+        movesTableInput.clear();
+    }
+
+    public void randomMovesInput(ActionEvent actionEvent) {
+        lastValueMoves = tempElement.testMovesData(lastValueMoves);
+        String movesString = tempElement.movesTestList.get(lastValueMoves);
+        movesTableInput.setText(movesString);
+
     }
 
     public void generateLR(ActionEvent actionEvent) {
@@ -91,10 +123,9 @@ public class parserLRSolverController implements Initializable {
 
         // Correct
 //
+
         String tempString;
         for(Integer i = 0; i < listInput.size(); i++) {
-            //System.out.println(listInput.get(i).getLeftPart());
-            //System.out.println(listInput.get(i).productionLeftPart);
             tempString =  listInput.get(i).getLeftPart() + " -> " + listInput.get(i).getRightPart();
             System.out.println(tempString);
             inputLineList.add(tempString);
@@ -418,6 +449,7 @@ public class parserLRSolverController implements Initializable {
         parserLRInputStringLabel.setVisible(show);
         parserLRPartialSolutionsLabel.setVisible(show);
         movesTableInput.setVisible(show);
-
+        parserLRVerifyButton.setVisible(show);
+        parserLRRandomMoves.setVisible(show);
     }
 }

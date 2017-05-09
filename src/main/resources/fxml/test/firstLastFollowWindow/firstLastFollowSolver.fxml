@@ -36,27 +36,27 @@
       <RowConstraints maxHeight="20.0" minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <Label text="%firstLastFollow.PartialSolutions" GridPane.columnIndex="1" GridPane.columnSpan="4" GridPane.rowIndex="9" />
+      <Label fx:id="firstLastFollowPartialSolutionsLabel" text="%firstLastFollow.PartialSolutions" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="9" />
       <VBox fx:id="firstLastFollowButtonVBox" prefHeight="72.0" prefWidth="140.0" GridPane.columnIndex="1" GridPane.rowIndex="10">
          <children>
-            <Button fx:id="printNullableButton" mnemonicParsing="false" onAction="#printNullable" styleClass="button-green" text="%firstLastFollow.NullableButton" />
-            <Button fx:id="printFirstLastButton" mnemonicParsing="false" onAction="#printFirstLast" styleClass="button-green" text="%firstLastFollow.FirstButton" />
-            <Button fx:id="printFollow" mnemonicParsing="false" onAction="#printFollow" styleClass="button-green" text="%firstLastFollow.FollowButton" />
-            <Button fx:id="printTransitionTableButton" mnemonicParsing="false" onAction="#printTransitionTable" styleClass="button-green" text="%firstLastFollow.TransitionTableButton" />
-            <Button fx:id="printGraphButton" mnemonicParsing="false" onAction="#printGraph" styleClass="button-green" text="%firstLastFollow.GraphButton" />
+            <Button fx:id="printNullableButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#printNullable" styleClass="button-green" text="%firstLastFollow.NullableButton" />
+            <Button fx:id="printFirstLastButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#printFirstLast" styleClass="button-green" text="%firstLastFollow.FirstButton" />
+            <Button fx:id="printFollow" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#printFollow" styleClass="button-green" text="%firstLastFollow.FollowButton" />
+            <Button fx:id="printTransitionTableButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#printTransitionTable" styleClass="button-green" text="%firstLastFollow.TransitionTableButton" />
+            <Button fx:id="printGraphButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#printGraph" styleClass="button-green" text="%firstLastFollow.GraphButton" />
          </children></VBox>
-      <Label text="%firstLastFollow.Solutions" GridPane.columnIndex="5" GridPane.rowIndex="3" />
+      <Label fx:id="firstLastFollowSolutionsLabel" text="%firstLastFollow.Solutions" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
       <StackPane fx:id="firstLastFollowOutputPane" GridPane.columnIndex="5" GridPane.rowIndex="5" GridPane.rowSpan="6" />
-      <Label text="%firstLastFollow.InputData" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-      <Button mnemonicParsing="false" onAction="#generateFLF" styleClass="button-green" text="%firstLastFollow.GenerateButton" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+      <Label text="%firstLastFollow.InputData" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+      <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#generateFLF" styleClass="button-green" text="%firstLastFollow.GenerateButton" GridPane.columnIndex="1" GridPane.rowIndex="7" />
       <TextField id="firstLastFollowInput" fx:id="firstLastFollowInput" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-      <Label text="%firstLastFollow.GenerateFLF" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+      <Label text="%firstLastFollow.GenerateFLF" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
       <Label text="%firstLastFollow.Header" GridPane.columnIndex="3" GridPane.rowIndex="1">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
       <StackPane fx:id="firstLastFollowGraphPane" GridPane.columnIndex="3" GridPane.rowIndex="5" GridPane.rowSpan="6" />
-      <Label text="%firstLastFollow.Graph" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+      <Label fx:id="firstLastFollowGraphLabel" text="%firstLastFollow.Graph" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
    </children>
 </GridPane>

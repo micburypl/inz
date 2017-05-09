@@ -11,13 +11,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.HPos;
-import javafx.geometry.Pos;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-
 
 import java.io.IOException;
 import java.net.URL;
@@ -29,7 +30,7 @@ import java.util.ResourceBundle;
 /**
  * Created by DELL6430u on 2017-04-10.
  */
-public class FirstLastFollowSolverController implements Initializable {
+public class FirstLastFollowExercisesController implements Initializable {
 
     FLF myTree;
 
@@ -40,7 +41,6 @@ public class FirstLastFollowSolverController implements Initializable {
 
     @FXML
     VBox firstLastFollowButtonVBox;
-
 
     @FXML
     Pane firstLastFollowOutputPane;
@@ -62,6 +62,9 @@ public class FirstLastFollowSolverController implements Initializable {
 
     @FXML
     Label firstLastFollowPartialSolutionsLabel;
+
+    @FXML
+    Button firstLastFollowExercisesVerifyButton;
 
     List<FirstLastFollowInputController> list = new ArrayList<>();
 
@@ -88,11 +91,16 @@ public class FirstLastFollowSolverController implements Initializable {
 
     }
 
+    public void randomInput(ActionEvent actionEvent) {
+        FirstLastFollowTestSet tempSet = new FirstLastFollowTestSet();
+        firstLastFollowInput.setText(tempSet.testData());
+    }
 
     public void generateFLF(ActionEvent actionEvent) {
 
         String inputData;// = "(a|b)*&a&b&b";
         inputData = firstLastFollowInput.getText();
+        //inputData = "(a|b)*&a&b&b";
 
         if(inputData == null || inputData.isEmpty()) {
 
@@ -451,6 +459,8 @@ public class FirstLastFollowSolverController implements Initializable {
         firstLastFollowGraphLabel.setVisible(show);
         firstLastFollowSolutionsLabel.setVisible(show);
         firstLastFollowPartialSolutionsLabel.setVisible(show);
+        firstLastFollowExercisesVerifyButton.setVisible(show);
     }
+
 
 }

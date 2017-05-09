@@ -1,11 +1,11 @@
 package parserLLWindow;
 
-import com.sun.org.apache.bcel.internal.generic.RETURN;
-import commonUtility.CommonUtility;
 import firstFollow.FirstFollow;
+import firstFollowTestData.FirstFollowTestMainSet;
+import firstFollowTestData.FirstFollowTestSet;
+import firstFollowTestData.FirstFollowTestSetElement;
 import firstFollowWindow.FirstFollowInputController;
-import firstFollowWindow.FirstFollowOutputFirstController;
-import firstFollowWindow.FirstFollowOutputFollowController;
+import firstFollowWindow.FirstFollowInputExercisesController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,17 +21,18 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import parserLL.MovesTable;
 import parserLL.MovesTableElement;
-import parserLR.MovesElementLR;
-import parserLRWindow.parserLRMovesOutputController;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.ResourceBundle;
 
 /**
  * Created by DELL6430u on 2017-05-01.
  */
-public class parserLLSolverController implements Initializable {
+public class parserLLExercisesController implements Initializable {
 
     @FXML
     ListView parserLLInputList;
@@ -49,27 +50,36 @@ public class parserLLSolverController implements Initializable {
     Label parserLLInputStringLabel;
     @FXML
     Label parserLLPartialSolutionsLabel;
+    @FXML
+    Button parserLLVerifyButton;
+    @FXML
+    Button parserLLRandomMoves;
 
-    List<FirstFollowInputController> listInput = new ArrayList<>();
+    List<FirstFollowInputExercisesController> listInput = new ArrayList<>();
 
     FirstFollow testFirstFollow;
+
+    FirstFollowTestSet tempSet;
+    FirstFollowTestMainSet tempElement;
+    Integer lastValue;
+    Integer lastValueMoves;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        FXMLLoader x = new FXMLLoader(getClass().getResource("/fxml/test/firstFollowWindow/firstFollowInput.fxml"));
+        FXMLLoader x = new FXMLLoader(getClass().getResource("/fxml/test/firstFollowWindow/firstFollowExercisesInput.fxml"));
         showElement(false);
-        try {
-            //x.load();
-            parserLLInputList.getItems().add(x.load());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            //x.load();
+//            parserLLInputList.getItems().add(x.load());
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
         listInput.add(x.getController());
         Button b = new Button("+");
         b.setOnAction(handle -> {
-            FXMLLoader x1 = new FXMLLoader(getClass().getResource("/fxml/test/firstFollowWindow/firstFollowInput.fxml"));
+            FXMLLoader x1 = new FXMLLoader(getClass().getResource("/fxml/test/firstFollowWindow/firstFollowExercisesInput.fxml"));
             try {
                 parserLLInputList.getItems().add(parserLLInputList.getItems().size() - 1, x1.load());
             } catch (IOException e) {
@@ -77,8 +87,38 @@ public class parserLLSolverController implements Initializable {
             }
             listInput.add(x1.getController());
         });
-        parserLLInputList.getItems().add(b);
+        //parserLLInputList.getItems().add(b);
 
+
+    }
+
+    public void randomInput(ActionEvent actionEvent) throws IOException {
+        tempSet = new FirstFollowTestSet(false);
+        lastValue = tempSet.testData(lastValue);
+        tempElement = tempSet.InputListTestList.get(lastValue);
+        parserLLInputList.getItems().clear();
+        listInput = new ArrayList<>();
+        for(FirstFollowTestSetElement temp : tempElement.InputListTest){
+            FXMLLoader x = new FXMLLoader(getClass().getResource("/fxml/test/firstFollowWindow/firstFollowExercisesInput.fxml"));
+
+
+            parserLLInputList.getItems().add(x.load());
+            FirstFollowInputExercisesController elementContorller = x.getController();
+
+            elementContorller.setLeftPart(temp.leftPart);
+            elementContorller.setRightPart(temp.rightPart);
+            listInput.add(x.getController());
+        }
+
+        showElement(false);
+        lastValueMoves = -1;
+        movesTableInput.clear();
+    }
+
+    public void randomMovesInput(ActionEvent actionEvent) {
+        lastValueMoves = tempElement.testMovesData(lastValueMoves);
+        String movesString = tempElement.movesTestList.get(lastValueMoves);
+        movesTableInput.setText(movesString);
 
     }
 
@@ -89,22 +129,22 @@ public class parserLLSolverController implements Initializable {
 
         // Correct
 //
-//        String tempString;
-//        for(Integer i = 0; i < listInput.size(); i++) {
-//            tempString =  listInput.get(i).getLeftPart() + " -> " + listInput.get(i).getRightPart();
-//            System.out.println(tempString);
-//            inputLineList.add(tempString);
-//        }
+        String tempString;
+        for(Integer i = 0; i < listInput.size(); i++) {
+            tempString =  listInput.get(i).getLeftPart() + " -> " + listInput.get(i).getRightPart();
+            System.out.println(tempString);
+            inputLineList.add(tempString);
+        }
 
         //
 
         // Fortest
 
-        inputLineList.add("S -> A S'");
-        inputLineList.add("S' -> + A S' | eps");
-        inputLineList.add("A -> B A' ");
-        inputLineList.add("A' -> * B A' | eps");
-        inputLineList.add("B -> ( S ) | a");
+//        inputLineList.add("S -> A S'");
+//        inputLineList.add("S' -> + A S' | eps");
+//        inputLineList.add("A -> B A' ");
+//        inputLineList.add("A' -> * B A' | eps");
+//        inputLineList.add("B -> ( S ) | a");
 
         //
 //        if(!inputLineList.isEmpty()) {
@@ -377,6 +417,10 @@ public class parserLLSolverController implements Initializable {
         parserLLInputStringLabel.setVisible(show);
         parserLLPartialSolutionsLabel.setVisible(show);
         movesTableInput.setVisible(show);
-
+        parserLLVerifyButton.setVisible(show);
+        parserLLRandomMoves.setVisible(show);
+        parserLLRandomMoves.setVisible(show);
     }
+
+
 }

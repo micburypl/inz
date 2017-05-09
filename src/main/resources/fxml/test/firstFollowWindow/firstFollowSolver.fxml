@@ -35,21 +35,21 @@
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <Label text="%firstFollow.PartialSolutions" GridPane.columnIndex="1" GridPane.columnSpan="4" GridPane.rowIndex="9" />
+      <Label fx:id="firstFollowPartialSolutionsLabel" text="%firstFollow.PartialSolutions" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="9" />
       <ListView fx:id="firstFollowInputList" GridPane.columnIndex="1" GridPane.rowIndex="4" />
       <VBox fx:id="firstFollowButtonVBox" prefHeight="72.0" prefWidth="140.0" GridPane.columnIndex="1" GridPane.rowIndex="11">
          <children>
-            <Button fx:id="printFirstButton" mnemonicParsing="false" onAction="#printFirst" styleClass="button-green" text="%firstFollow.FirstButton" />
-            <Button fx:id="printFollowButton" mnemonicParsing="false" onAction="#printFollow" styleClass="button-green" text="%firstFollow.FollowButton" />
+            <Button fx:id="printFirstButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#printFirst" styleClass="button-green" text="%firstFollow.FirstButton" />
+            <Button fx:id="printFollowButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#printFollow" styleClass="button-green" text="%firstFollow.FollowButton" />
          </children>
          <cursor>
             <Cursor fx:constant="DEFAULT" />
          </cursor></VBox>
-      <Label text="%firstFollow.Solutions" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+      <Label text="%firstFollow.Solutions" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
       <StackPane fx:id="firstFollowOutputPane" alignment="TOP_CENTER" GridPane.columnIndex="3" GridPane.rowIndex="4" GridPane.rowSpan="8" />
-      <Label text="%firstFollow.InputData" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-      <Button mnemonicParsing="false" onAction="#generateFirstAndFollow" styleClass="button-green" text="%firstFollow.GenerateFFButton" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-      <Label text="%firstFollow.GenerateFF" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+      <Label text="%firstFollow.InputData" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+      <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#generateFirstAndFollow" styleClass="button-green" text="%firstFollow.GenerateFFButton" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+      <Label text="%firstFollow.GenerateFF" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
       <Label text="%firstFollow.Header" GridPane.columnIndex="3" GridPane.rowIndex="1">
          <font>
             <Font size="18.0" />

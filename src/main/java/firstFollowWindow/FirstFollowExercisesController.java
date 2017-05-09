@@ -1,13 +1,14 @@
 package firstFollowWindow;
 
-import com.sun.javafx.geom.Rectangle;
 import firstFollow.FirstFollow;
+import firstFollowTestData.FirstFollowTestMainSet;
+import firstFollowTestData.FirstFollowTestSet;
+import firstFollowTestData.FirstFollowTestSetElement;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.HPos;
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -25,7 +26,7 @@ import java.util.ResourceBundle;
 /**
  * Created by DELL6430u on 2017-05-01.
  */
-public class FirstFollowSolverController implements Initializable {
+public class FirstFollowExercisesController implements Initializable {
 
     @FXML
     ListView firstFollowInputList;
@@ -42,20 +43,26 @@ public class FirstFollowSolverController implements Initializable {
     @FXML
     Label firstFollowPartialSolutionsLabel;
 
+    @FXML
+    Button firstFollowExercisesVerifyButton;
 
-
-
-    List<FirstFollowInputController> listInput = new ArrayList<>();
+    List<FirstFollowInputExercisesController> listInput = new ArrayList<>();
 
     FirstFollow testFirstFollow;
+
+    FirstFollowTestSet tempSet;
+    FirstFollowTestMainSet tempElement;
+    Integer lastValue;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
-            FXMLLoader x = new FXMLLoader(getClass().getResource("/fxml/test/firstFollowWindow/firstFollowInput.fxml"));
+        lastValue = -1;
+        FXMLLoader x = new FXMLLoader(getClass().getResource("/fxml/test/firstFollowWindow/firstFollowExercisesInput.fxml"));
 
         try {
             //x.load();
             firstFollowInputList.getItems().add(x.load());
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -64,7 +71,7 @@ public class FirstFollowSolverController implements Initializable {
             Button b = new Button("+");
             b.setOnAction(handle -> {
                 System.out.println(firstFollowInputList.getSelectionModel());
-                FXMLLoader x1 = new FXMLLoader(getClass().getResource("/fxml/test/firstFollowWindow/firstFollowInput.fxml"));
+                FXMLLoader x1 = new FXMLLoader(getClass().getResource("/fxml/test/firstFollowWindow/firstFollowExercisesInput.fxml"));
                 try {
                     firstFollowInputList.getItems().add(firstFollowInputList.getItems().size() - 1, x1.load());
                 } catch (IOException e) {
@@ -72,10 +79,33 @@ public class FirstFollowSolverController implements Initializable {
                 }
                 listInput.add(x1.getController());
             });
-        firstFollowInputList.getItems().add(b);
+        //firstFollowInputList.getItems().add(b);
 
-        firstFollowButtonVBox.setVisible(false);
-        firstFollowPartialSolutionsLabel.setVisible(false);
+        showElement(false);
+//        firstFollowButtonVBox.setVisible(false);
+//        firstFollowPartialSolutionsLabel.setVisible(false);
+//        firstFollowExercisesVerifyButton.setVisible(false);
+    }
+
+    public void randomInput(ActionEvent actionEvent) throws IOException {
+        tempSet = new FirstFollowTestSet(true);
+        lastValue = tempSet.testData(lastValue);
+        tempElement = tempSet.InputListTestList.get(lastValue);
+        firstFollowInputList.getItems().clear();
+        listInput = new ArrayList<>();
+        for(FirstFollowTestSetElement temp : tempElement.InputListTest){
+            FXMLLoader x = new FXMLLoader(getClass().getResource("/fxml/test/firstFollowWindow/firstFollowExercisesInput.fxml"));
+
+
+            firstFollowInputList.getItems().add(x.load());
+            FirstFollowInputExercisesController elementContorller = x.getController();
+
+            elementContorller.setLeftPart(temp.leftPart);
+            elementContorller.setRightPart(temp.rightPart);
+            listInput.add(x.getController());
+        }
+
+        showElement(false);
     }
 
     public void generateFirstAndFollow(ActionEvent actionEvent) {
@@ -85,8 +115,6 @@ public class FirstFollowSolverController implements Initializable {
         //
 
         for(Integer i = 0; i < listInput.size(); i++) {
-            //System.out.println(listInput.get(i).getLeftPart());
-            System.out.println(listInput.get(i).productionLeftPart);
             tempString =  listInput.get(i).getLeftPart() + " -> " + listInput.get(i).getRightPart();
             System.out.println(tempString);
             inputLineList.add(tempString);
@@ -108,8 +136,11 @@ public class FirstFollowSolverController implements Initializable {
         if(testFirstFollow.errorFlag) {
 
             //blocked buttons
-            firstFollowButtonVBox.setVisible(false);
-            firstFollowPartialSolutionsLabel.setVisible(false);
+            showElement(false);
+//            firstFollowButtonVBox.setVisible(false);
+//            firstFollowPartialSolutionsLabel.setVisible(false);
+//            firstFollowExercisesVerifyButton.setVisible(false);
+
 
             firstFollowOutputPane.getChildren().clear();
             GridPane gridPane = new GridPane();
@@ -129,8 +160,12 @@ public class FirstFollowSolverController implements Initializable {
         }
 
         //show buttons
-        firstFollowButtonVBox.setVisible(true);
-        firstFollowPartialSolutionsLabel.setVisible(true);
+        showElement(true);
+//        firstFollowButtonVBox.setVisible(true);
+//        firstFollowPartialSolutionsLabel.setVisible(true);
+//        firstFollowExercisesVerifyButton.setVisible(true);
+
+
         firstFollowOutputPane.getChildren().clear();
         GridPane gridPane = new GridPane();
         firstFollowOutputPane.getChildren().add(gridPane);
@@ -234,6 +269,12 @@ public class FirstFollowSolverController implements Initializable {
         }
 
         firstFollowOutputPane.getChildren().add(gridPane);
+    }
+
+    void showElement(Boolean show) {
+        firstFollowButtonVBox.setVisible(show);
+        firstFollowPartialSolutionsLabel.setVisible(show);
+        firstFollowExercisesVerifyButton.setVisible(show);
     }
 
 
