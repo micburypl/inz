@@ -64,7 +64,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Button fx:id="parserLLVerifyButton" mnemonicParsing="false" styleClass="button-green" text="%parserLL.Verify" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="17" />
+      <Button fx:id="parserLLVerifyButton" mnemonicParsing="false" onAction="#parserLLExerciseVerify" styleClass="button-green" text="%parserLL.Verify" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="17" />
       <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#randomInput" styleClass="button-green" text="%parserLL.Random" GridPane.columnIndex="1" GridPane.rowIndex="4" />
       <Button fx:id="parserLLRandomMoves" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#randomMovesInput" styleClass="button-green" text="%parserLL.RandomMoves" GridPane.columnIndex="1" GridPane.rowIndex="14" />
    </children>

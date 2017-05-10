@@ -28,7 +28,6 @@ public class MovesTable {
         //elementToAdd = new MovesTableElement(stack, inputDataSet, new ArrayList<>());
 
         while(true) {
-
             //check if input is not empty
             if(inputDataSet.isEmpty()) {
                 if(stack.isEmpty()) {
@@ -44,7 +43,10 @@ public class MovesTable {
                         stack.remove(stack.size()-1);
                         continue;
                     }
-
+                    //
+                    currentElement = new MovesTableElement(stack, inputDataSet, "", new ArrayList<>());
+                    movesList.add(currentElement);
+                    //
                     System.out.println("input is already empty, stack not");
 
                     errorMessage = "input is already empty, stack not";
@@ -56,6 +58,10 @@ public class MovesTable {
             }
             //check if stack is empty
             if(stack.isEmpty()) {
+                //
+                currentElement = new MovesTableElement(stack, inputDataSet, "", new ArrayList<>());
+                movesList.add(currentElement);
+                //
                 System.out.println("stack is already empty, input not");
 
                 errorMessage = "input is already empty, stack not";
@@ -76,6 +82,10 @@ public class MovesTable {
             }
             //check if symbol exist on predictiveMap
             if(!predictiveMap.containsKey(stack.get(stack.size()-1))) {
+                //
+                currentElement = new MovesTableElement(stack, inputDataSet, "", new ArrayList<>());
+                movesList.add(currentElement);
+                //
                 System.out.println("in Predictive map there is not element from top of stack");
 
                 errorMessage = "in Predictive map there is not element from top of stack";
@@ -112,11 +122,11 @@ public class MovesTable {
                 errorMessage = "There is not Symbol: " + symbol + ", with production in terminal: " + terminal;
                 currentElement = new MovesTableElement(errorMessage);
                 movesList.add(currentElement);
-
+                return;
             }
         }
-        currentElement = new MovesTableElement(stack, inputDataSet, "", new ArrayList<>());
-        movesList.add(currentElement);
+//        currentElement = new MovesTableElement(stack, inputDataSet, "", new ArrayList<>());
+//        movesList.add(currentElement);
     }
 
     public void printMovesTable() {

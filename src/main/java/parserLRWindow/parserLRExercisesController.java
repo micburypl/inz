@@ -6,6 +6,8 @@ import firstFollowTestData.FirstFollowTestSet;
 import firstFollowTestData.FirstFollowTestSetElement;
 import firstFollowWindow.FirstFollowInputController;
 import firstFollowWindow.FirstFollowInputExercisesController;
+import graph.GraphMethods;
+import javafx.embed.swing.SwingNode;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,6 +21,7 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import parserLR.GotoTransition;
 import parserLR.MovesElementLR;
 import parserLR.ParserLR;
 
@@ -55,12 +58,18 @@ public class parserLRExercisesController implements Initializable {
 
     List<FirstFollowInputExercisesController> listInput = new ArrayList<>();
 
+    GridPane gridPane;
+    GridPane gridPane2;
+
     ParserLR testGotoGenerator;
 
     FirstFollowTestSet tempSet;
     FirstFollowTestMainSet tempElement;
     Integer lastValue;
     Integer lastValueMoves;
+    Integer rowSize;
+    Integer columnSize;
+    Boolean removeSpace;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -88,6 +97,8 @@ public class parserLRExercisesController implements Initializable {
 
     public void randomInput(ActionEvent actionEvent) throws IOException {
         tempSet = new FirstFollowTestSet(true);
+        parserLROutputPane.getChildren().clear();
+
         lastValue = tempSet.testData(lastValue);
         tempElement = tempSet.InputListTestList.get(lastValue);
         parserLRInputList.getItems().clear();
@@ -154,12 +165,12 @@ public class parserLRExercisesController implements Initializable {
             gridPane.setGridLinesVisible(true);
             Label tempLabel = new Label("Errors");
             gridPane.add(tempLabel, 0,0);
-            gridPane.setHalignment(tempLabel, HPos.CENTER);
+            GridPane.setHalignment(tempLabel, HPos.CENTER);
             Integer tempInt = 1;
             for(Integer errorLine: testGotoGenerator.firstFollowSolution.errorMessages.keySet() ) {
                 tempLabel = new Label("In row " + errorLine + ". " + testGotoGenerator.firstFollowSolution.errorMessages.get(errorLine));
                 gridPane.add(tempLabel, 0, tempInt++);
-                gridPane.setHalignment(tempLabel, HPos.CENTER);
+                GridPane.setHalignment(tempLabel, HPos.CENTER);
             }
 
             parserLROutputPane.getChildren().add(gridPane);
@@ -169,6 +180,7 @@ public class parserLRExercisesController implements Initializable {
         //show buttons
         //parserLRButtonVBox.setVisible(true);
         showElement(true);
+        showVerifyButton(false);
         parserLROutputPane.getChildren().clear();
         GridPane gridPane = new GridPane();
         parserLROutputPane.getChildren().add(gridPane);
@@ -184,16 +196,17 @@ public class parserLRExercisesController implements Initializable {
 
     public void printFirst(ActionEvent actionEvent) throws IOException {
 
+        showVerifyButton(true);
         parserLROutputPane.getChildren().clear();
-        GridPane gridPane = new GridPane();
+        gridPane = new GridPane();
 
         Label tempLabel = new Label("Element");
         gridPane.add(tempLabel, 0,0);
-        gridPane.setHalignment(tempLabel, HPos.CENTER);
+        GridPane.setHalignment(tempLabel, HPos.CENTER);
 
         tempLabel = new Label("First(Element)");
         gridPane.add(tempLabel, 1,0);
-        gridPane.setHalignment(tempLabel, HPos.CENTER);
+        GridPane.setHalignment(tempLabel, HPos.CENTER);
 
         Integer rowNumber = 1;
         gridPane.setGridLinesVisible(true);
@@ -201,7 +214,7 @@ public class parserLRExercisesController implements Initializable {
 
             tempLabel = new Label(keyFirst);
             gridPane.add(tempLabel, 0,rowNumber);
-            gridPane.setHalignment(tempLabel, HPos.CENTER);
+            GridPane.setHalignment(tempLabel, HPos.CENTER);
 
             String solutionString = "";
             for(String temp:testGotoGenerator.firstFollowSolution.firstElementMap.get(keyFirst).firstSet) {
@@ -213,7 +226,7 @@ public class parserLRExercisesController implements Initializable {
 
             tempLabel = new Label(solutionString);
             gridPane.add(tempLabel, 1,rowNumber);
-            gridPane.setHalignment(tempLabel, HPos.CENTER);
+            GridPane.setHalignment(tempLabel, HPos.CENTER);
 
             rowNumber++;
         }
@@ -226,22 +239,71 @@ public class parserLRExercisesController implements Initializable {
             gridPane.getColumnConstraints().add(column);
         }
 
-        parserLROutputPane.getChildren().add(gridPane);
+        //input
+        removeSpace = true;
+        TextField tempTextField;
+        gridPane2 = new GridPane();
+        gridPane2.setGridLinesVisible(true);
+        tempLabel = new Label("Element");
+        gridPane2.add(tempLabel, 0,0);
+        GridPane.setHalignment(tempLabel, HPos.CENTER);
+
+        tempLabel = new Label("First(Element)");
+        gridPane2.add(tempLabel, 1,0);
+        GridPane.setHalignment(tempLabel, HPos.CENTER);
+
+
+        rowNumber = 1;
+
+        for(String keyFollow: testGotoGenerator.firstFollowSolution.firstElementMap.keySet() ){
+
+
+            tempLabel = new Label(keyFollow);
+            gridPane2.add(tempLabel, 0,rowNumber);
+            GridPane.setHalignment(tempLabel, HPos.CENTER);
+
+//            String solutionString = "";
+//            for(String temp: testGotoGenerator.firstFollowSolution.firstElementMap.get(keyFollow).firstSet) {
+//                solutionString += temp + ", ";
+//            }
+//            if(solutionString.length() > 2) {
+//                solutionString = solutionString.substring(0, solutionString.length()-2);
+//            }
+
+            tempTextField = new TextField();
+            gridPane2.add(tempTextField, 1,rowNumber);
+            GridPane.setHalignment(tempTextField, HPos.CENTER);
+
+            rowNumber++;
+
+        }
+        numberOfColumn = 2;
+        columnSize = numberOfColumn;
+        rowSize = rowNumber;
+
+        for(Integer i = 0; i < numberOfColumn; i++) {
+
+            ColumnConstraints column = new ColumnConstraints();
+            column.setPercentWidth(100/numberOfColumn);
+            gridPane2.getColumnConstraints().add(column);
+        }
+
+        parserLROutputPane.getChildren().add(gridPane2);
     }
 
     public void printFollow(ActionEvent actionEvent) throws IOException {
 
-
+        showVerifyButton(true);
         parserLROutputPane.getChildren().clear();
-        GridPane gridPane = new GridPane();
+        gridPane = new GridPane();
 
         Label tempLabel = new Label("Element");
         gridPane.add(tempLabel, 0,0);
-        gridPane.setHalignment(tempLabel, HPos.CENTER);
+        GridPane.setHalignment(tempLabel, HPos.CENTER);
 
         tempLabel = new Label("Follow(Element)");
         gridPane.add(tempLabel, 1,0);
-        gridPane.setHalignment(tempLabel, HPos.CENTER);
+        GridPane.setHalignment(tempLabel, HPos.CENTER);
 
         Integer rowNumber = 1;
         gridPane.setGridLinesVisible(true);
@@ -249,7 +311,7 @@ public class parserLRExercisesController implements Initializable {
 
             tempLabel = new Label(keyFollow);
             gridPane.add(tempLabel, 0,rowNumber);
-            gridPane.setHalignment(tempLabel, HPos.CENTER);
+            GridPane.setHalignment(tempLabel, HPos.CENTER);
 
             String solutionString = "";
             for(String temp: testGotoGenerator.firstFollowSolution.followElementMap.get(keyFollow).followSet) {
@@ -261,7 +323,7 @@ public class parserLRExercisesController implements Initializable {
 
             tempLabel = new Label(solutionString);
             gridPane.add(tempLabel, 1,rowNumber);
-            gridPane.setHalignment(tempLabel, HPos.CENTER);
+            GridPane.setHalignment(tempLabel, HPos.CENTER);
 
             rowNumber++;
         }
@@ -274,13 +336,58 @@ public class parserLRExercisesController implements Initializable {
             gridPane.getColumnConstraints().add(column);
         }
 
-        parserLROutputPane.getChildren().add(gridPane);
+        //input
+
+        removeSpace = true;
+        gridPane2 = new GridPane();
+
+        TextField tempTextField;
+
+        tempLabel = new Label("Element");
+        gridPane2.add(tempLabel, 0,0);
+        GridPane.setHalignment(tempLabel, HPos.CENTER);
+
+        tempLabel = new Label("Follow(Element)");
+        gridPane2.add(tempLabel, 1,0);
+        GridPane.setHalignment(tempLabel, HPos.CENTER);
+
+        rowNumber = 1;
+        gridPane2.setGridLinesVisible(true);
+        for(String keyFollow: testGotoGenerator.firstFollowSolution.followElementMap.keySet() ){
+
+
+            tempLabel = new Label(keyFollow);
+            gridPane2.add(tempLabel, 0,rowNumber);
+            GridPane.setHalignment(tempLabel, HPos.CENTER);
+
+            tempTextField = new TextField("");
+            gridPane2.add(tempTextField, 1,rowNumber);
+            GridPane.setHalignment(tempTextField, HPos.CENTER);
+
+            rowNumber++;
+
+        }
+
+        numberOfColumn = 2;
+        columnSize = numberOfColumn;
+        rowSize = rowNumber;
+
+
+        for(Integer i = 0; i < numberOfColumn; i++) {
+
+            ColumnConstraints column = new ColumnConstraints();
+            column.setPercentWidth(100/numberOfColumn);
+            gridPane2.getColumnConstraints().add(column);
+        }
+
+        parserLROutputPane.getChildren().add(gridPane2);
     }
 
     public void printActionTable(ActionEvent actionEvent) {
-        parserLROutputPane.getChildren().clear();
 
-        GridPane gridPane = new GridPane();
+        showVerifyButton(true);
+        parserLROutputPane.getChildren().clear();
+        gridPane = new GridPane();
         gridPane.setGridLinesVisible(true);
 
         HashMap columnSign = new HashMap<String, Integer>();
@@ -290,7 +397,7 @@ public class parserLRExercisesController implements Initializable {
 
         Label tempLabel = new Label("No");
         gridPane.add(tempLabel, 0,0);
-        gridPane.setHalignment(tempLabel, HPos.CENTER);
+        GridPane.setHalignment(tempLabel, HPos.CENTER);
 
         Integer rowNumber = 1;
 
@@ -299,7 +406,7 @@ public class parserLRExercisesController implements Initializable {
 
             tempLabel = new Label(row.toString());
             gridPane.add(tempLabel, 0,rowNumber);
-            gridPane.setHalignment(tempLabel, HPos.CENTER);
+            GridPane.setHalignment(tempLabel, HPos.CENTER);
 
             for(String column: testGotoGenerator.actionTable.get(row).keySet()) {
                 if(!columnSign.containsKey(column)){
@@ -307,17 +414,17 @@ public class parserLRExercisesController implements Initializable {
 
                     tempLabel = new Label(column);
                     gridPane.add(tempLabel, (Integer) columnSign.get(column),0);
-                    gridPane.setHalignment(tempLabel, HPos.CENTER);
+                    GridPane.setHalignment(tempLabel, HPos.CENTER);
 
                 }
 
                 tempLabel = new Label(testGotoGenerator.actionTable.get(row).get(column).value.toString());
                 gridPane.add(tempLabel, (Integer) columnSign.get(column),rowNumber);
-                gridPane.setHalignment(tempLabel, HPos.CENTER);
+                GridPane.setHalignment(tempLabel, HPos.CENTER);
             }
             rowNumber++;
         }
-        parserLROutputPane.getChildren().add(gridPane);
+
 
         Integer numberOfColumn = maxColumn;
         for(Integer i = 0; i < numberOfColumn; i++) {
@@ -327,12 +434,55 @@ public class parserLRExercisesController implements Initializable {
             gridPane.getColumnConstraints().add(column);
         }
 
+        columnSize = numberOfColumn;
+        rowSize = rowNumber;
+
+        //input
+        removeSpace = false;
+        gridPane2 = new GridPane();
+        TextField tempTextField;
+        tempLabel = new Label("No");
+        gridPane2.add(tempLabel, 0,0);
+        GridPane.setHalignment(tempLabel, HPos.CENTER);
+
+        columnSign = new HashMap<String, Integer>();
+        maxColumn = 1;
+        rowNumber = 1;
+        gridPane2.setGridLinesVisible(true);
+
+        for(Integer i = 0; i < columnSize; i++) {
+            for(Integer j = 0; j < rowSize; j++) {
+
+                if(i == 0 || j == 0) {
+                    tempLabel = new Label(CommonUtility.getNodeFromGridPane(gridPane, i, j));
+                    gridPane2.add(tempLabel, i,j);
+                    GridPane.setHalignment(tempLabel, HPos.CENTER);
+                    continue;
+                }
+                tempTextField = new TextField("");
+                gridPane2.add(tempTextField, i,j);
+                GridPane.setHalignment(tempTextField, HPos.CENTER);
+
+            }
+        }
+
+        for(Integer i = 0; i < numberOfColumn; i++) {
+
+            ColumnConstraints column = new ColumnConstraints();
+            column.setPercentWidth(100/numberOfColumn);
+            gridPane2.getColumnConstraints().add(column);
+        }
+
+        parserLROutputPane.getChildren().add(gridPane2);
+
     }
 
 
     public void printGotoTable(ActionEvent actionEvent) {
+
+        showVerifyButton(true);
         parserLROutputPane.getChildren().clear();
-        GridPane gridPane = new GridPane();
+        gridPane = new GridPane();
         gridPane.setGridLinesVisible(true);
 
         HashMap columnSign = new HashMap<String, Integer>();
@@ -341,7 +491,7 @@ public class parserLRExercisesController implements Initializable {
         //add "No" if position 0,0
         Label tempLabel = new Label("No");
         gridPane.add(tempLabel, 0,0);
-        gridPane.setHalignment(tempLabel, HPos.CENTER);
+        GridPane.setHalignment(tempLabel, HPos.CENTER);
 
         Integer rowNumber = 1;
 
@@ -349,25 +499,23 @@ public class parserLRExercisesController implements Initializable {
             //add first element in row index
             tempLabel = new Label(row.toString());
             gridPane.add(tempLabel, 0,rowNumber);
-            gridPane.setHalignment(tempLabel, HPos.CENTER);
+            GridPane.setHalignment(tempLabel, HPos.CENTER);
 
             for(String column: testGotoGenerator.gotoTable.get(row).keySet()) {
                 if(!columnSign.containsKey(column)){
                     columnSign.put(column,maxColumn++);
                     tempLabel = new Label(column);
                     gridPane.add(tempLabel, (Integer) columnSign.get(column),0);
-                    gridPane.setHalignment(tempLabel, HPos.CENTER);
-
+                    GridPane.setHalignment(tempLabel, HPos.CENTER);
                 }
                 tempLabel = new Label(testGotoGenerator.gotoTable.get(row).get(column).toString());
                 gridPane.add(tempLabel, (Integer) columnSign.get(column),rowNumber);
-                gridPane.setHalignment(tempLabel, HPos.CENTER);
-
+                GridPane.setHalignment(tempLabel, HPos.CENTER);
             }
             rowNumber++;
         }
 
-        parserLROutputPane.getChildren().add(gridPane);
+
 
         Integer numberOfColumn = maxColumn;
         for(Integer i = 0; i < numberOfColumn; i++) {
@@ -376,11 +524,52 @@ public class parserLRExercisesController implements Initializable {
             column.setPercentWidth(100/numberOfColumn);
             gridPane.getColumnConstraints().add(column);
         }
+
+        columnSize = numberOfColumn;
+        rowSize = rowNumber;
+
+        //input
+        removeSpace = false;
+        gridPane2 = new GridPane();
+        TextField tempTextField;
+        tempLabel = new Label("No");
+        gridPane2.add(tempLabel, 0,0);
+        GridPane.setHalignment(tempLabel, HPos.CENTER);
+
+        columnSign = new HashMap<String, Integer>();
+        gridPane2.setGridLinesVisible(true);
+
+        for(Integer i = 0; i < columnSize; i++) {
+            for(Integer j = 0; j < rowSize; j++) {
+
+                if(i == 0 || j == 0) {
+                    tempLabel = new Label(CommonUtility.getNodeFromGridPane(gridPane, i, j));
+                    gridPane2.add(tempLabel, i,j);
+                    GridPane.setHalignment(tempLabel, HPos.CENTER);
+                    continue;
+                }
+                tempTextField = new TextField("");
+                gridPane2.add(tempTextField, i,j);
+                GridPane.setHalignment(tempTextField, HPos.CENTER);
+
+            }
+        }
+
+        for(Integer i = 0; i < numberOfColumn; i++) {
+
+            ColumnConstraints column = new ColumnConstraints();
+            column.setPercentWidth(100/numberOfColumn);
+            gridPane2.getColumnConstraints().add(column);
+        }
+
+        parserLROutputPane.getChildren().add(gridPane2);
     }
 
 
 
     public void printMovesTable(ActionEvent actionEvent) throws IOException {
+
+        showVerifyButton(false); // będzie do zmiany
         FXMLLoader x;
         parserLROutputPane.getChildren().clear();
         ListView parserLROutputList = new ListView();
@@ -443,7 +632,107 @@ public class parserLRExercisesController implements Initializable {
 
     }
 
-    void showElement(Boolean show){
+    public void printTransitionTable(ActionEvent actionEvent) throws IOException {
+
+        showVerifyButton(true);
+        parserLROutputPane.getChildren().clear();
+        gridPane = new GridPane();
+
+        Label tempLabel = new Label("Begin State");
+        gridPane.add(tempLabel, 0,0);
+        GridPane.setHalignment(tempLabel, HPos.CENTER);
+
+        tempLabel = new Label("Transition");
+        gridPane.add(tempLabel, 1,0);
+        GridPane.setHalignment(tempLabel, HPos.CENTER);
+
+        tempLabel = new Label("End State");
+        gridPane.add(tempLabel, 2,0);
+        GridPane.setHalignment(tempLabel, HPos.CENTER);
+
+        String tempString;
+        Integer rowNumber = 1;
+        gridPane.setGridLinesVisible(true);
+        for(GotoTransition element: testGotoGenerator.gotoGeneratorMap.gotoTransitionList){
+
+            tempLabel = new Label(element.from.toString());
+            gridPane.add(tempLabel, 0,rowNumber);
+            GridPane.setHalignment(tempLabel, HPos.CENTER);
+
+            tempLabel = new Label(element.value);
+            gridPane.add(tempLabel, 1,rowNumber);
+            GridPane.setHalignment(tempLabel, HPos.CENTER);
+
+            tempLabel = new Label(element.to.toString());
+            gridPane.add(tempLabel, 2,rowNumber);
+            GridPane.setHalignment(tempLabel, HPos.CENTER);
+
+            rowNumber++;
+        }
+
+        Integer numberOfColumn = 3;
+        for(Integer i = 0; i < numberOfColumn; i++) {
+
+            ColumnConstraints column = new ColumnConstraints();
+            column.setPercentWidth(100/numberOfColumn);
+            gridPane.getColumnConstraints().add(column);
+        }
+
+        columnSize = numberOfColumn;
+        rowSize = rowNumber;
+
+        //input
+        removeSpace = false;
+        gridPane2 = new GridPane();
+        TextField tempTextField;
+
+        gridPane2.setGridLinesVisible(true);
+
+        for(Integer i = 0; i < columnSize; i++) {
+            for(Integer j = 0; j < rowSize; j++) {
+
+                if(i == 0 || j == 0 || i == 1) {
+                    tempLabel = new Label(CommonUtility.getNodeFromGridPane(gridPane, i, j));
+                    gridPane2.add(tempLabel, i,j);
+                    GridPane.setHalignment(tempLabel, HPos.CENTER);
+                    continue;
+                }
+                tempTextField = new TextField("");
+                gridPane2.add(tempTextField, i,j);
+                GridPane.setHalignment(tempTextField, HPos.CENTER);
+
+            }
+        }
+
+        for(Integer i = 0; i < numberOfColumn; i++) {
+
+            ColumnConstraints column = new ColumnConstraints();
+            column.setPercentWidth(100/numberOfColumn);
+            gridPane2.getColumnConstraints().add(column);
+        }
+
+        parserLROutputPane.getChildren().add(gridPane2);
+    }
+
+    public void printGraph(ActionEvent actionEvent) {
+
+        parserLROutputPane.getChildren().clear();
+
+        SwingNode swingComponentWrapper = new SwingNode();
+        HashMap<String, Boolean> tempList = new HashMap<>();
+
+        for(Integer tempInt: testGotoGenerator.gotoGeneratorMap.gotoElementMap.keySet()){
+            tempList.put(tempInt.toString(), false);
+        }
+
+        GraphMethods tempGraph = new GraphMethods(tempList, testGotoGenerator.gotoGeneratorMap.gotoTransitionList);
+
+        swingComponentWrapper.setContent(tempGraph.graphComponent);
+
+        parserLROutputPane.getChildren().add(swingComponentWrapper);
+    }
+
+    private void showElement(Boolean show){
         parserLRButtonVBox.setVisible(show);
         parserLRMovesButton.setVisible(show);
         parserLRInputStringLabel.setVisible(show);
@@ -452,4 +741,18 @@ public class parserLRExercisesController implements Initializable {
         parserLRVerifyButton.setVisible(show);
         parserLRRandomMoves.setVisible(show);
     }
+
+    private void showVerifyButton(Boolean show){
+        parserLRVerifyButton.setVisible(show);
+    }
+
+    public void parserLLExerciseVerify(ActionEvent actionEvent) {
+        Boolean correct = CommonUtility.compareGridPane(gridPane, gridPane2, rowSize, columnSize, removeSpace);
+        parserLROutputPane.getChildren().clear();
+        parserLROutputPane.getChildren().add(gridPane2);
+    }
+
+
+
+
 }

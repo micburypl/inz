@@ -1,9 +1,12 @@
 package commonUtility;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import javafx.scene.Node;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.*;
 
 public class CommonUtility {
     public final static String epsValue = "eps";
@@ -57,5 +60,92 @@ public class CommonUtility {
         returnList.add(two);
         returnList.addAll(three);
         return returnList;
+    }
+
+    public static Boolean compareGridPane(GridPane answer, GridPane input, Integer rN, Integer cN, Boolean removeSpace) {
+        Boolean isCorrect = true;
+
+        Integer columnNumber = cN;
+        Integer rowNumber = rN;
+
+        String tempAnswer;
+        String tempInput;
+
+
+        //nie trzeba pierwszych elementów sprawdzać
+        for(Integer i = 1; i < columnNumber; i++) {
+            for(Integer j = 1; j < rowNumber; j++) {
+
+                tempAnswer = getNodeFromGridPane(answer, i, j);
+                tempInput = getNodeFromGridPane(input, i, j);
+
+                if(tempAnswer == null) {
+                    tempAnswer = "";
+                }
+
+                if(tempInput == null) {
+                    tempInput = "";
+                }
+
+                if(!compareStrings(tempAnswer, tempInput, removeSpace)) {
+                    isCorrect = false;
+                    printRed(input, i, j);
+                } else {
+                    printGreen(input, i, j);
+                }
+            }
+        }
+        return isCorrect;
+    }
+
+    public static Boolean compareStrings(String answerString, String inputStirng, Boolean removeSpace) {
+        if(removeSpace) {
+            answerString = answerString.replaceAll(" ", "");
+            inputStirng = inputStirng.replaceAll(" ", "");
+        }
+
+        HashSet<String> answerSet = new HashSet<>();
+        for(String s: answerString.split(",")) {
+            answerSet.add(s);
+        }
+
+        HashSet<String> inputSet = new HashSet<>();
+        for(String s: inputStirng.split(",")) {
+            inputSet.add(s);
+        }
+
+        return answerSet.equals(inputSet);
+    }
+
+    public static String getNodeFromGridPane(GridPane gridPane, int col, int row) {
+        for (Node node : gridPane.getChildren()) {
+            if (node != null && GridPane.getColumnIndex(node) != null && GridPane.getColumnIndex(node) == col && GridPane.getRowIndex(node) != null && GridPane.getRowIndex(node) == row) {
+                if(node instanceof Label ){
+                    return ((Label) node).getText();
+                }
+                if(node instanceof TextField ){
+                    return ((TextField) node).getText();
+                }
+            }
+        }
+        return null;
+    }
+
+    static void printRed(GridPane gridPane, int col, int row) {
+        for (Node node : gridPane.getChildren()) {
+            if (node != null && GridPane.getColumnIndex(node) != null && GridPane.getColumnIndex(node) == col && GridPane.getRowIndex(node) != null && GridPane.getRowIndex(node) == row) {
+                node.setStyle("-fx-background-color: #ea5d5d;");
+                return;
+            }
+        }
+    }
+
+    static void printGreen(GridPane gridPane, int col, int row) {
+        for (Node node : gridPane.getChildren()) {
+            if (node != null && GridPane.getColumnIndex(node) != null && GridPane.getColumnIndex(node) == col && GridPane.getRowIndex(node) != null && GridPane.getRowIndex(node) == row) {
+                node.setStyle("-fx-background-color: #7bea5d;");
+                return;
+            }
+        }
     }
 }

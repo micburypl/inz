@@ -44,6 +44,8 @@
                 <Button fx:id="printFollowButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#printFollow" styleClass="button-green" text="%parserLR.FollowButton" />
                 <Button fx:id="printActionTableButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#printActionTable" styleClass="button-green" text="%parserLR.ActionTable" />
                 <Button fx:id="printGotoTableButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#printGotoTable" styleClass="button-green" text="%parserLR.GotoTable" />
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#printTransitionTable" styleClass="button-green" text="%parserLR.TransitionTable" />
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#printGraph" styleClass="button-green" text="%parserLR.Graph" />
 
             </children>
         </VBox>
@@ -61,7 +63,7 @@
                 <Font size="18.0" />
             </font>
         </Label>
-      <Button fx:id="parserLRVerifyButton" mnemonicParsing="false" styleClass="button-green" text="%parserLR.Verify" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="12" />
+      <Button fx:id="parserLRVerifyButton" mnemonicParsing="false" onAction="#parserLLExerciseVerify" styleClass="button-green" text="%parserLR.Verify" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="12" />
       <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#randomInput" styleClass="button-green" text="%parserLR.Random" GridPane.columnIndex="1" GridPane.rowIndex="3" />
       <Button fx:id="parserLRRandomMoves" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#randomMovesInput" styleClass="button-green" text="%parserLR.RandomMoves" GridPane.columnIndex="1" GridPane.rowIndex="10" />
     </children>

@@ -1,5 +1,6 @@
 package parserLLWindow;
 
+import commonUtility.CommonUtility;
 import firstFollow.FirstFollow;
 import firstFollowTestData.FirstFollowTestMainSet;
 import firstFollowTestData.FirstFollowTestSet;
@@ -55,6 +56,9 @@ public class parserLLExercisesController implements Initializable {
     @FXML
     Button parserLLRandomMoves;
 
+    GridPane gridPane;
+    GridPane gridPane2;
+
     List<FirstFollowInputExercisesController> listInput = new ArrayList<>();
 
     FirstFollow testFirstFollow;
@@ -63,6 +67,9 @@ public class parserLLExercisesController implements Initializable {
     FirstFollowTestMainSet tempElement;
     Integer lastValue;
     Integer lastValueMoves;
+    Integer rowSize;
+    Integer columnSize;
+    Boolean removeSpace;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -93,6 +100,9 @@ public class parserLLExercisesController implements Initializable {
     }
 
     public void randomInput(ActionEvent actionEvent) throws IOException {
+
+        showVerifyButton(false);
+        parserLLOutputPane.getChildren().clear();
         tempSet = new FirstFollowTestSet(false);
         lastValue = tempSet.testData(lastValue);
         tempElement = tempSet.InputListTestList.get(lastValue);
@@ -116,6 +126,7 @@ public class parserLLExercisesController implements Initializable {
     }
 
     public void randomMovesInput(ActionEvent actionEvent) {
+
         lastValueMoves = tempElement.testMovesData(lastValueMoves);
         String movesString = tempElement.movesTestList.get(lastValueMoves);
         movesTableInput.setText(movesString);
@@ -172,29 +183,22 @@ public class parserLLExercisesController implements Initializable {
             parserLLOutputPane.getChildren().add(gridPane);
             return;
         }
-
-        //show buttons
         showElement(true);
-//        parserLLButtonVBox.setVisible(true);
-//        parserLLMovesButton.setVisible(true);
+        showVerifyButton(false);
 
         parserLLOutputPane.getChildren().clear();
         GridPane gridPane = new GridPane();
         parserLLOutputPane.getChildren().add(gridPane);
 
-
-
         testFirstFollow.predictiveMap.generatePredictiveMap(testFirstFollow.parsedSet, testFirstFollow.firstElementMap, testFirstFollow.followElementMap);
-//        } else {
-//            System.out.println("Empty list");
-//        }
 
     }
 
     public void printFirst(ActionEvent actionEvent) throws IOException {
 
+        showVerifyButton(true);
         parserLLOutputPane.getChildren().clear();
-        GridPane gridPane = new GridPane();
+        gridPane = new GridPane();
 
         Label tempLabel = new Label("Element");
         gridPane.add(tempLabel, 0,0);
@@ -236,13 +240,64 @@ public class parserLLExercisesController implements Initializable {
             gridPane.getColumnConstraints().add(column);
         }
 
-        parserLLOutputPane.getChildren().add(gridPane);
+
+        //input
+        removeSpace = true;
+        TextField tempTextField;
+        gridPane2 = new GridPane();
+        gridPane2.setGridLinesVisible(true);
+        tempLabel = new Label("Element");
+        gridPane2.add(tempLabel, 0,0);
+        gridPane2.setHalignment(tempLabel, HPos.CENTER);
+
+        tempLabel = new Label("First(Element)");
+        gridPane2.add(tempLabel, 1,0);
+        gridPane2.setHalignment(tempLabel, HPos.CENTER);
+
+
+        rowNumber = 1;
+
+        for(String keyFollow: testFirstFollow.firstElementMap.keySet() ){
+
+
+            tempLabel = new Label(keyFollow);
+            gridPane2.add(tempLabel, 0,rowNumber);
+            gridPane2.setHalignment(tempLabel, HPos.CENTER);
+
+            String solutionString = "";
+            for(String temp: testFirstFollow.firstElementMap.get(keyFollow).firstSet) {
+                solutionString += temp + ", ";
+            }
+            if(solutionString.length() > 2) {
+                solutionString = solutionString.substring(0, solutionString.length()-2);
+            }
+
+            tempTextField = new TextField();
+            gridPane2.add(tempTextField, 1,rowNumber);
+            gridPane2.setHalignment(tempTextField, HPos.CENTER);
+
+            rowNumber++;
+
+        }
+        numberOfColumn = 2;
+        columnSize = numberOfColumn;
+        rowSize = rowNumber;
+
+        for(Integer i = 0; i < numberOfColumn; i++) {
+
+            ColumnConstraints column = new ColumnConstraints();
+            column.setPercentWidth(100/numberOfColumn);
+            gridPane2.getColumnConstraints().add(column);
+        }
+
+        parserLLOutputPane.getChildren().add(gridPane2);
     }
 
     public void printFollow(ActionEvent actionEvent) throws IOException {
 
+        showVerifyButton(true);
         parserLLOutputPane.getChildren().clear();
-        GridPane gridPane = new GridPane();
+        gridPane = new GridPane();
 
         Label tempLabel = new Label("Element");
         gridPane.add(tempLabel, 0,0);
@@ -284,13 +339,58 @@ public class parserLLExercisesController implements Initializable {
             gridPane.getColumnConstraints().add(column);
         }
 
-        parserLLOutputPane.getChildren().add(gridPane);
+        //input
+
+        removeSpace = true;
+        gridPane2 = new GridPane();
+
+        TextField tempTextField;
+
+        tempLabel = new Label("Element");
+        gridPane2.add(tempLabel, 0,0);
+        gridPane2.setHalignment(tempLabel, HPos.CENTER);
+
+        tempLabel = new Label("Follow(Element)");
+        gridPane2.add(tempLabel, 1,0);
+        gridPane2.setHalignment(tempLabel, HPos.CENTER);
+
+        rowNumber = 1;
+        gridPane2.setGridLinesVisible(true);
+        for(String keyFollow: testFirstFollow.followElementMap.keySet() ){
+
+
+            tempLabel = new Label(keyFollow);
+            gridPane2.add(tempLabel, 0,rowNumber);
+            gridPane2.setHalignment(tempLabel, HPos.CENTER);
+
+            tempTextField = new TextField("");
+            gridPane2.add(tempTextField, 1,rowNumber);
+            gridPane2.setHalignment(tempTextField, HPos.CENTER);
+
+            rowNumber++;
+
+        }
+
+        numberOfColumn = 2;
+        columnSize = numberOfColumn;
+        rowSize = rowNumber;
+
+
+        for(Integer i = 0; i < numberOfColumn; i++) {
+
+            ColumnConstraints column = new ColumnConstraints();
+            column.setPercentWidth(100/numberOfColumn);
+            gridPane2.getColumnConstraints().add(column);
+        }
+
+        parserLLOutputPane.getChildren().add(gridPane2);
     }
 
     public void printParsingTable(ActionEvent actionEvent) {
 
+        showVerifyButton(true);
         parserLLOutputPane.getChildren().clear();
-        GridPane gridPane = new GridPane();
+        gridPane = new GridPane();
 
         Label tempLabel = new Label("Prod");
         gridPane.add(tempLabel, 0,0);
@@ -330,10 +430,7 @@ public class parserLLExercisesController implements Initializable {
                     tempLabel = new Label(tempString);
                     gridPane.add(tempLabel, (Integer) columnSign.get(column),rowNumber);
                     gridPane.setHalignment(tempLabel, HPos.CENTER);
-
-
                 }
-
             }
             rowNumber++;
         }
@@ -346,10 +443,52 @@ public class parserLLExercisesController implements Initializable {
             gridPane.getColumnConstraints().add(column);
         }
 
-        parserLLOutputPane.getChildren().add(gridPane);
+        columnSize = numberOfColumn;
+        rowSize = rowNumber;
+
+        //input
+        removeSpace = false;
+        gridPane2 = new GridPane();
+        TextField tempTextField;
+        tempLabel = new Label("Prod");
+        gridPane2.add(tempLabel, 0,0);
+        gridPane2.setHalignment(tempLabel, HPos.CENTER);
+
+        gridPane2.setGridLinesVisible(true);
+
+        for(Integer i = 0; i < columnSize; i++) {
+            for(Integer j = 0; j < rowSize; j++) {
+
+                if(i == 0 || j == 0) {
+                    tempLabel = new Label(CommonUtility.getNodeFromGridPane(gridPane, i, j));
+                    gridPane2.add(tempLabel, i,j);
+                    gridPane2.setHalignment(tempLabel, HPos.CENTER);
+                    continue;
+                }
+                tempTextField = new TextField("");
+                gridPane2.add(tempTextField, i,j);
+                gridPane2.setHalignment(tempTextField, HPos.CENTER);
+
+            }
+        }
+
+        numberOfColumn = maxColumn;
+
+        for(Integer i = 0; i < numberOfColumn; i++) {
+
+            ColumnConstraints column = new ColumnConstraints();
+            column.setPercentWidth(100/numberOfColumn);
+            gridPane2.getColumnConstraints().add(column);
+        }
+
+        //gridPane2.getColumnConstraints().get(0).setMinWidth(50);
+
+        parserLLOutputPane.getChildren().add(gridPane2);
     }
 
     public void printMovesTable(ActionEvent actionEvent) throws IOException {
+
+        showVerifyButton(false);
         MovesTable testMoveTable = new MovesTable();
         FXMLLoader x;
         parserLLOutputPane.getChildren().clear();
@@ -422,5 +561,15 @@ public class parserLLExercisesController implements Initializable {
         parserLLRandomMoves.setVisible(show);
     }
 
+    private void showVerifyButton(Boolean show){
+        parserLLVerifyButton.setVisible(show);
+    }
 
+    public void parserLLExerciseVerify(ActionEvent actionEvent) {
+        System.out.println("chociaż weszło");
+
+        Boolean correct = CommonUtility.compareGridPane(gridPane, gridPane2, rowSize, columnSize, removeSpace);
+        parserLLOutputPane.getChildren().clear();
+        parserLLOutputPane.getChildren().add(gridPane2);
+    }
 }

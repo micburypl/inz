@@ -2,10 +2,16 @@ package graph;
 
 import algorithmFLF.TransitionTableElement;
 import com.mxgraph.layout.hierarchical.mxHierarchicalLayout;
+import com.mxgraph.layout.mxCircleLayout;
+import com.mxgraph.layout.mxCompactTreeLayout;
+import com.mxgraph.layout.mxPartitionLayout;
+import com.mxgraph.layout.mxStackLayout;
 import com.mxgraph.model.mxCell;
 import com.mxgraph.swing.mxGraphComponent;
 import com.mxgraph.view.mxGraph;
 import javafx.embed.swing.SwingNode;
+import parserLR.GotoTransition;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -22,14 +28,12 @@ public class GraphMethods {
     List<mxCell> vertexList;
     public mxGraphComponent graphComponent;
     SwingNode node;
-    Integer x;
-    Integer y;
-    Boolean shift;
+    Integer x = 0;
+    Integer y = 0;
+    Boolean shift = true;
 
     public GraphMethods(Map<String, Boolean> vertexLabelList, ArrayList<TransitionTableElement> transitionTableList){
         shift = true;
-        x = 0;
-        y = 0;
 
         mainGraph = new mxGraph();
         GraphUtils.setStyles(mainGraph);
@@ -40,6 +44,23 @@ public class GraphMethods {
         addCellList(transitionTableList);
 
         mxHierarchicalLayout layout = new mxHierarchicalLayout(mainGraph);
+        layout.execute(mainGraph.getDefaultParent());
+        graphComponent = new mxGraphComponent(mainGraph);
+        graphComponent.setEnabled(false);
+
+    }
+
+    public GraphMethods(HashMap<String, Boolean> vertexLabelList, ArrayList<GotoTransition> gotoTransitionList) {
+
+        mainGraph = new mxGraph();
+        GraphUtils.setStyles(mainGraph);
+        vertexMap = new HashMap<>();
+        vertexList = new ArrayList<>();
+        cellList = new ArrayList<>();
+        addVertexList(vertexLabelList);
+        addCellListLR(gotoTransitionList);
+
+        mxCircleLayout layout = new mxCircleLayout(mainGraph);
         layout.execute(mainGraph.getDefaultParent());
         graphComponent = new mxGraphComponent(mainGraph);
         graphComponent.setEnabled(false);
@@ -78,6 +99,12 @@ public class GraphMethods {
     void addCellList(ArrayList<TransitionTableElement> transitionTableList) {
         for(TransitionTableElement tte: transitionTableList) {
             addCell(tte.word, tte.beginState, tte.endState);
+        }
+    }
+
+    void addCellListLR(ArrayList<GotoTransition> transitionTableList) {
+        for(GotoTransition gt: transitionTableList) {
+            addCell(gt.value, gt.from.toString(), gt.to.toString());
         }
     }
 

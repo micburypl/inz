@@ -70,7 +70,8 @@ public class FirstFollowTestSet {
             //input
             tempElement.addInputElement("S","A");
             tempElement.addInputElement("A","B");
-            tempElement.addInputElement("B","a | b");
+            tempElement.addInputElement("B","b");
+            tempElement.addInputElement("B","a");
             //moves
             tempElement.addMovesElement("a");
             tempElement.addMovesElement("b");

@@ -1,10 +1,9 @@
 package parserLRWindow;
 
 import commonUtility.CommonUtility;
-import firstFollow.FirstFollow;
 import firstFollowWindow.FirstFollowInputController;
-import firstFollowWindow.FirstFollowOutputFirstController;
-import firstFollowWindow.FirstFollowOutputFollowController;
+import graph.GraphMethods;
+import javafx.embed.swing.SwingNode;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,7 +17,7 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import parserLLWindow.parserLLInputController;
+import parserLR.GotoTransition;
 import parserLR.MovesElementLR;
 import parserLR.ParserLR;
 
@@ -35,8 +34,10 @@ import java.util.ResourceBundle;
 public class parserLRSolverController implements Initializable {
 
     @FXML
-    ListView parserLRInputList;
+    private
+    ListView<Object> parserLRInputList;
     @FXML
+    private
     StackPane parserLROutputPane;
     @FXML
     TextField movesTableInput;
@@ -61,7 +62,6 @@ public class parserLRSolverController implements Initializable {
         FXMLLoader x = new FXMLLoader(getClass().getResource("/fxml/test/firstFollowWindow/firstFollowInput.fxml"));
 
         try {
-            //x.load();
             parserLRInputList.getItems().add(x.load());
         } catch (IOException e) {
             e.printStackTrace();
@@ -93,8 +93,6 @@ public class parserLRSolverController implements Initializable {
 //
         String tempString;
         for(Integer i = 0; i < listInput.size(); i++) {
-            //System.out.println(listInput.get(i).getLeftPart());
-            //System.out.println(listInput.get(i).productionLeftPart);
             tempString =  listInput.get(i).getLeftPart() + " -> " + listInput.get(i).getRightPart();
             System.out.println(tempString);
             inputLineList.add(tempString);
@@ -252,7 +250,7 @@ public class parserLRSolverController implements Initializable {
         GridPane gridPane = new GridPane();
         gridPane.setGridLinesVisible(true);
 
-        HashMap columnSign = new HashMap<String, Integer>();
+        HashMap<String, Integer> columnSign = new HashMap<String, Integer>();
         Integer maxColumn = 1;
 
         //add "No" if position 0,0
@@ -275,13 +273,13 @@ public class parserLRSolverController implements Initializable {
                     columnSign.put(column,maxColumn++);
 
                     tempLabel = new Label(column);
-                    gridPane.add(tempLabel, (Integer) columnSign.get(column),0);
+                    gridPane.add(tempLabel, columnSign.get(column),0);
                     gridPane.setHalignment(tempLabel, HPos.CENTER);
 
                 }
 
                 tempLabel = new Label(testGotoGenerator.actionTable.get(row).get(column).value.toString());
-                gridPane.add(tempLabel, (Integer) columnSign.get(column),rowNumber);
+                gridPane.add(tempLabel, columnSign.get(column),rowNumber);
                 gridPane.setHalignment(tempLabel, HPos.CENTER);
             }
             rowNumber++;
@@ -304,7 +302,7 @@ public class parserLRSolverController implements Initializable {
         GridPane gridPane = new GridPane();
         gridPane.setGridLinesVisible(true);
 
-        HashMap columnSign = new HashMap<String, Integer>();
+        HashMap<String, Integer> columnSign = new HashMap<String, Integer>();
         Integer maxColumn = 1;
 
         //add "No" if position 0,0
@@ -324,12 +322,12 @@ public class parserLRSolverController implements Initializable {
                 if(!columnSign.containsKey(column)){
                     columnSign.put(column,maxColumn++);
                     tempLabel = new Label(column);
-                    gridPane.add(tempLabel, (Integer) columnSign.get(column),0);
+                    gridPane.add(tempLabel, columnSign.get(column),0);
                     gridPane.setHalignment(tempLabel, HPos.CENTER);
 
                 }
                 tempLabel = new Label(testGotoGenerator.gotoTable.get(row).get(column).toString());
-                gridPane.add(tempLabel, (Integer) columnSign.get(column),rowNumber);
+                gridPane.add(tempLabel, columnSign.get(column),rowNumber);
                 gridPane.setHalignment(tempLabel, HPos.CENTER);
 
             }
@@ -410,6 +408,73 @@ public class parserLRSolverController implements Initializable {
         }
         parserLROutputPane.getChildren().add(parserLROutputList);
 
+    }
+
+    public void printTransitionTable(ActionEvent actionEvent) throws IOException {
+
+        parserLROutputPane.getChildren().clear();
+        GridPane gridPane = new GridPane();
+
+        Label tempLabel = new Label("Begin State");
+        gridPane.add(tempLabel, 0,0);
+        gridPane.setHalignment(tempLabel, HPos.CENTER);
+
+        tempLabel = new Label("Transition");
+        gridPane.add(tempLabel, 1,0);
+        gridPane.setHalignment(tempLabel, HPos.CENTER);
+
+        tempLabel = new Label("End State");
+        gridPane.add(tempLabel, 2,0);
+        gridPane.setHalignment(tempLabel, HPos.CENTER);
+
+        String tempString;
+        Integer rowNumber = 1;
+        gridPane.setGridLinesVisible(true);
+        for(GotoTransition element: testGotoGenerator.gotoGeneratorMap.gotoTransitionList){
+
+            tempLabel = new Label(element.from.toString());
+            gridPane.add(tempLabel, 0,rowNumber);
+            gridPane.setHalignment(tempLabel, HPos.CENTER);
+
+            tempLabel = new Label(element.value);
+            gridPane.add(tempLabel, 1,rowNumber);
+            gridPane.setHalignment(tempLabel, HPos.CENTER);
+
+            tempLabel = new Label(element.to.toString());
+            gridPane.add(tempLabel, 2,rowNumber);
+            gridPane.setHalignment(tempLabel, HPos.CENTER);
+
+            rowNumber++;
+        }
+
+        Integer numberOfColumn = 3;
+        for(Integer i = 0; i < numberOfColumn; i++) {
+
+            ColumnConstraints column = new ColumnConstraints();
+            column.setPercentWidth(100/numberOfColumn);
+            gridPane.getColumnConstraints().add(column);
+        }
+
+        parserLROutputPane.getChildren().add(gridPane);
+    }
+
+    public void printGraph(ActionEvent actionEvent) {
+
+        parserLROutputPane.getChildren().clear();
+
+        SwingNode swingComponentWrapper = new SwingNode();
+        HashMap<String, Boolean> tempList = new HashMap<>();
+
+        //ArrayList<Integer> tempList = testGotoGenerator.gotoGeneratorMap.gotoElementMap.keySet();
+        for(Integer tempInt: testGotoGenerator.gotoGeneratorMap.gotoElementMap.keySet()){
+                tempList.put(tempInt.toString(), false);
+        }
+
+        GraphMethods tempGraph = new GraphMethods(tempList, testGotoGenerator.gotoGeneratorMap.gotoTransitionList);
+
+        swingComponentWrapper.setContent(tempGraph.graphComponent);
+
+        parserLROutputPane.getChildren().add(swingComponentWrapper);
     }
 
     void showElement(Boolean show){

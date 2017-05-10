@@ -56,6 +56,6 @@
          </font>
       </Label>
       <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#randomInput" styleClass="button-green" text="%firstFollowExercises.Random" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-      <Button fx:id="firstFollowExercisesVerifyButton" mnemonicParsing="false" styleClass="button-green" text="%firstLastExercises.verify" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="11" />
+      <Button fx:id="firstFollowExercisesVerifyButton" mnemonicParsing="false" onAction="#firstFollowExerciseVerify" styleClass="button-green" text="%firstLastExercises.verify" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="11" />
    </children>
 </GridPane>

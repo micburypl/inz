@@ -1,5 +1,6 @@
 package firstFollowWindow;
 
+import commonUtility.CommonUtility;
 import firstFollow.FirstFollow;
 import firstFollowTestData.FirstFollowTestMainSet;
 import firstFollowTestData.FirstFollowTestSet;
@@ -12,6 +13,7 @@ import javafx.geometry.HPos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
@@ -54,19 +56,20 @@ public class FirstFollowExercisesController implements Initializable {
     FirstFollowTestMainSet tempElement;
     Integer lastValue;
 
+    GridPane gridPane;
+    GridPane gridPane2;
+    Integer rowSize;
+    Integer columnSize;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         lastValue = -1;
         FXMLLoader x = new FXMLLoader(getClass().getResource("/fxml/test/firstFollowWindow/firstFollowExercisesInput.fxml"));
-
         try {
-            //x.load();
             firstFollowInputList.getItems().add(x.load());
-
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         listInput.add(x.getController());
             Button b = new Button("+");
             b.setOnAction(handle -> {
@@ -79,15 +82,11 @@ public class FirstFollowExercisesController implements Initializable {
                 }
                 listInput.add(x1.getController());
             });
-        //firstFollowInputList.getItems().add(b);
-
         showElement(false);
-//        firstFollowButtonVBox.setVisible(false);
-//        firstFollowPartialSolutionsLabel.setVisible(false);
-//        firstFollowExercisesVerifyButton.setVisible(false);
     }
 
     public void randomInput(ActionEvent actionEvent) throws IOException {
+//        showVerifyButton(false);
         tempSet = new FirstFollowTestSet(true);
         lastValue = tempSet.testData(lastValue);
         tempElement = tempSet.InputListTestList.get(lastValue);
@@ -106,6 +105,7 @@ public class FirstFollowExercisesController implements Initializable {
         }
 
         showElement(false);
+        firstFollowOutputPane.getChildren().clear();
     }
 
     public void generateFirstAndFollow(ActionEvent actionEvent) {
@@ -161,11 +161,7 @@ public class FirstFollowExercisesController implements Initializable {
 
         //show buttons
         showElement(true);
-//        firstFollowButtonVBox.setVisible(true);
-//        firstFollowPartialSolutionsLabel.setVisible(true);
-//        firstFollowExercisesVerifyButton.setVisible(true);
-
-
+        showVerifyButton(false);
         firstFollowOutputPane.getChildren().clear();
         GridPane gridPane = new GridPane();
         firstFollowOutputPane.getChildren().add(gridPane);
@@ -175,8 +171,12 @@ public class FirstFollowExercisesController implements Initializable {
     }
 
     public void printFirst(ActionEvent actionEvent) throws IOException {
+
+        showVerifyButton(true);
         firstFollowOutputPane.getChildren().clear();
-        GridPane gridPane = new GridPane();
+        //ANSWERS
+
+        gridPane = new GridPane();
 
         Label tempLabel = new Label("Element");
         gridPane.add(tempLabel, 0,0);
@@ -218,14 +218,67 @@ public class FirstFollowExercisesController implements Initializable {
             column.setPercentWidth(100/numberOfColumn);
             gridPane.getColumnConstraints().add(column);
         }
+        //TO INPUT
 
-        firstFollowOutputPane.getChildren().add(gridPane);
+        TextField tempTextField;
+        gridPane2 = new GridPane();
+        gridPane2.setGridLinesVisible(true);
+        tempLabel = new Label("Element");
+        gridPane2.add(tempLabel, 0,0);
+        gridPane2.setHalignment(tempLabel, HPos.CENTER);
+
+        tempLabel = new Label("First(Element)");
+        gridPane2.add(tempLabel, 1,0);
+        gridPane2.setHalignment(tempLabel, HPos.CENTER);
+
+
+        rowNumber = 1;
+
+        for(String keyFollow: testFirstFollow.firstElementMap.keySet() ){
+
+
+            tempLabel = new Label(keyFollow);
+            gridPane2.add(tempLabel, 0,rowNumber);
+            gridPane2.setHalignment(tempLabel, HPos.CENTER);
+
+            String solutionString = "";
+            for(String temp: testFirstFollow.firstElementMap.get(keyFollow).firstSet) {
+                solutionString += temp + ", ";
+            }
+            if(solutionString.length() > 2) {
+                solutionString = solutionString.substring(0, solutionString.length()-2);
+            }
+
+            tempTextField = new TextField();
+            gridPane2.add(tempTextField, 1,rowNumber);
+            gridPane2.setHalignment(tempTextField, HPos.CENTER);
+
+            rowNumber++;
+
+        }
+        numberOfColumn = 2;
+        columnSize = numberOfColumn;
+        rowSize = rowNumber;
+
+        for(Integer i = 0; i < numberOfColumn; i++) {
+
+            ColumnConstraints column = new ColumnConstraints();
+            column.setPercentWidth(100/numberOfColumn);
+            gridPane2.getColumnConstraints().add(column);
+        }
+
+
+        firstFollowOutputPane.getChildren().add(gridPane2);
     }
 
     public void printFollow(ActionEvent actionEvent) throws IOException {
 
+        showVerifyButton(true);
         firstFollowOutputPane.getChildren().clear();
-        GridPane gridPane = new GridPane();
+
+        //ANSWER
+        gridPane = new GridPane();
+
 
         Label tempLabel = new Label("Element");
         gridPane.add(tempLabel, 0,0);
@@ -261,6 +314,7 @@ public class FirstFollowExercisesController implements Initializable {
         }
 
         Integer numberOfColumn = 2;
+
         for(Integer i = 0; i < numberOfColumn; i++) {
 
             ColumnConstraints column = new ColumnConstraints();
@@ -268,14 +322,67 @@ public class FirstFollowExercisesController implements Initializable {
             gridPane.getColumnConstraints().add(column);
         }
 
-        firstFollowOutputPane.getChildren().add(gridPane);
+        //INPUT
+        gridPane2 = new GridPane();
+
+        TextField tempTextField;
+
+        tempLabel = new Label("Element");
+        gridPane2.add(tempLabel, 0,0);
+        gridPane2.setHalignment(tempLabel, HPos.CENTER);
+
+        tempLabel = new Label("Follow(Element)");
+        gridPane2.add(tempLabel, 1,0);
+        gridPane2.setHalignment(tempLabel, HPos.CENTER);
+
+        rowNumber = 1;
+        gridPane2.setGridLinesVisible(true);
+        for(String keyFollow: testFirstFollow.followElementMap.keySet() ){
+
+
+            tempLabel = new Label(keyFollow);
+            gridPane2.add(tempLabel, 0,rowNumber);
+            gridPane2.setHalignment(tempLabel, HPos.CENTER);
+
+            tempTextField = new TextField("");
+            gridPane2.add(tempTextField, 1,rowNumber);
+            gridPane2.setHalignment(tempTextField, HPos.CENTER);
+
+            rowNumber++;
+
+        }
+
+        numberOfColumn = 2;
+        columnSize = numberOfColumn;
+        rowSize = rowNumber;
+
+        for(Integer i = 0; i < numberOfColumn; i++) {
+
+            ColumnConstraints column = new ColumnConstraints();
+            column.setPercentWidth(100/numberOfColumn);
+            gridPane2.getColumnConstraints().add(column);
+        }
+
+        firstFollowOutputPane.getChildren().add(gridPane2);
     }
 
     void showElement(Boolean show) {
         firstFollowButtonVBox.setVisible(show);
         firstFollowPartialSolutionsLabel.setVisible(show);
         firstFollowExercisesVerifyButton.setVisible(show);
+
     }
 
+    private void showVerifyButton(Boolean show){
+        firstFollowExercisesVerifyButton.setVisible(show);
+    }
 
+    public void firstFollowExerciseVerify(ActionEvent actionEvent) {
+
+        System.out.println("chociaż weszło");
+
+        Boolean correct = CommonUtility.compareGridPane(gridPane, gridPane2, rowSize, columnSize, true);
+        firstFollowOutputPane.getChildren().clear();
+        firstFollowOutputPane.getChildren().add(gridPane2);
+    }
 }

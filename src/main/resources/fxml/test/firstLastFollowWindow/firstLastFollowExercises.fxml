@@ -35,6 +35,8 @@
       <RowConstraints maxHeight="41.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="41.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="20.0" minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="20.0" minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="20.0" minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
       <Label fx:id="firstLastFollowPartialSolutionsLabel" text="%firstLastFollow.PartialSolutions" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="9" />
@@ -57,9 +59,9 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <StackPane fx:id="firstLastFollowGraphPane" GridPane.columnIndex="3" GridPane.rowIndex="5" GridPane.rowSpan="6" />
+      <StackPane fx:id="firstLastFollowGraphPane" GridPane.columnIndex="3" GridPane.rowIndex="4" GridPane.rowSpan="7" />
       <Label fx:id="firstLastFollowGraphLabel" text="%firstLastFollow.Graph" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
       <Button fx:id="firstLastFollowExercisesRandomButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#randomInput" styleClass="button-green" text="%firstLastFollowExercises.random" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-      <Button fx:id="firstLastFollowExercisesVerifyButton" mnemonicParsing="false" styleClass="button-green" text="%firstLastFollowExercises.verify" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="11" />
+      <Button fx:id="firstLastFollowExercisesVerifyButton" mnemonicParsing="false" onAction="#firstLastFollowExerciseVerify" styleClass="button-green" text="%firstLastFollowExercises.verify" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="11" />
    </children>
 </GridPane>

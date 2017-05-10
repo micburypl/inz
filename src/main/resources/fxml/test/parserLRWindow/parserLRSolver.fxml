@@ -46,6 +46,8 @@
              <Button fx:id="printFollowButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#printFollow" styleClass="button-green" text="%parserLR.FollowButton" />
              <Button fx:id="printActionTableButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#printActionTable" styleClass="button-green" text="%parserLR.ActionTable" />
               <Button fx:id="printGotoTableButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#printGotoTable" styleClass="button-green" text="%parserLR.GotoTable" />
+              <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#printTransitionTable" styleClass="button-green" text="%parserLR.TransitionTable" />
+              <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#printGraph" styleClass="button-green" text="%parserLR.Graph" />
 
           </children>
       </VBox>
