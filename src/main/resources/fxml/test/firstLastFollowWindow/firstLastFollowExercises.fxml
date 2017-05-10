@@ -62,6 +62,6 @@
       <StackPane fx:id="firstLastFollowGraphPane" GridPane.columnIndex="3" GridPane.rowIndex="4" GridPane.rowSpan="7" />
       <Label fx:id="firstLastFollowGraphLabel" text="%firstLastFollow.Graph" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
       <Button fx:id="firstLastFollowExercisesRandomButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#randomInput" styleClass="button-green" text="%firstLastFollowExercises.random" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-      <Button fx:id="firstLastFollowExercisesVerifyButton" mnemonicParsing="false" onAction="#firstLastFollowExerciseVerify" styleClass="button-green" text="%firstLastFollowExercises.verify" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="11" />
+      <Button fx:id="firstLastFollowExercisesVerifyButton" mnemonicParsing="false" onAction="#firstLastFollowExerciseVerify" style="-fx-pref-width: 250;" styleClass="button-green" text="%firstLastFollowExercises.verify" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="11" />
    </children>
 </GridPane>
