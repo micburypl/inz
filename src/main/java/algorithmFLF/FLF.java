@@ -180,6 +180,33 @@ public class FLF {
         eMessage = false;
         sizeOfString = line.length();
 
+        //verifying dot in input string
+
+        if(line.length() == 1 && !(
+                (line.charAt(0) >= 'a' && line.charAt(0) <='z') ||
+                (line.charAt(0) >= 'A' && line.charAt(0) <='Z') ||
+                (line.charAt(0) >= '0' && line.charAt(0) <='9'))) {
+            errorFlag = true;
+            return new LinkedList<>();
+        }
+
+        String stringToVerify = line;
+        for(Integer i = 0; i< sizeOfString-1; i++) {
+            if(stringToVerify.charAt(i) == CommonUtility.starSign) {
+
+               if(stringToVerify.charAt(i + 1) == '(' ||
+                        (stringToVerify.charAt(i + 1) >= 'a' && stringToVerify.charAt(i + 1) <='z')||
+                        (stringToVerify.charAt(i + 1) >= 'A' && stringToVerify.charAt(i + 1) <='Z')||
+                        (stringToVerify.charAt(i + 1) >= '0' && stringToVerify.charAt(i + 1) <='9')) {
+                   //error input
+                   errorFlag = true;
+                   return new LinkedList<>();
+               }
+            }
+        }
+
+
+
         for(int i = 0; i < sizeOfString; i++){
 
             if(nextCharFlag){
@@ -620,4 +647,55 @@ public class FLF {
             }
         }
     }
+
+    public ArrayList<TransitionSolverElement> generateTransitionCheckList(ArrayList<String> wordListToVerify) {
+
+        ArrayList<TransitionSolverElement> answerList = new ArrayList<>();
+        TransitionSolverElement tempElement;
+
+        ArrayList<String> inputList = new ArrayList<>();
+        inputList.addAll(wordListToVerify);
+        String currentState = "A";
+        String currentInput;
+        Boolean transitionExist;
+        while(true) {
+            //if empty input and final state
+            if(inputList.isEmpty() && transitionProduction.get(currentState).contains(finalState)) {
+                tempElement = new TransitionSolverElement("", "Correct", "", false);
+                answerList.add(tempElement);
+                return answerList;
+            }
+            //if empty input and not final state
+            if(inputList.isEmpty() && !transitionProduction.get(currentState).contains(finalState)) {
+                tempElement = new TransitionSolverElement("", "Incorrect", "", false);
+                answerList.add(tempElement);
+                return answerList;
+            }
+
+            currentInput = inputList.get(0);
+            inputList.remove(0);
+            transitionExist = false;
+            //check if exist correct production on Transition producitonlist
+             for(TransitionTableElement tte: transitionTable) {
+                 //if exist
+                 if(tte.beginState.equals(currentState) && tte.word.equals(currentInput)) {
+                     transitionExist = true;
+                     inputList.toString();
+                     tempElement = new TransitionSolverElement(currentState, inputList.toString(), tte.endState, true);
+                     answerList.add(tempElement);
+                     currentState = tte.endState;
+
+                     break;
+                 }
+             }
+
+             if(!transitionExist) {
+                 tempElement = new TransitionSolverElement("", "There is not transition from: " + currentState + " with word : " + currentInput, "", false);
+                 answerList.add(tempElement);
+                 return answerList;
+             }
+
+        }
+    }
+
 }

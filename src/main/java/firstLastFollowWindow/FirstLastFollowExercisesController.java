@@ -2,6 +2,7 @@ package firstLastFollowWindow;
 
 import algorithmFLF.FLF;
 import algorithmFLF.FLFPart;
+import algorithmFLF.TransitionSolverElement;
 import algorithmFLF.TransitionTableElement;
 import commonUtility.CommonUtility;
 import graph.GraphMethods;
@@ -12,14 +13,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.HPos;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import start.Base;
 
 import java.io.IOException;
 import java.net.URL;
@@ -64,16 +63,32 @@ public class FirstLastFollowExercisesController implements Initializable {
     @FXML
     Button firstLastFollowExercisesVerifyButton;
 
+    @FXML
+    TextField firstLastFollowWordInput;
+
+    @FXML
+    Label inputStringLabel;
+
+    @FXML
+    Button movesTableButton;
+
+    @FXML
+    GridPane windowPane;
+
+
     GridPane gridPane;
     GridPane gridPane2;
     Integer rowSize;
     Integer columnSize;
     Boolean removeSpace;
 
+    Integer whichButton;
+
     List<FirstLastFollowInputController> list = new ArrayList<>();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        whichButton = 0;
         FXMLLoader x = new FXMLLoader(getClass().getResource("/fxml/test/firstLastFollowWindow/firstLastFollowInput.fxml"));
         list.add(x.getController());
         Button b = new Button("+");
@@ -136,6 +151,9 @@ public class FirstLastFollowExercisesController implements Initializable {
             firstLastFollowOutputPane.getChildren().clear();
             GridPane gridPane = new GridPane();
 
+
+
+           // Base.getInstance().getResourceBundle().getString(key);
             Label tempLabel = new Label("Wrong input. Please give correct input");
             gridPane.add(tempLabel, 0,0);
             gridPane.setHalignment(tempLabel, HPos.CENTER);
@@ -197,6 +215,8 @@ public class FirstLastFollowExercisesController implements Initializable {
 
     public void printNullable(ActionEvent actionEvent) throws IOException {
 
+        whichButton = 1;
+
         showVerifyButton(true);
         firstLastFollowOutputPane.getChildren().clear();
         gridPane = new GridPane();
@@ -215,7 +235,7 @@ public class FirstLastFollowExercisesController implements Initializable {
         for(FLFPart element: myTree.outputList ){
 
 
-            tempLabel = new Label(element.controlNumber.toString());
+            tempLabel = new Label("el. " + element.controlNumber.toString());
             gridPane.add(tempLabel, 0,rowNumber);
             gridPane.setHalignment(tempLabel, HPos.CENTER);
 
@@ -275,11 +295,15 @@ public class FirstLastFollowExercisesController implements Initializable {
         }
 
 
-        firstLastFollowOutputPane.getChildren().add(gridPane2);
+        //firstLastFollowOutputPane.getChildren().add(gridPane2);
+        ScrollPane tempScrollPane = new ScrollPane(gridPane2);
+        firstLastFollowOutputPane.getChildren().add(tempScrollPane);
     }
 
     public void printFirstLast(ActionEvent actionEvent) throws IOException {
 
+
+        whichButton = 2;
         showVerifyButton(true);
         firstLastFollowOutputPane.getChildren().clear();
         gridPane = new GridPane();
@@ -304,7 +328,7 @@ public class FirstLastFollowExercisesController implements Initializable {
 
         for(FLFPart element: myTree.outputList ){
 
-            tempLabel = new Label(element.controlNumber.toString());
+            tempLabel = new Label("el. " + element.controlNumber.toString());
             gridPane.add(tempLabel, 0,rowNumber);
             gridPane.setHalignment(tempLabel, HPos.CENTER);
 
@@ -341,7 +365,7 @@ public class FirstLastFollowExercisesController implements Initializable {
         for(Integer i = 0; i < numberOfColumn; i++) {
 
             ColumnConstraints column = new ColumnConstraints();
-            column.setPercentWidth(100/numberOfColumn);
+            column.setPercentWidth(97/numberOfColumn);
             gridPane.getColumnConstraints().add(column);
         }
 
@@ -380,12 +404,15 @@ public class FirstLastFollowExercisesController implements Initializable {
         }
 
 
-        firstLastFollowOutputPane.getChildren().add(gridPane2);
+        ScrollPane tempScrollPane = new ScrollPane(gridPane2);
+        firstLastFollowOutputPane.getChildren().add(tempScrollPane);
+        //firstLastFollowOutputPane.getChildren().add(gridPane2);
 
     }
 
     public void printFollow(ActionEvent actionEvent) throws IOException {
 
+        whichButton = 3;
         showVerifyButton(true);
         firstLastFollowOutputPane.getChildren().clear();
         gridPane = new GridPane();
@@ -394,7 +421,7 @@ public class FirstLastFollowExercisesController implements Initializable {
         gridPane.add(tempLabel, 0,0);
         gridPane.setHalignment(tempLabel, HPos.CENTER);
 
-        tempLabel = new Label("Nullable");
+        tempLabel = new Label("Follow(Number)");
         gridPane.add(tempLabel, 1,0);
         gridPane.setHalignment(tempLabel, HPos.CENTER);
 
@@ -470,30 +497,35 @@ public class FirstLastFollowExercisesController implements Initializable {
             gridPane2.getColumnConstraints().add(column);
         }
 
+        ScrollPane tempScrollPane = new ScrollPane(gridPane2);
+        firstLastFollowOutputPane.getChildren().add(tempScrollPane);
 
-        firstLastFollowOutputPane.getChildren().add(gridPane2);
+
+
 
     }
 
     public void printTransitionTable(ActionEvent actionEvent) throws IOException {
 
+
+        whichButton = 4;
         showVerifyButton(true);
         firstLastFollowOutputPane.getChildren().clear();
         gridPane = new GridPane();
 
-        Label tempLabel = new Label("Begin State");
+        Label tempLabel = new Label("   Begin State   ");
         gridPane.add(tempLabel, 0,0);
         gridPane.setHalignment(tempLabel, HPos.CENTER);
 
-        tempLabel = new Label("Transition");
+        tempLabel = new Label("   Transition   ");
         gridPane.add(tempLabel, 1,0);
         gridPane.setHalignment(tempLabel, HPos.CENTER);
 
-        tempLabel = new Label("End State");
+        tempLabel = new Label("   End State   ");
         gridPane.add(tempLabel, 2,0);
         gridPane.setHalignment(tempLabel, HPos.CENTER);
 
-        tempLabel = new Label("Elements");
+        tempLabel = new Label("   Elements   ");
         gridPane.add(tempLabel, 3,0);
         gridPane.setHalignment(tempLabel, HPos.CENTER);
 
@@ -568,15 +600,18 @@ public class FirstLastFollowExercisesController implements Initializable {
             }
         }
 
-        for(Integer i = 0; i < numberOfColumn; i++) {
+//        for(Integer i = 0; i < numberOfColumn; i++) {
+//
+//            ColumnConstraints column = new ColumnConstraints();
+//            column.setPercentWidth(100/numberOfColumn);
+//            gridPane2.getColumnConstraints().add(column);
+//        }
 
-            ColumnConstraints column = new ColumnConstraints();
-            column.setPercentWidth(100/numberOfColumn);
-            gridPane2.getColumnConstraints().add(column);
-        }
+//        if(firstLastFollowOutputPane.getHeight() < gridPane2.getHeight()) {
 
+        ScrollPane tempScrollPane = new ScrollPane(gridPane2);
+        firstLastFollowOutputPane.getChildren().add(tempScrollPane);
 
-        firstLastFollowOutputPane.getChildren().add(gridPane2);
     }
 
     public void printGraph(ActionEvent actionEvent) {
@@ -603,12 +638,119 @@ public class FirstLastFollowExercisesController implements Initializable {
         firstLastFollowOutputPane.getChildren().add(swingComponentWrapper);
     }
 
+    public void checkInput(ActionEvent actionEvent) {
+
+        whichButton = 5;
+        showVerifyButton(true);
+        firstLastFollowOutputPane.getChildren().clear();
+
+        gridPane = new GridPane();
+        String input = firstLastFollowWordInput.getText();
+        ArrayList<String> inputList = new ArrayList<>();
+        for(String s: input.split(" ")) {
+            inputList.add(s);
+        }
+
+        ArrayList<TransitionSolverElement> answerList = myTree.generateTransitionCheckList(inputList);
+
+        Label tempLabel = new Label("Current State");
+        gridPane.add(tempLabel, 0,0);
+        gridPane.setHalignment(tempLabel, HPos.CENTER);
+
+        tempLabel = new Label("Word");
+        gridPane.add(tempLabel, 1,0);
+        gridPane.setHalignment(tempLabel, HPos.CENTER);
+
+        tempLabel = new Label("End State");
+        gridPane.add(tempLabel, 2,0);
+        gridPane.setHalignment(tempLabel, HPos.CENTER);
+
+
+        Integer rowNumber = 1;
+        gridPane.setGridLinesVisible(true);
+        for(TransitionSolverElement tse: answerList) {
+
+            tempLabel = new Label(tse.currentState);
+            gridPane.add(tempLabel, 0,rowNumber);
+            gridPane.setHalignment(tempLabel, HPos.CENTER);
+
+            tempLabel = new Label(tse.currentWord);
+            tempLabel.setWrapText(true);
+            gridPane.add(tempLabel, 1,rowNumber);
+            gridPane.setHalignment(tempLabel, HPos.CENTER);
+
+            tempLabel = new Label(tse.endState);
+            gridPane.add(tempLabel, 2,rowNumber);
+            gridPane.setHalignment(tempLabel, HPos.CENTER);
+
+            rowNumber++;
+
+        }
+        Integer numberOfColumn = 3;
+
+        ColumnConstraints column = new ColumnConstraints();
+        column.setPercentWidth(20);
+        gridPane.getColumnConstraints().add(column);
+        column = new ColumnConstraints();
+        column.setPercentWidth(60);
+        gridPane.getColumnConstraints().add(column);
+        column = new ColumnConstraints();
+        column.setPercentWidth(20);
+        gridPane.getColumnConstraints().add(column);
+
+
+        columnSize = numberOfColumn;
+        rowSize = rowNumber;
+
+        //input
+        removeSpace = false;
+        gridPane2 = new GridPane();
+        TextField tempTextField;
+
+        gridPane2.setGridLinesVisible(true);
+
+        for(Integer i = 0; i < columnSize; i++) {
+            for(Integer j = 0; j < rowSize; j++) {
+
+                if(j == 0 || j == 1) {
+                    tempLabel = new Label(CommonUtility.getNodeFromGridPane(gridPane, i, j));
+                    gridPane2.add(tempLabel, i,j);
+                    gridPane2.setHalignment(tempLabel, HPos.CENTER);
+                    continue;
+                }
+                tempTextField = new TextField("");
+                gridPane2.add(tempTextField, i,j);
+                gridPane2.setHalignment(tempTextField, HPos.CENTER);
+
+            }
+        }
+
+        column = new ColumnConstraints();
+        column.setPercentWidth(20);
+        gridPane.getColumnConstraints().add(column);
+        column = new ColumnConstraints();
+        column.setPercentWidth(60);
+        gridPane.getColumnConstraints().add(column);
+        column = new ColumnConstraints();
+        column.setPercentWidth(20);
+        gridPane.getColumnConstraints().add(column);
+
+
+        //firstLastFollowOutputPane.getChildren().add(gridPane2);
+        ScrollPane tempScrollPane = new ScrollPane(gridPane2);
+        firstLastFollowOutputPane.getChildren().add(tempScrollPane);
+    }
+
+
     void showElement(Boolean show) {
         firstLastFollowButtonVBox.setVisible(show);
         firstLastFollowGraphLabel.setVisible(show);
         firstLastFollowSolutionsLabel.setVisible(show);
         firstLastFollowPartialSolutionsLabel.setVisible(show);
         firstLastFollowExercisesVerifyButton.setVisible(show);
+        inputStringLabel.setVisible(show);
+        movesTableButton.setVisible(show);
+        firstLastFollowWordInput.setVisible(show);
     }
 
     void showVerifyButton(Boolean show) {
@@ -617,9 +759,26 @@ public class FirstLastFollowExercisesController implements Initializable {
 
     public void firstLastFollowExerciseVerify(ActionEvent actionEvent) {
 
-        Boolean correct = CommonUtility.compareGridPane(gridPane, gridPane2, rowSize, columnSize, removeSpace);
+        Boolean correct;
+        // 1. nullable
+        // 2. first last
+        // 3. follow
+        // 4. transition table
+        // 5. moves
+
+        if(whichButton == 1 || whichButton == 2 ||whichButton == 3) {
+            correct = CommonUtility.compareGridPane(gridPane, gridPane2, rowSize, columnSize, removeSpace);
+        } else if(whichButton == 4) {
+            correct = CommonUtility.compareGridPane(gridPane, gridPane2, rowSize, columnSize, removeSpace, 1, 2);
+        } else {
+            correct = CommonUtility.compareGridPane(gridPane, gridPane2, rowSize, columnSize, true, 2, 0);
+        }
+
         firstLastFollowOutputPane.getChildren().clear();
-        firstLastFollowOutputPane.getChildren().add(gridPane2);
+        //firstLastFollowOutputPane.getChildren().add(gridPane2);
+
+        ScrollPane tempScrollPane = new ScrollPane(gridPane2);
+        firstLastFollowOutputPane.getChildren().add(tempScrollPane);
     }
 
 

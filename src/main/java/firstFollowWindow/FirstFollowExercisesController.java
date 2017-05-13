@@ -6,24 +6,37 @@ import firstFollowTestData.FirstFollowTestMainSet;
 import firstFollowTestData.FirstFollowTestSet;
 import firstFollowTestData.FirstFollowTestSetElement;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.HPos;
+import javafx.scene.Group;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.DragEvent;
+import javafx.scene.input.Dragboard;
+import javafx.scene.input.TransferMode;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
+import java.awt.*;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Logger;
 
 /**
  * Created by DELL6430u on 2017-05-01.
@@ -61,15 +74,18 @@ public class FirstFollowExercisesController implements Initializable {
     Integer rowSize;
     Integer columnSize;
 
+    FileChooser fileChooser = new FileChooser();
+    private Desktop desktop = Desktop.getDesktop();
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         lastValue = -1;
         FXMLLoader x = new FXMLLoader(getClass().getResource("/fxml/test/firstFollowWindow/firstFollowExercisesInput.fxml"));
-        try {
-            firstFollowInputList.getItems().add(x.load());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            firstFollowInputList.getItems().add(x.load());
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
         listInput.add(x.getController());
             Button b = new Button("+");
             b.setOnAction(handle -> {
@@ -83,7 +99,9 @@ public class FirstFollowExercisesController implements Initializable {
                 listInput.add(x1.getController());
             });
         showElement(false);
+
     }
+
 
     public void randomInput(ActionEvent actionEvent) throws IOException {
 //        showVerifyButton(false);
@@ -137,10 +155,6 @@ public class FirstFollowExercisesController implements Initializable {
 
             //blocked buttons
             showElement(false);
-//            firstFollowButtonVBox.setVisible(false);
-//            firstFollowPartialSolutionsLabel.setVisible(false);
-//            firstFollowExercisesVerifyButton.setVisible(false);
-
 
             firstFollowOutputPane.getChildren().clear();
             GridPane gridPane = new GridPane();
@@ -384,5 +398,45 @@ public class FirstFollowExercisesController implements Initializable {
         Boolean correct = CommonUtility.compareGridPane(gridPane, gridPane2, rowSize, columnSize, true);
         firstFollowOutputPane.getChildren().clear();
         firstFollowOutputPane.getChildren().add(gridPane2);
+    }
+
+    public void openFile(ActionEvent actionEvent) throws IOException {
+        File file = fileChooser.showOpenDialog(new Stage());
+        if (file != null) {
+            openFile(file);
+        }
+    }
+
+    void openFile(File file) throws IOException {
+
+        firstFollowInputList.getItems().clear();
+        listInput = new ArrayList<>();
+        String[] inputWord;
+        for (String line : Files.readAllLines(Paths.get(file.getAbsolutePath()))) {
+
+            FXMLLoader x = new FXMLLoader(getClass().getResource("/fxml/test/firstFollowWindow/firstFollowExercisesInput.fxml"));
+
+            if(line.contains("->")) {
+                //produciton
+                inputWord = line.split("->");
+                firstFollowInputList.getItems().add(x.load());
+                FirstFollowInputExercisesController elementContorller = x.getController();
+
+                elementContorller.setLeftPart(inputWord[0]);
+                elementContorller.setRightPart(inputWord[1]);
+                listInput.add(x.getController());
+            }
+
+
+
+
+
+
+
+
+        }
+        showElement(false);
+        firstFollowOutputPane.getChildren().clear();
+
     }
 }

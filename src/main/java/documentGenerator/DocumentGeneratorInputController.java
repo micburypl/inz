@@ -1,22 +1,26 @@
-package firstFollowWindow;
+package documentGenerator;
 
-import firstFollow.FirstFollow;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
- * Created by DELL6430u on 2017-05-01.
+ * Created on 12.05.2017.
  */
-public class FirstFollowInputController implements Initializable {
+public class DocumentGeneratorInputController  implements Initializable {
 
     @FXML
     TextField productionLeftPart;
     @FXML
     TextField productionRightPart;
+    @FXML
+    Button removeButton;
+
+    Integer number;
 
     public String getLeftPart(){
         return productionLeftPart.getText();
@@ -24,6 +28,10 @@ public class FirstFollowInputController implements Initializable {
 
     public String getRightPart(){
         return productionRightPart.getText();
+    }
+
+    public Number getNumber(){
+        return number;
     }
 
     public void setLeftPart(String input){
@@ -34,13 +42,14 @@ public class FirstFollowInputController implements Initializable {
         productionRightPart.setText(input);
     }
 
+    public void setNumber(Integer input) {
+        number = input;
+    }
+
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
     }
-
-
-
 }

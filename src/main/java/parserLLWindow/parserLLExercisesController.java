@@ -20,15 +20,19 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import parserLL.MovesTable;
 import parserLL.MovesTableElement;
 
+import java.awt.*;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.*;
 import java.util.List;
-import java.util.ResourceBundle;
 
 /**
  * Created by DELL6430u on 2017-05-01.
@@ -70,6 +74,14 @@ public class parserLLExercisesController implements Initializable {
     Integer rowSize;
     Integer columnSize;
     Boolean removeSpace;
+    Boolean isImportedFile = false;
+    Integer currentImportedInput;
+    Boolean showRandomMovesButton = false;
+
+    ArrayList<String> importedInputList;
+
+    FileChooser fileChooser = new FileChooser();
+    private Desktop desktop = Desktop.getDesktop();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -101,6 +113,8 @@ public class parserLLExercisesController implements Initializable {
 
     public void randomInput(ActionEvent actionEvent) throws IOException {
 
+        isImportedFile = false;
+
         showVerifyButton(false);
         parserLLOutputPane.getChildren().clear();
         tempSet = new FirstFollowTestSet(false);
@@ -127,17 +141,28 @@ public class parserLLExercisesController implements Initializable {
 
     public void randomMovesInput(ActionEvent actionEvent) {
 
-        lastValueMoves = tempElement.testMovesData(lastValueMoves);
-        String movesString = tempElement.movesTestList.get(lastValueMoves);
-        movesTableInput.setText(movesString);
+        if(!isImportedFile) {
+            lastValueMoves = tempElement.testMovesData(lastValueMoves);
+            String movesString = tempElement.movesTestList.get(lastValueMoves);
+            movesTableInput.setText(movesString);
+        } else {
+            Integer i;
+            Random generator = new Random();
+            do{
+                i = generator.nextInt(importedInputList.size());
+            } while(currentImportedInput == i);
+
+            currentImportedInput = i;
+            movesTableInput.setText(importedInputList.get(i));
+        }
+
 
     }
 
     public void generateLL(ActionEvent actionEvent) {
 
         List<String> inputLineList = new ArrayList<>();
-
-
+        showRandomMovesButton = true;
         // Correct
 //
         String tempString;
@@ -557,8 +582,15 @@ public class parserLLExercisesController implements Initializable {
         parserLLPartialSolutionsLabel.setVisible(show);
         movesTableInput.setVisible(show);
         parserLLVerifyButton.setVisible(show);
-        parserLLRandomMoves.setVisible(show);
-        parserLLRandomMoves.setVisible(show);
+        if(!isImportedFile) {
+            parserLLRandomMoves.setVisible(show);
+        } else  if(!importedInputList.isEmpty() && showRandomMovesButton){
+            parserLLRandomMoves.setVisible(true);
+        } else {
+            parserLLRandomMoves.setVisible(false);
+        }
+
+
     }
 
     private void showVerifyButton(Boolean show){
@@ -571,5 +603,50 @@ public class parserLLExercisesController implements Initializable {
         Boolean correct = CommonUtility.compareGridPane(gridPane, gridPane2, rowSize, columnSize, removeSpace);
         parserLLOutputPane.getChildren().clear();
         parserLLOutputPane.getChildren().add(gridPane2);
+    }
+
+    public void openFile(ActionEvent actionEvent) throws IOException {
+        File file = fileChooser.showOpenDialog(new Stage());
+        if (file != null) {
+            openFile(file);
+        }
+    }
+
+    void openFile(File file) throws IOException {
+
+        parserLLInputList.getItems().clear();
+        currentImportedInput = -1;
+        showRandomMovesButton = false;
+        listInput = new ArrayList<>();
+        importedInputList = new ArrayList<>();
+        String[] inputWord;
+        String tempString;
+        isImportedFile = true;
+        for (String line : Files.readAllLines(Paths.get(file.getAbsolutePath()))) {
+
+            FXMLLoader x = new FXMLLoader(getClass().getResource("/fxml/test/firstFollowWindow/firstFollowExercisesInput.fxml"));
+
+            tempString = line;
+            if(tempString.replaceAll(" ","").isEmpty()){
+                continue;
+            }
+
+            if(line.contains("->")) {
+                //production
+                inputWord = line.split("->");
+                parserLLInputList.getItems().add(x.load());
+                FirstFollowInputExercisesController elementContorller = x.getController();
+                elementContorller.setLeftPart(inputWord[0]);
+                elementContorller.setRightPart(inputWord[1]);
+                listInput.add(x.getController());
+            } else {
+                //inputString
+                importedInputList.add(line);
+            }
+
+        }
+        showElement(false);
+        parserLLOutputPane.getChildren().clear();
+
     }
 }

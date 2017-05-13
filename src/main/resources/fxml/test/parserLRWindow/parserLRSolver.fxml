@@ -22,8 +22,8 @@
   <rowConstraints>
       <RowConstraints percentHeight="1.0" vgrow="SOMETIMES" />
       <RowConstraints vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="70.0" minHeight="10.0" percentHeight="1.0" prefHeight="24.0" vgrow="SOMETIMES" />
     <RowConstraints vgrow="SOMETIMES" />
+      <RowConstraints vgrow="SOMETIMES" />
     <RowConstraints maxHeight="130.0" minHeight="130.0" prefHeight="130.0" vgrow="SOMETIMES" />
       <RowConstraints percentHeight="1.0" vgrow="SOMETIMES" />
       <RowConstraints vgrow="SOMETIMES" />
@@ -51,9 +51,9 @@
 
           </children>
       </VBox>
-      <Label text="%parserLR.Solution" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+      <Label text="%parserLR.Solution" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
       <StackPane fx:id="parserLROutputPane" alignment="TOP_CENTER" GridPane.columnIndex="3" GridPane.rowIndex="4" GridPane.rowSpan="12" />
-      <Label text="%parserLR.InputData" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+      <Label text="%parserLR.InputData" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
       <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#generateLR" styleClass="button-green" text="%parserLR.GenerateButton" GridPane.columnIndex="1" GridPane.rowIndex="7" />
       <TextField id="movesInput" fx:id="movesTableInput" GridPane.columnIndex="1" GridPane.rowIndex="13" />
       <Label text="%parserLR.GenerateLR" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
@@ -65,5 +65,6 @@
             <Font size="18.0" />
          </font>
       </Label>
+      <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#openFile" styleClass="button-green" text="%firstFollow.ImportData" GridPane.columnIndex="1" GridPane.rowIndex="3" />
    </children>
 </GridPane>

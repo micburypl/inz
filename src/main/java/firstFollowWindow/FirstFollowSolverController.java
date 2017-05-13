@@ -15,9 +15,15 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
+import java.awt.*;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -43,7 +49,8 @@ public class FirstFollowSolverController implements Initializable {
     Label firstFollowPartialSolutionsLabel;
 
 
-
+    FileChooser fileChooser = new FileChooser();
+    private Desktop desktop = Desktop.getDesktop();
 
     List<FirstFollowInputController> listInput = new ArrayList<>();
 
@@ -234,6 +241,56 @@ public class FirstFollowSolverController implements Initializable {
         }
 
         firstFollowOutputPane.getChildren().add(gridPane);
+    }
+
+    public void openFile(ActionEvent actionEvent) throws IOException {
+
+        File file = fileChooser.showOpenDialog(new Stage());
+        if (file != null) {
+            openFile(file);
+        }
+    }
+
+    void openFile(File file) throws IOException {
+
+        firstFollowInputList.getItems().clear();
+        listInput = new ArrayList<>();
+        String[] inputWord;
+        for (String line : Files.readAllLines(Paths.get(file.getAbsolutePath()))) {
+
+            FXMLLoader x = new FXMLLoader(getClass().getResource("/fxml/test/firstFollowWindow/firstFollowInput.fxml"));
+
+            if(line.contains("->")) {
+                //produciton
+                inputWord = line.split("->");
+                firstFollowInputList.getItems().add(x.load());
+                FirstFollowInputController elementContorller = x.getController();
+
+                elementContorller.setLeftPart(inputWord[0]);
+                elementContorller.setRightPart(inputWord[1]);
+                listInput.add(x.getController());
+            }
+
+        }
+
+        Button b = new Button("+");
+        b.setOnAction(handle -> {
+            System.out.println(firstFollowInputList.getSelectionModel());
+            FXMLLoader x1 = new FXMLLoader(getClass().getResource("/fxml/test/firstFollowWindow/firstFollowInput.fxml"));
+            try {
+                firstFollowInputList.getItems().add(firstFollowInputList.getItems().size() - 1, x1.load());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            listInput.add(x1.getController());
+        });
+        firstFollowInputList.getItems().add(b);
+
+
+        firstFollowButtonVBox.setVisible(false);
+        firstFollowPartialSolutionsLabel.setVisible(false);
+        firstFollowOutputPane.getChildren().clear();
+
     }
 
 

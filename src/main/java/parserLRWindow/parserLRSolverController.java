@@ -17,12 +17,18 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import parserLR.GotoTransition;
 import parserLR.MovesElementLR;
 import parserLR.ParserLR;
 
+import java.awt.*;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -54,7 +60,8 @@ public class parserLRSolverController implements Initializable {
 
     ParserLR testGotoGenerator;
 
-
+    FileChooser fileChooser = new FileChooser();
+    private Desktop desktop = Desktop.getDesktop();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -483,6 +490,52 @@ public class parserLRSolverController implements Initializable {
         parserLRInputStringLabel.setVisible(show);
         parserLRPartialSolutionsLabel.setVisible(show);
         movesTableInput.setVisible(show);
+
+    }
+
+    public void openFile(ActionEvent actionEvent) throws IOException {
+
+        File file = fileChooser.showOpenDialog(new Stage());
+        if (file != null) {
+            openFile(file);
+        }
+    }
+
+    void openFile(File file) throws IOException {
+
+        parserLRInputList.getItems().clear();
+        listInput = new ArrayList<>();
+        String[] inputWord;
+        for (String line : Files.readAllLines(Paths.get(file.getAbsolutePath()))) {
+
+            FXMLLoader x = new FXMLLoader(getClass().getResource("/fxml/test/firstFollowWindow/firstFollowInput.fxml"));
+
+            inputWord = line.split("->");
+            parserLRInputList.getItems().add(x.load());
+            FirstFollowInputController elementContorller = x.getController();
+
+            elementContorller.setLeftPart(inputWord[0]);
+            elementContorller.setRightPart(inputWord[1]);
+            listInput.add(x.getController());
+        }
+
+        Button b = new Button("+");
+        b.setOnAction(handle -> {
+            System.out.println(parserLRInputList.getSelectionModel());
+            FXMLLoader x1 = new FXMLLoader(getClass().getResource("/fxml/test/firstFollowWindow/firstFollowInput.fxml"));
+            try {
+                parserLRInputList.getItems().add(parserLRInputList.getItems().size() - 1, x1.load());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            listInput.add(x1.getController());
+        });
+        parserLRInputList.getItems().add(b);
+
+
+        parserLRButtonVBox.setVisible(false);
+        parserLRPartialSolutionsLabel.setVisible(false);
+        parserLROutputPane.getChildren().clear();
 
     }
 }

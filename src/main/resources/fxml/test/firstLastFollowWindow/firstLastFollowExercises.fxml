@@ -30,13 +30,13 @@
       <RowConstraints maxHeight="93.0" minHeight="10.0" prefHeight="27.0" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="105.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="107.0" minHeight="0.0" prefHeight="23.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="130.0" minHeight="10.0" prefHeight="34.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="270.0" minHeight="10.0" prefHeight="227.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="41.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="41.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="20.0" minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="20.0" minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="20.0" minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="130.0" minHeight="10.0" prefHeight="48.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="270.0" minHeight="10.0" prefHeight="179.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="74.0" minHeight="9.0" prefHeight="9.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="54.0" minHeight="0.0" prefHeight="28.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="48.0" minHeight="5.0" prefHeight="38.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="45.0" minHeight="15.0" prefHeight="45.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="20.0" minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
       <Label fx:id="firstLastFollowPartialSolutionsLabel" text="%firstLastFollow.PartialSolutions" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="9" />
@@ -49,7 +49,7 @@
             <Button fx:id="printGraphButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#printGraph" styleClass="button-green" text="%firstLastFollow.GraphButton" />
          </children></VBox>
       <Label fx:id="firstLastFollowSolutionsLabel" text="%firstLastFollow.Solutions" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-      <StackPane fx:id="firstLastFollowOutputPane" GridPane.columnIndex="5" GridPane.rowIndex="4" GridPane.rowSpan="7" />
+      <StackPane fx:id="firstLastFollowOutputPane" GridPane.columnIndex="5" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" GridPane.rowSpan="7" GridPane.vgrow="ALWAYS" />
       <Label text="%firstLastFollowExercises.InputData" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
       <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#generateFLF" styleClass="button-green" text="%firstLastFollow.GenerateButton" GridPane.columnIndex="1" GridPane.rowIndex="7" />
       <TextField id="firstLastFollowInput" fx:id="firstLastFollowInput" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="5" />
@@ -62,6 +62,9 @@
       <StackPane fx:id="firstLastFollowGraphPane" GridPane.columnIndex="3" GridPane.rowIndex="4" GridPane.rowSpan="7" />
       <Label fx:id="firstLastFollowGraphLabel" text="%firstLastFollow.Graph" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
       <Button fx:id="firstLastFollowExercisesRandomButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#randomInput" styleClass="button-green" text="%firstLastFollowExercises.random" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-      <Button fx:id="firstLastFollowExercisesVerifyButton" mnemonicParsing="false" onAction="#firstLastFollowExerciseVerify" style="-fx-pref-width: 250;" styleClass="button-green" text="%firstLastFollowExercises.verify" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="11" />
+      <Button fx:id="firstLastFollowExercisesVerifyButton" mnemonicParsing="false" onAction="#firstLastFollowExerciseVerify" style="-fx-pref-width: 250;" styleClass="button-green" text="%firstLastFollowExercises.verify" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="14" />
+      <TextField fx:id="firstLastFollowWordInput" GridPane.columnIndex="1" GridPane.rowIndex="13" />
+      <Button fx:id="movesTableButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#checkInput" styleClass="button-green" text="%firstLastFollow.MovesTableButton" GridPane.columnIndex="1" GridPane.rowIndex="14" />
+      <Label fx:id="inputStringLabel" text="%firstLastFollow.inputString" GridPane.columnIndex="1" GridPane.rowIndex="12" />
    </children>
 </GridPane>

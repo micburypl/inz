@@ -56,12 +56,12 @@ public class GraphThreeMethods {
         String tempString;
         if(!cellElement.typeTreePart) {
             // operator
-            tempString = String.valueOf(cellElement.operatorText);
+            tempString = String.valueOf(cellElement.operatorText) + "\n el. " + cellElement.controlNumber;
         } else {
             // symbol
-            tempString = cellElement.symbolsText;
+            tempString = cellElement.symbolsText + "\n el. " + cellElement.controlNumber + "\n(" + cellElement.nodeNumber + ")";
         }
-        tempString += " / " + cellElement.controlNumber;
+        //tempString += " / element" + cellElement.controlNumber;
         mxCell cell = (mxCell)  mainGraph.insertVertex(mainGraph.getDefaultParent(), null, tempString, x, y, 50, 50, GraphUtils.REGULAR_STYLE);
 
         if (shift) {

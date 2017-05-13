@@ -2,6 +2,7 @@ package firstLastFollowWindow;
 
 import algorithmFLF.FLF;
 import algorithmFLF.FLFPart;
+import algorithmFLF.TransitionSolverElement;
 import algorithmFLF.TransitionTableElement;
 import graph.GraphMethods;
 import graph.GraphThreeMethods;
@@ -17,14 +18,12 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import start.Base;
 
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 /**
  * Created by DELL6430u on 2017-04-10.
@@ -63,6 +62,15 @@ public class FirstLastFollowSolverController implements Initializable {
     @FXML
     Label firstLastFollowPartialSolutionsLabel;
 
+    @FXML
+    TextField firstLastFollowWordInput;
+
+    @FXML
+    Label inputStringLabel;
+
+    @FXML
+    Button movesTableButton;
+
     List<FirstLastFollowInputController> list = new ArrayList<>();
 
     @Override
@@ -87,6 +95,8 @@ public class FirstLastFollowSolverController implements Initializable {
         //button.setOnAction
 
     }
+
+
 
 
     public void generateFLF(ActionEvent actionEvent) {
@@ -125,7 +135,10 @@ public class FirstLastFollowSolverController implements Initializable {
             gridPane.add(tempLabel, 0,0);
             gridPane.setHalignment(tempLabel, HPos.CENTER);
 
-            firstLastFollowOutputPane.getChildren().add(gridPane);
+            //firstLastFollowOutputPane.getChildren().add(gridPane);
+
+            ScrollPane tempScrollPane = new ScrollPane(gridPane);
+            firstLastFollowOutputPane.getChildren().add(tempScrollPane);
 
             return;
         }
@@ -188,11 +201,11 @@ public class FirstLastFollowSolverController implements Initializable {
         GridPane gridPane = new GridPane();
         String solutionString;
 
-        Label tempLabel = new Label("Number");
+        Label tempLabel = new Label("   Number   ");
         gridPane.add(tempLabel, 0,0);
         gridPane.setHalignment(tempLabel, HPos.CENTER);
 
-        tempLabel = new Label("Nullable");
+        tempLabel = new Label("   Nullable   ");
         gridPane.add(tempLabel, 1,0);
         gridPane.setHalignment(tempLabel, HPos.CENTER);
 
@@ -201,14 +214,14 @@ public class FirstLastFollowSolverController implements Initializable {
         for(FLFPart element: myTree.outputList ){
 
 
-            tempLabel = new Label(element.controlNumber.toString());
+            tempLabel = new Label("el. " + element.controlNumber.toString());
             gridPane.add(tempLabel, 0,rowNumber);
             gridPane.setHalignment(tempLabel, HPos.CENTER);
 
             if(element.nullable) {
-                solutionString = "True";
+                solutionString = "   True   ";
             } else {
-                solutionString = "False";
+                solutionString = "   False   ";
 
             }
             tempLabel = new Label(solutionString);
@@ -226,7 +239,10 @@ public class FirstLastFollowSolverController implements Initializable {
             column.setPercentWidth(100/numberOfColumn);
             gridPane.getColumnConstraints().add(column);
         }
-        firstLastFollowOutputPane.getChildren().add(gridPane);
+        //firstLastFollowOutputPane.getChildren().add(gridPane);
+
+        ScrollPane tempScrollPane = new ScrollPane(gridPane);
+        firstLastFollowOutputPane.getChildren().add(tempScrollPane);
     }
 
     public void printFirstLast(ActionEvent actionEvent) throws IOException {
@@ -235,15 +251,15 @@ public class FirstLastFollowSolverController implements Initializable {
         firstLastFollowOutputPane.getChildren().clear();
         GridPane gridPane = new GridPane();
 
-        Label tempLabel = new Label("Element");
+        Label tempLabel = new Label("   Element   ");
         gridPane.add(tempLabel, 0,0);
         gridPane.setHalignment(tempLabel, HPos.CENTER);
 
-        tempLabel = new Label("First(Element)");
+        tempLabel = new Label("   First(Element)   ");
         gridPane.add(tempLabel, 1,0);
         gridPane.setHalignment(tempLabel, HPos.CENTER);
 
-        tempLabel = new Label("Last(Element)");
+        tempLabel = new Label("   Last(Element)   ");
         gridPane.add(tempLabel, 2,0);
         gridPane.setHalignment(tempLabel, HPos.CENTER);
 
@@ -255,7 +271,7 @@ public class FirstLastFollowSolverController implements Initializable {
 
         for(FLFPart element: myTree.outputList ){
 
-            tempLabel = new Label(element.controlNumber.toString());
+            tempLabel = new Label("el. " + element.controlNumber.toString());
             gridPane.add(tempLabel, 0,rowNumber);
             gridPane.setHalignment(tempLabel, HPos.CENTER);
 
@@ -287,7 +303,6 @@ public class FirstLastFollowSolverController implements Initializable {
 
             rowNumber++;
         }
-        firstLastFollowOutputPane.getChildren().add(gridPane);
 
         Integer numberOfColumn = 3;
         for(Integer i = 0; i < numberOfColumn; i++) {
@@ -296,6 +311,11 @@ public class FirstLastFollowSolverController implements Initializable {
             column.setPercentWidth(100/numberOfColumn);
             gridPane.getColumnConstraints().add(column);
         }
+
+        //firstLastFollowOutputPane.getChildren().add(gridPane);
+
+        ScrollPane tempScrollPane = new ScrollPane(gridPane);
+        firstLastFollowOutputPane.getChildren().add(tempScrollPane);
     }
 
     public void printFollow(ActionEvent actionEvent) throws IOException {
@@ -304,11 +324,17 @@ public class FirstLastFollowSolverController implements Initializable {
         GridPane gridPane = new GridPane();
         String solutionString;
 
-        Label tempLabel = new Label("Number");
+        //Label tempLabel = new Label("   Number   ");
+        //Label tempLabel = new Label(Base.getResourceBundle("test.test");
+
+        Locale xxx = new Locale("pl_PL");
+
+        Label tempLabel = new Label(ResourceBundle.getBundle("test.test").toString());
+
         gridPane.add(tempLabel, 0,0);
         gridPane.setHalignment(tempLabel, HPos.CENTER);
 
-        tempLabel = new Label("Nullable");
+        tempLabel = new Label("   Follow(Number)   ");
         gridPane.add(tempLabel, 1,0);
         gridPane.setHalignment(tempLabel, HPos.CENTER);
 
@@ -351,7 +377,10 @@ public class FirstLastFollowSolverController implements Initializable {
             gridPane.getColumnConstraints().add(column);
         }
 
-        firstLastFollowOutputPane.getChildren().add(gridPane);
+        //firstLastFollowOutputPane.getChildren().add(gridPane);
+
+        ScrollPane tempScrollPane = new ScrollPane(gridPane);
+        firstLastFollowOutputPane.getChildren().add(tempScrollPane);
 
     }
 
@@ -360,19 +389,19 @@ public class FirstLastFollowSolverController implements Initializable {
         firstLastFollowOutputPane.getChildren().clear();
         GridPane gridPane = new GridPane();
 
-        Label tempLabel = new Label("Begin State");
+        Label tempLabel = new Label("   Begin State   ");
         gridPane.add(tempLabel, 0,0);
         gridPane.setHalignment(tempLabel, HPos.CENTER);
 
-        tempLabel = new Label("Transition");
+        tempLabel = new Label("   Transition   ");
         gridPane.add(tempLabel, 1,0);
         gridPane.setHalignment(tempLabel, HPos.CENTER);
 
-        tempLabel = new Label("End State");
+        tempLabel = new Label("   End State   ");
         gridPane.add(tempLabel, 2,0);
         gridPane.setHalignment(tempLabel, HPos.CENTER);
 
-        tempLabel = new Label("Elements");
+        tempLabel = new Label("   Elements   ");
         gridPane.add(tempLabel, 3,0);
         gridPane.setHalignment(tempLabel, HPos.CENTER);
 
@@ -421,7 +450,10 @@ public class FirstLastFollowSolverController implements Initializable {
             gridPane.getColumnConstraints().add(column);
         }
 
-        firstLastFollowOutputPane.getChildren().add(gridPane);
+        //firstLastFollowOutputPane.getChildren().add(gridPane);
+
+        ScrollPane tempScrollPane = new ScrollPane(gridPane);
+        firstLastFollowOutputPane.getChildren().add(tempScrollPane);
     }
 
     public void printGraph(ActionEvent actionEvent) {
@@ -446,11 +478,84 @@ public class FirstLastFollowSolverController implements Initializable {
         firstLastFollowOutputPane.getChildren().add(swingComponentWrapper);
     }
 
+
+
+    public void checkInput(ActionEvent actionEvent) {
+
+        firstLastFollowOutputPane.getChildren().clear();
+
+        GridPane gridPane = new GridPane();
+        String input = firstLastFollowWordInput.getText();
+        ArrayList<String> inputList = new ArrayList<>();
+        for(String s: input.split(" ")) {
+            inputList.add(s);
+        }
+
+        ArrayList<TransitionSolverElement> answerList = myTree.generateTransitionCheckList(inputList);
+
+        Label tempLabel = new Label("   Current State   ");
+        //Label tempLabel = new Label(Base.getInstance().getResourceBundle().getString("test.test"));
+        gridPane.add(tempLabel, 0,0);
+        gridPane.setHalignment(tempLabel, HPos.CENTER);
+
+        tempLabel = new Label("   Word   ");
+        gridPane.add(tempLabel, 1,0);
+        gridPane.setHalignment(tempLabel, HPos.CENTER);
+
+        tempLabel = new Label("   End State   ");
+        gridPane.add(tempLabel, 2,0);
+        gridPane.setHalignment(tempLabel, HPos.CENTER);
+
+
+        Integer rowNumber = 1;
+        gridPane.setGridLinesVisible(true);
+        for(TransitionSolverElement tse: answerList) {
+
+            tempLabel = new Label(tse.currentState);
+            gridPane.add(tempLabel, 0,rowNumber);
+            gridPane.setHalignment(tempLabel, HPos.CENTER);
+
+            tempLabel = new Label(tse.currentWord);
+            tempLabel.setWrapText(true);
+            gridPane.add(tempLabel, 1,rowNumber);
+            gridPane.setHalignment(tempLabel, HPos.CENTER);
+
+            tempLabel = new Label(tse.endState);
+            gridPane.add(tempLabel, 2,rowNumber);
+            gridPane.setHalignment(tempLabel, HPos.CENTER);
+
+            rowNumber++;
+
+        }
+        Integer numberOfColumn = 3;
+
+        ColumnConstraints column = new ColumnConstraints();
+        column.setPercentWidth(20);
+        gridPane.getColumnConstraints().add(column);
+        column = new ColumnConstraints();
+        column.setPercentWidth(60);
+        gridPane.getColumnConstraints().add(column);
+        column = new ColumnConstraints();
+        column.setPercentWidth(20);
+        gridPane.getColumnConstraints().add(column);
+
+        //firstLastFollowOutputPane.getChildren().add(gridPane);
+
+        ScrollPane tempScrollPane = new ScrollPane(gridPane);
+        System.out.println(tempScrollPane.getWidth());
+        firstLastFollowOutputPane.getChildren().add(tempScrollPane);
+        System.out.println(tempScrollPane.getWidth());
+    }
+
     void showElement(Boolean show) {
         firstLastFollowButtonVBox.setVisible(show);
         firstLastFollowGraphLabel.setVisible(show);
         firstLastFollowSolutionsLabel.setVisible(show);
         firstLastFollowPartialSolutionsLabel.setVisible(show);
+        inputStringLabel.setVisible(show);
+        movesTableButton.setVisible(show);
+        firstLastFollowWordInput.setVisible(show);
     }
+
 
 }

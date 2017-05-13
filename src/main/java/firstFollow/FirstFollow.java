@@ -20,7 +20,7 @@ public class FirstFollow {
     public String firstProduction;
     public PredictiveTable predictiveMap;
 
-    public Boolean errorFlag;
+    public Boolean errorFlag = false;
     public HashMap<Integer, String> errorMessages;
 
 
@@ -107,6 +107,13 @@ public class FirstFollow {
                 System.out.println("There is not any production: " + inputLine);
                 errorFlag = true;
                 errorMessages.put(iterator++, " There is not any production: " + inputLine);
+                continue;
+            }
+
+            if(parsedString[0].length() == 0) {
+                System.out.println("Line does not have left part of production: " + inputLine);
+                errorFlag = true;
+                errorMessages.put(iterator++, "Line does not have left part of production: " + inputLine);
                 continue;
             }
 

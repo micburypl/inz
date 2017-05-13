@@ -63,6 +63,11 @@ public class CommonUtility {
     }
 
     public static Boolean compareGridPane(GridPane answer, GridPane input, Integer rN, Integer cN, Boolean removeSpace) {
+        return compareGridPane(answer, input, rN, cN, removeSpace, 1, 1);
+    }
+
+
+    public static Boolean compareGridPane(GridPane answer, GridPane input, Integer rN, Integer cN, Boolean removeSpace, Integer rowToVerify, Integer columnToVerify) {
         Boolean isCorrect = true;
 
         Integer columnNumber = cN;
@@ -73,8 +78,8 @@ public class CommonUtility {
 
 
         //nie trzeba pierwszych elementów sprawdzać
-        for(Integer i = 1; i < columnNumber; i++) {
-            for(Integer j = 1; j < rowNumber; j++) {
+        for(Integer i = columnToVerify; i < columnNumber; i++) {
+            for(Integer j = rowToVerify; j < rowNumber; j++) {
 
                 tempAnswer = getNodeFromGridPane(answer, i, j);
                 tempInput = getNodeFromGridPane(input, i, j);

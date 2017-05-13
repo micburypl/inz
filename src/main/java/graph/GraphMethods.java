@@ -109,6 +109,7 @@ public class GraphMethods {
     }
 
     void addCell(String label, String begin, String end) {
+
         mxCell cell = (mxCell) mainGraph.insertEdge(mainGraph.getDefaultParent(), null, label, vertexMap.get(begin), vertexMap.get(end),"Style");
     }
 

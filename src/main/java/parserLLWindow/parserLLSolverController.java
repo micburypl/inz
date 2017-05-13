@@ -19,14 +19,21 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import parserLL.MovesTable;
 import parserLL.MovesTableElement;
 import parserLR.MovesElementLR;
 import parserLRWindow.parserLRMovesOutputController;
 
+import java.awt.*;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.*;
+import java.util.List;
 
 /**
  * Created by DELL6430u on 2017-05-01.
@@ -54,6 +61,9 @@ public class parserLLSolverController implements Initializable {
 
     FirstFollow testFirstFollow;
 
+    FileChooser fileChooser = new FileChooser();
+    private Desktop desktop = Desktop.getDesktop();
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -78,7 +88,6 @@ public class parserLLSolverController implements Initializable {
             listInput.add(x1.getController());
         });
         parserLLInputList.getItems().add(b);
-
 
     }
 
@@ -377,6 +386,52 @@ public class parserLLSolverController implements Initializable {
         parserLLInputStringLabel.setVisible(show);
         parserLLPartialSolutionsLabel.setVisible(show);
         movesTableInput.setVisible(show);
+
+    }
+
+    public void openFile(ActionEvent actionEvent) throws IOException {
+
+        File file = fileChooser.showOpenDialog(new Stage());
+        if (file != null) {
+            openFile(file);
+        }
+    }
+
+    void openFile(File file) throws IOException {
+
+        parserLLInputList.getItems().clear();
+        listInput = new ArrayList<>();
+        String[] inputWord;
+        for (String line : Files.readAllLines(Paths.get(file.getAbsolutePath()))) {
+
+            FXMLLoader x = new FXMLLoader(getClass().getResource("/fxml/test/firstFollowWindow/firstFollowInput.fxml"));
+
+            inputWord = line.split("->");
+            parserLLInputList.getItems().add(x.load());
+            FirstFollowInputController elementContorller = x.getController();
+
+            elementContorller.setLeftPart(inputWord[0]);
+            elementContorller.setRightPart(inputWord[1]);
+            listInput.add(x.getController());
+        }
+
+        Button b = new Button("+");
+        b.setOnAction(handle -> {
+            System.out.println( parserLLInputList.getSelectionModel());
+            FXMLLoader x1 = new FXMLLoader(getClass().getResource("/fxml/test/firstFollowWindow/firstFollowInput.fxml"));
+            try {
+                parserLLInputList.getItems().add( parserLLInputList.getItems().size() - 1, x1.load());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            listInput.add(x1.getController());
+        });
+        parserLLInputList.getItems().add(b);
+
+
+        parserLLButtonVBox.setVisible(false);
+        parserLLPartialSolutionsLabel.setVisible(false);
+        parserLLOutputPane.getChildren().clear();
 
     }
 }

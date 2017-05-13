@@ -4,11 +4,37 @@
     <bookmark url="file://$PROJECT_DIR$/src/test/java/parserLL/MovesTableElementTest.java" mnemonic="5" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8497ae77-d782-4c98-921b-200f4fcbdb4b" name="Default" comment="">
+    <list default="true" id="8497ae77-d782-4c98-921b-200f4fcbdb4b" name="Default" comment="final first atempt">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/algorithmFLF/TransitionSolverElement.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/documentGenerator/DocumentGeneratorController.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/documentGenerator/DocumentGeneratorInputController.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/documentGenerator/DocumentGeneratorWordInputController.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/fxml/test/DocumentGenerator/documentGenerator.fxml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/fxml/test/DocumentGenerator/documentGeneratorInput.fxml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/fxml/test/DocumentGenerator/documentGeneratorWordInput.fxml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/algorithmFLF/FLF.java" afterPath="$PROJECT_DIR$/src/main/java/algorithmFLF/FLF.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/commonUtility/CommonUtility.java" afterPath="$PROJECT_DIR$/src/main/java/commonUtility/CommonUtility.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/firstFollow/FirstFollow.java" afterPath="$PROJECT_DIR$/src/main/java/firstFollow/FirstFollow.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/firstFollowWindow/FirstFollowExercisesController.java" afterPath="$PROJECT_DIR$/src/main/java/firstFollowWindow/FirstFollowExercisesController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/firstFollowWindow/FirstFollowInputController.java" afterPath="$PROJECT_DIR$/src/main/java/firstFollowWindow/FirstFollowInputController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/firstFollowWindow/FirstFollowSolverController.java" afterPath="$PROJECT_DIR$/src/main/java/firstFollowWindow/FirstFollowSolverController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/firstLastFollowWindow/FirstLastFollowExercisesController.java" afterPath="$PROJECT_DIR$/src/main/java/firstLastFollowWindow/FirstLastFollowExercisesController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/firstLastFollowWindow/FirstLastFollowSolverController.java" afterPath="$PROJECT_DIR$/src/main/java/firstLastFollowWindow/FirstLastFollowSolverController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/graph/GraphMethods.java" afterPath="$PROJECT_DIR$/src/main/java/graph/GraphMethods.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/graph/GraphThreeMethods.java" afterPath="$PROJECT_DIR$/src/main/java/graph/GraphThreeMethods.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/parserLLWindow/parserLLExercisesController.java" afterPath="$PROJECT_DIR$/src/main/java/parserLLWindow/parserLLExercisesController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/parserLLWindow/parserLLSolverController.java" afterPath="$PROJECT_DIR$/src/main/java/parserLLWindow/parserLLSolverController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/parserLRWindow/parserLRExercisesController.java" afterPath="$PROJECT_DIR$/src/main/java/parserLRWindow/parserLRExercisesController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/parserLRWindow/parserLRSolverController.java" afterPath="$PROJECT_DIR$/src/main/java/parserLRWindow/parserLRSolverController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/bundle/bundle.properties" afterPath="$PROJECT_DIR$/src/main/resources/bundle/bundle.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/bundle/bundle_pl_PL.properties" afterPath="$PROJECT_DIR$/src/main/resources/bundle/bundle_pl_PL.properties" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/fxml/test/firstFollowWindow/firstFollowExercises.fxml" afterPath="$PROJECT_DIR$/src/main/resources/fxml/test/firstFollowWindow/firstFollowExercises.fxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/fxml/test/firstFollowWindow/firstFollowSolver.fxml" afterPath="$PROJECT_DIR$/src/main/resources/fxml/test/firstFollowWindow/firstFollowSolver.fxml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/fxml/test/firstLastFollowWindow/firstLastFollowExercises.fxml" afterPath="$PROJECT_DIR$/src/main/resources/fxml/test/firstLastFollowWindow/firstLastFollowExercises.fxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/fxml/test/firstLastFollowWindow/firstLastFollowSolver.fxml" afterPath="$PROJECT_DIR$/src/main/resources/fxml/test/firstLastFollowWindow/firstLastFollowSolver.fxml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/fxml/test/parserLLWindow/parserLLExercises.fxml" afterPath="$PROJECT_DIR$/src/main/resources/fxml/test/parserLLWindow/parserLLExercises.fxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/fxml/test/parserLLWindow/parserLLSolver.fxml" afterPath="$PROJECT_DIR$/src/main/resources/fxml/test/parserLLWindow/parserLLSolver.fxml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/fxml/test/parserLRWindow/parserLRExercises.fxml" afterPath="$PROJECT_DIR$/src/main/resources/fxml/test/parserLRWindow/parserLRExercises.fxml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/fxml/test/parserLRWindow/parserLRSolver.fxml" afterPath="$PROJECT_DIR$/src/main/resources/fxml/test/parserLRWindow/parserLRSolver.fxml" />
     </list>
@@ -113,69 +139,12 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="parserLRExercisesController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/parserLRWindow/parserLRExercisesController.java">
+      <file leaf-file-name="FLF.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/algorithmFLF/FLF.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="624">
-              <caret line="693" column="45" lean-forward="false" selection-start-line="693" selection-start-column="45" selection-end-line="693" selection-end-column="45" />
+            <state relative-caret-position="82">
+              <caret line="355" column="34" lean-forward="true" selection-start-line="355" selection-start-column="34" selection-end-line="355" selection-end-column="34" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="parserLRExercises.fxml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/fxml/test/parserLRWindow/parserLRExercises.fxml">
-          <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
-            <state />
-          </provider>
-          <provider editor-type-id="text-editor">
-            <state relative-caret-position="570">
-              <caret line="63" column="19" lean-forward="true" selection-start-line="63" selection-start-column="19" selection-end-line="63" selection-end-column="19" />
-              <folding>
-                <marker date="1494379704634" expanded="true" signature="4771:4864" ph="..." />
-                <marker date="1494379704634" expanded="true" signature="4790:4847" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="firstFollowExercises.fxml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/fxml/test/firstFollowWindow/firstFollowExercises.fxml">
-          <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
-            <state />
-          </provider>
-          <provider editor-type-id="text-editor">
-            <state relative-caret-position="621">
-              <caret line="58" column="94" lean-forward="false" selection-start-line="58" selection-start-column="94" selection-end-line="58" selection-end-column="94" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="parserLLExercises.fxml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/fxml/test/parserLLWindow/parserLLExercises.fxml">
-          <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
-            <state />
-          </provider>
-          <provider editor-type-id="text-editor">
-            <state relative-caret-position="454">
-              <caret line="66" column="95" lean-forward="true" selection-start-line="66" selection-start-column="95" selection-end-line="66" selection-end-column="95" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="firstLastFollowExercises.fxml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/fxml/test/firstLastFollowWindow/firstLastFollowExercises.fxml">
-          <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
-            <state />
-          </provider>
-          <provider editor-type-id="text-editor">
-            <state relative-caret-position="500">
-              <caret line="63" column="136" lean-forward="false" selection-start-line="63" selection-start-column="136" selection-end-line="63" selection-end-column="136" />
-              <folding>
-                <marker date="1494379756786" expanded="true" signature="5101:5853" ph="..." />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -183,65 +152,66 @@
       <file leaf-file-name="bundle_pl_PL.properties" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/bundle/bundle_pl_PL.properties">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="485">
-              <caret line="64" column="0" lean-forward="false" selection-start-line="64" selection-start-column="0" selection-end-line="65" selection-end-column="19" />
+            <state relative-caret-position="443">
+              <caret line="79" column="14" lean-forward="false" selection-start-line="79" selection-start-column="14" selection-end-line="79" selection-end-column="14" />
               <folding />
             </state>
           </provider>
           <provider editor-type-id="ResourceBundle">
             <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FirstLastFollowSolverController.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/firstLastFollowWindow/FirstLastFollowSolverController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="65" column="0" lean-forward="true" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FirstLastFollowExercisesController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/firstLastFollowWindow/FirstLastFollowExercisesController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="616">
+              <caret line="155" column="13" lean-forward="false" selection-start-line="155" selection-start-column="13" selection-end-line="155" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Base.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/start/Base.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="463">
+              <caret line="50" column="0" lean-forward="false" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Start.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/start/Start.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="235">
+              <caret line="173" column="38" lean-forward="false" selection-start-line="173" selection-start-column="25" selection-end-line="173" selection-end-column="38" />
+              <folding />
+            </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="bundle.properties" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/bundle/bundle.properties">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1105">
-              <caret line="65" column="20" lean-forward="false" selection-start-line="65" selection-start-column="20" selection-end-line="65" selection-end-column="20" />
+            <state relative-caret-position="0">
+              <caret line="6" column="26" lean-forward="true" selection-start-line="6" selection-start-column="26" selection-end-line="6" selection-end-column="26" />
               <folding />
             </state>
           </provider>
           <provider editor-type-id="ResourceBundle">
             <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="application.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/fromPaula/application.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="324">
-              <caret line="71" column="18" lean-forward="false" selection-start-line="71" selection-start-column="8" selection-end-line="71" selection-end-column="18" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="parserLRSolverController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/parserLRWindow/parserLRSolverController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1020">
-              <caret line="98" column="9" lean-forward="true" selection-start-line="93" selection-start-column="9" selection-end-line="98" selection-end-column="9" />
-              <folding>
-                <element signature="e#8414#8431#0" expanded="true" />
-                <element signature="e#10252#10269#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="parserLRSolver.fxml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/fxml/test/parserLRWindow/parserLRSolver.fxml">
-          <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
-            <state />
-          </provider>
-          <provider editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="48" column="153" lean-forward="false" selection-start-line="48" selection-start-column="153" selection-end-line="48" selection-end-column="153" />
-              <folding>
-                <marker date="1494379553555" expanded="true" signature="4932:5013" ph="..." />
-                <marker date="1494379553555" expanded="true" signature="4948:4998" ph="..." />
-              </folding>
-            </state>
           </provider>
         </entry>
       </file>
@@ -253,17 +223,12 @@
         <option value="Singleton" />
         <option value="JUnit4 Test Class" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>CommonUtility</find>
-      <find>parsedSet</find>
-      <find>nonterminalsRelationMap</find>
-      <find>nonterminalsTransitionMap</find>
-      <find>addElementToFirstSetSet</find>
-      <find>with e</find>
       <find>predictiveMap</find>
       <find>ternimal</find>
       <find>termin</find>
@@ -288,6 +253,12 @@
       <find>goto</find>
       <find>showVerifyButton</find>
       <find>parserLROutputPane</find>
+      <find>parserLRInputList</find>
+      <find>fileChooser</find>
+      <find>listInput</find>
+      <find>*</find>
+      <find>wr</find>
+      <find>localLanguage</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -711,57 +682,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/start/Base.java" />
-        <option value="$PROJECT_DIR$/src/main/java/fromPaula/MenuElement.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/fxml/test/firstFollowWindow/firstFollowInput.fxml" />
-        <option value="$PROJECT_DIR$/src/main/resources/fxml/test/parserLLWindow/parserLLInput.fxml" />
-        <option value="$PROJECT_DIR$/src/main/resources/fxml/test/parserLRWindow/parserLRInput.fxml" />
-        <option value="$PROJECT_DIR$/src/main/resources/fxml/test/parserLRWindow/parserLRMovesOutput.fxml" />
-        <option value="$PROJECT_DIR$/src/main/java/fromPaula/MenuSubElement.java" />
-        <option value="$PROJECT_DIR$/src/main/java/start/BaseWindowController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/start/Start.java" />
-        <option value="$PROJECT_DIR$/src/main/java/algorithmFLF/FLFPart.java" />
-        <option value="$PROJECT_DIR$/src/main/java/firstFollow/FirstFollow.java" />
-        <option value="$PROJECT_DIR$/src/main/java/graph/GraphThreeMethods.java" />
-        <option value="$PROJECT_DIR$/src/main/java/algorithmFLF/FLF.java" />
-        <option value="$PROJECT_DIR$/src/main/java/parserLLWindow/parserLLMovesErrorOutputController.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/fxml/test/parserLLWindow/parserLLMovesErrorOutput.fxml" />
         <option value="$PROJECT_DIR$/src/main/java/parserLRWindow/parserLRMovesErrorOutputController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/fxml/test/parserLRWindow/parserLRMovesErrorOutput.fxml" />
         <option value="$PROJECT_DIR$/src/main/java/parserLR/ParserLR.java" />
         <option value="$PROJECT_DIR$/src/main/java/parserLL/MovesTableElement.java" />
         <option value="$PROJECT_DIR$/src/main/java/parserLR/MovesElementLR.java" />
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/src/main/java/firstLastFollowWindow/FirstLastFollowSolverController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/fromPaula/SideMenu.java" />
         <option value="$PROJECT_DIR$/src/main/resources/fxml/test/firstFollowWindow/firstFollowExercisesInput.fxml" />
-        <option value="$PROJECT_DIR$/src/main/resources/fxml/test/firstLastFollowWindow/firstLastFollowSolver.fxml" />
-        <option value="$PROJECT_DIR$/src/main/resources/fxml/test/firstFollowWindow/firstFollowSolver.fxml" />
-        <option value="$PROJECT_DIR$/src/main/resources/fxml/test/parserLLWindow/parserLLSolver.fxml" />
-        <option value="$PROJECT_DIR$/src/main/java/firstFollowWindow/FirstFollowSolverController.java" />
         <option value="$PROJECT_DIR$/src/main/java/firstFollowWindow/FirstFollowTestSetElement.java" />
         <option value="$PROJECT_DIR$/src/main/java/firstLastFollowWindow/FirstLastFollowTestSet.java" />
         <option value="$PROJECT_DIR$/src/main/java/firstFollowWindow/FirstFollowInputExercisesController.java" />
         <option value="$PROJECT_DIR$/src/main/java/firstFollowTestData/FirstFollowTestSetElement.java" />
         <option value="$PROJECT_DIR$/src/main/java/firstFollowTestData/FirstFollowTestMainSet.java" />
-        <option value="$PROJECT_DIR$/src/main/java/parserLLWindow/parserLLSolverController.java" />
         <option value="$PROJECT_DIR$/src/main/java/firstFollowTestData/FirstFollowTestSet.java" />
-        <option value="$PROJECT_DIR$/src/main/java/commonUtility/CommonUtility.java" />
-        <option value="$PROJECT_DIR$/src/main/java/firstLastFollowWindow/FirstLastFollowExercisesController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/firstFollowWindow/FirstFollowExercisesController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/parserLLWindow/parserLLExercisesController.java" />
         <option value="$PROJECT_DIR$/src/main/java/parserLL/MovesTable.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/bundle/bundle_pl_PL.properties" />
-        <option value="$PROJECT_DIR$/src/main/resources/bundle/bundle.properties" />
-        <option value="$PROJECT_DIR$/src/main/java/graph/GraphMethods.java" />
-        <option value="$PROJECT_DIR$/src/main/java/parserLRWindow/parserLRSolverController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/parserLRWindow/parserLRExercisesController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/fromPaula/application.css" />
+        <option value="$PROJECT_DIR$/src/main/java/graph/GraphThreeMethods.java" />
+        <option value="$PROJECT_DIR$/src/main/java/algorithmFLF/TransitionSolverElement.java" />
+        <option value="$PROJECT_DIR$/src/main/java/graph/GraphMethods.java" />
+        <option value="$PROJECT_DIR$/src/main/java/commonUtility/CommonUtility.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/fxml/test/firstLastFollowWindow/firstLastFollowSolver.fxml" />
+        <option value="$PROJECT_DIR$/src/main/resources/fxml/test/firstLastFollowWindow/firstLastFollowExercises.fxml" />
+        <option value="$PROJECT_DIR$/src/main/java/dragAndDrop/MyDragDropListener.java" />
+        <option value="$PROJECT_DIR$/src/main/java/dragAndDrop/MyFrame.java" />
+        <option value="$PROJECT_DIR$/src/main/java/firstFollowWindow/FirstFollowInputController.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/fxml/test/firstFollowWindow/firstFollowSolver.fxml" />
+        <option value="$PROJECT_DIR$/src/main/resources/fxml/test/firstFollowWindow/firstFollowExercises.fxml" />
+        <option value="$PROJECT_DIR$/src/main/resources/fxml/test/parserLLWindow/parserLLSolver.fxml" />
         <option value="$PROJECT_DIR$/src/main/resources/fxml/test/parserLRWindow/parserLRSolver.fxml" />
         <option value="$PROJECT_DIR$/src/main/resources/fxml/test/parserLRWindow/parserLRExercises.fxml" />
         <option value="$PROJECT_DIR$/src/main/resources/fxml/test/parserLLWindow/parserLLExercises.fxml" />
-        <option value="$PROJECT_DIR$/src/main/resources/fxml/test/firstLastFollowWindow/firstLastFollowExercises.fxml" />
-        <option value="$PROJECT_DIR$/src/main/resources/fxml/test/firstFollowWindow/firstFollowExercises.fxml" />
+        <option value="$PROJECT_DIR$/src/main/java/parserLLWindow/parserLLSolverController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/firstFollowWindow/FirstFollowSolverController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/firstFollowWindow/FirstFollowExercisesController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/parserLLWindow/parserLLExercisesController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/parserLRWindow/parserLRSolverController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/fromPaula/SideMenu.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/fxml/test/DocumentGenerator/documentGeneratorWordInput.fxml" />
+        <option value="$PROJECT_DIR$/src/main/java/documentGenerator/DocumentGeneratorWordInputController.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/fxml/test/DocumentGenerator/documentGeneratorInput.fxml" />
+        <option value="$PROJECT_DIR$/src/main/java/parserLRWindow/parserLRExercisesController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/documentGenerator/DocumentGeneratorInputController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/documentGenerator/GridPane.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/fxml/test/DocumentGenerator/documentGenerator.fxml" />
+        <option value="$PROJECT_DIR$/src/main/java/documentGenerator/DocumentGeneratorController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/firstFollow/FirstFollow.java" />
+        <option value="$PROJECT_DIR$/src/main/java/algorithmFLF/FLF.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/bundle/bundle.properties" />
+        <option value="$PROJECT_DIR$/src/main/resources/bundle/bundle_pl_PL.properties" />
+        <option value="$PROJECT_DIR$/src/main/java/firstLastFollowWindow/FirstLastFollowExercisesController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/start/Base.java" />
+        <option value="$PROJECT_DIR$/src/main/java/firstLastFollowWindow/FirstLastFollowSolverController.java" />
       </list>
     </option>
   </component>
@@ -780,10 +751,9 @@
     <treeState />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1056" />
+    <option name="x" value="-7" />
+    <option name="width" value="1242" />
+    <option name="height" value="1047" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -823,6 +793,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="PackagesPane">
         <subPane>
           <PATH>
@@ -905,7 +877,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -980,11 +951,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="test" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="firstFollowWindow" />
+              <option name="myItemId" value="fromPaula" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1009,53 +976,13 @@
               <option name="myItemId" value="resources" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-          </PATH>
-          <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="inz" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="inz" />
+              <option name="myItemId" value="bundle" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="inz" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="inz" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="parserLRWindow" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+              <option name="myItemId" value="Resource Bundle 'bundle'" />
+              <option name="myItemType" value="com.intellij.lang.properties.projectView.ResourceBundleNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -1080,7 +1007,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="parserLR" />
+              <option name="myItemId" value="start" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1103,10 +1030,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="graph" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1158,13 +1081,38 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="firstFollow" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="inz" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="inz" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="algorithmFLF" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1177,13 +1125,9 @@
     <property name="last_directory_selection" value="$PROJECT_DIR$/src/main/java" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.includeInheritedMembers" value="true" />
+    <property name="add_unversioned_files" value="$PROJECT_DIR$/src/main/resources/fromPaula/application.css" />
   </component>
   <component name="RecentsManager">
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="parserLLWindow" />
-      <recent name="firstFollow" />
-      <recent name="parserLR" />
-    </key>
     <key name="CreateTestDialog.RecentsKey">
       <recent name="parserLL" />
       <recent name="firstFollow" />
@@ -1197,12 +1141,18 @@
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Misiek\Desktop\inż\inz\src\main\resources\fxml\test\parserLLWindow" />
+      <recent name="C:\Users\Misiek\Desktop\inż\inz\src\main\resources\fxml\test\mainWindow" />
+      <recent name="C:\Users\Misiek\Desktop\inż\inz\src\main\resources\fromPaula" />
+      <recent name="C:\Users\Misiek\Desktop\inż\inz\src\main" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Misiek\Desktop\inż\inz\src\main\resources\fxml\test\DocumentGenerator" />
       <recent name="C:\Users\Misiek\Desktop\inż\inz\src\main\resources\fxml\test\firstFollowWindow" />
       <recent name="C:\Users\Misiek\Desktop\inż\inz\src\main\resources\fxml\test\parserLRWindow" />
       <recent name="C:\Users\Misiek\Desktop\inż\inz\src\main\resources\fxml\test\parserLLWindow" />
       <recent name="C:\Users\Misiek\Desktop\inż\inz\src\main\resources\bundle" />
-      <recent name="C:\Users\Misiek\Desktop\inż\inz\src\main\resources\fxml\test\firstLastFollowWindow" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="firstFollowTestData" />
@@ -1211,10 +1161,11 @@
       <recent name="firstFollowWindow" />
       <recent name="firstLastFollowWindow" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Misiek\Desktop\inż\inz\src\main\resources\fxml\test\mainWindow" />
-      <recent name="C:\Users\Misiek\Desktop\inż\inz\src\main\resources\fromPaula" />
-      <recent name="C:\Users\Misiek\Desktop\inż\inz\src\main" />
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="documentGenerator" />
+      <recent name="parserLLWindow" />
+      <recent name="firstFollow" />
+      <recent name="parserLR" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -1767,7 +1718,14 @@
       <option name="project" value="LOCAL" />
       <updated>1494378123122</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="final first atempt">
+      <created>1494379800473</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1494379800473</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1812,31 +1770,31 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-7" y="0" width="1242" height="1047" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32932165" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15059589" sideWeight="0.48081023" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.14842904" sideWeight="0.48081023" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.07768053" sideWeight="0.46683893" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32942432" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23185265" sideWeight="0.53316104" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2986871" sideWeight="0.53316104" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1787649" sideWeight="0.4956943" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32932165" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1663113" sideWeight="0.5" order="7" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23519458" sideWeight="0.5" order="7" side_tool="false" content_ui="combo" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18305598" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2489339" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34127843" sideWeight="0.52025586" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25135428" sideWeight="0.52025586" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1865,18 +1823,18 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2489339" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34127843" sideWeight="0.52025586" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25135428" sideWeight="0.52025586" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32932165" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15059589" sideWeight="0.48081023" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.14842904" sideWeight="0.48081023" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23185265" sideWeight="0.53316104" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15817985" sideWeight="0.53316104" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1787649" sideWeight="0.4956943" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.027185502" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32932165" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1663113" sideWeight="0.5" order="7" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22761194" sideWeight="0.5" order="7" side_tool="false" content_ui="combo" />
       <window_info id="SOQL Query" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32932165" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16576381" sideWeight="0.4904051" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18305598" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -1947,20 +1905,8 @@
           <option name="timeStamp" value="163" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/start/Start.java</url>
-          <line>169</line>
-          <properties />
-          <option name="timeStamp" value="177" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/algorithmFLF/FLF.java</url>
-          <line>188</line>
-          <properties />
-          <option name="timeStamp" value="187" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/parserLRWindow/parserLRSolverController.java</url>
-          <line>375</line>
+          <line>382</line>
           <properties />
           <option name="timeStamp" value="190" />
         </line-breakpoint>
@@ -1977,13 +1923,25 @@
           <option name="timeStamp" value="216" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/graph/GraphMethods.java</url>
-          <line>111</line>
+          <url>file://$PROJECT_DIR$/src/main/java/algorithmFLF/FLF.java</url>
+          <line>662</line>
           <properties />
-          <option name="timeStamp" value="217" />
+          <option name="timeStamp" value="222" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/documentGenerator/DocumentGeneratorController.java</url>
+          <line>224</line>
+          <properties />
+          <option name="timeStamp" value="230" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/firstFollow/FirstFollow.java</url>
+          <line>120</line>
+          <properties />
+          <option name="timeStamp" value="231" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="218" />
+      <option name="time" value="232" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="JUnit">
@@ -2006,6 +1964,7 @@
         <watch expression="myTree.inputList.get(5)" language="JAVA" />
         <watch expression="testGotoGenerator.movesList" language="JAVA" />
         <watch expression="((HashMap.Node)((HashMap)((GotoGenerator)((ParserLR)this).gotoGeneratorMap).closureElementCombination).entrySet().toArray()[16]).getKey()" custom="parserLR.ParserLR,parserLR.GotoGenerator,java.util.HashMap.Node,java.util.HashMap" />
+        <watch expression="windowPane" language="JAVA" />
       </configuration>
     </watches-manager>
   </component>
@@ -2014,326 +1973,440 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/firstFollowWindow/FirstFollowInputExercisesController.java">
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_121/javafx-src.zip!/javafx/scene/Node.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="30" column="15" lean-forward="false" selection-start-line="30" selection-start-column="15" selection-end-line="30" selection-end-column="15" />
+        <state relative-caret-position="185">
+          <caret line="8096" column="0" lean-forward="false" selection-start-line="8096" selection-start-column="0" selection-end-line="8096" selection-end-column="0" />
+          <folding>
+            <element signature="e#40782#40783#0" expanded="false" />
+            <element signature="e#40816#40817#0" expanded="false" />
+            <element signature="e#329062#329063#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/firstFollowTestData/FirstFollowTestSetElement.java">
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_121/javafx-src.zip!/javafx/scene/Scene.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="8" lean-forward="false" selection-start-line="16" selection-start-column="8" selection-end-line="16" selection-end-column="8" />
+        <state relative-caret-position="287">
+          <caret line="2367" column="0" lean-forward="false" selection-start-line="2367" selection-start-column="0" selection-end-line="2367" selection-end-column="0" />
+          <folding>
+            <element signature="e#74776#74777#0" expanded="false" />
+            <element signature="e#74809#74810#0" expanded="false" />
+            <element signature="e#78723#78724#0" expanded="false" />
+            <element signature="e#78762#78763#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_121/javafx-src.zip!/javafx/beans/property/ReadOnlyObjectPropertyBase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="430">
+          <caret line="74" column="0" lean-forward="false" selection-start-line="74" selection-start-column="0" selection-end-line="74" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_121/javafx-src.zip!/javafx/beans/property/ReadOnlyDoublePropertyBase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="430">
+          <caret line="72" column="0" lean-forward="false" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_121/javafx-src.zip!/javafx/animation/Animation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="219">
+          <caret line="188" column="0" lean-forward="false" selection-start-line="188" selection-start-column="0" selection-end-line="188" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_121/javafx-src.zip!/javafx/stage/Window.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="491">
+          <caret line="1290" column="0" lean-forward="false" selection-start-line="1290" selection-start-column="0" selection-end-line="1290" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/algorithmFLF/TransitionSolverElement.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/fxml/test/parserLLWindow/parserLLSolver.fxml">
+    <entry file="file://$PROJECT_DIR$/src/main/java/commonUtility/CommonUtility.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1258">
+          <caret line="80" column="38" lean-forward="false" selection-start-line="80" selection-start-column="38" selection-end-line="80" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/fxml/test/firstLastFollowWindow/firstLastFollowSolver.fxml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="58" column="16" lean-forward="true" selection-start-line="58" selection-start-column="16" selection-end-line="58" selection-end-column="16" />
+          <folding>
+            <marker date="1494455918383" expanded="true" signature="2469:5704" ph="..." />
+            <marker date="1494455918383" expanded="true" signature="2778:3825" ph="..." />
+            <marker date="1494455918383" expanded="true" signature="2798:3818" ph="..." />
+            <marker date="1494455918383" expanded="true" signature="4867:4948" ph="..." />
+            <marker date="1494455918383" expanded="true" signature="4883:4933" ph="..." />
+            <marker date="1494455918383" expanded="true" signature="5045:5704" ph="..." />
+          </folding>
+        </state>
+      </provider>
       <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
         <state />
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/dragAndDrop/MyDragDropListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="5" lean-forward="true" selection-start-line="8" selection-start-column="5" selection-end-line="8" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/dragAndDrop/MyFrame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="31" lean-forward="true" selection-start-line="12" selection-start-column="31" selection-end-line="12" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/fxml/test/firstLastFollowWindow/firstLastFollowExercises.fxml">
       <provider editor-type-id="text-editor">
-        <state relative-caret-position="650">
-          <caret line="62" column="16" lean-forward="false" selection-start-line="62" selection-start-column="16" selection-end-line="62" selection-end-column="16" />
+        <state relative-caret-position="390">
+          <caret line="51" column="8" lean-forward="false" selection-start-line="51" selection-start-column="7" selection-end-line="51" selection-end-column="8" />
+          <folding>
+            <marker date="1494456088536" expanded="true" signature="5147:6363" ph="..." />
+          </folding>
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/firstFollowWindow/FirstFollowInputExercisesController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="32" column="5" lean-forward="true" selection-start-line="26" selection-start-column="4" selection-end-line="32" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/fxml/test/parserLRWindow/parserLRSolver.fxml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="67" column="89" lean-forward="true" selection-start-line="67" selection-start-column="89" selection-end-line="67" selection-end-column="89" />
+          <folding>
+            <marker date="1494542606706" expanded="true" signature="2034:5158" ph="..." />
+            <marker date="1494542606706" expanded="true" signature="2232:3412" ph="..." />
+            <marker date="1494542606706" expanded="true" signature="2253:3398" ph="..." />
+            <marker date="1494542606706" expanded="true" signature="4862:4943" ph="..." />
+            <marker date="1494542606706" expanded="true" signature="4878:4928" ph="..." />
+          </folding>
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/fxml/test/parserLLWindow/parserLLSolver.fxml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="-102">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/fxml/test/parserLRWindow/parserLRExercises.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="579">
+          <caret line="69" column="87" lean-forward="false" selection-start-line="69" selection-start-column="87" selection-end-line="69" selection-end-column="87" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/fxml/test/firstFollowWindow/firstFollowSolver.fxml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1494542132919" expanded="true" signature="4013:4400" ph="..." />
+            <marker date="1494542132919" expanded="true" signature="4104:4185" ph="..." />
+            <marker date="1494542132919" expanded="true" signature="4120:4170" ph="..." />
+          </folding>
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/fxml/test/firstFollowWindow/firstFollowExercises.fxml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="774">
+          <caret line="60" column="153" lean-forward="true" selection-start-line="60" selection-start-column="153" selection-end-line="60" selection-end-column="153" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/parserLLWindow/parserLLMovesOutputController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/parserLLWindow/parserLLMovesErrorOutputController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/firstFollowTestData/FirstFollowTestMainSet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="28" column="53" lean-forward="false" selection-start-line="28" selection-start-column="53" selection-end-line="28" selection-end-column="53" />
+        <state relative-caret-position="119">
+          <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+          <folding />
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/parserLLWindow/parserLLInputController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/fxml/test/parserLLWindow/parserLLExercises.fxml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="557">
+          <caret line="70" column="87" lean-forward="true" selection-start-line="70" selection-start-column="87" selection-end-line="70" selection-end-column="87" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/parserLLWindow/parserLLSolverController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="96" column="11" lean-forward="true" selection-start-line="91" selection-start-column="18" selection-end-line="96" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/start/Start.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3213">
-          <caret line="207" column="0" lean-forward="false" selection-start-line="207" selection-start-column="0" selection-end-line="207" selection-end-column="0" />
-          <folding>
-            <element signature="e#594#595#0" expanded="false" />
-            <element signature="e#627#628#0" expanded="false" />
-            <element signature="e#743#744#0" expanded="false" />
-            <element signature="e#771#772#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/firstFollowTestData/FirstFollowTestSet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="73" column="46" lean-forward="false" selection-start-line="73" selection-start-column="46" selection-end-line="73" selection-end-column="46" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/start/BaseWindowController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="46" column="55" lean-forward="true" selection-start-line="43" selection-start-column="8" selection-end-line="46" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/start/Base.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="37" column="49" lean-forward="false" selection-start-line="37" selection-start-column="16" selection-end-line="37" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/fxml/test/mainWindow/baseWindow.fxml">
-      <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="17">
+          <caret line="64" column="51" lean-forward="false" selection-start-line="64" selection-start-column="51" selection-end-line="64" selection-end-column="51" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/fromPaula/side_menu.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-612">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_121/javafx-src.zip!/javafx/scene/layout/GridPane.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="329" column="0" lean-forward="false" selection-start-line="329" selection-start-column="0" selection-end-line="329" selection-end-column="0" />
-          <folding>
-            <element signature="e#14751#14752#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_121/javafx-src.zip!/javafx/scene/Node.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="392">
-          <caret line="677" column="0" lean-forward="false" selection-start-line="677" selection-start-column="0" selection-end-line="677" selection-end-column="0" />
-          <folding>
-            <element signature="e#29780#29781#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_121/javafx-src.zip!/javafx/scene/Parent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="567" column="0" lean-forward="false" selection-start-line="567" selection-start-column="0" selection-end-line="567" selection-end-column="0" />
-          <folding>
-            <element signature="e#23817#23818#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_121/javafx-src.zip!/javafx/scene/layout/Pane.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="291">
-          <caret line="141" column="0" lean-forward="false" selection-start-line="141" selection-start-column="0" selection-end-line="141" selection-end-column="0" />
-          <folding>
-            <element signature="e#4340#4341#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/fxml/test/parserLLWindow/parserLLInput.fxml">
-      <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/fxml/test/firstLastFollowWindow/firstLastFollowSolver.fxml">
-      <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="612">
-          <caret line="36" column="19" lean-forward="false" selection-start-line="36" selection-start-column="19" selection-end-line="36" selection-end-column="19" />
-          <folding>
-            <marker date="1494273073911" expanded="true" signature="4807:5002" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/firstFollowWindow/FirstFollowExercisesController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4335">
-          <caret line="278" column="16" lean-forward="false" selection-start-line="278" selection-start-column="16" selection-end-line="278" selection-end-column="16" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/commonUtility/CommonUtility.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="78" column="0" lean-forward="false" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
+        <state relative-caret-position="64">
+          <caret line="409" column="0" lean-forward="false" selection-start-line="409" selection-start-column="0" selection-end-line="410" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/parserLR/GotoGenerator.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/firstFollowTestData/FirstFollowTestSet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+        <state relative-caret-position="523">
+          <caret line="96" column="17" lean-forward="true" selection-start-line="88" selection-start-column="8" selection-end-line="96" selection-end-column="17" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/parserLLWindow/parserLLExercisesController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="583">
-          <caret line="140" column="18" lean-forward="true" selection-start-line="140" selection-start-column="18" selection-end-line="140" selection-end-column="18" />
-          <folding>
-            <element signature="e#19139#19140#0" expanded="false" />
-            <element signature="e#19192#19193#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/parserLL/MovesTable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="48" column="22" lean-forward="false" selection-start-line="48" selection-start-column="22" selection-end-line="48" selection-end-column="22" />
+        <state relative-caret-position="118">
+          <caret line="620" column="46" lean-forward="true" selection-start-line="620" selection-start-column="8" selection-end-line="620" selection-end-column="46" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/parserLR/MovesElementLR.java">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/fxml/test/DocumentGenerator/firstLastFollowExercises.fxml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/fromPaula/SideMenu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="397">
+          <caret line="36" column="58" lean-forward="false" selection-start-line="36" selection-start-column="58" selection-end-line="36" selection-end-column="58" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/parserLRWindow/parserLRMovesErrorOutputController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/fromPaula/application.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+        <state relative-caret-position="-1314">
+          <caret line="79" column="17" lean-forward="false" selection-start-line="79" selection-start-column="17" selection-end-line="79" selection-end-column="17" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/parserLRWindow/parserLRMovesOutputController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="13" column="13" lean-forward="false" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+    <entry file="file://$PROJECT_DIR$/src/main/resources/fxml/test/firstFollowWindow/firstFollowInput.fxml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/parserLRWindow/parserLRInputController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-          <folding />
-        </state>
+      <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
+        <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/algorithmFLF/TransitionTableElement.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/documentGenerator/DocumentGeneratorInputController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.tinyjee.jgraphx/jgraphx/2.3.0.5/9c9ac2d8cb60fd2468170323f0e08949c85275d1/jgraphx-2.3.0.5-sources.jar!/com/mxgraph/view/mxGraphView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="158" column="0" lean-forward="false" selection-start-line="158" selection-start-column="0" selection-end-line="158" selection-end-column="0" />
-          <folding>
-            <element signature="e#4289#4290#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.tinyjee.jgraphx/jgraphx/2.3.0.5/9c9ac2d8cb60fd2468170323f0e08949c85275d1/jgraphx-2.3.0.5-sources.jar!/com/mxgraph/model/mxCell.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="359" column="0" lean-forward="false" selection-start-line="359" selection-start-column="0" selection-end-line="359" selection-end-column="0" />
-          <folding>
-            <element signature="e#7281#7282#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.tinyjee.jgraphx/jgraphx/2.3.0.5/9c9ac2d8cb60fd2468170323f0e08949c85275d1/jgraphx-2.3.0.5-sources.jar!/com/mxgraph/model/mxGraphModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="617" column="0" lean-forward="false" selection-start-line="617" selection-start-column="0" selection-end-line="617" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.tinyjee.jgraphx/jgraphx/2.3.0.5/9c9ac2d8cb60fd2468170323f0e08949c85275d1/jgraphx-2.3.0.5-sources.jar!/com/mxgraph/view/mxGraph.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="185">
-          <caret line="2518" column="0" lean-forward="false" selection-start-line="2518" selection-start-column="0" selection-end-line="2518" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.tinyjee.jgraphx/jgraphx/2.3.0.5/9c9ac2d8cb60fd2468170323f0e08949c85275d1/jgraphx-2.3.0.5-sources.jar!/com/mxgraph/model/mxGeometry.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="415">
-          <caret line="93" column="0" lean-forward="false" selection-start-line="93" selection-start-column="0" selection-end-line="93" selection-end-column="0" />
-          <folding>
-            <element signature="e#2956#2957#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.tinyjee.jgraphx/jgraphx/2.3.0.5/9c9ac2d8cb60fd2468170323f0e08949c85275d1/jgraphx-2.3.0.5-sources.jar!/com/mxgraph/util/mxRectangle.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="63" column="0" lean-forward="false" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.tinyjee.jgraphx/jgraphx/2.3.0.5/9c9ac2d8cb60fd2468170323f0e08949c85275d1/jgraphx-2.3.0.5-sources.jar!/com/mxgraph/util/mxPoint.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="61" column="0" lean-forward="false" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/graph/GraphThreeMethods.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="45" column="62" lean-forward="false" selection-start-line="45" selection-start-column="42" selection-end-line="45" selection-end-column="62" />
+        <state relative-caret-position="323">
+          <caret line="20" column="23" lean-forward="false" selection-start-line="20" selection-start-column="11" selection-end-line="20" selection-end-column="23" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#841#842#0" expanded="true" />
+            <element signature="e#891#892#0" expanded="true" />
+            <element signature="e#935#936#0" expanded="true" />
+            <element signature="e#965#966#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/graph/GraphMethods.java">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/fxml/test/DocumentGenerator/documentGeneratorWordInput.fxml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="473">
-          <caret line="62" column="13" lean-forward="false" selection-start-line="62" selection-start-column="13" selection-end-line="62" selection-end-column="13" />
+        <state relative-caret-position="289">
+          <caret line="17" column="32" lean-forward="false" selection-start-line="17" selection-start-column="24" selection-end-line="17" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/documentGenerator/GridPane.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/fxml/test/DocumentGenerator/documentGeneratorInput.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="26" column="0" lean-forward="true" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/parserLRWindow/parserLRSolverController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-935">
+          <caret line="43" column="38" lean-forward="false" selection-start-line="43" selection-start-column="21" selection-end-line="43" selection-end-column="38" />
+          <folding>
+            <element signature="e#8670#8687#0" expanded="true" />
+            <element signature="e#10508#10525#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/documentGenerator/DocumentGeneratorWordInputController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="33" lean-forward="true" selection-start-line="4" selection-start-column="33" selection-end-line="4" selection-end-column="33" />
+          <folding>
+            <element signature="e#417#418#0" expanded="false" />
+            <element signature="e#458#459#0" expanded="false" />
+            <element signature="e#491#492#0" expanded="false" />
+            <element signature="e#520#521#0" expanded="false" />
+            <element signature="e#565#566#0" expanded="false" />
+            <element signature="e#604#605#0" expanded="false" />
+            <element signature="e#648#649#0" expanded="false" />
+            <element signature="e#678#679#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/firstFollow/FollowElement.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/firstFollowWindow/FirstFollowInputController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="13" column="64" lean-forward="true" selection-start-line="13" selection-start-column="39" selection-end-line="13" selection-end-column="64" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/parserLRWindow/parserLRExercisesController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-8096">
+          <caret line="166" column="10" lean-forward="true" selection-start-line="166" selection-start-column="10" selection-end-line="166" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/firstFollow/FirstFollow.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="118" column="0" lean-forward="false" selection-start-line="118" selection-start-column="0" selection-end-line="118" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/firstFollowWindow/FirstFollowSolverController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="393">
+          <caret line="131" column="13" lean-forward="true" selection-start-line="127" selection-start-column="12" selection-end-line="131" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/fxml/test/DocumentGenerator/documentGenerator.fxml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="452">
+          <caret line="36" column="51" lean-forward="false" selection-start-line="36" selection-start-column="51" selection-end-line="36" selection-end-column="51" />
+          <folding>
+            <marker date="1494621352000" expanded="true" signature="1913:3808" ph="..." />
+            <marker date="1494621352000" expanded="true" signature="1913:3820" ph="..." />
+            <marker date="1494621352000" expanded="true" signature="3264:3314" ph="..." />
+            <marker date="1494621352000" expanded="true" signature="3656:3808" ph="..." />
+          </folding>
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/documentGenerator/DocumentGeneratorController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="203" column="26" lean-forward="true" selection-start-line="203" selection-start-column="26" selection-end-line="203" selection-end-column="26" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -2342,152 +2415,62 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/firstLastFollowWindow/FirstLastFollowExercisesController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="171" column="25" lean-forward="false" selection-start-line="171" selection-start-column="8" selection-end-line="171" selection-end-column="25" />
+        <state relative-caret-position="616">
+          <caret line="155" column="13" lean-forward="false" selection-start-line="155" selection-start-column="13" selection-end-line="155" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/start/Base.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="463">
+          <caret line="50" column="0" lean-forward="false" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/start/Start.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="235">
+          <caret line="173" column="38" lean-forward="false" selection-start-line="173" selection-start-column="25" selection-end-line="173" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/bundle/bundle.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="6" column="26" lean-forward="true" selection-start-line="6" selection-start-column="26" selection-end-line="6" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="ResourceBundle">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/bundle/bundle_pl_PL.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="443">
+          <caret line="79" column="14" lean-forward="false" selection-start-line="79" selection-start-column="14" selection-end-line="79" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="ResourceBundle">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/algorithmFLF/FLF.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="82">
+          <caret line="355" column="34" lean-forward="true" selection-start-line="355" selection-start-column="34" selection-end-line="355" selection-end-column="34" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/firstLastFollowWindow/FirstLastFollowSolverController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="424" column="5" lean-forward="true" selection-start-line="357" selection-start-column="4" selection-end-line="424" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/parserLR/ParserLR.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="232">
-          <caret line="104" column="0" lean-forward="false" selection-start-line="104" selection-start-column="0" selection-end-line="104" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/parserLR/GotoTransition.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/firstLastFollowWindow/FirstLastFollowInputController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/parserLRWindow/parserLRSolverController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1020">
-          <caret line="98" column="9" lean-forward="true" selection-start-line="93" selection-start-column="9" selection-end-line="98" selection-end-column="9" />
-          <folding>
-            <element signature="e#8414#8431#0" expanded="true" />
-            <element signature="e#10252#10269#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/parserLRWindow/parserLRExercisesController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="624">
-          <caret line="693" column="45" lean-forward="false" selection-start-line="693" selection-start-column="45" selection-end-line="693" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/bundle/bundle_pl_PL.properties">
-      <provider editor-type-id="ResourceBundle">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="485">
-          <caret line="64" column="0" lean-forward="false" selection-start-line="64" selection-start-column="0" selection-end-line="65" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/bundle/bundle.properties">
-      <provider editor-type-id="ResourceBundle">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1105">
-          <caret line="65" column="20" lean-forward="false" selection-start-line="65" selection-start-column="20" selection-end-line="65" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/fromPaula/application.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="71" column="18" lean-forward="false" selection-start-line="71" selection-start-column="8" selection-end-line="71" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/fxml/test/parserLRWindow/parserLRSolver.fxml">
-      <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="48" column="153" lean-forward="false" selection-start-line="48" selection-start-column="153" selection-end-line="48" selection-end-column="153" />
-          <folding>
-            <marker date="1494379553555" expanded="true" signature="4932:5013" ph="..." />
-            <marker date="1494379553555" expanded="true" signature="4948:4998" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/fxml/test/parserLRWindow/parserLRExercises.fxml">
-      <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="570">
-          <caret line="63" column="19" lean-forward="true" selection-start-line="63" selection-start-column="19" selection-end-line="63" selection-end-column="19" />
-          <folding>
-            <marker date="1494379704634" expanded="true" signature="4771:4864" ph="..." />
-            <marker date="1494379704634" expanded="true" signature="4790:4847" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/fxml/test/parserLLWindow/parserLLExercises.fxml">
-      <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="454">
-          <caret line="66" column="95" lean-forward="true" selection-start-line="66" selection-start-column="95" selection-end-line="66" selection-end-column="95" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/fxml/test/firstLastFollowWindow/firstLastFollowExercises.fxml">
-      <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="500">
-          <caret line="63" column="136" lean-forward="false" selection-start-line="63" selection-start-column="136" selection-end-line="63" selection-end-column="136" />
-          <folding>
-            <marker date="1494379756786" expanded="true" signature="5101:5853" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/fxml/test/firstFollowWindow/firstFollowExercises.fxml">
-      <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="621">
-          <caret line="58" column="94" lean-forward="false" selection-start-line="58" selection-start-column="94" selection-end-line="58" selection-end-column="94" />
+        <state relative-caret-position="136">
+          <caret line="65" column="0" lean-forward="true" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
           <folding />
         </state>
       </provider>
