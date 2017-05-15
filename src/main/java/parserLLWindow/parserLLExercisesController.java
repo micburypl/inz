@@ -197,12 +197,12 @@ public class parserLLExercisesController implements Initializable {
             parserLLOutputPane.getChildren().clear();
             GridPane gridPane = new GridPane();
             gridPane.setGridLinesVisible(true);
-            Label tempLabel = new Label("Errors");
+            Label tempLabel = new Label(CommonUtility.getKey("firstFollow.Errors"));
             gridPane.add(tempLabel, 0,0);
             gridPane.setHalignment(tempLabel, HPos.CENTER);
             Integer tempInt = 1;
             for(Integer errorLine: testFirstFollow.errorMessages.keySet() ) {
-                tempLabel = new Label("In row " + errorLine + ". " + testFirstFollow.errorMessages.get(errorLine));
+                tempLabel = new Label(CommonUtility.getKey("firstFollow.InRow") + " " + errorLine + ". " + testFirstFollow.errorMessages.get(errorLine));
                 gridPane.add(tempLabel, 0, tempInt++);
                 gridPane.setHalignment(tempLabel, HPos.CENTER);
             }
@@ -228,11 +228,11 @@ public class parserLLExercisesController implements Initializable {
         parserLLOutputPane.getChildren().clear();
         gridPane = new GridPane();
 
-        Label tempLabel = new Label("Element");
+        Label tempLabel = new Label(CommonUtility.getKey("firstFollow.Element"));
         gridPane.add(tempLabel, 0,0);
         gridPane.setHalignment(tempLabel, HPos.CENTER);
 
-        tempLabel = new Label("First(Element)");
+        tempLabel = new Label(CommonUtility.getKey("firstFollow.FirstElement"));
         gridPane.add(tempLabel, 1,0);
         gridPane.setHalignment(tempLabel, HPos.CENTER);
 
@@ -274,11 +274,11 @@ public class parserLLExercisesController implements Initializable {
         TextField tempTextField;
         gridPane2 = new GridPane();
         gridPane2.setGridLinesVisible(true);
-        tempLabel = new Label("Element");
+        tempLabel = new Label(CommonUtility.getKey("firstFollow.Element"));
         gridPane2.add(tempLabel, 0,0);
         gridPane2.setHalignment(tempLabel, HPos.CENTER);
 
-        tempLabel = new Label("First(Element)");
+        tempLabel = new Label(CommonUtility.getKey("firstFollow.FirstElement"));
         gridPane2.add(tempLabel, 1,0);
         gridPane2.setHalignment(tempLabel, HPos.CENTER);
 
@@ -328,11 +328,11 @@ public class parserLLExercisesController implements Initializable {
         parserLLOutputPane.getChildren().clear();
         gridPane = new GridPane();
 
-        Label tempLabel = new Label("Element");
+        Label tempLabel = new Label(CommonUtility.getKey("firstFollow.Element"));
         gridPane.add(tempLabel, 0,0);
         gridPane.setHalignment(tempLabel, HPos.CENTER);
 
-        tempLabel = new Label("Follow(Element)");
+        tempLabel = new Label(CommonUtility.getKey("firstFollow.FollowElement"));
         gridPane.add(tempLabel, 1,0);
         gridPane.setHalignment(tempLabel, HPos.CENTER);
 
@@ -375,11 +375,11 @@ public class parserLLExercisesController implements Initializable {
 
         TextField tempTextField;
 
-        tempLabel = new Label("Element");
+        tempLabel = new Label(CommonUtility.getKey("firstFollow.Element"));
         gridPane2.add(tempLabel, 0,0);
         gridPane2.setHalignment(tempLabel, HPos.CENTER);
 
-        tempLabel = new Label("Follow(Element)");
+        tempLabel = new Label(CommonUtility.getKey("firstFollow.FollowElement"));
         gridPane2.add(tempLabel, 1,0);
         gridPane2.setHalignment(tempLabel, HPos.CENTER);
 
@@ -422,7 +422,8 @@ public class parserLLExercisesController implements Initializable {
         parserLLOutputPane.getChildren().clear();
         gridPane = new GridPane();
 
-        Label tempLabel = new Label("Prod");
+        Label tempLabel = new Label(CommonUtility.getKey("parserLL.Prod"));
+
         gridPane.add(tempLabel, 0,0);
         gridPane.setHalignment(tempLabel, HPos.CENTER);
 
@@ -480,7 +481,7 @@ public class parserLLExercisesController implements Initializable {
         removeSpace = false;
         gridPane2 = new GridPane();
         TextField tempTextField;
-        tempLabel = new Label("Prod");
+        tempLabel = new Label(CommonUtility.getKey("parserLL.Prod"));
         gridPane2.add(tempLabel, 0,0);
         gridPane2.setHalignment(tempLabel, HPos.CENTER);
 
@@ -530,7 +531,7 @@ public class parserLLExercisesController implements Initializable {
 
         } else {
 
-            Label tempLabel = new Label("Input is Empty");
+            Label tempLabel = new Label(CommonUtility.getKey("parserLL.EmptyInput"));
             gridPane.add(tempLabel, 0,0);
             GridPane.setHalignment(tempLabel, HPos.CENTER);
             parserLLOutputPane.getChildren().add(gridPane);
@@ -538,16 +539,19 @@ public class parserLLExercisesController implements Initializable {
             gridPane2 = gridPane;
             return;
         }
+        Label tempLabel = new Label(CommonUtility.getKey("parserLL.Stack"));
 
-        Label tempLabel = new Label("Stack");
+//        Label tempLabel = new Label("Stack");
         gridPane.add(tempLabel, 0,0);
         GridPane.setHalignment(tempLabel, HPos.CENTER);
 
-        tempLabel = new Label("Input");
+        tempLabel = new Label(CommonUtility.getKey("parserLL.Input"));
+        //tempLabel = new Label("Input");
         gridPane.add(tempLabel, 1,0);
         GridPane.setHalignment(tempLabel, HPos.CENTER);
 
-        tempLabel = new Label("Output");
+        tempLabel = new Label(CommonUtility.getKey("parserLL.Output"));
+       // tempLabel = new Label("Output");
         gridPane.add(tempLabel, 2,0);
         GridPane.setHalignment(tempLabel, HPos.CENTER);
 
@@ -626,64 +630,6 @@ public class parserLLExercisesController implements Initializable {
         ListView tempListView = new ListView();
         tempListView.getItems().add(gridPane2);
         parserLLOutputPane.getChildren().add(tempListView);
-
-
-//        showVerifyButton(false);
-//        MovesTable testMoveTable = new MovesTable();
-//        FXMLLoader x;
-//        parserLLOutputPane.getChildren().clear();
-//        ListView parserLLOutputList = new ListView();
-//        if(movesTableInput.getText() != null && !movesTableInput.getText().trim().isEmpty()) {
-//
-//
-//            testMoveTable.generateMovesTable("S",movesTableInput.getText(), testFirstFollow.predictiveMap.predictiveMap);
-//
-//        } else {
-//
-//            x = new FXMLLoader(getClass().getResource("/fxml/test/parserLLWindow/parserLLMovesErrorOutput.fxml"));
-//            parserLLOutputList.getItems().add(x.load());
-//            parserLLMovesErrorOutputController xControler = x.getController();
-//            //errorMessage
-//            xControler.setError("Input is Empty");
-//            System.out.println("Input is Empty");
-//            parserLLOutputPane.getChildren().add(parserLLOutputList);
-//            return;
-//        }
-//
-//        FXMLLoader xStart = new FXMLLoader(getClass().getResource("/fxml/test/parserLLWindow/parserLLMovesOutput.fxml"));
-//        parserLLOutputList.getItems().add(xStart.load());
-//        parserLLMovesOutputController xControlerStart = xStart.getController();
-//        xControlerStart.setOutput("Output");
-//        xControlerStart.setInput("Input");
-//        xControlerStart.setStack("Stack");
-//
-//        for(MovesTableElement keyNumber: testMoveTable.movesList){
-//
-//
-//            if(!keyNumber.isWrong) {
-//                x = new FXMLLoader(getClass().getResource("/fxml/test/parserLLWindow/parserLLMovesOutput.fxml"));
-//                parserLLOutputList.getItems().add(x.load());
-//                parserLLMovesOutputController xControler = x.getController();
-//                //Input
-//                xControler.setInput(keyNumber.input);
-//
-//                //Stack
-//                xControler.setStack(keyNumber.stack);
-//
-//                //Output
-//                xControler.setOutput(keyNumber.output);
-//
-//            } else {
-//                x = new FXMLLoader(getClass().getResource("/fxml/test/parserLLWindow/parserLLMovesErrorOutput.fxml"));
-//                parserLLOutputList.getItems().add(x.load());
-//                parserLLMovesErrorOutputController xControler = x.getController();
-//                //Input
-//                xControler.setError(keyNumber.errorInformation);
-//            }
-//        }
-//        parserLLOutputPane.getChildren().add(parserLLOutputList);
-
-
     }
 
     void showElement(Boolean show){

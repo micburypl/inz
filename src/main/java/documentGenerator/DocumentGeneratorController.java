@@ -1,5 +1,6 @@
 package documentGenerator;
 
+import commonUtility.CommonUtility;
 import firstFollow.FirstFollow;
 import firstFollowWindow.FirstFollowInputController;
 import javafx.event.ActionEvent;
@@ -215,12 +216,13 @@ public class DocumentGeneratorController  implements Initializable {
 
         if(ff.errorFlag) {
             for(Integer errorLine: ff.errorMessages.keySet() ) {
-                tempLabel = new Label("In row " + errorLine + ". " + ff.errorMessages.get(errorLine));
+                tempLabel = new Label(CommonUtility.getKey("documentGenerator.InRow") + " " + errorLine + ". " + ff.errorMessages.get(errorLine));
                 gridPane.add(tempLabel, 0, tempInt++);
                 gridPane.setHalignment(tempLabel, HPos.CENTER);
             }
         } else {
-            tempLabel = new Label("Correct Data");
+            tempLabel = new Label(CommonUtility.getKey("documentGenerator.CorrectData"));
+            //tempLabel = new Label("Correct Data");
             gridPane.add(tempLabel, 0, tempInt++);
             gridPane.setHalignment(tempLabel, HPos.CENTER);
         }

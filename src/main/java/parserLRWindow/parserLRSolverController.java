@@ -96,22 +96,22 @@ public class parserLRSolverController implements Initializable {
 
         // Correct
 //
-        String tempString;
-        for(Integer i = 0; i < listInput.size(); i++) {
-            tempString =  listInput.get(i).getLeftPart() + " -> " + listInput.get(i).getRightPart();
-            System.out.println(tempString);
-            inputLineList.add(tempString);
-        }
+//        String tempString;
+//        for(Integer i = 0; i < listInput.size(); i++) {
+//            tempString =  listInput.get(i).getLeftPart() + " -> " + listInput.get(i).getRightPart();
+//            System.out.println(tempString);
+//            inputLineList.add(tempString);
+//        }
 
         //
 
         // Fortest
 
-//        inputLineList.add("S -> A");
-//        inputLineList.add("S -> S + A");
-//        inputLineList.add("A -> B ");
-//        inputLineList.add("A -> A * B");
-//        inputLineList.add("B -> a | ( S )");
+        inputLineList.add("S -> A");
+        inputLineList.add("S -> S + A");
+        inputLineList.add("A -> B ");
+        inputLineList.add("A -> A * B");
+        inputLineList.add("B -> a | ( S )");
 
         //
 //        if(!inputLineList.isEmpty()) {

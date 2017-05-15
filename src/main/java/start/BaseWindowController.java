@@ -57,9 +57,9 @@ public class BaseWindowController implements Initializable {
     }
 
 
-    public ResourceBundle getResourceBundle(){
-        return ResourceBundle.getBundle("/bundle/bundle.properties");
-    }
+    //public ResourceBundle getResourceBundle(){
+     //   return ResourceBundle.getBundle("/bundle/bundle.properties");
+   // }
 
     public void switchToEnglish(ActionEvent actionEvent) throws IOException {
         Locale.setDefault(new Locale("en", "EN"));
@@ -73,9 +73,9 @@ public class BaseWindowController implements Initializable {
     }
 
 
-
-//    protected void setStage(Stage primaryStage){
-//
-//    }
+    public ResourceBundle getResourceBundle() {
+        Locale local = Locale.getDefault();
+        return ResourceBundle.getBundle("bundle.bundle", local);
+    }
 
 }

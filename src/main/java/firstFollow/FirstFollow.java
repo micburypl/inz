@@ -69,7 +69,7 @@ public class FirstFollow {
 
                 if(numberOfEmpty == inputData.size()) {
                     errorFlag = true;
-                    errorMessages.put(0, " There is any input");
+                    errorMessages.put(0, " " + CommonUtility.getKey("firstFollow.AnyInput"));
                 }
 
                 continue;
@@ -79,7 +79,7 @@ public class FirstFollow {
             if(!inputLine.contains("->")) {
                 System.out.println("There is not production on this string:" + inputLine);
                 errorFlag = true;
-                errorMessages.put(iterator++, " There is not production on this string:" + inputLine);
+                errorMessages.put(iterator++, CommonUtility.getKey("firstFollow.LostProduction") + inputLine);
                 continue;
             }
 
@@ -98,7 +98,7 @@ public class FirstFollow {
             if(!parsedString[1].equals("->")) {
                 System.out.println("To many symbols on left site: " + inputLine);
                 errorFlag = true;
-                errorMessages.put(iterator++, " To many symbols on left site: " + inputLine);
+                errorMessages.put(iterator++, CommonUtility.getKey("firstFollow.LeftSiteError") + inputLine);
                 continue;
             }
 
@@ -106,14 +106,14 @@ public class FirstFollow {
             if(parsedString.length < 3) {
                 System.out.println("There is not any production: " + inputLine);
                 errorFlag = true;
-                errorMessages.put(iterator++, " There is not any production: " + inputLine);
+                errorMessages.put(iterator++, CommonUtility.getKey("firstFollow.AnyProductionError") + inputLine);
                 continue;
             }
 
             if(parsedString[0].length() == 0) {
                 System.out.println("Line does not have left part of production: " + inputLine);
                 errorFlag = true;
-                errorMessages.put(iterator++, "Line does not have left part of production: " + inputLine);
+                errorMessages.put(iterator++, CommonUtility.getKey("firstFollow.MissingLeftPart") + inputLine);
                 continue;
             }
 
@@ -121,7 +121,7 @@ public class FirstFollow {
             if(parsedString[0].charAt(0) < 'A' || parsedString[0].charAt(0) > 'Z') {
                 System.out.println("Line start with terminal, not with non-terminal: " + inputLine);
                 errorFlag = true;
-                errorMessages.put(iterator++, " Line start with terminal, not with non-terminal: " + inputLine);
+                errorMessages.put(iterator++, CommonUtility.getKey("firstFollow.LeftNonTerminal") + inputLine);
                 continue;
             }
             iterator++;

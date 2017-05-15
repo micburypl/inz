@@ -4,7 +4,8 @@ import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
-import org.jetbrains.annotations.NotNull;
+import start.Base;
+import start.Start;
 
 import java.util.*;
 
@@ -152,5 +153,13 @@ public class CommonUtility {
                 return;
             }
         }
+    }
+
+    public static String getKey(String key){
+
+        if(Start.getInstance().getResourceBundle().containsKey(key)){
+            return Start.getInstance().getResourceBundle().getString(key);
+        }
+        return "error label -> " + key;
     }
 }

@@ -4,6 +4,7 @@ import algorithmFLF.FLF;
 import algorithmFLF.FLFPart;
 import algorithmFLF.TransitionSolverElement;
 import algorithmFLF.TransitionTableElement;
+import commonUtility.CommonUtility;
 import graph.GraphMethods;
 import graph.GraphThreeMethods;
 import javafx.embed.swing.SwingNode;
@@ -113,8 +114,9 @@ public class FirstLastFollowSolverController implements Initializable {
             GridPane gridPane = new GridPane();
 
 
-//            Label tempLabel = new Label(Base.getInstance().getResourceBundle().getString("test.test"));
-            Label tempLabel = new Label("Empty input. Please give correct input");
+            Label tempLabel = new Label(CommonUtility.getKey("firstLastFollow.emptyInput"));
+
+            //Label tempLabel = new Label("Empty input. Please give correct input");
             gridPane.add(tempLabel, 0,0);
             gridPane.setHalignment(tempLabel, HPos.CENTER);
 
@@ -133,8 +135,9 @@ public class FirstLastFollowSolverController implements Initializable {
             firstLastFollowOutputPane.getChildren().clear();
             GridPane gridPane = new GridPane();
 
-//            Label tempLabel = new Label(Base.getInstance().getResourceBundle().getString("test.test"));
-            Label tempLabel = new Label("Wrong input. Please give correct input");
+            Label tempLabel = new Label(CommonUtility.getKey("firstLastFollow.wrongInput"));
+
+           // Label tempLabel = new Label("Wrong input. Please give correct input");
             gridPane.add(tempLabel, 0,0);
             gridPane.setHalignment(tempLabel, HPos.CENTER);
 
@@ -204,11 +207,15 @@ public class FirstLastFollowSolverController implements Initializable {
         GridPane gridPane = new GridPane();
         String solutionString;
 
-        Label tempLabel = new Label("   Number   ");
+
+        Label tempLabel = new Label("   " + CommonUtility.getKey("firstLastFollow.Number" )+ "   ");
+        //Label tempLabel = new Label("   Number   ");
         gridPane.add(tempLabel, 0,0);
         gridPane.setHalignment(tempLabel, HPos.CENTER);
 
-        tempLabel = new Label("   Nullable   ");
+
+        tempLabel = new Label("   " + CommonUtility.getKey("firstLastFollow.Nullable") + "   ");
+        //tempLabel = new Label("   Nullable   ");
         gridPane.add(tempLabel, 1,0);
         gridPane.setHalignment(tempLabel, HPos.CENTER);
 
@@ -254,15 +261,18 @@ public class FirstLastFollowSolverController implements Initializable {
         firstLastFollowOutputPane.getChildren().clear();
         GridPane gridPane = new GridPane();
 
-        Label tempLabel = new Label("   Element   ");
+        Label tempLabel = new Label("   " + CommonUtility.getKey("firstLastFollow.Element" )+ "   ");
+        //Label tempLabel = new Label("   Element   ");
         gridPane.add(tempLabel, 0,0);
         gridPane.setHalignment(tempLabel, HPos.CENTER);
 
-        tempLabel = new Label("   First(Element)   ");
+        tempLabel = new Label("   " + CommonUtility.getKey("firstLastFollow.FirstElement" )+ "   ");
+        //tempLabel = new Label("   First(Element)   ");
         gridPane.add(tempLabel, 1,0);
         gridPane.setHalignment(tempLabel, HPos.CENTER);
 
-        tempLabel = new Label("   Last(Element)   ");
+        tempLabel = new Label("   " + CommonUtility.getKey("firstLastFollow.LastElement" )+ "   ");
+        //tempLabel = new Label("   Last(Element)   ");
         gridPane.add(tempLabel, 2,0);
         gridPane.setHalignment(tempLabel, HPos.CENTER);
 
@@ -292,7 +302,7 @@ public class FirstLastFollowSolverController implements Initializable {
             gridPane.setHalignment(tempLabel, HPos.CENTER);
 
             tempString = "";
-            for(Integer tempInt: element.firstList) {
+            for(Integer tempInt: element.lastList) {
                 tempString += tempInt;
                 tempString += ", ";
             }
@@ -327,12 +337,14 @@ public class FirstLastFollowSolverController implements Initializable {
         GridPane gridPane = new GridPane();
         String solutionString;
 
-        Label tempLabel = new Label("   Number   ");
+
+        Label tempLabel = new Label("   " + CommonUtility.getKey("firstLastFollow.Number" )+ "   ");
 
         gridPane.add(tempLabel, 0,0);
         gridPane.setHalignment(tempLabel, HPos.CENTER);
 
-        tempLabel = new Label("   Follow(Number)   ");
+        tempLabel = new Label("   " + CommonUtility.getKey("firstLastFollow.FollowNumber" )+ "   ");
+        //tempLabel = new Label("   Follow(Number)   ");
         gridPane.add(tempLabel, 1,0);
         gridPane.setHalignment(tempLabel, HPos.CENTER);
 
@@ -356,7 +368,7 @@ public class FirstLastFollowSolverController implements Initializable {
             } else if (tempString.length() > 0){
 
             } else {
-                tempString= "empty";
+                tempString = CommonUtility.getKey("firstLastFollow.Empty");
             }
 
             tempLabel = new Label(tempString);
@@ -387,19 +399,23 @@ public class FirstLastFollowSolverController implements Initializable {
         firstLastFollowOutputPane.getChildren().clear();
         GridPane gridPane = new GridPane();
 
-        Label tempLabel = new Label("   Begin State   ");
+        Label tempLabel = new Label("   " + CommonUtility.getKey("firstLastFollow.BeginState" )+ "   ");
+        //Label tempLabel = new Label("   Begin State   ");
         gridPane.add(tempLabel, 0,0);
         gridPane.setHalignment(tempLabel, HPos.CENTER);
 
-        tempLabel = new Label("   Transition   ");
+        tempLabel = new Label("   " + CommonUtility.getKey("firstLastFollow.Transition" )+ "   ");
+        //tempLabel = new Label("   Transition   ");
         gridPane.add(tempLabel, 1,0);
         gridPane.setHalignment(tempLabel, HPos.CENTER);
 
-        tempLabel = new Label("   End State   ");
+        tempLabel = new Label("   " + CommonUtility.getKey("firstLastFollow.EndState" )+ "   ");
+        //tempLabel = new Label("   End State   ");
         gridPane.add(tempLabel, 2,0);
         gridPane.setHalignment(tempLabel, HPos.CENTER);
 
-        tempLabel = new Label("   Elements   ");
+        tempLabel = new Label("   " + CommonUtility.getKey("firstLastFollow.Elements" )+ "   ");
+        //tempLabel = new Label("   Elements   ");
         gridPane.add(tempLabel, 3,0);
         gridPane.setHalignment(tempLabel, HPos.CENTER);
 
@@ -431,7 +447,7 @@ public class FirstLastFollowSolverController implements Initializable {
             } else if (tempString.length() > 0){
 
             } else {
-                tempString= "empty";
+                tempString= CommonUtility.getKey("firstLastFollow.Empty");
             }
 
             tempLabel = new Label(tempString);
@@ -491,16 +507,19 @@ public class FirstLastFollowSolverController implements Initializable {
 
         ArrayList<TransitionSolverElement> answerList = myTree.generateTransitionCheckList(inputList);
 
-        Label tempLabel = new Label("   Current State   ");
-        //Label tempLabel = new Label(Base.getInstance().getResourceBundle().getString("test.test"));
+        Label tempLabel = new Label("   " + CommonUtility.getKey("firstLastFollow.CurrentState" )+ "   ");
+       // Label tempLabel = new Label("   Current State   ");
         gridPane.add(tempLabel, 0,0);
         gridPane.setHalignment(tempLabel, HPos.CENTER);
 
-        tempLabel = new Label("   Word   ");
+        tempLabel = new Label("   " + CommonUtility.getKey("firstLastFollow.Word" )+ "   ");
+        //tempLabel = new Label("   Word   ");
         gridPane.add(tempLabel, 1,0);
         gridPane.setHalignment(tempLabel, HPos.CENTER);
 
-        tempLabel = new Label("   End State   ");
+        tempLabel = new Label("   " + CommonUtility.getKey("firstLastFollow.EndState" )+ "   ");
+
+        //tempLabel = new Label("   End State   ");
         gridPane.add(tempLabel, 2,0);
         gridPane.setHalignment(tempLabel, HPos.CENTER);
 

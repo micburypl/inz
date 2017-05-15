@@ -1,6 +1,7 @@
 package firstFollowWindow;
 
 import com.sun.javafx.geom.Rectangle;
+import commonUtility.CommonUtility;
 import firstFollow.FirstFollow;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -121,12 +122,13 @@ public class FirstFollowSolverController implements Initializable {
             firstFollowOutputPane.getChildren().clear();
             GridPane gridPane = new GridPane();
             gridPane.setGridLinesVisible(true);
-            Label tempLabel = new Label("Errors");
+            Label tempLabel = new Label(CommonUtility.getKey("firstFollow.Errors"));
+            //Label tempLabel = new Label("Errors");
             gridPane.add(tempLabel, 0,0);
             gridPane.setHalignment(tempLabel, HPos.CENTER);
             Integer tempInt = 1;
             for(Integer errorLine: testFirstFollow.errorMessages.keySet() ) {
-                tempLabel = new Label("In row " + errorLine + ". " + testFirstFollow.errorMessages.get(errorLine));
+                tempLabel = new Label(CommonUtility.getKey("firstFollow.InRow") + " " + errorLine + ". " + testFirstFollow.errorMessages.get(errorLine));
                 gridPane.add(tempLabel, 0, tempInt++);
                 gridPane.setHalignment(tempLabel, HPos.CENTER);
             }
@@ -150,11 +152,12 @@ public class FirstFollowSolverController implements Initializable {
         firstFollowOutputPane.getChildren().clear();
         GridPane gridPane = new GridPane();
 
-        Label tempLabel = new Label("Element");
+        Label tempLabel = new Label(CommonUtility.getKey("firstFollow.Element"));
+        //Label tempLabel = new Label("Element");
         gridPane.add(tempLabel, 0,0);
         gridPane.setHalignment(tempLabel, HPos.CENTER);
 
-        tempLabel = new Label("First(Element)");
+        tempLabel = new Label(CommonUtility.getKey("firstFollow.FirstElement"));
         gridPane.add(tempLabel, 1,0);
         gridPane.setHalignment(tempLabel, HPos.CENTER);
 
@@ -199,11 +202,11 @@ public class FirstFollowSolverController implements Initializable {
         firstFollowOutputPane.getChildren().clear();
         GridPane gridPane = new GridPane();
 
-        Label tempLabel = new Label("Element");
+        Label tempLabel = new Label(CommonUtility.getKey("firstFollow.Element"));
         gridPane.add(tempLabel, 0,0);
         gridPane.setHalignment(tempLabel, HPos.CENTER);
 
-        tempLabel = new Label("Follow(Element)");
+        tempLabel = new Label(CommonUtility.getKey("firstFollow.FollowElement"));
         gridPane.add(tempLabel, 1,0);
         gridPane.setHalignment(tempLabel, HPos.CENTER);
 

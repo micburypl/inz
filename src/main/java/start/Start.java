@@ -224,4 +224,8 @@ public class Start extends Application {
 
     }
 
+    public ResourceBundle getResourceBundle() {
+        Locale local = Locale.getDefault();
+        return ResourceBundle.getBundle("bundle.bundle", local);
+    }
 }

@@ -128,12 +128,12 @@ public class parserLLSolverController implements Initializable {
             parserLLOutputPane.getChildren().clear();
             GridPane gridPane = new GridPane();
             gridPane.setGridLinesVisible(true);
-            Label tempLabel = new Label("Errors");
+            Label tempLabel = new Label(CommonUtility.getKey("firstFollow.Errors"));
             gridPane.add(tempLabel, 0,0);
             gridPane.setHalignment(tempLabel, HPos.CENTER);
             Integer tempInt = 1;
             for(Integer errorLine: testFirstFollow.errorMessages.keySet() ) {
-                tempLabel = new Label("In row " + errorLine + ". " + testFirstFollow.errorMessages.get(errorLine));
+                tempLabel = new Label(CommonUtility.getKey("firstFollow.InRow") + " " + errorLine + ". " + testFirstFollow.errorMessages.get(errorLine));
                 gridPane.add(tempLabel, 0, tempInt++);
                 gridPane.setHalignment(tempLabel, HPos.CENTER);
             }
@@ -165,11 +165,11 @@ public class parserLLSolverController implements Initializable {
         parserLLOutputPane.getChildren().clear();
         GridPane gridPane = new GridPane();
 
-        Label tempLabel = new Label("Element");
+        Label tempLabel = new Label(CommonUtility.getKey("firstFollow.Element"));
         gridPane.add(tempLabel, 0,0);
         gridPane.setHalignment(tempLabel, HPos.CENTER);
 
-        tempLabel = new Label("First(Element)");
+        tempLabel = new Label(CommonUtility.getKey("firstFollow.FirstElement"));
         gridPane.add(tempLabel, 1,0);
         gridPane.setHalignment(tempLabel, HPos.CENTER);
 
@@ -213,11 +213,11 @@ public class parserLLSolverController implements Initializable {
         parserLLOutputPane.getChildren().clear();
         GridPane gridPane = new GridPane();
 
-        Label tempLabel = new Label("Element");
+        Label tempLabel = new Label(CommonUtility.getKey("firstFollow.Element"));
         gridPane.add(tempLabel, 0,0);
         gridPane.setHalignment(tempLabel, HPos.CENTER);
 
-        tempLabel = new Label("Follow(Element)");
+        tempLabel = new Label(CommonUtility.getKey("firstFollow.FollowElement"));
         gridPane.add(tempLabel, 1,0);
         gridPane.setHalignment(tempLabel, HPos.CENTER);
 
@@ -261,7 +261,7 @@ public class parserLLSolverController implements Initializable {
         parserLLOutputPane.getChildren().clear();
         GridPane gridPane = new GridPane();
 
-        Label tempLabel = new Label("Prod");
+        Label tempLabel = new Label(CommonUtility.getKey("parserLL.Prod"));
         gridPane.add(tempLabel, 0,0);
         gridPane.setHalignment(tempLabel, HPos.CENTER);
 
@@ -335,7 +335,7 @@ public class parserLLSolverController implements Initializable {
             parserLLOutputList.getItems().add(x.load());
             parserLLMovesErrorOutputController xControler = x.getController();
             //errorMessage
-            xControler.setError("Input is Empty");
+            xControler.setError(CommonUtility.getKey("parserLL.EmptyInput"));
             System.out.println("Input is Empty");
             parserLLOutputPane.getChildren().add(parserLLOutputList);
             return;
@@ -344,9 +344,9 @@ public class parserLLSolverController implements Initializable {
         FXMLLoader xStart = new FXMLLoader(getClass().getResource("/fxml/test/parserLLWindow/parserLLMovesOutput.fxml"));
         parserLLOutputList.getItems().add(xStart.load());
         parserLLMovesOutputController xControlerStart = xStart.getController();
-        xControlerStart.setOutput("Output");
-        xControlerStart.setInput("Input");
-        xControlerStart.setStack("Stack");
+        xControlerStart.setOutput(CommonUtility.getKey("parserLL.Output"));
+        xControlerStart.setInput(CommonUtility.getKey("parserLL.Input"));
+        xControlerStart.setStack(CommonUtility.getKey("parserLL.Stack"));
 
         for(MovesTableElement keyNumber: testMoveTable.movesList){
 

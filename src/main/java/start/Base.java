@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public final class Base extends Application {
@@ -53,6 +54,7 @@ public final class Base extends Application {
 
 
     public ResourceBundle getResourceBundle() {
-        return Base.getInstance().getResourceBundle();
+        Locale local = Locale.getDefault();
+        return ResourceBundle.getBundle("bundle.bundle", local);
     }
 }
