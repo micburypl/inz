@@ -29,10 +29,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.*;
 import java.util.List;
-import java.util.ResourceBundle;
 
 /**
  * Created by DELL6430u on 2017-05-01.
@@ -200,7 +198,10 @@ public class parserLRSolverController implements Initializable {
             gridPane.getColumnConstraints().add(column);
         }
 
-        parserLROutputPane.getChildren().add(gridPane);
+        ListView tempListView = new ListView();
+        tempListView.getItems().add(gridPane);
+        parserLROutputPane.getChildren().add(tempListView);
+        //parserLROutputPane.getChildren().add(gridPane);
     }
 
     public void printFollow(ActionEvent actionEvent) throws IOException {
@@ -248,7 +249,10 @@ public class parserLRSolverController implements Initializable {
             gridPane.getColumnConstraints().add(column);
         }
 
-        parserLROutputPane.getChildren().add(gridPane);
+        ListView tempListView = new ListView();
+        tempListView.getItems().add(gridPane);
+        parserLROutputPane.getChildren().add(tempListView);
+        //parserLROutputPane.getChildren().add(gridPane);
     }
 
     public void printActionTable(ActionEvent actionEvent) {
@@ -257,7 +261,7 @@ public class parserLRSolverController implements Initializable {
         GridPane gridPane = new GridPane();
         gridPane.setGridLinesVisible(true);
 
-        HashMap<String, Integer> columnSign = new HashMap<String, Integer>();
+        HashMap<String, Integer> columnSign = new HashMap<>();
         Integer maxColumn = 1;
 
         //add "No" if position 0,0
@@ -285,13 +289,72 @@ public class parserLRSolverController implements Initializable {
 
                 }
 
-                tempLabel = new Label(testGotoGenerator.actionTable.get(row).get(column).value.toString());
+                if(testGotoGenerator.actionTable.get(row).get(column).value == -1) {
+                    tempLabel = new Label("ACC");
+                } else if (testGotoGenerator.actionTable.get(row).get(column).isShift) {
+                    tempLabel = new Label("S" +testGotoGenerator.actionTable.get(row).get(column).value.toString());
+                } else {
+                    tempLabel = new Label("R"+testGotoGenerator.actionTable.get(row).get(column).value.toString());
+                }
+
+                //tempLabel = new Label(testGotoGenerator.actionTable.get(row).get(column).value.toString());
                 gridPane.add(tempLabel, columnSign.get(column),rowNumber);
                 gridPane.setHalignment(tempLabel, HPos.CENTER);
             }
             rowNumber++;
         }
-        parserLROutputPane.getChildren().add(gridPane);
+
+        //Errors
+        rowNumber = 1;
+        Integer currentError = 1;
+        ArrayList<String> errorElementSolution = new ArrayList<>();
+        String tempString;
+        String elementsOnList;
+
+        HashSet<String> currentElements;
+        for(Integer row: testGotoGenerator.actionTable.keySet()) {
+
+
+            currentElements = new HashSet<>();
+            for(String column: testGotoGenerator.actionTable.get(row).keySet()) {
+                //create list with current element
+                currentElements.add(column);
+            }
+            elementsOnList = "";
+
+            for(String ce: currentElements) {
+                elementsOnList += ce + ", ";
+            }
+            if(currentElements.size() > 1) {
+                elementsOnList = elementsOnList.substring(0,elementsOnList.length()-2);
+            }
+
+
+            for(String column: columnSign.keySet()) {
+                if(!currentElements.contains(column)) {
+                    tempString = "ERR" + currentError + " Invalid: " + column + ". Expected: " + elementsOnList;
+                    errorElementSolution.add(tempString);
+                    tempLabel = new Label("ERR" + currentError++);
+                    gridPane.add(tempLabel, columnSign.get(column),rowNumber);
+                    GridPane.setHalignment(tempLabel, HPos.CENTER);
+                }
+            }
+            rowNumber++;
+        }
+
+
+        //parserLROutputPane.getChildren().add(gridPane);
+        ListView tempListView = new ListView();
+        tempListView.getItems().add(gridPane);
+
+        tempListView.getItems().add(new Label("Errors"));
+
+
+        for(String s: errorElementSolution){
+            tempListView.getItems().add(new Label(s));
+        }
+
+        parserLROutputPane.getChildren().add(tempListView);
 
         Integer numberOfColumn = maxColumn;
         for(Integer i = 0; i < numberOfColumn; i++) {
@@ -341,7 +404,10 @@ public class parserLRSolverController implements Initializable {
             rowNumber++;
         }
 
-        parserLROutputPane.getChildren().add(gridPane);
+        //parserLROutputPane.getChildren().add(gridPane);
+        ListView tempListView = new ListView();
+        tempListView.getItems().add(gridPane);
+        parserLROutputPane.getChildren().add(tempListView);
 
         Integer numberOfColumn = maxColumn;
         for(Integer i = 0; i < numberOfColumn; i++) {
@@ -461,8 +527,10 @@ public class parserLRSolverController implements Initializable {
             column.setPercentWidth(100/numberOfColumn);
             gridPane.getColumnConstraints().add(column);
         }
-
-        parserLROutputPane.getChildren().add(gridPane);
+        ListView tempListView = new ListView();
+        tempListView.getItems().add(gridPane);
+        parserLROutputPane.getChildren().add(tempListView);
+        //parserLROutputPane.getChildren().add(gridPane);
     }
 
     public void printGraph(ActionEvent actionEvent) {
@@ -509,14 +577,15 @@ public class parserLRSolverController implements Initializable {
         for (String line : Files.readAllLines(Paths.get(file.getAbsolutePath()))) {
 
             FXMLLoader x = new FXMLLoader(getClass().getResource("/fxml/test/firstFollowWindow/firstFollowInput.fxml"));
+            if(line.contains("->")) {
+                inputWord = line.split("->");
+                parserLRInputList.getItems().add(x.load());
+                FirstFollowInputController elementContorller = x.getController();
 
-            inputWord = line.split("->");
-            parserLRInputList.getItems().add(x.load());
-            FirstFollowInputController elementContorller = x.getController();
-
-            elementContorller.setLeftPart(inputWord[0]);
-            elementContorller.setRightPart(inputWord[1]);
-            listInput.add(x.getController());
+                elementContorller.setLeftPart(inputWord[0]);
+                elementContorller.setRightPart(inputWord[1]);
+                listInput.add(x.getController());
+            }
         }
 
         Button b = new Button("+");
@@ -537,5 +606,64 @@ public class parserLRSolverController implements Initializable {
         parserLRPartialSolutionsLabel.setVisible(false);
         parserLROutputPane.getChildren().clear();
 
+    }
+
+    public void printItemConstruction(ActionEvent actionEvent) {
+        parserLROutputPane.getChildren().clear();
+        GridPane gridPane = new GridPane();
+
+        Label tempLabel = new Label("State");
+        gridPane.add(tempLabel, 0,0);
+        gridPane.setHalignment(tempLabel, HPos.CENTER);
+
+        tempLabel = new Label("Production");
+        gridPane.add(tempLabel, 1,0);
+        gridPane.setHalignment(tempLabel, HPos.CENTER);
+
+
+        String tempString;
+        Integer rowNumber = 1;
+        gridPane.setGridLinesVisible(true);
+        for(Integer element: testGotoGenerator.gotoGeneratorMap.gotoElementMap.keySet()){
+
+
+            tempLabel = new Label(element.toString());
+            gridPane.add(tempLabel, 0,rowNumber);
+            gridPane.setHalignment(tempLabel, HPos.CENTER);
+            rowNumber++;
+
+            for(Integer prodNumber : testGotoGenerator.gotoGeneratorMap.gotoElementMap.get(element).closureElementList) {
+
+                if(prodNumber == 1 || prodNumber == 2) {
+                    continue;
+                }
+
+                tempString = "";
+                for(String s: testGotoGenerator.gotoGeneratorMap.closureElementCombination.get(prodNumber).production) {
+                    tempString += s + " ";
+                }
+
+                tempLabel = new Label(tempString);
+                gridPane.add(tempLabel, 1,rowNumber);
+                gridPane.setHalignment(tempLabel, HPos.CENTER);
+                rowNumber++;
+            }
+        }
+
+
+
+        Integer numberOfColumn = 2;
+        for(Integer i = 0; i < numberOfColumn; i++) {
+
+            ColumnConstraints column = new ColumnConstraints();
+            column.setPercentWidth(100/numberOfColumn);
+            gridPane.getColumnConstraints().add(column);
+        }
+
+
+        ListView tempListView = new ListView();
+        tempListView.getItems().add(gridPane);
+        parserLROutputPane.getChildren().add(tempListView);
+        //parserLROutputPane.getChildren().add(gridPane);
     }
 }

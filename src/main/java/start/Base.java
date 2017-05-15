@@ -49,4 +49,10 @@ public final class Base extends Application {
         instance = this;
     }
 
+
+
+
+    public ResourceBundle getResourceBundle() {
+        return Base.getInstance().getResourceBundle();
+    }
 }

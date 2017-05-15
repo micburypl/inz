@@ -31,6 +31,8 @@ public class MovesTable {
             //check if input is not empty
             if(inputDataSet.isEmpty()) {
                 if(stack.isEmpty()) {
+                    currentElement = new MovesTableElement(stack, inputDataSet, "", new ArrayList<>());
+                    movesList.add(currentElement);
                     break;
                 } else {
                     //check if top stack element has eps tranition

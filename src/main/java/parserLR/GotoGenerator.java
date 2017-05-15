@@ -26,6 +26,8 @@ public class GotoGenerator {
     //all parameters ( S, a, *, etc.)
     private Set<String> allParameters;
 
+    ClosureElement correctFinal;
+
     public Map<Integer, ArrayList<String>> listOfProduction;
 
     GotoElement currentGotoElement;
@@ -40,6 +42,7 @@ public class GotoGenerator {
         allParameters = new HashSet<>();
         gotoLastElement = 0;
         listOfProduction = new HashMap<>();
+
 
         //gotoLastElement = 1;
     }
@@ -56,6 +59,7 @@ public class GotoGenerator {
         currentClosureElement = new ClosureElement(closureElementLastCombination++, CommonUtility.generateList(CommonUtility.beginGoto, CommonUtility.arrow, CommonUtility.dot, startElement), 0);
         // S' -> S .
         nextClosureElement = new ClosureElement(closureElementLastCombination++, CommonUtility.generateList(CommonUtility.beginGoto, CommonUtility.arrow, startElement, CommonUtility.dot), 0);
+        correctFinal = nextClosureElement;
         //nextClosureElement.isEnd = true;
         //add closure element to first goto
         currentGotoElement.closureElementList.add(currentClosureElement.counterValue);
@@ -71,9 +75,22 @@ public class GotoGenerator {
 
         //adding elements from parsedSet
 
+        //add S' -> S
+        ArrayList<ArrayList<String>> temp = new ArrayList<>();
+        ArrayList<String> tempArrayList = new ArrayList<>();
+        tempArrayList.add(startElement);
+
+        temp.add(tempArrayList);
+        parsedSet.put("S'", temp);
+
+
         for(String parsedSetKey: parsedSet.keySet()) {
             //add new element to first element map
-            firstElementMap.put(parsedSetKey, new ArrayList<>());
+            if(!firstElementMap.containsKey(parsedSetKey)) {
+                firstElementMap.put(parsedSetKey, new ArrayList<>());
+            }
+
+
             for(ArrayList<String> parsedSetProduction: parsedSet.get(parsedSetKey)) {
                 allParameters.addAll(parsedSetProduction);
 
@@ -104,6 +121,12 @@ public class GotoGenerator {
                 }
                 closureElementCombination.put(currentClosureElement.counterValue, currentClosureElement);
                 currProdNumber++;
+            }
+        }
+        //cheching
+        for (Integer i = 0; i< firstElementMap.get("S'").size(); i++) {
+            if (firstElementMap.get("S'").get(i) > 2) {
+                firstElementMap.remove(i);
             }
         }
 
@@ -175,6 +198,9 @@ public class GotoGenerator {
 
             currentGotoMapElement++;
         } while(currentGotoMapElement < gotoElementMap.size());
+
+        // calculate finalStates
+
 
         //print transition
         for(Integer tempElement: gotoElementMap.keySet()) {

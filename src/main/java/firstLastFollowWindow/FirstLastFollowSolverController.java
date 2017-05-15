@@ -112,6 +112,8 @@ public class FirstLastFollowSolverController implements Initializable {
             firstLastFollowOutputPane.getChildren().clear();
             GridPane gridPane = new GridPane();
 
+
+//            Label tempLabel = new Label(Base.getInstance().getResourceBundle().getString("test.test"));
             Label tempLabel = new Label("Empty input. Please give correct input");
             gridPane.add(tempLabel, 0,0);
             gridPane.setHalignment(tempLabel, HPos.CENTER);
@@ -131,6 +133,7 @@ public class FirstLastFollowSolverController implements Initializable {
             firstLastFollowOutputPane.getChildren().clear();
             GridPane gridPane = new GridPane();
 
+//            Label tempLabel = new Label(Base.getInstance().getResourceBundle().getString("test.test"));
             Label tempLabel = new Label("Wrong input. Please give correct input");
             gridPane.add(tempLabel, 0,0);
             gridPane.setHalignment(tempLabel, HPos.CENTER);
@@ -324,12 +327,7 @@ public class FirstLastFollowSolverController implements Initializable {
         GridPane gridPane = new GridPane();
         String solutionString;
 
-        //Label tempLabel = new Label("   Number   ");
-        //Label tempLabel = new Label(Base.getResourceBundle("test.test");
-
-        Locale xxx = new Locale("pl_PL");
-
-        Label tempLabel = new Label(ResourceBundle.getBundle("test.test").toString());
+        Label tempLabel = new Label("   Number   ");
 
         gridPane.add(tempLabel, 0,0);
         gridPane.setHalignment(tempLabel, HPos.CENTER);
@@ -556,6 +554,9 @@ public class FirstLastFollowSolverController implements Initializable {
         movesTableButton.setVisible(show);
         firstLastFollowWordInput.setVisible(show);
     }
+
+
+
 
 
 }

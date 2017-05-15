@@ -77,6 +77,7 @@ public class parserLRExercisesController implements Initializable {
     Boolean isImportedFile = false;
     Integer currentImportedInput;
     Boolean showRandomMovesButton = false;
+    Integer whichButton;
 
     ArrayList<String> importedInputList;
 
@@ -218,6 +219,7 @@ public class parserLRExercisesController implements Initializable {
 
     public void printFirst(ActionEvent actionEvent) throws IOException {
 
+        whichButton = -1;
         showVerifyButton(true);
         parserLROutputPane.getChildren().clear();
         gridPane = new GridPane();
@@ -310,11 +312,15 @@ public class parserLRExercisesController implements Initializable {
             gridPane2.getColumnConstraints().add(column);
         }
 
-        parserLROutputPane.getChildren().add(gridPane2);
+        ListView tempListView = new ListView();
+        tempListView.getItems().add(gridPane2);
+        parserLROutputPane.getChildren().add(tempListView);
+        //parserLROutputPane.getChildren().add(gridPane);
     }
 
     public void printFollow(ActionEvent actionEvent) throws IOException {
 
+        whichButton = -1;
         showVerifyButton(true);
         parserLROutputPane.getChildren().clear();
         gridPane = new GridPane();
@@ -402,17 +408,21 @@ public class parserLRExercisesController implements Initializable {
             gridPane2.getColumnConstraints().add(column);
         }
 
-        parserLROutputPane.getChildren().add(gridPane2);
+        ListView tempListView = new ListView();
+        tempListView.getItems().add(gridPane2);
+        parserLROutputPane.getChildren().add(tempListView);
+        //parserLROutputPane.getChildren().add(gridPane);
     }
 
     public void printActionTable(ActionEvent actionEvent) {
 
+        whichButton = -1;
         showVerifyButton(true);
         parserLROutputPane.getChildren().clear();
         gridPane = new GridPane();
         gridPane.setGridLinesVisible(true);
 
-        HashMap columnSign = new HashMap<String, Integer>();
+        HashMap <String, Integer> columnSign = new HashMap<String, Integer>();
         Integer maxColumn = 1;
 
         //add "No" if position 0,0
@@ -440,10 +450,45 @@ public class parserLRExercisesController implements Initializable {
 
                 }
 
-                tempLabel = new Label(testGotoGenerator.actionTable.get(row).get(column).value.toString());
+                if(testGotoGenerator.actionTable.get(row).get(column).value == -1) {
+                    tempLabel = new Label("ACC");
+                } else if (testGotoGenerator.actionTable.get(row).get(column).isShift) {
+                    tempLabel = new Label("S" +testGotoGenerator.actionTable.get(row).get(column).value.toString());
+                } else {
+                    tempLabel = new Label("R"+testGotoGenerator.actionTable.get(row).get(column).value.toString());
+                }
+
+                //tempLabel = new Label(testGotoGenerator.actionTable.get(row).get(column).value.toString());
                 gridPane.add(tempLabel, (Integer) columnSign.get(column),rowNumber);
                 GridPane.setHalignment(tempLabel, HPos.CENTER);
             }
+            rowNumber++;
+        }
+
+        //Errors
+        rowNumber = 1;
+
+        HashSet<String> currentElements;
+        for(Integer row: testGotoGenerator.actionTable.keySet()) {
+
+
+            currentElements = new HashSet<>();
+            for(String column: testGotoGenerator.actionTable.get(row).keySet()) {
+               //create list with current element
+               currentElements.add(column);
+            }
+
+            for(String column: columnSign.keySet()) {
+
+                if(!currentElements.contains(column)) {
+                    tempLabel = new Label("ERR");
+                    gridPane.add(tempLabel, columnSign.get(column),rowNumber);
+                    GridPane.setHalignment(tempLabel, HPos.CENTER);
+                }
+
+
+            }
+
             rowNumber++;
         }
 
@@ -495,13 +540,17 @@ public class parserLRExercisesController implements Initializable {
             gridPane2.getColumnConstraints().add(column);
         }
 
-        parserLROutputPane.getChildren().add(gridPane2);
+        ListView tempListView = new ListView();
+        tempListView.getItems().add(gridPane2);
+        parserLROutputPane.getChildren().add(tempListView);
+        //parserLROutputPane.getChildren().add(gridPane);
 
     }
 
 
     public void printGotoTable(ActionEvent actionEvent) {
 
+        whichButton = -1;
         showVerifyButton(true);
         parserLROutputPane.getChildren().clear();
         gridPane = new GridPane();
@@ -584,78 +633,209 @@ public class parserLRExercisesController implements Initializable {
             gridPane2.getColumnConstraints().add(column);
         }
 
-        parserLROutputPane.getChildren().add(gridPane2);
+        ListView tempListView = new ListView();
+        tempListView.getItems().add(gridPane2);
+        parserLROutputPane.getChildren().add(tempListView);
+        //parserLROutputPane.getChildren().add(gridPane);
     }
 
 
 
     public void printMovesTable(ActionEvent actionEvent) throws IOException {
 
-        showVerifyButton(false); // będzie do zmiany
-        FXMLLoader x;
+        whichButton = 1;
+        showVerifyButton(true);
         parserLROutputPane.getChildren().clear();
-        ListView parserLROutputList = new ListView();
+        gridPane = new GridPane();
+
 
         if(movesTableInput.getText() != null && !movesTableInput.getText().trim().isEmpty()) {
             //testGotoGenerator.generateLRParser("a * a + a");
             testGotoGenerator.generateLRParser(movesTableInput.getText());
 
         } else {
-            x = new FXMLLoader(getClass().getResource("/fxml/test/parserLRWindow/parserLRMovesErrorOutput.fxml"));
-            parserLROutputList.getItems().add(x.load());
-            parserLRMovesErrorOutputController xControler = x.getController();
-            //errorMessage
-            xControler.setError("Input is Empty");
-            System.out.println("Input is Empty");
-            parserLROutputPane.getChildren().add(parserLROutputList);
+            Label tempLabel = new Label("Input is Empty");
+            gridPane.add(tempLabel, 0,0);
+            GridPane.setHalignment(tempLabel, HPos.CENTER);
+            parserLROutputPane.getChildren().add(gridPane);
+            gridPane2 = new GridPane();
+            gridPane2 = gridPane;
+
             return;
         }
-        FXMLLoader xStart = new FXMLLoader(getClass().getResource("/fxml/test/parserLRWindow/parserLRMovesOutput.fxml"));
-        parserLROutputList.getItems().add(xStart.load());
-        parserLRMovesOutputController xControlerStart = xStart.getController();
-        xControlerStart.setMoveNo("No");
-        xControlerStart.setInput("Input");
-        xControlerStart.setStack("Stack");
+
+
+        Label tempLabel = new Label("Stack");
+        gridPane.add(tempLabel, 0,0);
+        GridPane.setHalignment(tempLabel, HPos.CENTER);
+
+        tempLabel = new Label("No");
+        gridPane.add(tempLabel, 2,0);
+        GridPane.setHalignment(tempLabel, HPos.CENTER);
+
+        tempLabel = new Label("Input");
+        gridPane.add(tempLabel, 1,0);
+        GridPane.setHalignment(tempLabel, HPos.CENTER);
+
+
+
+        String tempString;
+        Integer rowNumber = 1;
+        gridPane.setGridLinesVisible(true);
+
         for(MovesElementLR keyNumber: testGotoGenerator.movesList){
 
             if(!keyNumber.isWrong) {
-                x = new FXMLLoader(getClass().getResource("/fxml/test/parserLRWindow/parserLRMovesOutput.fxml"));
-                parserLROutputList.getItems().add(x.load());
-                parserLRMovesOutputController xControler = x.getController();
-
-                //Input
-                String tempInput = "";
-                for(String tempString: keyNumber.input) {
-                    tempInput += tempString;
-                }
-                tempInput = tempInput.substring(0, tempInput.length() - 3 ) + CommonUtility.dolarValue;
-                xControler.setInput(tempInput);
+                //Number
+                tempLabel = new Label(keyNumber.movesNumber.toString());
+                gridPane.add(tempLabel, 0, rowNumber);
+                GridPane.setHalignment(tempLabel, HPos.CENTER);
 
                 //Stack
                 String tempStack = "";
-                for(String tempString: keyNumber.stack) {
-                    tempStack += tempString;
+                for(String tString: keyNumber.stack) {
+                    tempStack += tString;
                 }
-                xControler.setStack(tempStack);
+                tempLabel = new Label(tempStack);
+                gridPane.add(tempLabel, 1, rowNumber);
+                GridPane.setHalignment(tempLabel, HPos.CENTER);
 
-                //movesNo
-                xControler.setMoveNo(keyNumber.movesNumber.toString());
+                //Input
+                String tempInput = "";
+                for(String tString: keyNumber.input) {
+                    tempInput += tString;
+                }
+                tempInput = tempInput.substring(0, tempInput.length() - 3 ) + CommonUtility.dolarValue;
+                tempLabel = new Label(tempInput);
+                gridPane.add(tempLabel, 2, rowNumber);
+                GridPane.setHalignment(tempLabel, HPos.CENTER);
+
+
+
             } else {
-                x = new FXMLLoader(getClass().getResource("/fxml/test/parserLRWindow/parserLRMovesErrorOutput.fxml"));
-                parserLROutputList.getItems().add(x.load());
-                parserLRMovesErrorOutputController xControler = x.getController();
-                //errorMessage
-                xControler.setError(keyNumber.errorMessage);
-                break;
+                tempLabel = new Label("ERROR");
+                gridPane.add(tempLabel, 2,rowNumber);
+                GridPane.setHalignment(tempLabel, HPos.CENTER);
             }
 
+            rowNumber++;
         }
-        parserLROutputPane.getChildren().add(parserLROutputList);
+
+        Integer numberOfColumn = 3;
+        for(Integer i = 0; i < numberOfColumn; i++) {
+
+            ColumnConstraints column = new ColumnConstraints();
+            column.setPercentWidth(100/numberOfColumn);
+            gridPane.getColumnConstraints().add(column);
+        }
+
+        columnSize = numberOfColumn;
+        rowSize = rowNumber;
+
+        //input
+        removeSpace = false;
+        gridPane2 = new GridPane();
+        TextField tempTextField;
+
+        gridPane2.setGridLinesVisible(true);
+
+        for(Integer i = 0; i < columnSize; i++) {
+            for(Integer j = 0; j < rowSize; j++) {
+
+                if(i == 0 || j == 0 || j == 1) {
+                    tempLabel = new Label(CommonUtility.getNodeFromGridPane(gridPane, i, j));
+                    gridPane2.add(tempLabel, i,j);
+                    GridPane.setHalignment(tempLabel, HPos.CENTER);
+                    continue;
+                }
+                tempTextField = new TextField("");
+                gridPane2.add(tempTextField, i,j);
+                GridPane.setHalignment(tempTextField, HPos.CENTER);
+
+            }
+        }
+
+        for(Integer i = 0; i < numberOfColumn; i++) {
+
+            ColumnConstraints column = new ColumnConstraints();
+            column.setPercentWidth(100/numberOfColumn);
+            gridPane2.getColumnConstraints().add(column);
+        }
+        ListView tempListView = new ListView();
+        tempListView.getItems().add(gridPane2);
+        parserLROutputPane.getChildren().add(tempListView);
+
+
+
+
+//        showVerifyButton(false); // będzie do zmiany
+//        FXMLLoader x;
+//        parserLROutputPane.getChildren().clear();
+//        ListView parserLROutputList = new ListView();
+//
+//        if(movesTableInput.getText() != null && !movesTableInput.getText().trim().isEmpty()) {
+//            //testGotoGenerator.generateLRParser("a * a + a");
+//            testGotoGenerator.generateLRParser(movesTableInput.getText());
+//
+//        } else {
+//            x = new FXMLLoader(getClass().getResource("/fxml/test/parserLRWindow/parserLRMovesErrorOutput.fxml"));
+//            parserLROutputList.getItems().add(x.load());
+//            parserLRMovesErrorOutputController xControler = x.getController();
+//            //errorMessage
+//            xControler.setError("Input is Empty");
+//            System.out.println("Input is Empty");
+//            parserLROutputPane.getChildren().add(parserLROutputList);
+//            return;
+//        }
+//        FXMLLoader xStart = new FXMLLoader(getClass().getResource("/fxml/test/parserLRWindow/parserLRMovesOutput.fxml"));
+//        parserLROutputList.getItems().add(xStart.load());
+//        parserLRMovesOutputController xControlerStart = xStart.getController();
+//        xControlerStart.setMoveNo("No");
+//        xControlerStart.setInput("Input");
+//        xControlerStart.setStack("Stack");
+//        for(MovesElementLR keyNumber: testGotoGenerator.movesList){
+//
+//            if(!keyNumber.isWrong) {
+//                x = new FXMLLoader(getClass().getResource("/fxml/test/parserLRWindow/parserLRMovesOutput.fxml"));
+//                parserLROutputList.getItems().add(x.load());
+//                parserLRMovesOutputController xControler = x.getController();
+//
+//                //Input
+//                String tempInput = "";
+//                for(String tempString: keyNumber.input) {
+//                    tempInput += tempString;
+//                }
+//                tempInput = tempInput.substring(0, tempInput.length() - 3 ) + CommonUtility.dolarValue;
+//                xControler.setInput(tempInput);
+//
+//                //Stack
+//                String tempStack = "";
+//                for(String tempString: keyNumber.stack) {
+//                    tempStack += tempString;
+//                }
+//                xControler.setStack(tempStack);
+//
+//                //movesNo
+//                xControler.setMoveNo(keyNumber.movesNumber.toString());
+//            } else {
+//                x = new FXMLLoader(getClass().getResource("/fxml/test/parserLRWindow/parserLRMovesErrorOutput.fxml"));
+//                parserLROutputList.getItems().add(x.load());
+//                parserLRMovesErrorOutputController xControler = x.getController();
+//                //errorMessage
+//                xControler.setError(keyNumber.errorMessage);
+//                break;
+//            }
+//
+//        }
+//
+//
+//        parserLROutputPane.getChildren().add(parserLROutputList);
 
     }
 
     public void printTransitionTable(ActionEvent actionEvent) throws IOException {
 
+        whichButton = 2;
         showVerifyButton(true);
         parserLROutputPane.getChildren().clear();
         gridPane = new GridPane();
@@ -733,7 +913,10 @@ public class parserLRExercisesController implements Initializable {
             gridPane2.getColumnConstraints().add(column);
         }
 
-        parserLROutputPane.getChildren().add(gridPane2);
+        ListView tempListView = new ListView();
+        tempListView.getItems().add(gridPane2);
+        parserLROutputPane.getChildren().add(tempListView);
+        //parserLROutputPane.getChildren().add(gridPane);
     }
 
     public void printGraph(ActionEvent actionEvent) {
@@ -775,9 +958,27 @@ public class parserLRExercisesController implements Initializable {
     }
 
     public void parserLLExerciseVerify(ActionEvent actionEvent) {
-        Boolean correct = CommonUtility.compareGridPane(gridPane, gridPane2, rowSize, columnSize, removeSpace);
+
+        Boolean correct;
+        // 1. moves
+        // -1. rest
+
+        if(whichButton == 2) {
+            correct = CommonUtility.compareGridPane(gridPane, gridPane2, rowSize, columnSize, removeSpace,0,2);
+        }
+        if(whichButton == 1) {
+            correct = CommonUtility.compareGridPane(gridPane, gridPane2, rowSize, columnSize, removeSpace,2,1);
+        } else {
+            correct = CommonUtility.compareGridPane(gridPane, gridPane2, rowSize, columnSize, removeSpace);
+        }
+
         parserLROutputPane.getChildren().clear();
-        parserLROutputPane.getChildren().add(gridPane2);
+        ListView tempListView = new ListView();
+        tempListView.getItems().add(gridPane2);
+        parserLROutputPane.getChildren().add(tempListView);
+
+
+
     }
 
 
@@ -826,5 +1027,66 @@ public class parserLRExercisesController implements Initializable {
         showElement(false);
         parserLROutputPane.getChildren().clear();
 
+    }
+
+    public void printItemConstruction(ActionEvent actionEvent) {
+
+        showVerifyButton(false);
+
+        parserLROutputPane.getChildren().clear();
+        GridPane gridPane = new GridPane();
+
+        Label tempLabel = new Label("State");
+        gridPane.add(tempLabel, 0,0);
+        gridPane.setHalignment(tempLabel, HPos.CENTER);
+
+        tempLabel = new Label("Production");
+        gridPane.add(tempLabel, 1,0);
+        gridPane.setHalignment(tempLabel, HPos.CENTER);
+
+
+        String tempString;
+        Integer rowNumber = 1;
+        gridPane.setGridLinesVisible(true);
+        for(Integer element: testGotoGenerator.gotoGeneratorMap.gotoElementMap.keySet()){
+
+
+            tempLabel = new Label(element.toString());
+            gridPane.add(tempLabel, 0,rowNumber);
+            gridPane.setHalignment(tempLabel, HPos.CENTER);
+            rowNumber++;
+
+            for(Integer prodNumber : testGotoGenerator.gotoGeneratorMap.gotoElementMap.get(element).closureElementList) {
+
+                if(prodNumber == 1 || prodNumber == 2) {
+                    continue;
+                }
+
+                tempString = "";
+                for(String s: testGotoGenerator.gotoGeneratorMap.closureElementCombination.get(prodNumber).production) {
+                    tempString += s + " ";
+                }
+
+                tempLabel = new Label(tempString);
+                gridPane.add(tempLabel, 1,rowNumber);
+                gridPane.setHalignment(tempLabel, HPos.CENTER);
+                rowNumber++;
+            }
+        }
+
+
+
+        Integer numberOfColumn = 2;
+        for(Integer i = 0; i < numberOfColumn; i++) {
+
+            ColumnConstraints column = new ColumnConstraints();
+            column.setPercentWidth(100/numberOfColumn);
+            gridPane.getColumnConstraints().add(column);
+        }
+
+
+        ListView tempListView = new ListView();
+        tempListView.getItems().add(gridPane);
+        parserLROutputPane.getChildren().add(tempListView);
     }
 }

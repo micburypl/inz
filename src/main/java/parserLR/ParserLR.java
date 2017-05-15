@@ -93,6 +93,9 @@ public class ParserLR {
                         continue;
                     }
                     System.out.println(gotoGeneratorMap.listOfProduction.get(currProdNumber));
+                    if(!followElementMap.containsKey(gotoGeneratorMap.listOfProduction.get(currProdNumber).get(0))) {
+                        continue;
+                    }
                     for(String followElement: followElementMap.get(gotoGeneratorMap.listOfProduction.get(currProdNumber).get(0)).followSet) {
                         if(!actionTable.containsKey(closureElementCounter)) {
                             actionTable.put(closureElementCounter, new HashMap<>());
@@ -102,6 +105,17 @@ public class ParserLR {
                 }
             }
         }
+
+        // add final state elemen to list
+
+        for(Integer ge: gotoGeneratorMap.gotoElementMap.keySet()) {
+            if(gotoGeneratorMap.gotoElementMap.get(ge).closureElementList.contains(gotoGeneratorMap.correctFinal.counterValue)) {
+
+                actionTable.get(ge).put("eps", new ActionTableElement(-1, false) );
+            }
+        }
+
+
         System.out.println("gotoGeneratorMap END");
         System.out.println("----------------------------");
 
@@ -114,6 +128,8 @@ public class ParserLR {
             }
 
         }
+
+
         System.out.println("actionTable END");
         System.out.println("----------------------------");
 
@@ -142,6 +158,9 @@ public class ParserLR {
 
 
         while(true) {
+
+
+
             if(!actionTable.containsKey(Integer.parseInt(stack.peek()))) {
                 System.out.println("There is not this value on ACTION table (row): " + stack.peek());
 
@@ -162,7 +181,7 @@ public class ParserLR {
                 break;
             }
 
-            if(actionTable.get(Integer.parseInt(stack.peek())).get(inputDataSet.get(0)).value.equals(0)) {
+            if(actionTable.get(Integer.parseInt(stack.peek())).get(inputDataSet.get(0)).value.equals(-1)) {
                 //correct end
                 correctExit = true;
                 break;

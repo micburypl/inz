@@ -43,6 +43,7 @@
             <children>
                 <Button fx:id="printFirstButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#printFirst" styleClass="button-greenSmall" text="%parserLR.FirstButton" />
                 <Button fx:id="printFollowButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#printFollow" styleClass="button-greenSmall" text="%parserLR.FollowButton" />
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#printItemConstruction" styleClass="button-greenSmall" text="%parserLR.itemConstruction" />
                 <Button fx:id="printActionTableButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#printActionTable" styleClass="button-greenSmall" text="%parserLR.ActionTable" />
                 <Button fx:id="printGotoTableButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#printGotoTable" styleClass="button-greenSmall" text="%parserLR.GotoTable" />
             <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#printTransitionTable" styleClass="button-greenSmall" text="%parserLR.TransitionTable" />
@@ -53,7 +54,7 @@
         <Label text="%parserLR.Solution" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
         <StackPane fx:id="parserLROutputPane" alignment="TOP_CENTER" GridPane.columnIndex="4" GridPane.rowIndex="4" GridPane.rowSpan="8" />
         <Label text="%parserLR.InputData" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#generateLR" styleClass="button-green" text="%parserLR.GenerateButton" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="6" />
+        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#generateLR" styleClass="button-greenSmall" text="%parserLR.GenerateButton" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="6" />
         <TextField id="movesInput" fx:id="movesTableInput" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="11" />
         <Label text="%parserLR.GenerateLR" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
         <Label fx:id="parserLRInputStringLabel" text="%parserLR.InputString" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="9" />
@@ -65,8 +66,8 @@
             </font>
         </Label>
       <Button fx:id="parserLRVerifyButton" mnemonicParsing="false" onAction="#parserLLExerciseVerify" style="-fx-pref-width: 250;" styleClass="button-greenSmall" text="%parserLR.Verify" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="12" />
-      <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#randomInput" styleClass="button-green" text="%parserLR.Random" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+      <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#randomInput" styleClass="button-greenSmall" text="%parserLR.Random" GridPane.columnIndex="1" GridPane.rowIndex="3" />
       <Button fx:id="parserLRRandomMoves" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#randomMovesInput" styleClass="button-greenSmall" text="%parserLR.RandomMoves" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="10" />
-      <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#openFile" styleClass="button-green" text="%firstFollow.ImportData" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+      <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#openFile" styleClass="button-greenSmall" text="%firstFollow.ImportData" GridPane.columnIndex="2" GridPane.rowIndex="3" />
     </children>
 </GridPane>

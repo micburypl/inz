@@ -114,16 +114,7 @@ public class DocumentGeneratorController  implements Initializable {
         });
         documentGeneratorWordsInputList.getItems().add(bWord);
 
-
-
-        //showElement(false);
-
-
     }
-
-
-
-
 
     public void openFile(ActionEvent actionEvent) throws IOException {
 

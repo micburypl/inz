@@ -98,22 +98,22 @@ public class parserLLSolverController implements Initializable {
 
         // Correct
 //
-//        String tempString;
-//        for(Integer i = 0; i < listInput.size(); i++) {
-//            tempString =  listInput.get(i).getLeftPart() + " -> " + listInput.get(i).getRightPart();
-//            System.out.println(tempString);
-//            inputLineList.add(tempString);
-//        }
+        String tempString;
+        for(Integer i = 0; i < listInput.size(); i++) {
+            tempString =  listInput.get(i).getLeftPart() + " -> " + listInput.get(i).getRightPart();
+            System.out.println(tempString);
+            inputLineList.add(tempString);
+        }
 
         //
 
         // Fortest
 
-        inputLineList.add("S -> A S'");
-        inputLineList.add("S' -> + A S' | eps");
-        inputLineList.add("A -> B A' ");
-        inputLineList.add("A' -> * B A' | eps");
-        inputLineList.add("B -> ( S ) | a");
+//        inputLineList.add("S -> A S'");
+//        inputLineList.add("S' -> + A S' | eps");
+//        inputLineList.add("A -> B A' ");
+//        inputLineList.add("A' -> * B A' | eps");
+//        inputLineList.add("B -> ( S ) | a");
 
         //
 //        if(!inputLineList.isEmpty()) {
@@ -407,12 +407,14 @@ public class parserLLSolverController implements Initializable {
             FXMLLoader x = new FXMLLoader(getClass().getResource("/fxml/test/firstFollowWindow/firstFollowInput.fxml"));
 
             inputWord = line.split("->");
-            parserLLInputList.getItems().add(x.load());
-            FirstFollowInputController elementContorller = x.getController();
+            if(line.contains("->")) {
+                parserLLInputList.getItems().add(x.load());
+                FirstFollowInputController elementContorller = x.getController();
 
-            elementContorller.setLeftPart(inputWord[0]);
-            elementContorller.setRightPart(inputWord[1]);
-            listInput.add(x.getController());
+                elementContorller.setLeftPart(inputWord[0]);
+                elementContorller.setRightPart(inputWord[1]);
+                listInput.add(x.getController());
+            }
         }
 
         Button b = new Button("+");
