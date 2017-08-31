@@ -1,11 +1,9 @@
-package algorithmFLF;
+package algorithmDFA;
 
 
 import org.junit.Assert;
 
 import java.util.HashSet;
-
-import static org.junit.Assert.*;
 
 /**
  * Created on 26.04.2017.

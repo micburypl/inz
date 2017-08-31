@@ -1,9 +1,9 @@
 package firstLastFollowWindow;
 
-import algorithmFLF.FLF;
-import algorithmFLF.FLFPart;
-import algorithmFLF.TransitionSolverElement;
-import algorithmFLF.TransitionTableElement;
+import algorithmDFA.DFA;
+import algorithmDFA.PDAPart;
+import algorithmDFA.TransitionSolverElement;
+import algorithmDFA.TransitionTableElement;
 import commonUtility.CommonUtility;
 import graph.GraphMethods;
 import graph.GraphThreeMethods;
@@ -18,7 +18,6 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import start.Base;
 
 import java.io.IOException;
 import java.net.URL;
@@ -32,7 +31,7 @@ import java.util.ResourceBundle;
  */
 public class FirstLastFollowExercisesController implements Initializable {
 
-    FLF myTree;
+    DFA myTree;
 
 
 
@@ -141,7 +140,7 @@ public class FirstLastFollowExercisesController implements Initializable {
             return;
         }
 
-        myTree = new FLF();
+        myTree = new DFA();
         System.out.println(inputData);
         myTree.inputList = myTree.createList(inputData);
 
@@ -237,7 +236,7 @@ public class FirstLastFollowExercisesController implements Initializable {
 
         Integer rowNumber = 1;
         gridPane.setGridLinesVisible(true);
-        for(FLFPart element: myTree.outputList ){
+        for(PDAPart element: myTree.outputList ){
 
 
             tempLabel = new Label("el. " + element.controlNumber.toString());
@@ -334,7 +333,7 @@ public class FirstLastFollowExercisesController implements Initializable {
 
         gridPane.setGridLinesVisible(true);
 
-        for(FLFPart element: myTree.outputList ){
+        for(PDAPart element: myTree.outputList ){
 
             tempLabel = new Label("el. " + element.controlNumber.toString());
             gridPane.add(tempLabel, 0,rowNumber);

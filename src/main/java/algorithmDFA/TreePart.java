@@ -1,4 +1,4 @@
-package algorithmFLF;
+package algorithmDFA;
 
 /**
  * Created on 14.03.2017.

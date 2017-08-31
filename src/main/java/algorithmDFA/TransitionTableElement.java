@@ -1,4 +1,4 @@
-package algorithmFLF;
+package algorithmDFA;
 
 import java.util.HashSet;
 

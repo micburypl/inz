@@ -162,9 +162,9 @@ public class ParserLR {
 
 
             if(!actionTable.containsKey(Integer.parseInt(stack.peek()))) {
-                System.out.println("There is not this value on ACTION table (row): " + stack.peek());
+                System.out.println(CommonUtility.getKey("parserLR.ActionRow") + " " + stack.peek());
 
-                errorMessage = "There is not this value on ACTION table (row): " + stack.peek();
+                errorMessage = CommonUtility.getKey("parserLR.ActionRow") + " " + stack.peek();
                 currentMovesElementLR = new MovesElementLR(errorMessage);
                 movesList.add(currentMovesElementLR);
 
@@ -174,7 +174,7 @@ public class ParserLR {
             if(!actionTable.get(Integer.parseInt(stack.peek())).containsKey(inputDataSet.get(0))) {
                 System.out.println("There is not this value on ACTION table (column): " + stack.peek());
 
-                errorMessage = "There is not this value on ACTION table (column): " + stack.peek();
+                errorMessage = CommonUtility.getKey("parserLR.ActionCol") + " " + stack.peek();
                 currentMovesElementLR = new MovesElementLR(errorMessage);
                 movesList.add(currentMovesElementLR);
 
@@ -212,7 +212,7 @@ public class ParserLR {
                 if(!gotoTable.containsKey(Integer.parseInt(tempString))) {
                     System.out.println("There is not this value on GOTO table (row): " + tempString);
 
-                    errorMessage = "There is not this value on GOTO table (row): " + tempString;
+                    errorMessage = CommonUtility.getKey("parserLR.GotoRow") + " " + tempString;
                     currentMovesElementLR = new MovesElementLR(errorMessage);
                     movesList.add(currentMovesElementLR);
 
@@ -221,7 +221,7 @@ public class ParserLR {
                 if(!gotoTable.get(Integer.parseInt(tempString)).containsKey(stack.peek())) {
                     System.out.println("There is not this value on GOTO table (column): " + inputDataSet.get(0));
 
-                    errorMessage = "There is not this value on GOTO table (column): " + inputDataSet.get(0);
+                    errorMessage = CommonUtility.getKey("parserLR.GotoCol") + " " + inputDataSet.get(0);
                     currentMovesElementLR = new MovesElementLR(errorMessage);
                     movesList.add(currentMovesElementLR);
 

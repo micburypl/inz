@@ -577,7 +577,7 @@ public class parserLLExercisesController implements Initializable {
                 GridPane.setHalignment(tempLabel, HPos.CENTER);
 
             } else {
-                tempLabel = new Label("ERROR");
+                tempLabel = new Label(CommonUtility.getKey("parserLL.Error"));
                 gridPane.add(tempLabel, 2,rowNumber);
                 GridPane.setHalignment(tempLabel, HPos.CENTER);
             }

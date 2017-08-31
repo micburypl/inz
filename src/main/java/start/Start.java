@@ -1,18 +1,13 @@
 package start;
 
-import fromPaula.SideMenu;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import algorithmFLF.FLF;
-import parserLR.ParserLR;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -40,7 +35,7 @@ public class Start extends Application {
     public void start(Stage stage) throws Exception {
 
 
- //       FLF myTree;
+ //       DFA myTree;
  //       List<String> inputLineLinst = new ArrayList<String>();
 //        inputLineLinst.add("t e s t 1 - t e s t 2 * t e s t 3" );
 //        inputLineLinst.add("test1 * test2 - test3");
@@ -89,7 +84,7 @@ public class Start extends Application {
 //
 //
 //        for(String line: inputLineLinst) {
-//        myTree = new algorithmFLF();
+//        myTree = new algorithmDFA();
 //        myTree.inputList = myTree.createList(line);
 //
 //
@@ -144,9 +139,9 @@ public class Start extends Application {
 //        inputLineLinst.add("C -> b");
 // Moves table END
 
-// FLF
+// DFA
 //        inputLineLint.add("(eps|bb&bb)*");
-// end FLF
+// end DFA
 
 
 
@@ -181,7 +176,7 @@ public class Start extends Application {
 
 
 
-        //FLF
+        //DFA
         //testScene = new Scene((Parent)new FXMLLoader(getClass().getResource("/fxml/test/firstLastFollowWindow/firstLastFollowSolver.fxml"), ResourceBundle.getBundle("bundle.bundle")).load(), 800, 600);
         //testScene.getStylesheets().add(getClass().getResource("/fromPaula/application.css").toExternalForm());
         //LR

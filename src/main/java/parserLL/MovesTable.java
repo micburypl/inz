@@ -51,7 +51,7 @@ public class MovesTable {
                     //
                     System.out.println("input is already empty, stack not");
 
-                    errorMessage = "input is already empty, stack not";
+                    errorMessage = CommonUtility.getKey("parserLL.NotEmptyStack");
                     currentElement = new MovesTableElement(errorMessage);
                     movesList.add(currentElement);
 
@@ -66,7 +66,7 @@ public class MovesTable {
                 //
                 System.out.println("stack is already empty, input not");
 
-                errorMessage = "input is already empty, stack not";
+                errorMessage = CommonUtility.getKey("parserLL.NotEmptyStack");
                 currentElement = new MovesTableElement(errorMessage);
                 movesList.add(currentElement);
 
@@ -90,7 +90,7 @@ public class MovesTable {
                 //
                 System.out.println("in Predictive map there is not element from top of stack");
 
-                errorMessage = "in Predictive map there is not element from top of stack";
+                errorMessage = CommonUtility.getKey("parserLL.NotStackElement");
                 currentElement = new MovesTableElement(errorMessage);
                 movesList.add(currentElement);
 
@@ -121,7 +121,7 @@ public class MovesTable {
                 //if not error message
                 System.out.println("There is not Symbol: " + symbol + ", with production in terminal: " + terminal);
 
-                errorMessage = "There is not Symbol: " + symbol + ", with production in terminal: " + terminal;
+                errorMessage = CommonUtility.getKey("parserLL.ErrorPart1") + " " + symbol + ", " + CommonUtility.getKey("parserLL.ErrorPart2") + " " + terminal;
                 currentElement = new MovesTableElement(errorMessage);
                 movesList.add(currentElement);
                 return;

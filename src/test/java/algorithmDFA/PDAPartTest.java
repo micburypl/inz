@@ -1,16 +1,14 @@
-package algorithmFLF;
+package algorithmDFA;
 
 import org.junit.Assert;
-
-import static org.junit.Assert.*;
 
 /**
  * Created on 26.04.2017.
  */
-public class FLFPartTest {
+public class PDAPartTest {
     @org.junit.Test
     public void testFLFPart() {
-        FLFPart testFLFPart = new FLFPart();
+        PDAPart testFLFPart = new PDAPart();
         Assert.assertTrue(testFLFPart.leftChild == null);
         Assert.assertTrue(testFLFPart.rightChild == null);
         Assert.assertTrue(testFLFPart.singleChild == null);

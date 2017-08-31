@@ -1,4 +1,4 @@
-package algorithmFLF;
+package algorithmDFA;
 
 import commonUtility.CommonUtility;
 
@@ -7,7 +7,7 @@ import java.util.*;
 /**
  * Created on 19.03.2017.
  */
-public class FLF {
+public class DFA {
 
     private String word;
     private Boolean nextCharFlag;
@@ -18,12 +18,12 @@ public class FLF {
     private Boolean eMessage;
     private String line;
     private Integer symbolNumber;
-    public FLFPart rootOfTree;
+    public PDAPart rootOfTree;
     private char currentSymbol = 'A';
     public Integer finalState;
-    public List<FLFPart> inputList;
+    public List<PDAPart> inputList;
 
-    public List<FLFPart> outputList;
+    public List<PDAPart> outputList;
 
     public String errorMessage;
     public Boolean isCorrect;
@@ -39,7 +39,7 @@ public class FLF {
     private Integer tempControlNumber;
 
 
-    public FLF() {
+    public DFA() {
         word = "";
         nextCharFlag = false;
         errorFlag = false;
@@ -60,9 +60,9 @@ public class FLF {
         transitionTable = new ArrayList<>();
     }
 
-    public void printList(List<FLFPart> iQ) {
+    public void printList(List<PDAPart> iQ) {
 
-        List<FLFPart> inputList = new ArrayList<>(iQ);
+        List<PDAPart> inputList = new ArrayList<>(iQ);
 
         System.out.println();
         System.out.print("start.Start print queue");
@@ -70,7 +70,7 @@ public class FLF {
         System.out.print("Queue:");
         System.out.println();
 
-        for (FLFPart anInputList : inputList) {
+        for (PDAPart anInputList : inputList) {
             System.out.print(anInputList);
             System.out.print(anInputList.typeTreePart);
             if (!anInputList.typeTreePart) {
@@ -87,7 +87,7 @@ public class FLF {
         System.out.println();
     }
 
-    public void printTree(FLFPart rootOfTree, int level){
+    public void printTree(PDAPart rootOfTree, int level){
         for(int i = 0; i < level; i++){
             System.out.print("->");
         }
@@ -116,7 +116,7 @@ public class FLF {
 
     private void createOperand(Integer prior, char word){
         lastSymbol = false;
-        FLFPart newTreePart = new FLFPart();
+        PDAPart newTreePart = new PDAPart();
         newTreePart.priority = prior + levelOfPriority;
         newTreePart.typeTreePart = false;
         newTreePart.operatorText = word;
@@ -139,9 +139,9 @@ public class FLF {
         inputList.add(newTreePart);
     }
 
-    private void createSymbol(String word, List<FLFPart> inputList){
+    private void createSymbol(String word, List<PDAPart> inputList){
         lastSymbol = true;
-        FLFPart newTreePart = new FLFPart();
+        PDAPart newTreePart = new PDAPart();
         newTreePart.symbolsText = word;
         newTreePart.typeTreePart = true;
         newTreePart.nodeNumber = symbolNumber++;
@@ -150,7 +150,7 @@ public class FLF {
         inputList.add(newTreePart);
     }
 
-    public void numerateTree(FLFPart rootOfTree) {
+    public void numerateTree(PDAPart rootOfTree) {
         if(rootOfTree.typeTreePart) {
             //symbol
             rootOfTree.controlNumber = tempControlNumber++;
@@ -170,7 +170,7 @@ public class FLF {
     }
 
 
-    public List<FLFPart> createList(String line){
+    public List<PDAPart> createList(String line){
         isCorrect = true;
         this.line = line;
         word = "";
@@ -315,10 +315,10 @@ public class FLF {
 
     }
 
-    public FLFPart createTree(List<FLFPart> inputList){
-        FLFPart rootOfTree;
-        FLFPart currentPlace;
-        FLFPart tempPart;
+    public PDAPart createTree(List<PDAPart> inputList){
+        PDAPart rootOfTree;
+        PDAPart currentPlace;
+        PDAPart tempPart;
         rootOfTree = inputList.get(0);
         currentPlace = rootOfTree;
 
@@ -432,8 +432,8 @@ public class FLF {
         return CreateSyntaxTree(rootOfTree);
     }
 
-    private FLFPart CreateSyntaxTree(FLFPart rootOfTree){
-        FLFPart syntaxRoot = new FLFPart();
+    private PDAPart CreateSyntaxTree(PDAPart rootOfTree){
+        PDAPart syntaxRoot = new PDAPart();
         syntaxRoot.typeTreePart = false;
         syntaxRoot.operatorText = CommonUtility.andSign;
         syntaxRoot.typeChild = false;
@@ -441,7 +441,7 @@ public class FLF {
         rootOfTree.parentPointer = rootOfTree;
 
 
-        FLFPart endWord = new FLFPart();
+        PDAPart endWord = new PDAPart();
         endWord.symbolsText = "#";
         endWord.typeTreePart = true;
         endWord.parentPointer = syntaxRoot;
@@ -454,7 +454,7 @@ public class FLF {
         return syntaxRoot;
     }
 
-    public void calcNullable(FLFPart treeElement) {
+    public void calcNullable(PDAPart treeElement) {
         //nullable is calculated
         if(treeElement.nullable != null) {
             return;
@@ -487,7 +487,7 @@ public class FLF {
             }
         }
     }
-    public void calcFirstLast(FLFPart treeElement) {
+    public void calcFirstLast(PDAPart treeElement) {
         if(treeElement.typeTreePart) {
             //if element is leaf
             // first = number
@@ -534,7 +534,7 @@ public class FLF {
         }
     }
 
-    public void calcFollow(FLFPart treeElement) {
+    public void calcFollow(PDAPart treeElement) {
         if(treeElement.typeTreePart) {
             //if element is leaf
             //do not do anything

@@ -1,22 +1,17 @@
-package algorithmFLF;
+package algorithmDFA;
 
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import static org.junit.Assert.*;
-
 /**
  * Created on 26.04.2017.
  */
-public class FLFTest {
+public class DFATest {
     @Test
     public void createList() throws Exception {
 
         String inputLineList = "(a|b)*&a&b&b";
-        FLF myTree = new FLF();
+        DFA myTree = new DFA();
         myTree.inputList = myTree.createList(inputLineList);
         myTree.printList(myTree.inputList);
         myTree.rootOfTree =  myTree.createTree(myTree.inputList);
@@ -134,7 +129,7 @@ public class FLFTest {
     @Test
     public void generateTransitionTable() throws Exception {
         String inputLineList = "(a|b)*&a&b&b";
-        FLF myTree = new FLF();
+        DFA myTree = new DFA();
         myTree.inputList = myTree.createList(inputLineList);
         //myTree.printList(myTree.inputList);
         myTree.rootOfTree =  myTree.createTree(myTree.inputList);

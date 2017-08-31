@@ -95,23 +95,23 @@ public class parserLRSolverController implements Initializable {
 
 
         // Correct
-//
-//        String tempString;
-//        for(Integer i = 0; i < listInput.size(); i++) {
-//            tempString =  listInput.get(i).getLeftPart() + " -> " + listInput.get(i).getRightPart();
-//            System.out.println(tempString);
-//            inputLineList.add(tempString);
-//        }
+
+        String tempString;
+        for(Integer i = 0; i < listInput.size(); i++) {
+            tempString =  listInput.get(i).getLeftPart() + " -> " + listInput.get(i).getRightPart();
+            System.out.println(tempString);
+            inputLineList.add(tempString);
+        }
 
         //
 
         // Fortest
 
-        inputLineList.add("S -> A");
-        inputLineList.add("S -> S + A");
-        inputLineList.add("A -> B ");
-        inputLineList.add("A -> A * B");
-        inputLineList.add("B -> a | ( S )");
+//        inputLineList.add("S -> A");
+//        inputLineList.add("S -> S + A");
+//        inputLineList.add("A -> B ");
+//        inputLineList.add("A -> A * B");
+//        inputLineList.add("B -> a | ( S )");
 
         //
 //        if(!inputLineList.isEmpty()) {
@@ -124,12 +124,12 @@ public class parserLRSolverController implements Initializable {
             parserLROutputPane.getChildren().clear();
             GridPane gridPane = new GridPane();
             gridPane.setGridLinesVisible(true);
-            Label tempLabel = new Label("Errors");
+            Label tempLabel = new Label(CommonUtility.getKey("firstFollow.Errors"));
             gridPane.add(tempLabel, 0,0);
             gridPane.setHalignment(tempLabel, HPos.CENTER);
             Integer tempInt = 1;
             for(Integer errorLine: testGotoGenerator.firstFollowSolution.errorMessages.keySet() ) {
-                tempLabel = new Label("In row " + errorLine + ". " + testGotoGenerator.firstFollowSolution.errorMessages.get(errorLine));
+                tempLabel = new Label(CommonUtility.getKey("firstFollow.InRow") + " " + errorLine + ". " + testGotoGenerator.firstFollowSolution.errorMessages.get(errorLine));
                 gridPane.add(tempLabel, 0, tempInt++);
                 gridPane.setHalignment(tempLabel, HPos.CENTER);
             }
@@ -159,11 +159,11 @@ public class parserLRSolverController implements Initializable {
         parserLROutputPane.getChildren().clear();
         GridPane gridPane = new GridPane();
 
-        Label tempLabel = new Label("Element");
+        Label tempLabel = new Label(CommonUtility.getKey("firstFollow.Element"));
         gridPane.add(tempLabel, 0,0);
         gridPane.setHalignment(tempLabel, HPos.CENTER);
 
-        tempLabel = new Label("First(Element)");
+        tempLabel = new Label(CommonUtility.getKey("firstFollow.FirstElement"));
         gridPane.add(tempLabel, 1,0);
         gridPane.setHalignment(tempLabel, HPos.CENTER);
 
@@ -210,11 +210,11 @@ public class parserLRSolverController implements Initializable {
         parserLROutputPane.getChildren().clear();
         GridPane gridPane = new GridPane();
 
-        Label tempLabel = new Label("Element");
+        Label tempLabel = new Label(CommonUtility.getKey("firstFollow.Element"));
         gridPane.add(tempLabel, 0,0);
         gridPane.setHalignment(tempLabel, HPos.CENTER);
 
-        tempLabel = new Label("Follow(Element)");
+        tempLabel = new Label(CommonUtility.getKey("firstFollow.FollowElement"));
         gridPane.add(tempLabel, 1,0);
         gridPane.setHalignment(tempLabel, HPos.CENTER);
 
@@ -266,7 +266,7 @@ public class parserLRSolverController implements Initializable {
 
         //add "No" if position 0,0
 
-        Label tempLabel = new Label("No");
+        Label tempLabel = new Label(CommonUtility.getKey("firstFollow.No"));
         gridPane.add(tempLabel, 0,0);
         gridPane.setHalignment(tempLabel, HPos.CENTER);
 
@@ -332,7 +332,7 @@ public class parserLRSolverController implements Initializable {
 
             for(String column: columnSign.keySet()) {
                 if(!currentElements.contains(column)) {
-                    tempString = "ERR" + currentError + " Invalid: " + column + ". Expected: " + elementsOnList;
+                    tempString = "ERR" + currentError + " " + CommonUtility.getKey("parserLR.Invalid") + " " + column + ". " + CommonUtility.getKey("parserLR.Expected") + " " + elementsOnList;
                     errorElementSolution.add(tempString);
                     tempLabel = new Label("ERR" + currentError++);
                     gridPane.add(tempLabel, columnSign.get(column),rowNumber);
@@ -376,7 +376,7 @@ public class parserLRSolverController implements Initializable {
         Integer maxColumn = 1;
 
         //add "No" if position 0,0
-        Label tempLabel = new Label("No");
+        Label tempLabel = new Label(CommonUtility.getKey("firstFollow.No"));
         gridPane.add(tempLabel, 0,0);
         gridPane.setHalignment(tempLabel, HPos.CENTER);
 
@@ -434,7 +434,7 @@ public class parserLRSolverController implements Initializable {
             parserLROutputList.getItems().add(x.load());
             parserLRMovesErrorOutputController xControler = x.getController();
             //errorMessage
-            xControler.setError("Input is Empty");
+            xControler.setError(CommonUtility.getKey("parserLR.EmptyInput"));
             System.out.println("Input is Empty");
             parserLROutputPane.getChildren().add(parserLROutputList);
             return;
@@ -442,9 +442,9 @@ public class parserLRSolverController implements Initializable {
         FXMLLoader xStart = new FXMLLoader(getClass().getResource("/fxml/test/parserLRWindow/parserLRMovesOutput.fxml"));
         parserLROutputList.getItems().add(xStart.load());
         parserLRMovesOutputController xControlerStart = xStart.getController();
-        xControlerStart.setMoveNo("No");
-        xControlerStart.setInput("Input");
-        xControlerStart.setStack("Stack");
+        xControlerStart.setMoveNo(CommonUtility.getKey("parserLR.No"));
+        xControlerStart.setInput(CommonUtility.getKey("parserLR.Input"));
+        xControlerStart.setStack(CommonUtility.getKey("parserLR.Stack"));
         for(MovesElementLR keyNumber: testGotoGenerator.movesList){
 
             if(!keyNumber.isWrong) {
@@ -488,15 +488,15 @@ public class parserLRSolverController implements Initializable {
         parserLROutputPane.getChildren().clear();
         GridPane gridPane = new GridPane();
 
-        Label tempLabel = new Label("Begin State");
+        Label tempLabel = new Label(CommonUtility.getKey("parserLR.BeginState"));
         gridPane.add(tempLabel, 0,0);
         gridPane.setHalignment(tempLabel, HPos.CENTER);
 
-        tempLabel = new Label("Transition");
+        tempLabel = new Label(CommonUtility.getKey("parserLR.Transition"));
         gridPane.add(tempLabel, 1,0);
         gridPane.setHalignment(tempLabel, HPos.CENTER);
 
-        tempLabel = new Label("End State");
+        tempLabel = new Label(CommonUtility.getKey("parserLR.EndState"));
         gridPane.add(tempLabel, 2,0);
         gridPane.setHalignment(tempLabel, HPos.CENTER);
 
@@ -612,11 +612,11 @@ public class parserLRSolverController implements Initializable {
         parserLROutputPane.getChildren().clear();
         GridPane gridPane = new GridPane();
 
-        Label tempLabel = new Label("State");
+        Label tempLabel = new Label(CommonUtility.getKey("parserLR.State"));
         gridPane.add(tempLabel, 0,0);
         gridPane.setHalignment(tempLabel, HPos.CENTER);
 
-        tempLabel = new Label("Production");
+        tempLabel = new Label(CommonUtility.getKey("parserLR.Production"));
         gridPane.add(tempLabel, 1,0);
         gridPane.setHalignment(tempLabel, HPos.CENTER);
 

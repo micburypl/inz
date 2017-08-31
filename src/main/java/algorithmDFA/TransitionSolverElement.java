@@ -1,6 +1,4 @@
-package algorithmFLF;
-
-import java.util.HashSet;
+package algorithmDFA;
 
 /**
  * Created on 10.05.2017.

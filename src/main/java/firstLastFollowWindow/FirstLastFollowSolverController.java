@@ -1,9 +1,9 @@
 package firstLastFollowWindow;
 
-import algorithmFLF.FLF;
-import algorithmFLF.FLFPart;
-import algorithmFLF.TransitionSolverElement;
-import algorithmFLF.TransitionTableElement;
+import algorithmDFA.DFA;
+import algorithmDFA.PDAPart;
+import algorithmDFA.TransitionSolverElement;
+import algorithmDFA.TransitionTableElement;
 import commonUtility.CommonUtility;
 import graph.GraphMethods;
 import graph.GraphThreeMethods;
@@ -13,13 +13,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.HPos;
-import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import start.Base;
 
 
 import java.io.IOException;
@@ -31,7 +29,7 @@ import java.util.*;
  */
 public class FirstLastFollowSolverController implements Initializable {
 
-    FLF myTree;
+    DFA myTree;
 
 
 
@@ -124,7 +122,7 @@ public class FirstLastFollowSolverController implements Initializable {
             return;
         }
 
-        myTree = new FLF();
+        myTree = new DFA();
         System.out.println(inputData);
         myTree.inputList = myTree.createList(inputData);
 
@@ -221,7 +219,7 @@ public class FirstLastFollowSolverController implements Initializable {
 
         Integer rowNumber = 1;
         gridPane.setGridLinesVisible(true);
-        for(FLFPart element: myTree.outputList ){
+        for(PDAPart element: myTree.outputList ){
 
 
             tempLabel = new Label("el. " + element.controlNumber.toString());
@@ -282,7 +280,7 @@ public class FirstLastFollowSolverController implements Initializable {
 
         gridPane.setGridLinesVisible(true);
 
-        for(FLFPart element: myTree.outputList ){
+        for(PDAPart element: myTree.outputList ){
 
             tempLabel = new Label("el. " + element.controlNumber.toString());
             gridPane.add(tempLabel, 0,rowNumber);

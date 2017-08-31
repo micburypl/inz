@@ -1,12 +1,10 @@
 package graph;
 
-import algorithmFLF.FLFPart;
-import algorithmFLF.TransitionTableElement;
+import algorithmDFA.PDAPart;
 import com.mxgraph.layout.hierarchical.mxHierarchicalLayout;
 import com.mxgraph.model.mxCell;
 import com.mxgraph.swing.mxGraphComponent;
 import com.mxgraph.view.mxGraph;
-import javafx.embed.swing.SwingNode;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,7 +21,7 @@ public class GraphThreeMethods {
     Integer y;
     Boolean shift;
 
-    public GraphThreeMethods(List<FLFPart> outputList){
+    public GraphThreeMethods(List<PDAPart> outputList){
         shift = true;
         x = 0;
         y = 0;
@@ -35,10 +33,10 @@ public class GraphThreeMethods {
         cellList = new ArrayList<>();
 
         //create cell
-        for(FLFPart element: outputList) {
+        for(PDAPart element: outputList) {
             addVertex(element);
         }
-        for(FLFPart element: outputList) {
+        for(PDAPart element: outputList) {
             addCell(element);
         }
 
@@ -52,7 +50,7 @@ public class GraphThreeMethods {
 
 
 
-    void addVertex(FLFPart cellElement) {
+    void addVertex(PDAPart cellElement) {
         String tempString;
         if(!cellElement.typeTreePart) {
             // operator
@@ -74,7 +72,7 @@ public class GraphThreeMethods {
         vertexMap.put(cellElement.controlNumber, cell);
     }
 
-    void addCell(FLFPart cellElement) {
+    void addCell(PDAPart cellElement) {
 
         if(!cellElement.typeTreePart) {
             // operator

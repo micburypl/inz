@@ -186,12 +186,12 @@ public class parserLRExercisesController implements Initializable {
             parserLROutputPane.getChildren().clear();
             GridPane gridPane = new GridPane();
             gridPane.setGridLinesVisible(true);
-            Label tempLabel = new Label("Errors");
+            Label tempLabel = new Label(CommonUtility.getKey("firstFollow.Errors"));
             gridPane.add(tempLabel, 0,0);
             GridPane.setHalignment(tempLabel, HPos.CENTER);
             Integer tempInt = 1;
             for(Integer errorLine: testGotoGenerator.firstFollowSolution.errorMessages.keySet() ) {
-                tempLabel = new Label("In row " + errorLine + ". " + testGotoGenerator.firstFollowSolution.errorMessages.get(errorLine));
+                tempLabel = new Label(CommonUtility.getKey("firstFollow.InRow") + " " + errorLine + ". " + testGotoGenerator.firstFollowSolution.errorMessages.get(errorLine));
                 gridPane.add(tempLabel, 0, tempInt++);
                 GridPane.setHalignment(tempLabel, HPos.CENTER);
             }
@@ -224,11 +224,11 @@ public class parserLRExercisesController implements Initializable {
         parserLROutputPane.getChildren().clear();
         gridPane = new GridPane();
 
-        Label tempLabel = new Label("Element");
+        Label tempLabel = new Label(CommonUtility.getKey("firstFollow.Element"));
         gridPane.add(tempLabel, 0,0);
         GridPane.setHalignment(tempLabel, HPos.CENTER);
 
-        tempLabel = new Label("First(Element)");
+        tempLabel = new Label(CommonUtility.getKey("firstFollow.FirstElement"));
         gridPane.add(tempLabel, 1,0);
         GridPane.setHalignment(tempLabel, HPos.CENTER);
 
@@ -268,11 +268,11 @@ public class parserLRExercisesController implements Initializable {
         TextField tempTextField;
         gridPane2 = new GridPane();
         gridPane2.setGridLinesVisible(true);
-        tempLabel = new Label("Element");
+        tempLabel = new Label(CommonUtility.getKey("firstFollow.Element"));
         gridPane2.add(tempLabel, 0,0);
         GridPane.setHalignment(tempLabel, HPos.CENTER);
 
-        tempLabel = new Label("First(Element)");
+        tempLabel = new Label(CommonUtility.getKey("firstFollow.FirstElement"));
         gridPane2.add(tempLabel, 1,0);
         GridPane.setHalignment(tempLabel, HPos.CENTER);
 
@@ -325,11 +325,11 @@ public class parserLRExercisesController implements Initializable {
         parserLROutputPane.getChildren().clear();
         gridPane = new GridPane();
 
-        Label tempLabel = new Label("Element");
+        Label tempLabel = new Label(CommonUtility.getKey("firstFollow.Element"));
         gridPane.add(tempLabel, 0,0);
         GridPane.setHalignment(tempLabel, HPos.CENTER);
 
-        tempLabel = new Label("Follow(Element)");
+        tempLabel = new Label(CommonUtility.getKey("firstFollow.FollowElement"));
         gridPane.add(tempLabel, 1,0);
         GridPane.setHalignment(tempLabel, HPos.CENTER);
 
@@ -371,11 +371,11 @@ public class parserLRExercisesController implements Initializable {
 
         TextField tempTextField;
 
-        tempLabel = new Label("Element");
+        tempLabel = new Label(CommonUtility.getKey("firstFollow.Element"));
         gridPane2.add(tempLabel, 0,0);
         GridPane.setHalignment(tempLabel, HPos.CENTER);
 
-        tempLabel = new Label("Follow(Element)");
+        tempLabel = new Label(CommonUtility.getKey("firstFollow.FollowElement"));
         gridPane2.add(tempLabel, 1,0);
         GridPane.setHalignment(tempLabel, HPos.CENTER);
 
@@ -427,7 +427,7 @@ public class parserLRExercisesController implements Initializable {
 
         //add "No" if position 0,0
 
-        Label tempLabel = new Label("No");
+        Label tempLabel = new Label(CommonUtility.getKey("firstFollow.No"));
         gridPane.add(tempLabel, 0,0);
         GridPane.setHalignment(tempLabel, HPos.CENTER);
 
@@ -508,7 +508,7 @@ public class parserLRExercisesController implements Initializable {
         removeSpace = false;
         gridPane2 = new GridPane();
         TextField tempTextField;
-        tempLabel = new Label("No");
+        tempLabel = new Label(CommonUtility.getKey("firstFollow.No"));
         gridPane2.add(tempLabel, 0,0);
         GridPane.setHalignment(tempLabel, HPos.CENTER);
 
@@ -560,7 +560,7 @@ public class parserLRExercisesController implements Initializable {
         Integer maxColumn = 1;
 
         //add "No" if position 0,0
-        Label tempLabel = new Label("No");
+        Label tempLabel = new Label(CommonUtility.getKey("firstFollow.No"));
         gridPane.add(tempLabel, 0,0);
         GridPane.setHalignment(tempLabel, HPos.CENTER);
 
@@ -603,7 +603,7 @@ public class parserLRExercisesController implements Initializable {
         removeSpace = false;
         gridPane2 = new GridPane();
         TextField tempTextField;
-        tempLabel = new Label("No");
+        tempLabel = new Label(CommonUtility.getKey("firstFollow.No"));
         gridPane2.add(tempLabel, 0,0);
         GridPane.setHalignment(tempLabel, HPos.CENTER);
 
@@ -654,7 +654,7 @@ public class parserLRExercisesController implements Initializable {
             testGotoGenerator.generateLRParser(movesTableInput.getText());
 
         } else {
-            Label tempLabel = new Label("Input is Empty");
+            Label tempLabel = new Label(CommonUtility.getKey("parserLR.EmptyInput"));
             gridPane.add(tempLabel, 0,0);
             GridPane.setHalignment(tempLabel, HPos.CENTER);
             parserLROutputPane.getChildren().add(gridPane);
@@ -665,15 +665,15 @@ public class parserLRExercisesController implements Initializable {
         }
 
 
-        Label tempLabel = new Label("Stack");
+        Label tempLabel = new Label(CommonUtility.getKey("parserLR.Stack"));
         gridPane.add(tempLabel, 0,0);
         GridPane.setHalignment(tempLabel, HPos.CENTER);
 
-        tempLabel = new Label("No");
+        tempLabel = new Label(CommonUtility.getKey("parserLR.No"));
         gridPane.add(tempLabel, 2,0);
         GridPane.setHalignment(tempLabel, HPos.CENTER);
 
-        tempLabel = new Label("Input");
+        tempLabel = new Label(CommonUtility.getKey("parserLR.Input"));
         gridPane.add(tempLabel, 1,0);
         GridPane.setHalignment(tempLabel, HPos.CENTER);
 
@@ -713,7 +713,7 @@ public class parserLRExercisesController implements Initializable {
 
 
             } else {
-                tempLabel = new Label("ERROR");
+                tempLabel = new Label(CommonUtility.getKey("parserLR.Error"));
                 gridPane.add(tempLabel, 2,rowNumber);
                 GridPane.setHalignment(tempLabel, HPos.CENTER);
             }
@@ -765,72 +765,6 @@ public class parserLRExercisesController implements Initializable {
         tempListView.getItems().add(gridPane2);
         parserLROutputPane.getChildren().add(tempListView);
 
-
-
-
-//        showVerifyButton(false); // będzie do zmiany
-//        FXMLLoader x;
-//        parserLROutputPane.getChildren().clear();
-//        ListView parserLROutputList = new ListView();
-//
-//        if(movesTableInput.getText() != null && !movesTableInput.getText().trim().isEmpty()) {
-//            //testGotoGenerator.generateLRParser("a * a + a");
-//            testGotoGenerator.generateLRParser(movesTableInput.getText());
-//
-//        } else {
-//            x = new FXMLLoader(getClass().getResource("/fxml/test/parserLRWindow/parserLRMovesErrorOutput.fxml"));
-//            parserLROutputList.getItems().add(x.load());
-//            parserLRMovesErrorOutputController xControler = x.getController();
-//            //errorMessage
-//            xControler.setError("Input is Empty");
-//            System.out.println("Input is Empty");
-//            parserLROutputPane.getChildren().add(parserLROutputList);
-//            return;
-//        }
-//        FXMLLoader xStart = new FXMLLoader(getClass().getResource("/fxml/test/parserLRWindow/parserLRMovesOutput.fxml"));
-//        parserLROutputList.getItems().add(xStart.load());
-//        parserLRMovesOutputController xControlerStart = xStart.getController();
-//        xControlerStart.setMoveNo("No");
-//        xControlerStart.setInput("Input");
-//        xControlerStart.setStack("Stack");
-//        for(MovesElementLR keyNumber: testGotoGenerator.movesList){
-//
-//            if(!keyNumber.isWrong) {
-//                x = new FXMLLoader(getClass().getResource("/fxml/test/parserLRWindow/parserLRMovesOutput.fxml"));
-//                parserLROutputList.getItems().add(x.load());
-//                parserLRMovesOutputController xControler = x.getController();
-//
-//                //Input
-//                String tempInput = "";
-//                for(String tempString: keyNumber.input) {
-//                    tempInput += tempString;
-//                }
-//                tempInput = tempInput.substring(0, tempInput.length() - 3 ) + CommonUtility.dolarValue;
-//                xControler.setInput(tempInput);
-//
-//                //Stack
-//                String tempStack = "";
-//                for(String tempString: keyNumber.stack) {
-//                    tempStack += tempString;
-//                }
-//                xControler.setStack(tempStack);
-//
-//                //movesNo
-//                xControler.setMoveNo(keyNumber.movesNumber.toString());
-//            } else {
-//                x = new FXMLLoader(getClass().getResource("/fxml/test/parserLRWindow/parserLRMovesErrorOutput.fxml"));
-//                parserLROutputList.getItems().add(x.load());
-//                parserLRMovesErrorOutputController xControler = x.getController();
-//                //errorMessage
-//                xControler.setError(keyNumber.errorMessage);
-//                break;
-//            }
-//
-//        }
-//
-//
-//        parserLROutputPane.getChildren().add(parserLROutputList);
-
     }
 
     public void printTransitionTable(ActionEvent actionEvent) throws IOException {
@@ -840,15 +774,15 @@ public class parserLRExercisesController implements Initializable {
         parserLROutputPane.getChildren().clear();
         gridPane = new GridPane();
 
-        Label tempLabel = new Label("Begin State");
+        Label tempLabel = new Label(CommonUtility.getKey("parserLR.BeginState"));
         gridPane.add(tempLabel, 0,0);
         GridPane.setHalignment(tempLabel, HPos.CENTER);
 
-        tempLabel = new Label("Transition");
+        tempLabel = new Label(CommonUtility.getKey("parserLR.Transition"));
         gridPane.add(tempLabel, 1,0);
         GridPane.setHalignment(tempLabel, HPos.CENTER);
 
-        tempLabel = new Label("End State");
+        tempLabel = new Label(CommonUtility.getKey("parserLR.EndState"));
         gridPane.add(tempLabel, 2,0);
         GridPane.setHalignment(tempLabel, HPos.CENTER);
 
@@ -1036,11 +970,11 @@ public class parserLRExercisesController implements Initializable {
         parserLROutputPane.getChildren().clear();
         GridPane gridPane = new GridPane();
 
-        Label tempLabel = new Label("State");
+        Label tempLabel = new Label(CommonUtility.getKey("parserLR.State"));
         gridPane.add(tempLabel, 0,0);
         gridPane.setHalignment(tempLabel, HPos.CENTER);
 
-        tempLabel = new Label("Production");
+        tempLabel = new Label(CommonUtility.getKey("parserLR.Production"));
         gridPane.add(tempLabel, 1,0);
         gridPane.setHalignment(tempLabel, HPos.CENTER);
 
