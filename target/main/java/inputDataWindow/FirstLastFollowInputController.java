@@ -1,4 +1,4 @@
-package firstLastFollowWindow;
+package DFA.algorithmDFAWindow;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

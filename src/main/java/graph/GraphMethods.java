@@ -1,22 +1,20 @@
 package graph;
 
-import algorithmDFA.TransitionTableElement;
+import DFA.algorithmDFA.TransitionTableElement;
 import com.mxgraph.layout.hierarchical.mxHierarchicalLayout;
 import com.mxgraph.layout.mxCircleLayout;
 import com.mxgraph.model.mxCell;
 import com.mxgraph.swing.mxGraphComponent;
 import com.mxgraph.view.mxGraph;
 import javafx.embed.swing.SwingNode;
-import parserLR.GotoTransition;
+import LR.parserLR.GotoTransition;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by DELL6430u on 2017-03-27.
- */
+
 public class GraphMethods {
     mxGraph mainGraph;
     //public mxRadialTreeLayout layout;

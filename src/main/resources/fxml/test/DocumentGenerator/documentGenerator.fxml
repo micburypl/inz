@@ -41,7 +41,7 @@
       <Label fx:id="parserLRInputStringLabel" text="%documentGenerator.Save" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="10" />
       <Button fx:id="savingButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#savingFile" styleClass="button-green" text="%documentGenerator.Saving" GridPane.columnIndex="1" GridPane.rowIndex="11" />
       <Label fx:id="parserLRPartialSolutionsLabel" text="%documentGenerator.Verification" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="8" />
-      <Label text="%parserLR.Header" GridPane.columnIndex="3" GridPane.rowIndex="1">
+      <Label text="%LR.parserLR.Header" GridPane.columnIndex="3" GridPane.rowIndex="1">
          <font>
             <Font size="18.0" />
          </font>

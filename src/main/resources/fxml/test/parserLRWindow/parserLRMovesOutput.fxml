@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="parserLRWindow.parserLRMovesOutputController">
+<GridPane xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LR.parserLRWindow.parserLRMovesOutputController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" percentWidth="10.0" prefWidth="40.0" />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="146.0" minWidth="109.0" percentWidth="45.0" prefWidth="111.0" />

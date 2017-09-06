@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane minHeight="400.0" minWidth="800.0" prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="firstFollowWindow.FirstFollowSolverController">
+<GridPane minHeight="400.0" minWidth="800.0" prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FF.firstFollowWindow.FirstFollowSolverController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="30.0" minWidth="20.0" prefWidth="20.0" />
       <ColumnConstraints hgrow="SOMETIMES" percentWidth="25.0" />
@@ -35,26 +35,26 @@
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <Label fx:id="firstFollowPartialSolutionsLabel" text="%firstFollow.PartialSolutions" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="9" />
+      <Label fx:id="firstFollowPartialSolutionsLabel" text="%FF.firstFollow.PartialSolutions" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="9" />
       <ListView fx:id="firstFollowInputList" GridPane.columnIndex="1" GridPane.rowIndex="4" />
       <VBox fx:id="firstFollowButtonVBox" prefHeight="72.0" prefWidth="140.0" GridPane.columnIndex="1" GridPane.rowIndex="11">
          <children>
-            <Button fx:id="printFirstButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#printFirst" styleClass="button-green" text="%firstFollow.FirstButton" />
-            <Button fx:id="printFollowButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#printFollow" styleClass="button-green" text="%firstFollow.FollowButton" />
+            <Button fx:id="printFirstButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#printFirst" styleClass="button-green" text="%FF.firstFollow.FirstButton" />
+            <Button fx:id="printFollowButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#printFollow" styleClass="button-green" text="%FF.firstFollow.FollowButton" />
          </children>
          <cursor>
             <Cursor fx:constant="DEFAULT" />
          </cursor></VBox>
-      <Label text="%firstFollow.Solutions" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+      <Label text="%FF.firstFollow.Solutions" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
       <StackPane fx:id="firstFollowOutputPane" alignment="TOP_CENTER" GridPane.columnIndex="3" GridPane.rowIndex="4" GridPane.rowSpan="8" />
-      <Label text="%firstFollow.InputData" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-      <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#generateFirstAndFollow" styleClass="button-green" text="%firstFollow.GenerateFFButton" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-      <Label text="%firstFollow.GenerateFF" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
-      <Label text="%firstFollow.Header" GridPane.columnIndex="3" GridPane.rowIndex="1">
+      <Label text="%FF.firstFollow.InputData" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+      <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#generateFirstAndFollow" styleClass="button-green" text="%FF.firstFollow.GenerateFFButton" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+      <Label text="%FF.firstFollow.GenerateFF" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
+      <Label text="%FF.firstFollow.Header" GridPane.columnIndex="3" GridPane.rowIndex="1">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#openFile" styleClass="button-green" text="%firstFollow.ImportData" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+      <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#openFile" styleClass="button-green" text="%FF.firstFollow.ImportData" GridPane.columnIndex="1" GridPane.rowIndex="3" />
    </children>
 </GridPane>

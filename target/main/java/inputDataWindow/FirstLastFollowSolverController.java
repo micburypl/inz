@@ -1,4 +1,4 @@
-package firstLastFollowWindow;
+package DFA.algorithmDFAWindow;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -36,11 +36,11 @@ public class FirstLastFollowSolverController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        FXMLLoader x = new FXMLLoader(getClass().getResource("/fxml/test/firstLastFollowWindow/firstLastFollowInput.fxml"));
+        FXMLLoader x = new FXMLLoader(getClass().getResource("/fxml/test/DFA.algorithmDFAWindow/firstLastFollowInput.fxml"));
         list.add(x.getController());
         Button b = new Button("+");
         b.setOnAction(handle -> {
-            FXMLLoader x1 = new FXMLLoader(getClass().getResource("/fxml/test/firstLastFollowWindow/firstLastFollowInput.fxml"));
+            FXMLLoader x1 = new FXMLLoader(getClass().getResource("/fxml/test/DFA.algorithmDFAWindow/firstLastFollowInput.fxml"));
             list.add(x1.getController());
             try {
                 firstLastFollowInputList.getItems().add(firstLastFollowInputList.getItems().size() - 1, x1.load());

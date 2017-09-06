@@ -1,8 +1,7 @@
 package documentGenerator;
 
 import commonUtility.CommonUtility;
-import firstFollow.FirstFollow;
-import firstFollowWindow.FirstFollowInputController;
+import FF.firstFollow.FirstFollow;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,7 +14,6 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-import javax.swing.*;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -34,13 +32,13 @@ import java.util.zip.CheckedOutputStream;
 public class DocumentGeneratorController  implements Initializable {
 
     @FXML
-    ListView documentGeneratorInputList;
+    ListView<Object> documentGeneratorInputList;
 
     @FXML
-    ListView documentGeneratorWordsInputList;
+    ListView<Object> documentGeneratorWordsInputList;
 
     @FXML
-    ListView documentGeneratorOutputPane;
+    ListView<GridPane> documentGeneratorOutputPane;
 
     @FXML
     Label documentGeneratorOutputPaneLabel;
@@ -69,7 +67,7 @@ public class DocumentGeneratorController  implements Initializable {
         documentGeneratorInputList.getItems().clear();
         //production
 
-        FXMLLoader x = new FXMLLoader(getClass().getResource("/fxml/test/DocumentGenerator/DocumentGeneratorInput.fxml"));
+        FXMLLoader x = new FXMLLoader(getClass().getResource("/fxml/test/DocumentGenerator/documentGeneratorInput.fxml"));
 
         try {
             documentGeneratorInputList.getItems().add(x.load());
@@ -82,7 +80,7 @@ public class DocumentGeneratorController  implements Initializable {
         listInput.put(productionLastNumber++, x.getController());
         Button b = new Button("+");
         b.setOnAction(handle -> {
-            FXMLLoader x1 = new FXMLLoader(getClass().getResource("/fxml/test/DocumentGenerator/DocumentGeneratorInput.fxml"));
+            FXMLLoader x1 = new FXMLLoader(getClass().getResource("/fxml/test/DocumentGenerator/documentGeneratorInput.fxml"));
             try {
                 documentGeneratorInputList.getItems().add(documentGeneratorInputList.getItems().size() - 1, x1.load());
             } catch (IOException e) {
@@ -94,7 +92,7 @@ public class DocumentGeneratorController  implements Initializable {
 
 
         // Word
-        x = new FXMLLoader(getClass().getResource("/fxml/test/DocumentGenerator/DocumentGeneratorWordInput.fxml"));
+        x = new FXMLLoader(getClass().getResource("/fxml/test/DocumentGenerator/documentGeneratorWordInput.fxml"));
 
         try {
             documentGeneratorWordsInputList.getItems().add(x.load());
@@ -218,13 +216,13 @@ public class DocumentGeneratorController  implements Initializable {
             for(Integer errorLine: ff.errorMessages.keySet() ) {
                 tempLabel = new Label(CommonUtility.getKey("documentGenerator.InRow") + " " + errorLine + ". " + ff.errorMessages.get(errorLine));
                 gridPane.add(tempLabel, 0, tempInt++);
-                gridPane.setHalignment(tempLabel, HPos.CENTER);
+                GridPane.setHalignment(tempLabel, HPos.CENTER);
             }
         } else {
             tempLabel = new Label(CommonUtility.getKey("documentGenerator.CorrectData"));
             //tempLabel = new Label("Correct Data");
             gridPane.add(tempLabel, 0, tempInt++);
-            gridPane.setHalignment(tempLabel, HPos.CENTER);
+            GridPane.setHalignment(tempLabel, HPos.CENTER);
         }
 
         documentGeneratorOutputPane.getItems().clear();
@@ -279,9 +277,5 @@ public class DocumentGeneratorController  implements Initializable {
                 e.printStackTrace();
             }
         }
-    }
-
-    private void saveFile(File file) {
-
     }
 }

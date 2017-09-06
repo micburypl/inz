@@ -84,7 +84,7 @@ public class Start extends Application {
 //
 //
 //        for(String line: inputLineLinst) {
-//        myTree = new algorithmDFA();
+//        myTree = new DFA.algorithmDFA();
 //        myTree.inputList = myTree.createList(line);
 //
 //
@@ -143,8 +143,6 @@ public class Start extends Application {
 //        inputLineLint.add("(eps|bb&bb)*");
 // end DFA
 
-
-
 //        FirstFollow testFirstFollow = new FirstFollow(inputLineLinst);
 //        testFirstFollow.generateSolutionSet();
 //        testFirstFollow.predictiveMap.generatePredictiveMap(testFirstFollow.parsedSet, testFirstFollow.firstElementMap, testFirstFollow.followElementMap);
@@ -153,19 +151,12 @@ public class Start extends Application {
 //        testMoveTable.printMovesTable();
 //
 
-
-
-
- //       ParserLR testGotoGenerator = new ParserLR(inputLineLinst);
-
+//        ParserLR testGotoGenerator = new ParserLR(inputLineLinst);
 //        testGotoGenerator.generateLRParser("a * a + a");
+//        testGotoGenerator.generateGoto("S", testFirstFollow.parsedSet);
+//        tempBase = new Base();
 
-        //testGotoGenerator.generateGoto("S", testFirstFollow.parsedSet);
-
-
-       // tempBase = new Base();
-
-        localfxml = "/fxml/test/firstLastFollowWindow/firstLastFollowSolver.fxml";
+        localfxml = "/fxml/test/DFAWindow/DFASolver.fxml";
         localLanguage = "bundle.bundle";
         instance = this;
         Locale.setDefault(new Locale("en", "EN"));
@@ -173,19 +164,6 @@ public class Start extends Application {
         //Base window
         testScene = new Scene((Parent)new FXMLLoader(getClass().getResource("/fxml/test/mainWindow/baseWindow.fxml"), ResourceBundle.getBundle(localLanguage)).load(), 1300, 700);
         testScene.getStylesheets().add(getClass().getResource("/fromPaula/application.css").toExternalForm());
-
-
-
-        //DFA
-        //testScene = new Scene((Parent)new FXMLLoader(getClass().getResource("/fxml/test/firstLastFollowWindow/firstLastFollowSolver.fxml"), ResourceBundle.getBundle("bundle.bundle")).load(), 800, 600);
-        //testScene.getStylesheets().add(getClass().getResource("/fromPaula/application.css").toExternalForm());
-        //LR
-        //testScene = new Scene((Parent)new FXMLLoader(getClass().getResource("/fxml/test/parserLRWindow/parserLRSolver.fxml"), ResourceBundle.getBundle("bundle.bundle")).load(), 800, 600);
-        //LL
-        //testScene = new Scene((Parent)new FXMLLoader(getClass().getResource("/fxml/test/parserLLWindow/parserLLSolver.fxml"), ResourceBundle.getBundle("bundle.bundle")).load(), 800, 600);
-        //firstFollow
-        //testScene = new Scene((Parent)new FXMLLoader(getClass().getResource("/fxml/test/firstFollowWindow/firstFollowSolver.fxml"), ResourceBundle.getBundle("bundle.bundle")).load(), 800, 600);
-
 
         stage.setTitle("My JavaFX Application");
         stage.setScene(testScene);
@@ -216,7 +194,6 @@ public class Start extends Application {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     public ResourceBundle getResourceBundle() {

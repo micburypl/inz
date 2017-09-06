@@ -1,6 +1,6 @@
 package graph;
 
-import algorithmDFA.PDAPart;
+import DFA.algorithmDFA.DFAPart;
 import com.mxgraph.layout.hierarchical.mxHierarchicalLayout;
 import com.mxgraph.model.mxCell;
 import com.mxgraph.swing.mxGraphComponent;
@@ -21,7 +21,7 @@ public class GraphThreeMethods {
     Integer y;
     Boolean shift;
 
-    public GraphThreeMethods(List<PDAPart> outputList){
+    public GraphThreeMethods(List<DFAPart> outputList){
         shift = true;
         x = 0;
         y = 0;
@@ -33,10 +33,10 @@ public class GraphThreeMethods {
         cellList = new ArrayList<>();
 
         //create cell
-        for(PDAPart element: outputList) {
+        for(DFAPart element: outputList) {
             addVertex(element);
         }
-        for(PDAPart element: outputList) {
+        for(DFAPart element: outputList) {
             addCell(element);
         }
 
@@ -50,7 +50,7 @@ public class GraphThreeMethods {
 
 
 
-    void addVertex(PDAPart cellElement) {
+    void addVertex(DFAPart cellElement) {
         String tempString;
         if(!cellElement.typeTreePart) {
             // operator
@@ -72,7 +72,7 @@ public class GraphThreeMethods {
         vertexMap.put(cellElement.controlNumber, cell);
     }
 
-    void addCell(PDAPart cellElement) {
+    void addCell(DFAPart cellElement) {
 
         if(!cellElement.typeTreePart) {
             // operator
@@ -85,7 +85,7 @@ public class GraphThreeMethods {
                 mxCell cell2 = (mxCell) mainGraph.insertEdge(mainGraph.getDefaultParent(), null, "", vertexMap.get(cellElement.controlNumber), vertexMap.get(cellElement.rightChild.controlNumber),"Style");
             }
             // symbol
-            //do not do nithing
+            //do not do nothing
         }
     }
 

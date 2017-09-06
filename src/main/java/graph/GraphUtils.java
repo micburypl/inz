@@ -1,4 +1,4 @@
-package graph;//package ece.diploma.utils;
+package graph;
 
 import com.mxgraph.util.mxConstants;
 import com.mxgraph.util.mxUtils;
@@ -10,9 +10,6 @@ import com.sun.corba.se.impl.orbutil.graph.Graph;
 import java.awt.*;
 import java.util.Hashtable;
 
-/**
- * Created by Paulusia on 28.01.2017.
- */
 public class GraphUtils {
 
     static public final String REGULAR_STYLE = "Regular style";
