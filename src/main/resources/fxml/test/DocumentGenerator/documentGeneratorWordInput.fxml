@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane prefHeight="30.0" prefWidth="235.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="documentGenerator.DocumentGeneratorWordInputController">
+  <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="60.0" minWidth="10.0" prefWidth="10.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="225.0" minWidth="175.0" prefWidth="225.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <TextField fx:id="wordPart" prefHeight="25.0" prefWidth="127.0" GridPane.columnIndex="1" />
+   </children>
+</GridPane>
